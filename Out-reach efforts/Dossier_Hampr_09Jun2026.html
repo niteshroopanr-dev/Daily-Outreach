@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Internal Dossier: Hampr | 09 Jun 2026</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #E6E5DE;
+    color: #000000;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 24px 16px 60px; }
+
+  /* ── Section cards ─────────────────────────────────────────────────── */
+  .card {
+    background: #FFFFFF;
+    border-left: 6px solid #F8C806;
+    margin-bottom: 24px;
+    padding: 0;
+    overflow: hidden;
+  }
+  .card-header {
+    background: #000000;
+    color: #E6E5DE;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+    padding: 10px 20px;
+    text-transform: uppercase;
+  }
+  .card-body { padding: 20px 22px; }
+  .card-body p { margin-bottom: 10px; }
+  .card-body p:last-child { margin-bottom: 0; }
+
+  /* ── Company name header ───────────────────────────────────────────── */
+  .dossier-header {
+    background: #000000;
+    border-left: 10px solid #F8C806;
+    padding: 24px 28px;
+    margin-bottom: 24px;
+  }
+  .dossier-header .eyebrow {
+    color: #E6E5DE; font-size: 10px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px;
+  }
+  .dossier-header .co-name {
+    color: #F8C806; font-size: 32px; font-weight: 700;
+    font-family: Georgia, "Times New Roman", serif;
+  }
+  .dossier-header .date-line {
+    color: #E6E5DE; font-size: 13px; margin-top: 4px;
+  }
+  .dossier-header .framing {
+    color: #01A296; font-size: 12px; margin-top: 10px; line-height: 1.5;
+  }
+
+  /* ── Tables for firmographics ──────────────────────────────────────── */
+  table.profile { width: 100%; border-collapse: collapse; margin-top: 6px; }
+  table.profile td {
+    padding: 7px 10px; border-bottom: 1px solid #E6E5DE; vertical-align: top;
+    font-size: 13px;
+  }
+  table.profile td:first-child {
+    width: 38%; font-weight: 700; color: #000000; background: #E6E5DE;
+  }
+  table.profile tr:last-child td { border-bottom: none; }
+
+  /* ── Stat grid ─────────────────────────────────────────────────────── */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 10px;
+    margin: 12px 0;
+  }
+  .stat-tile {
+    background: #000000;
+    border-top: 4px solid #01A296;
+    padding: 12px 10px 10px;
+  }
+  .stat-tile .stat-num {
+    color: #F8C806; font-size: 22px; font-weight: 700;
+    font-family: Georgia, serif; display: block; margin-bottom: 2px;
+  }
+  .stat-tile .stat-label {
+    color: #FFFFFF; font-size: 9px; font-weight: 700; display: block;
+    text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .stat-tile .stat-sub {
+    color: #E6E5DE; font-size: 8.5px; display: block; margin-top: 1px;
+  }
+  .stat-tile .stat-src {
+    color: #01A296; font-size: 7.5px; font-style: italic;
+    display: block; margin-top: 5px;
+  }
+
+  /* ── Signals list ──────────────────────────────────────────────────── */
+  .signals-list { list-style: none; padding: 0; margin: 8px 0; }
+  .signals-list li {
+    padding: 7px 10px 7px 16px;
+    border-left: 3px solid #01A296;
+    margin-bottom: 6px;
+    background: #FFFFFF;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  /* ── Wedge block ───────────────────────────────────────────────────── */
+  .wedge-block {
+    background: #000000;
+    border-left: 5px solid #F8C806;
+    padding: 16px 18px;
+    color: #E6E5DE;
+    font-size: 13.5px;
+    line-height: 1.65;
+    margin-bottom: 16px;
+  }
+
+  /* ── Service block ─────────────────────────────────────────────────── */
+  .service-block {
+    border: 1px solid #E6E5DE;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+  }
+  .service-block .svc-name {
+    color: #000000; font-size: 17px; font-weight: 700;
+    font-family: Georgia, serif; margin-bottom: 4px;
+  }
+  .service-block .svc-price {
+    color: #01A296; font-size: 15px; font-weight: 700; margin-bottom: 8px;
+  }
+  .service-block .svc-desc { font-size: 13px; color: #000000; }
+  .service-block.supporting {
+    border-color: #E3A712; background: #FFFFFF;
+  }
+  .service-block.supporting .svc-name { font-size: 14px; color: #000000; }
+
+  /* ── CTA buttons ───────────────────────────────────────────────────── */
+  .cta-primary {
+    display: inline-block;
+    background: #01A296; color: #FFFFFF;
+    font-weight: 700; text-decoration: none;
+    padding: 14px 26px; border-radius: 28px;
+    font-size: 15px; margin-bottom: 6px;
+  }
+  .cta-clean-url {
+    color: #000000; font-size: 13px; margin-top: 6px; margin-bottom: 16px;
+  }
+  .cta-secondary {
+    display: inline-block;
+    border: 2px solid #F6A102; color: #F6A102;
+    font-weight: 700; text-decoration: none;
+    padding: 10px 20px; border-radius: 24px;
+    font-size: 14px; margin-top: 6px;
+  }
+  .secondary-intro { font-size: 13px; margin-bottom: 6px; color: #000000; }
+
+  /* ── Email draft ───────────────────────────────────────────────────── */
+  .review-gate {
+    background: #CC0000; color: #FFFFFF;
+    font-weight: 700; font-size: 13px;
+    padding: 12px 16px; text-align: center;
+    margin-bottom: 0;
+  }
+  .email-frame {
+    border: 2px solid #CC0000; margin-bottom: 0;
+  }
+  .email-field {
+    padding: 8px 16px;
+    border-bottom: 1px solid #E6E5DE;
+    font-size: 13px;
+  }
+  .email-field strong { width: 80px; display: inline-block; color: #000000; }
+  .email-body {
+    padding: 20px 18px;
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: #000000;
+  }
+  .email-body p { margin-bottom: 14px; }
+  .email-body a { color: #01A296; text-decoration: underline; }
+  .email-sig { margin-top: 20px; color: #000000; font-size: 13px; line-height: 1.6; }
+  .email-sig strong { display: block; font-size: 15px; margin-bottom: 2px; }
+
+  /* ── System notes ──────────────────────────────────────────────────── */
+  .system-notes {
+    background: #E6E5DE;
+    border: 1px solid #E6E5DE;
+    padding: 16px 18px;
+    font-size: 12px;
+    font-family: "Courier New", Courier, monospace;
+    color: #000000;
+    line-height: 1.6;
+  }
+  .system-notes dt { font-weight: 700; margin-top: 8px; color: #000000; }
+  .system-notes dd { margin-left: 14px; margin-bottom: 2px; }
+
+  /* ── Labels ────────────────────────────────────────────────────────── */
+  .section-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+    text-transform: uppercase; color: #01A296; margin-bottom: 10px;
+  }
+  .inference-note {
+    background: #E6E5DE; border-left: 3px solid #F8C806;
+    padding: 8px 12px; font-size: 12px; color: #000000;
+    margin-top: 6px; font-style: italic;
+  }
+  .note-src { color: #01A296; font-size: 11px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     5.1  HEADER
+═══════════════════════════════════════════════════════════════════════ -->
+<div class="dossier-header">
+  <div class="eyebrow">ProfitPulse Internal Review Dossier</div>
+  <div class="co-name">Hampr</div>
+  <div class="date-line">For review on 09 Jun 2026</div>
+  <div class="framing">
+    Rapidly scaling B2B workplace hospitality marketplace, Sydney NSW. Selected for $12.7M
+    revenue at 153% year on year growth (Smart50 2024 rank 8 nationally), active Singapore
+    market entry, two enterprise tenders in pursuit, and no publicly visible financial
+    leadership at a critical growth inflection.
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     5.2  VERIFIED PROFILE
+═══════════════════════════════════════════════════════════════════════ -->
+<div class="card">
+  <div class="card-header">5.2 &nbsp; Verified Profile</div>
+  <div class="card-body">
+    <p class="section-label">Firmographics</p>
+    <table class="profile">
+      <tr><td>Company name</td><td>Hampr (Hampr Pty Ltd)</td></tr>
+      <tr><td>Website</td><td>hampr.com.au</td></tr>
+      <tr><td>Location</td><td>Sydney, NSW, Australia</td></tr>
+      <tr><td>Industry</td>
+          <td>B2B workplace hospitality and corporate food technology marketplace (Software and Internet)</td></tr>
+      <tr><td>Founded</td>
+          <td>2018 <span class="note-src">Source: SmartCompany Smart50 2024 profile, Nov 2024</span></td></tr>
+      <tr><td>Employees</td>
+          <td>37 <span class="note-src">Source: SmartCompany Smart50 2024, confirmed TechSydney and ZoomInfo profiles</span></td></tr>
+      <tr><td>Revenue (FY2024)</td>
+          <td><strong>AUD $12.7 million</strong> <span class="note-src">Source: SmartCompany Smart50 2024 Awards, Rank 8 of 50, Nov 2024 (smartcompany.com.au/smart50-awards-2024/8-hampr/)</span></td></tr>
+      <tr><td>Revenue growth</td>
+          <td>153% year on year (FY2024) <span class="note-src">Source: SmartCompany Smart50 2024, same citation</span></td></tr>
+      <tr><td>Smart50 ranking</td>
+          <td>Rank 8 of 50 nationally, 2024 <span class="note-src">Source: SmartCompany Smart50 2024 Awards, Nov 2024</span></td></tr>
+      <tr><td>Total funding raised</td>
+          <td>$11.1 million across 4 rounds; most recent round $1.08M, May 2025; investors include Blackbird Ventures, Techstars, Startmate, Lee Kim Tah Group <span class="note-src">Source: Crunchbase / Tracxn, May 2025</span></td></tr>
+      <tr><td>Revenue (prior years)</td><td>Not publicly disclosed</td></tr>
+      <tr><td>Gross margin</td><td>Not publicly disclosed</td></tr>
+      <tr><td>EBITDA or net profit</td><td>Not publicly disclosed</td></tr>
+      <tr><td>Primary contact</td>
+          <td>Rizvi Mridha (goes by Riz Mridha), Cofounder and CEO <span class="note-src">Source: LinkedIn (linkedin.com/in/rizvimridha); SmartCompany Smart50 2024</span></td></tr>
+      <tr><td>Contact email</td><td>Not publicly confirmed (likely riz@hampr.com.au based on partial disclosure on lead intelligence platforms)</td></tr>
+    </table>
+
+    <p class="section-label" style="margin-top:18px;">Verified facts with sources</p>
+    <ul class="signals-list">
+      <li><strong>Revenue and growth:</strong> AUD $12.7 million revenue in FY2024 with 153% year on year growth. Source: SmartCompany Smart50 2024 Awards profile, Rank 8 of 50, Nov 2024.</li>
+      <li><strong>Team size:</strong> 37 employees. Source: SmartCompany Smart50 2024; corroborated by TechSydney company profile (techsydney.com.au) and ZoomInfo, 2024 to 2025.</li>
+      <li><strong>National ranking:</strong> Ranked 8th nationally on the SmartCompany Smart50 2024 list, the authoritative ranking of Australia's 50 fastest growing SMEs. Source: SmartCompany Smart50 Awards, Nov 2024.</li>
+      <li><strong>Total funding:</strong> $11.1 million raised across 4 rounds. Most recent round $1.08M in May 2025. Investors: Blackbird Ventures, Techstars, Startmate, Lee Kim Tah Group. Source: Crunchbase; Tracxn, May 2025.</li>
+      <li><strong>Technology platform:</strong> Proprietary marketplace and productivity platform for corporate food, events, gifting, and team building. Handles search, quoting, payments, order management, logistics, and feedback. Source: SmartCompany Smart50 2024 profile; Hampr website (hampr.com.au), 2025.</li>
+      <li><strong>Singapore market entry:</strong> hampr.sg website live as of June 2026. Publicly stated goal of entering the Singapore market in FY2026. Source: SmartCompany Smart50 2024 profile, Nov 2024; hampr.sg confirmed live.</li>
+      <li><strong>Enterprise tender pursuit:</strong> Objective of winning two enterprise tenders within 12 months declared in Smart50 submission. Source: SmartCompany Smart50 2024 Awards profile.</li>
+      <li><strong>Named enterprise client:</strong> Toyota Finance Australia publicly referenced as a client. Source: Momentum91 podcast, May 2025 (momentum91.com).</li>
+      <li><strong>Multi city operations:</strong> Active nationally across Sydney, Melbourne, Perth, Brisbane, and Canberra. Source: Hampr website (hampr.com.au), 2025.</li>
+      <li><strong>No publicly named CFO or Head of Finance:</strong> No CFO, Finance Director, or Head of Finance appears in any company profile, LinkedIn data, news coverage, or awards submission. Source: Multiple sources reviewed June 2026.</li>
+    </ul>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     5.3  COMMERCIAL GOAL INFERENCE (PHASE C)
+═══════════════════════════════════════════════════════════════════════ -->
+<div class="card">
+  <div class="card-header">Phase C &nbsp; Inferred Commercial Goal</div>
+  <div class="card-body">
+    <div class="inference-note">
+      <strong>Inference only. Not a verified fact about the business.</strong><br>
+      From the verified evidence: Hampr has grown to $12.7M at 153% in a single year, is entering
+      a new international market, is pursuing enterprise contracts with long payment terms, and
+      has no publicly visible senior finance function. The most probable commercial goal for the
+      next 12 months is to <strong>manage the financial demands of international expansion and
+      enterprise contract growth without the cost or commitment of a full time CFO</strong>. This
+      implies an acute need for structured cash flow forecasting, a financial model for the
+      Singapore launch, working capital management for enterprise payment cycles, and board grade
+      reporting as the investor and enterprise client base grows. Evidence behind the inference:
+      Singapore website live, enterprise tender pursuit publicly declared, $1.08M most recent
+      funding round (modest for the growth stage), no CFO publicly visible.
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     5.3  WEDGE AND MATCHED SERVICE
+═══════════════════════════════════════════════════════════════════════ -->
+<div class="card">
+  <div class="card-header">5.3 &nbsp; The Wedge and Matched Service</div>
+  <div class="card-body">
+
+    <div class="wedge-block">
+      <div class="section-label" style="color:#F8C806;">The Commercial Wedge</div>
+      <p>
+        Hampr has grown its revenue to $12.7 million at 153% year on year while simultaneously
+        pursuing enterprise contracts with extended payment terms and funding a market entry into
+        Singapore. The business operates a marketplace model that handles payments between corporate
+        clients and a network of food and event suppliers, creating float management complexity that
+        grows directly with transaction volume. With 37 staff across five Australian cities and no
+        publicly named CFO or Head of Finance, the financial architecture is almost certainly
+        straining against the growth momentum.
+      </p>
+      <p style="margin-top:10px;">
+        The question is not whether a senior finance function is needed but how to add one without
+        a full time overhead commitment at this stage. A Fractional CFO Partnership addresses this
+        directly: a senior financial partner at the table on a monthly cadence, building the monthly
+        management pack, the quarterly board grade review, and providing the ad hoc decision support
+        Hampr needs to model the Singapore launch properly, manage marketplace cash flow, and land
+        and service enterprise contracts with financial confidence.
+      </p>
+    </div>
+
+    <p class="section-label">Primary Matched Service</p>
+    <div class="service-block">
+      <div class="svc-name">Fractional CFO Partnership</div>
+      <div class="svc-price">$7,500 per month</div>
+      <div class="svc-desc">
+        A senior financial partner at the table on a monthly cadence. Includes monthly management
+        pack, quarterly board grade review, ad hoc decision support, and a single annual deep dive.
+        The verified ProfitPulse price for this service. The questionnaire confirms the exact figure
+        for each client based on their size and situation.
+      </div>
+    </div>
+
+    <p class="section-label">Supporting Services (signal present but secondary)</p>
+    <div class="service-block supporting">
+      <div class="svc-name">C1 &nbsp; 13 Week Cash Flow Build</div>
+      <div class="svc-desc">
+        A rolling 13 week cash flow forecast built from accounting data, with three scenarios and a
+        weekly cadence playbook. Relevant given marketplace float complexity and Singapore launch
+        cash burn.
+      </div>
+    </div>
+    <div class="service-block supporting">
+      <div class="svc-name">A4 &nbsp; Strategic Growth Diagnostic</div>
+      <div class="svc-desc">
+        A six week engagement mapping revenue, capacity, and margin headroom, then producing a 12
+        month growth plan with funding and capital allocation steps. Relevant for the Singapore
+        market entry and enterprise tender sequencing.
+      </div>
+    </div>
+
+    <!-- 5.3A PRIMARY CTA -->
+    <div style="margin-top:20px; padding:16px 18px; background:#FFFFFF; border-top:3px solid #01A296;">
+      <p class="section-label">5.3A &nbsp; Primary Call to Action: Questionnaire</p>
+      <a class="cta-primary"
+         href="https://profit-pulse.com.au/full-suite-of-products?utm_source=outreach&utm_medium=html&utm_campaign=nightly_outreach&utm_content=hampr">
+        Find your fix in two minutes
+      </a>
+      <div class="cta-clean-url">
+        Answer a few quick questions and see the solutions matched to your size and industry.<br>
+        <strong>profit-pulse.com.au/full-suite-of-products</strong>
+      </div>
+    </div>
+
+    <!-- 5.3B SECONDARY OPTION -->
+    <div style="padding:14px 18px; background:#FFFFFF; border-top:2px solid #F6A102;">
+      <p class="section-label">5.3B &nbsp; Secondary Option: Direct Purchase</p>
+      <p class="secondary-intro">
+        Already know this is the priority? You can begin with the Fractional CFO Partnership
+        at $7,500 per month.
+      </p>
+      <a class="cta-secondary"
+         href="https://buy.stripe.com/dRmbJ22uA8ekdlCgYT3ks0r">
+        Purchase the suggested product now to get started
+      </a>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     5.4  EMAIL DRAFT
+═══════════════════════════════════════════════════════════════════════ -->
+<div class="card">
+  <div class="card-header">5.4 &nbsp; Email Draft (For Review Only)</div>
+  <div class="card-body" style="padding:0;">
+
+    <div class="review-gate">
+      REVIEW GATE: This email is a draft only. No communication has been sent.
+      Only Nitesh Roopa may authorise and send this message.
+    </div>
+
+    <div class="email-frame">
+      <div class="email-field"><strong>To:</strong> Riz Mridha, Cofounder and CEO, Hampr</div>
+      <div class="email-field"><strong>From:</strong> Nitesh@Profit-Pulse.com.au</div>
+      <div class="email-field">
+        <strong>Subject:</strong>
+        Hampr's 153% growth and what comes next
+      </div>
+      <div class="email-field"><strong>Attach:</strong> Brief_Hampr_09Jun2026.pdf</div>
+
+      <div class="email-body">
+
+        <p>
+          I came across Hampr's Smart50 entry recently and I was genuinely impressed. Ranking
+          eighth nationally on the 2024 Smart50 list, with $12.7 million in revenue and 153%
+          year on year growth, is a result that takes real execution discipline to build,
+          especially across five Australian cities with a team of 37.
+        </p>
+
+        <p>
+          I am Nitesh Roopa, a Chartered Accountant and the Managing Partner of ProfitPulse,
+          a fractional CFO and advisory firm based in Brisbane. My background spans 16 years
+          across four countries, including senior finance and credit roles at Nedbank CIB from
+          2015 to 2022, and most recently as Finance and Commercial Lead on the AUD 10 billion
+          Gympie Road Bypass Tunnel detailed business case in Queensland.
+        </p>
+
+        <p>
+          Businesses at Hampr's growth stage, navigating enterprise client wins, an international
+          market entry, and the working capital demands of a marketplace model, often reach a point
+          where the financial architecture needs to catch up with the commercial ambition. I believe
+          a Fractional CFO Partnership could help Hampr build that architecture now, ahead of the
+          next scale challenge. I have attached a short brief that sets out my thinking in more detail.
+        </p>
+
+        <p>
+          If any of the themes resonate, I have put together a short questionnaire at
+          <a href="https://profit-pulse.com.au/full-suite-of-products?utm_source=outreach&utm_medium=email&utm_campaign=nightly_outreach&utm_content=hampr">profit-pulse.com.au/full-suite-of-products</a>
+          that helps you triangulate your situation and see the services matched to your size and
+          industry. It takes about two minutes and shows you the options directly, including how
+          to get started if anything looks relevant.
+        </p>
+
+        <p>
+          If you would prefer to talk first, I would welcome a complimentary 30 minute call.
+          You can
+          <a href="https://bookings.cloud.microsoft/book/ProfitPulse1@profit-pulse.com.au/?ismsaljsauthenabled=true">book a time that suits you here</a>.
+          Either way, I hope the brief is a useful perspective.
+        </p>
+
+        <div class="email-sig">
+          <strong>Nitesh Roopa</strong>
+          CA, Managing Partner<br>
+          ProfitPulse<br>
+          Profit-Pulse.com.au<br>
+          Nitesh@Profit-Pulse.com.au<br>
+          +61 411 876 267
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     5.5  SYSTEM NOTES (INTERNAL ONLY)
+═══════════════════════════════════════════════════════════════════════ -->
+<div class="card">
+  <div class="card-header">5.5 &nbsp; System Notes (Internal Only)</div>
+  <div class="card-body">
+    <dl class="system-notes">
+
+      <dt>Selected target</dt>
+      <dd>Hampr (Hampr Pty Ltd), hampr.com.au, Sydney NSW</dd>
+      <dd>Confirmed NOT in the Outreach Register prior to this run. Register contained one prior entry (AdUnion, 09 Jun 2026). Hampr is a new selection.</dd>
+
+      <dt>Verified sources used</dt>
+      <dd>SmartCompany Smart50 2024, Rank 8 of 50 (smartcompany.com.au/smart50-awards-2024/8-hampr/), published Nov 2024</dd>
+      <dd>TechSydney company profile (techsydney.com.au/s/hampr)</dd>
+      <dd>Crunchbase (crunchbase.com/organization/hampr-b4e1)</dd>
+      <dd>Tracxn funding data (tracxn.com), May 2025</dd>
+      <dd>Momentum91 podcast, May 2025 (momentum91.com) — Toyota Finance Australia client reference</dd>
+      <dd>Hampr website hampr.com.au and hampr.sg, reviewed June 2026</dd>
+      <dd>Rizvi Mridha LinkedIn (linkedin.com/in/rizvimridha)</dd>
+
+      <dt>Inferred commercial goal</dt>
+      <dd>INFERENCE (not a verified fact): manage the financial demands of international expansion and enterprise contract growth without a full time CFO. Evidence: Singapore website live, enterprise tender pursuit declared, modest May 2025 funding round, no publicly visible finance leadership.</dd>
+
+      <dt>Matched service code and name</dt>
+      <dd>Primary: B1, Fractional CFO Partnership</dd>
+      <dd>Supporting: C1 (13 Week Cash Flow Build), A4 (Strategic Growth Diagnostic)</dd>
+
+      <dt>Tier computation (Section 3C engine)</dt>
+      <dd>Industry: Technology and SaaS, bias 3</dd>
+      <dd>Revenue $10M to $20M: 6 pts | Gross margin 55 to 70% (tech marketplace default, not verified): 2 pts | Team 16 to 40: 3 pts | Locations 2 to 3: 2 pts | Single entity: 1 pt | Revenue model mixed: 2 pts | Customer concentration some reliance: 2 pts | Funding modest: 2 pts | Forward growth high (over 30%): 6 pts | Recent trajectory scaling rapidly: 6 pts | Commercial event expansion (Singapore): 2 pts</dd>
+      <dd>Raw score: 34. Essential ceiling 27. Command ceiling 37.</dd>
+      <dd>Base tier: Command (34 within Command band).</dd>
+      <dd>Adjustment: gross margin points 2 (at or below 2, meaning over 55%) AND forward growth points 6 (at or above 4, meaning over 15%) both met. LIFT one tier.</dd>
+      <dd>FINAL TIER: Executive. (Recorded here for traceability only. Tier name does not appear anywhere the prospect sees.)</dd>
+      <dd>Unverifiable inputs defaulted to neutral conservative midband: gross margin, business structure, revenue model, customer concentration, funding position. Gross margin assumed at 55 to 70% band for a tech marketplace (higher take rate than pure logistics). If actual margin is lower the tier may resolve to Command on the questionnaire.</dd>
+
+      <dt>Verified price used</dt>
+      <dd>$7,500 per month (B1 Fractional CFO Partnership, inferred tier). Questionnaire confirms the exact figure for the prospect.</dd>
+
+      <dt>Questionnaire URL (with UTM for HTML dossier)</dt>
+      <dd>https://profit-pulse.com.au/full-suite-of-products?utm_source=outreach&utm_medium=html&utm_campaign=nightly_outreach&utm_content=hampr</dd>
+
+      <dt>Questionnaire URL (with UTM for email)</dt>
+      <dd>https://profit-pulse.com.au/full-suite-of-products?utm_source=outreach&utm_medium=email&utm_campaign=nightly_outreach&utm_content=hampr</dd>
+
+      <dt>Direct Stripe checkout link (primary service, inferred tier)</dt>
+      <dd>Service: B1 Fractional CFO Partnership. Price: $7,500 per month.</dd>
+      <dd>https://buy.stripe.com/dRmbJ22uA8ekdlCgYT3ks0r</dd>
+      <dd>This link is used in the dossier and the PPTX brief behind the call to action words only. It is never shown as visible text.</dd>
+
+      <dt>Email Stripe link</dt>
+      <dd>EMAIL_INCLUDE_DIRECT_CHECKOUT is set to false. No Stripe link appears in the email. Email leads with the questionnaire only.</dd>
+
+      <dt>Bitly shortening</dt>
+      <dd>BITLY_SHORTEN is set to false. No short links created.</dd>
+
+      <dt>NEVER SEND confirmation</dt>
+      <dd>Nothing has been sent. All outputs are drafts for Nitesh Roopa's review only.</dd>
+
+      <dt>Files saved (09 Jun 2026)</dt>
+      <dd>Dossier_Hampr_09Jun2026.html (this file)</dd>
+      <dd>Brief_Hampr_09Jun2026.pptx</dd>
+      <dd>Brief_Hampr_09Jun2026.pdf</dd>
+
+    </dl>
+  </div>
+</div>
+
+</div><!-- /wrap -->
+</body>
+</html>
