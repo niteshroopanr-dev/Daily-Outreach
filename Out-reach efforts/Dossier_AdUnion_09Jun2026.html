@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProfitPulse Outreach Dossier | AdUnion | 09 Jun 2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, Helvetica, sans-serif; background: #000000; color: #FFFFFF; font-size: 16px; line-height: 1.6; }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 24px 20px; }
+
+  /* Header */
+  .pp_header { border-bottom: 3px solid #01A296; padding-bottom: 28px; margin-bottom: 32px; }
+  .pp_brand { color: #01A296; font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px; }
+  .pp_company { color: #F8C806; font-size: 36px; font-weight: 700; margin-bottom: 8px; }
+  .pp_date { color: #E6E5DE; font-size: 14px; margin-bottom: 14px; }
+  .pp_framing { color: #E6E5DE; font-size: 16px; border-left: 4px solid #01A296; padding-left: 16px; margin-top: 14px; line-height: 1.7; }
+
+  /* Sections */
+  .sec { background: #111111; border: 1px solid #222222; border-radius: 8px; padding: 28px; margin-bottom: 24px; }
+  .sec_title { color: #F8C806; font-size: 13px; font-weight: 700; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #01A296; text-transform: uppercase; letter-spacing: 2px; }
+  .sec h3 { color: #01A296; font-size: 17px; font-weight: 700; margin-bottom: 14px; }
+
+  /* Profile grid */
+  .pgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .pitem { background: #1a1a1a; border-radius: 6px; padding: 14px; }
+  .plabel { color: #F6A102; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .pvalue { color: #FFFFFF; font-size: 15px; font-weight: 600; }
+  .psrc { color: #666666; font-size: 11px; margin-top: 4px; }
+
+  /* Rankings callout */
+  .rankings { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 18px; }
+  .rank_badge { background: #1a1a1a; border: 1px solid #01A296; border-radius: 6px; padding: 12px 16px; text-align: center; flex: 1; min-width: 150px; }
+  .rank_num { color: #F8C806; font-size: 26px; font-weight: 700; }
+  .rank_list { color: #E6E5DE; font-size: 12px; margin-top: 2px; }
+  .rank_year { color: #666666; font-size: 11px; }
+
+  /* Wedge */
+  .wedge { background: #071212; border-left: 4px solid #01A296; padding: 20px 24px; border-radius: 0 8px 8px 0; margin-bottom: 22px; color: #E6E5DE; font-size: 16px; line-height: 1.8; }
+
+  /* Inference label */
+  .inf_note { background: #1a1500; border: 1px solid #F6A102; border-radius: 4px; padding: 8px 14px; font-size: 12px; color: #F6A102; margin-bottom: 20px; }
+
+  /* Service block */
+  .svc_block { background: #041a18; border: 2px solid #01A296; border-radius: 10px; padding: 24px; margin-bottom: 20px; }
+  .svc_code { color: #F6A102; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 6px; }
+  .svc_name { color: #01A296; font-size: 22px; font-weight: 700; margin-bottom: 10px; }
+  .svc_desc { color: #E6E5DE; font-size: 15px; line-height: 1.7; margin-bottom: 18px; }
+  .svc_meta { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; margin-bottom: 10px; }
+  .tier_pill { background: #F6A102; color: #000000; font-size: 12px; font-weight: 700; padding: 4px 14px; border-radius: 20px; }
+  .price_display { color: #F8C806; font-size: 20px; font-weight: 700; }
+  .cadence { color: #888888; font-size: 13px; }
+  .tier_reason { color: #888888; font-size: 13px; margin-top: 8px; font-style: italic; }
+
+  /* Supporting services */
+  .sup_list { margin-top: 18px; }
+  .sup_item { background: #1a1a1a; border-radius: 6px; padding: 12px 16px; margin-bottom: 8px; }
+  .sup_label { color: #E3A712; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .sup_name { color: #FFFFFF; font-size: 15px; }
+  .sup_note { color: #666666; font-size: 12px; margin-top: 3px; }
+
+  /* Primary CTA */
+  .cta_section { background: #041a18; border: 1px solid #01A296; border-radius: 10px; padding: 24px; margin-top: 22px; }
+  .cta_heading { color: #FFFFFF; font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+  .cta_sub { color: #888888; font-size: 13px; margin-bottom: 16px; }
+  .btn_primary { display: inline-block; background: #01A296; color: #FFFFFF; font-weight: 700; text-decoration: none; padding: 16px 28px; border-radius: 30px; font-family: Arial, sans-serif; font-size: 16px; }
+  .btn_note { color: #666666; font-size: 13px; margin-top: 10px; }
+
+  /* Secondary CTA */
+  .sec_cta { margin-top: 20px; padding-top: 20px; border-top: 1px solid #222222; }
+  .sec_cta_text { color: #E6E5DE; font-size: 14px; margin-bottom: 10px; }
+  .btn_secondary { display: inline-block; border: 2px solid #F6A102; color: #F6A102; font-weight: 700; text-decoration: none; padding: 12px 22px; border-radius: 26px; font-family: Arial, sans-serif; font-size: 15px; }
+
+  /* Review gate */
+  .review_gate { background: #cc0000; color: #FFFFFF; font-weight: 700; font-size: 15px; padding: 18px 22px; border-radius: 6px; margin-bottom: 22px; text-align: center; border: 2px solid #ff6666; }
+
+  /* Email frame */
+  .email_frame { background: #1a1a1a; border: 1px solid #333333; border-radius: 8px; overflow: hidden; }
+  .email_top { background: #222222; padding: 14px 22px; border-bottom: 1px solid #333333; }
+  .email_field { color: #888888; font-size: 13px; margin-bottom: 5px; }
+  .email_field span { color: #E6E5DE; }
+  .email_body_wrap { padding: 24px 22px; color: #E6E5DE; font-size: 15px; line-height: 1.85; }
+  .email_body_wrap p { margin-bottom: 18px; }
+  .email_body_wrap a { color: #01A296; word-break: break-all; }
+  .email_sig { border-top: 1px solid #333333; padding-top: 16px; margin-top: 8px; }
+  .email_sig p { margin-bottom: 4px; color: #E6E5DE; }
+
+  /* System notes */
+  .sys_notes { background: #0d0d0d; border: 1px solid #2a2a2a; border-radius: 6px; padding: 20px; }
+  .sys_item { margin-bottom: 10px; font-size: 13px; color: #888888; }
+  .sys_label { color: #F6A102; font-weight: 700; }
+
+  /* Responsive */
+  @media (max-width: 620px) {
+    .pgrid { grid-template-columns: 1fr; }
+    .rankings { flex-direction: column; }
+    .pp_company { font-size: 26px; }
+    .svc_meta { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ============================================================
+       5.1  HEADER
+  ============================================================ -->
+  <div class="pp_header">
+    <div class="pp_brand">ProfitPulse &nbsp;&bull;&nbsp; Internal Research Dossier</div>
+    <div class="pp_company">AdUnion</div>
+    <div class="pp_date">Prepared for: 09 Jun 2026</div>
+    <div class="pp_framing">
+      A ten person Melbourne streaming media agency ranked eighth on Smart50 2025, twenty sixth on the AFR Fast 100, and thirty first on the Deloitte Tech Fast 50 in the same year.
+      Revenue tripled since 2023. At this velocity, the question that determines whether growth converts to owner wealth is: which clients drive the real margin after full cost allocation.
+    </div>
+  </div>
+
+  <!-- ============================================================
+       5.2  VERIFIED PROFILE
+  ============================================================ -->
+  <div class="sec">
+    <div class="sec_title">Verified Profile</div>
+    <div class="pgrid">
+      <div class="pitem">
+        <div class="plabel">Company</div>
+        <div class="pvalue">AdUnion</div>
+        <div class="psrc">adunion.com.au</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Location</div>
+        <div class="pvalue">Cremorne, VIC (Melbourne)</div>
+        <div class="psrc">SmartCompany Smart50 2025 award citation</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Industry</div>
+        <div class="pvalue">Streaming media advertising agency</div>
+        <div class="psrc">Company website and multiple industry publications</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Founded</div>
+        <div class="pvalue">2016</div>
+        <div class="psrc">SmartCompany Smart50 2025 award citation</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Revenue (FY2024)</div>
+        <div class="pvalue">$9.3 million</div>
+        <div class="psrc">SmartCompany Smart50 2025 award citation (company self reported)</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Revenue Growth</div>
+        <div class="pvalue">81% three year average</div>
+        <div class="psrc">SmartCompany Smart50 2025 award citation</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Recent Growth Milestone</div>
+        <div class="pvalue">Tripled revenue since 2023</div>
+        <div class="psrc">AdNews, B&amp;T and Content + Technology (10 year anniversary coverage, 2026)</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Team Size</div>
+        <div class="pvalue">10 employees</div>
+        <div class="psrc">SmartCompany Smart50 2025 award citation</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Managing Director</div>
+        <div class="pvalue">Robert Ong</div>
+        <div class="psrc">LinkedIn public profile; multiple industry press citations</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Co-founder</div>
+        <div class="pvalue">Adam Shalagin (leads AdMatch separately)</div>
+        <div class="psrc">AdNews, B&amp;T (10 year anniversary coverage, 2026)</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Proprietary Platform</div>
+        <div class="pvalue">AdMatch (streaming TV measurement and optimisation)</div>
+        <div class="psrc">AdUnion press releases and industry publications</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Named Clients</div>
+        <div class="pvalue">Samsung, Tubi, Tangerine Telecom, Review, Black Pepper, Wild Secrets</div>
+        <div class="psrc">AdUnion published press releases and case studies</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Recent Leadership Hires</div>
+        <div class="pvalue">Siddharth Bhakay (Head of Digital); Katrina Stratton (Head of Client Services)</div>
+        <div class="psrc">AdUnion published press release</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">10 Year Anniversary</div>
+        <div class="pvalue">Celebrated 2026</div>
+        <div class="psrc">AdNews, B&amp;T, Content + Technology</div>
+      </div>
+    </div>
+
+    <!-- Rankings -->
+    <div class="sec" style="margin-top: 20px; margin-bottom: 0; background: #0d0d0d;">
+      <div class="sec_title" style="font-size: 12px;">Public Rankings (All Verified, 2025)</div>
+      <div class="rankings">
+        <div class="rank_badge">
+          <div class="rank_num">8th</div>
+          <div class="rank_list">SmartCompany Smart50</div>
+          <div class="rank_year">2025 | highest ranked media agency</div>
+        </div>
+        <div class="rank_badge">
+          <div class="rank_num">26th</div>
+          <div class="rank_list">AFR Fast 100</div>
+          <div class="rank_year">2025 | fastest growing agency in sector</div>
+        </div>
+        <div class="rank_badge">
+          <div class="rank_num">31st</div>
+          <div class="rank_list">Deloitte Tech Fast 50</div>
+          <div class="rank_year">2025 | only media business on the list</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       5.3  THE WEDGE AND MATCHED SERVICE
+  ============================================================ -->
+  <div class="sec">
+    <div class="sec_title">Commercial Wedge and Matched Service</div>
+
+    <div class="inf_note">
+      The inferred commercial goal below is derived from verified public evidence about AdUnion's growth trajectory, business model, and team structure. It is an inference, not a verified fact, and is labelled as such.
+    </div>
+
+    <h3>Inferred Commercial Goal</h3>
+    <div class="wedge">
+      AdUnion has compounded at 81 percent over three years and sits at $9.3 million in revenue with ten people, making it one of the leanest high growth agencies in Australia. Its founders built their edge in streaming media, not in financial management, and the business has added client diversity rapidly across retail, telco, travel, financial services, and FMCG through the AdMatch platform advantage.
+      <br><br>
+      At this velocity and client mix, the inferred goal for the next 12 months is to understand which accounts are genuinely profitable after the full cost of service, team time, and technology investment are allocated. Revenue per person at $930K suggests very high gross productivity, but gross revenue does not tell the full story: in an agency with proprietary technology investment, some accounts likely subsidise others without the team knowing. With Adam Shalagin now leading AdMatch separately and Robert Ong steering AdUnion as a standalone agency, the commercial question shifts from growth to profitable growth. Knowing which clients to grow, which to reprice, and which to reset is the most valuable financial insight at this stage.
+      <br><br>
+      This is an inference from verified public information about the business. It may not reflect the actual situation at AdUnion.
+    </div>
+
+    <h3>Matched Service</h3>
+    <div class="svc_block">
+      <div class="svc_code">Primary Service &bull; Code G2</div>
+      <div class="svc_name">Customer Concentration and Profitability Map</div>
+      <div class="svc_desc">
+        A focused three week project that ranks every customer by revenue, gross margin contribution, and effort to serve. Produces a prioritised client list showing which relationships to grow, which to reprice, and which to reset. Designed for single entity businesses with an active client portfolio where the true profitability by account is not yet fully visible.
+      </div>
+      <div class="svc_meta">
+        <div class="tier_pill">Command Tier</div>
+        <div class="price_display">$3,950</div>
+        <div class="cadence">one off</div>
+      </div>
+      <div class="tier_reason">
+        Tier basis: $9.3M revenue at marketing agency (bias 2) scores raw 27 against an Essential ceiling of 29, landing Essential at base. High margin agency profile (gross margin over 55%) combined with forward growth of 15 to 30 percent triggers the one tier upward lift to Command. The questionnaire confirms the exact tier from Robert Ong's own answers.
+      </div>
+    </div>
+
+    <!-- CTA: Primary (Questionnaire) -->
+    <div class="cta_section">
+      <div class="cta_heading">Step 1: Triangulate through the questionnaire</div>
+      <div class="cta_sub">The prospect answers a few short questions. The page matches services to their size and industry. Every matched service carries a direct purchase option. This is the preferred front door.</div>
+      <a class="btn_primary"
+         href="https://profit-pulse.com.au/full-suite-of-products?utm_source=outreach&utm_medium=html&utm_campaign=nightly_outreach&utm_content=adunion">
+        Find your fix in two minutes
+      </a>
+      <div class="btn_note">
+        Answer a few quick questions and see the solutions matched to your size and industry, each with a direct purchase option.
+      </div>
+
+      <!-- CTA: Secondary (Direct Checkout) -->
+      <div class="sec_cta">
+        <div class="sec_cta_text">
+          Already know the Customer Concentration and Profitability Map is the priority? You can begin directly at the verified price for the inferred Command tier: $3,950 one off.
+        </div>
+        <a class="btn_secondary"
+           href="https://buy.stripe.com/14AbJ21qw2U0ftK0ZV3ks1A">
+          Start Customer Concentration and Profitability Map
+        </a>
+        <div class="btn_note" style="margin-top: 8px;">
+          Direct Stripe checkout for G2 at Command tier. No UTM tags appended.
+          The questionnaire confirms the exact tier before purchase if preferred.
+        </div>
+      </div>
+    </div>
+
+    <!-- Supporting Services -->
+    <div class="sup_list">
+      <div style="color: #888888; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; margin-top: 22px;">Supporting Services (named only, evidence supported)</div>
+      <div class="sup_item">
+        <div class="sup_label">Supporting Service 1 &bull; Code A4</div>
+        <div class="sup_name">Strategic Growth Diagnostic</div>
+        <div class="sup_note">Six week engagement mapping revenue, capacity, and margin headroom with a 12 month growth plan. Relevant as AdUnion approaches the $10M threshold and needs a costed plan for the next stage.</div>
+      </div>
+      <div class="sup_item">
+        <div class="sup_label">Supporting Service 2 &bull; Code D4</div>
+        <div class="sup_name">Budgeting and Forecasting Setup</div>
+        <div class="sup_note">Annual budget and rolling 12 month forecast with monthly variance reporting. Relevant for a ten person agency scaling rapidly that likely lacks formal planning infrastructure.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       5.4  EMAIL DRAFT
+  ============================================================ -->
+  <div class="sec">
+    <div class="sec_title">Email Draft</div>
+
+    <div class="review_gate">
+      REVIEW GATE: This email is a draft only. No communication has been sent.
+      Only Nitesh Roopa may authorise and send this message.
+    </div>
+
+    <div class="email_frame">
+      <div class="email_top">
+        <div class="email_field">To: <span>Robert Ong, Managing Director, AdUnion</span></div>
+        <div class="email_field">From: <span>Nitesh@Profit-Pulse.com.au</span></div>
+        <div class="email_field">Subject: <span>AdUnion's growth run and the margin question</span></div>
+        <div class="email_field">Attachment: <span>Brief_AdUnion_09Jun2026.pdf</span></div>
+      </div>
+      <div class="email_body_wrap">
+        <p>
+          Hi Robert,
+        </p>
+        <p>
+          Congratulations on placing eighth in this year's Smart50 while also landing on the AFR Fast 100 and the Deloitte Tech Fast 50 in the same season. Tripling revenue since 2023 while keeping the team tight at ten people is a genuinely impressive result, and the recognition across all three lists confirms AdUnion as one of the most efficient growth stories in Australian media right now.
+        </p>
+        <p>
+          I am Nitesh Roopa, CA, Managing Partner at ProfitPulse, a Brisbane based fractional CFO and advisory firm. I spent sixteen years across four countries working on capital transactions and financial strategy, including seven years at Nedbank CIB in energy finance and principal equity roles, where deal sizes ranged from USD 15 million to USD 1.3 billion. My practice today focuses on helping growth stage Australian SMEs get the financial clarity that matches their commercial ambition.
+        </p>
+        <p>
+          The observation that prompted this note: agencies that grow at AdUnion's pace with a diversified client roster across retail, telco, travel, financial services, and FMCG rarely have a complete picture of which accounts drive the actual margin after the full cost of service, team time, and platform investment are allocated. At $9.3 million with ten people, that visibility is worth considerably more than another round of new business. I work on exactly this with clients through a structured Customer Concentration and Profitability Map, a three week project that ranks every client by revenue, gross margin contribution, and effort to serve. I have attached a short brief with more detail.
+        </p>
+        <p>
+          If you would like to see how ProfitPulse approaches this for agencies at your stage, the link below takes two minutes and shows the services matched to your size and industry, each with a direct purchase option:<br>
+          <a href="https://profit-pulse.com.au/full-suite-of-products?utm_source=outreach&utm_medium=email&utm_campaign=nightly_outreach&utm_content=adunion">profit-pulse.com.au/full-suite-of-products</a>
+        </p>
+        <p>
+          If you would prefer to talk through it first, you are welcome to book a complimentary discovery call here:<br>
+          <a href="https://bookings.cloud.microsoft/book/ProfitPulse1@profit-pulse.com.au/?ismsaljsauthenabled=true">Book a complimentary discovery call</a>
+        </p>
+        <p>Warm regards,</p>
+        <div class="email_sig">
+          <p><strong>Nitesh Roopa</strong></p>
+          <p>CA, Managing Partner</p>
+          <p>ProfitPulse</p>
+          <p><a href="https://profit-pulse.com.au">Profit-Pulse.com.au</a></p>
+          <p><a href="mailto:Nitesh@Profit-Pulse.com.au">Nitesh@Profit-Pulse.com.au</a></p>
+          <p>+61 411 876 267</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       5.5  SYSTEM NOTES
+  ============================================================ -->
+  <div class="sec">
+    <div class="sec_title">System Notes</div>
+    <div class="sys_notes">
+      <div class="sys_item"><span class="sys_label">Run date:</span> 08 Jun 2026 (23:00 Brisbane time). Output date for all files: 09 Jun 2026.</div>
+      <div class="sys_item"><span class="sys_label">Target selected:</span> AdUnion, Cremorne VIC. Register checked: no prior entry for AdUnion exists. Selection is valid.</div>
+      <div class="sys_item"><span class="sys_label">Register not empty at start:</span> False. Register was created fresh with this run as the first entry.</div>
+      <div class="sys_item">
+        <span class="sys_label">Verified sources used:</span>
+        <br>1. SmartCompany Smart50 2025 award citation (rank 8, revenue $9.3M, growth 81%, employees 10, founded 2016, location Cremorne VIC)
+        <br>2. Mumbrella: AFR Fast 100 2025 rank 26 for AdUnion
+        <br>3. Deloitte Tech Fast 50 2025: AdUnion ranked 31st, only media business on the list
+        <br>4. AdNews: 10 year anniversary coverage (2026), revenue tripled since 2023
+        <br>5. B&amp;T: 10 year anniversary coverage, Robert Ong and Adam Shalagin co-founders confirmed
+        <br>6. Content + Technology: 10 year anniversary coverage
+        <br>7. LinkedIn public profile: Robert Ong confirmed as Founder and MD
+        <br>8. AdUnion published press release: Siddharth Bhakay (Head of Digital), Katrina Stratton (Head of Client Services) appointments
+        <br>9. AdUnion published press releases and case studies: named clients Samsung, Tubi, Tangerine Telecom, Review, Black Pepper, Wild Secrets
+        <br>10. eCommerce News: AdUnion growth list coverage confirming multiple award citations
+      </div>
+      <div class="sys_item">
+        <span class="sys_label">Inferred commercial goal:</span> Profitable growth clarity at client level as the agency scales through $10M with a lean team. This is an inference from public evidence, not a verified fact from AdUnion.
+      </div>
+      <div class="sys_item"><span class="sys_label">Primary matched service:</span> G2 Customer Concentration and Profitability Map</div>
+      <div class="sys_item"><span class="sys_label">Supporting services named:</span> A4 Strategic Growth Diagnostic; D4 Budgeting and Forecasting Setup</div>
+      <div class="sys_item">
+        <span class="sys_label">Tier engine output:</span>
+        Industry: Marketing creative and media agencies, bias 2.
+        Raw score inputs: Revenue $5M to $10M (5), Gross margin 55 to 70% default (2), Team 6 to 15 (2), Single location (1), Single entity default (1), Mixed revenue model (2), Some key account reliance (2), Modest debt default (2), Forward growth 15 to 30% (4), Scaling rapidly (6), No commercial event (0). Raw score: 27.
+        Essential ceiling at bias 2 = 29. Command ceiling at bias 2 = 39.
+        Base tier: Essential (27 is at or below 29).
+        Upward adjustment triggered: gross margin points 2 (at or below 2) and forward growth points 4 (at or above 4). Final tier: Command.
+      </div>
+      <div class="sys_item">
+        <span class="sys_label">Questionnaire URL (email):</span>
+        https://profit-pulse.com.au/full-suite-of-products?utm_source=outreach&amp;utm_medium=email&amp;utm_campaign=nightly_outreach&amp;utm_content=adunion
+      </div>
+      <div class="sys_item">
+        <span class="sys_label">Questionnaire URL (HTML dossier):</span>
+        https://profit-pulse.com.au/full-suite-of-products?utm_source=outreach&amp;utm_medium=html&amp;utm_campaign=nightly_outreach&amp;utm_content=adunion
+      </div>
+      <div class="sys_item">
+        <span class="sys_label">Questionnaire URL (PPTX brief):</span>
+        https://profit-pulse.com.au/full-suite-of-products?utm_source=outreach&amp;utm_medium=pptx&amp;utm_campaign=nightly_outreach&amp;utm_content=adunion
+      </div>
+      <div class="sys_item">
+        <span class="sys_label">Direct Stripe checkout link used:</span>
+        G2 Customer Concentration and Profitability Map, Command tier, $3,950 one off.
+        Link: https://buy.stripe.com/14AbJ21qw2U0ftK0ZV3ks1A
+        No UTM tags appended to Stripe link.
+      </div>
+      <div class="sys_item">
+        <span class="sys_label">EMAIL_INCLUDE_DIRECT_CHECKOUT:</span> false. The email leads with the questionnaire. No Stripe checkout link appears in the email body.
+      </div>
+      <div class="sys_item">
+        <span class="sys_label">BITLY_SHORTEN:</span> false. No short links created.
+      </div>
+      <div class="sys_item"><span class="sys_label">Nothing has been sent.</span> Every output in this dossier is a draft for Nitesh Roopa's review only. No email, message, or communication of any kind has been dispatched.</div>
+      <div class="sys_item">
+        <span class="sys_label">Files saved:</span>
+        Out-reach efforts/Dossier_AdUnion_09Jun2026.html
+        Out-reach efforts/Brief_AdUnion_09Jun2026.pptx
+        Out-reach efforts/Brief_AdUnion_09Jun2026.pdf
+        Out-reach efforts/Outreach_Register.csv (updated)
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div style="text-align: center; color: #444444; font-size: 12px; padding: 20px 0;">
+    ProfitPulse &nbsp;&bull;&nbsp; Confidential Internal Dossier &nbsp;&bull;&nbsp; Profit-Pulse.com.au &nbsp;&bull;&nbsp; 09 Jun 2026
+  </div>
+
+</div>
+</body>
+</html>
