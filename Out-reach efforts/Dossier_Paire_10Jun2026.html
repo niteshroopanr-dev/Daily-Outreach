@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProfitPulse Dossier | Paire | 10 Jun 2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #000000;
+    color: #E6E5DE;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  a { color: #01A296; }
+
+  /* Layout */
+  .page { max-width: 960px; margin: 0 auto; padding: 0 20px 60px; }
+
+  /* Header */
+  .site-header {
+    background: #000000;
+    border-bottom: 4px solid #F8C806;
+    padding: 18px 24px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .site-header .brand { color: #01A296; font-size: 13px; font-weight: 700; letter-spacing: 2px; }
+  .site-header .date  { color: #888888; font-size: 12px; }
+
+  /* Section blocks */
+  .section {
+    background: #111111;
+    border-left: 4px solid #01A296;
+    border-radius: 6px;
+    padding: 24px 28px;
+    margin-top: 24px;
+  }
+  .section.amber-border { border-left-color: #F6A102; }
+  .section.gold-border  { border-left-color: #E3A712; }
+
+  .section-label {
+    color: #01A296;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  h1 { color: #F8C806; font-size: 36px; font-weight: 700; margin-bottom: 4px; }
+  h2 { color: #F8C806; font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+  h3 { color: #01A296; font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+
+  p { margin-bottom: 12px; color: #E6E5DE; }
+
+  /* Stat grid */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 14px;
+    margin-top: 18px;
+  }
+  .stat-card {
+    background: #000000;
+    border-top: 3px solid #01A296;
+    border-radius: 4px;
+    padding: 14px 12px 10px;
+  }
+  .stat-card .stat-num  { color: #FFFFFF; font-size: 24px; font-weight: 700; }
+  .stat-card .stat-lbl  { color: #E6E5DE; font-size: 11px; margin-top: 4px; line-height: 1.4; }
+  .stat-card .stat-src  { color: #888888; font-size: 9px; margin-top: 6px; font-style: italic; }
+
+  /* Signals list */
+  .signals-list { list-style: none; margin-top: 14px; }
+  .signals-list li {
+    padding: 8px 0 8px 20px;
+    border-bottom: 1px solid #222222;
+    position: relative;
+    color: #E6E5DE;
+    font-size: 13px;
+  }
+  .signals-list li:last-child { border-bottom: none; }
+  .signals-list li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 13px;
+    width: 8px; height: 8px;
+    background: #01A296;
+    border-radius: 2px;
+  }
+  .signals-list li .sig-src { color: #888888; font-size: 10px; font-style: italic; display: block; margin-top: 2px; }
+
+  /* Data table */
+  .data-table { width: 100%; border-collapse: collapse; margin-top: 14px; }
+  .data-table td { padding: 8px 12px; font-size: 13px; }
+  .data-table tr { border-bottom: 1px solid #222222; }
+  .data-table .lbl { color: #888888; width: 38%; font-style: italic; }
+  .data-table .val { color: #E6E5DE; font-weight: 600; }
+
+  /* Wedge box */
+  .wedge-box {
+    background: #0A1010;
+    border: 1px solid #01A296;
+    border-radius: 6px;
+    padding: 20px 24px;
+    margin-top: 16px;
+  }
+  .wedge-box p { color: #E6E5DE; font-size: 13px; }
+
+  /* Service match block */
+  .service-match {
+    background: #000000;
+    border: 2px solid #01A296;
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-top: 20px;
+  }
+  .service-match .svc-name { color: #F8C806; font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+  .service-match .svc-price { color: #01A296; font-size: 14px; font-weight: 700; margin-bottom: 10px; }
+  .service-match .svc-desc { color: #E6E5DE; font-size: 13px; margin-bottom: 0; }
+
+  /* CTA buttons */
+  .cta-primary {
+    display: inline-block;
+    background: #01A296;
+    color: #FFFFFF;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 14px 26px;
+    border-radius: 28px;
+    font-size: 15px;
+    margin-top: 18px;
+    margin-right: 12px;
+  }
+  .cta-primary:hover { background: #018E84; color: #FFFFFF; }
+  .cta-secondary {
+    display: inline-block;
+    border: 2px solid #F6A102;
+    color: #F6A102;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 12px 22px;
+    border-radius: 26px;
+    font-size: 14px;
+    margin-top: 18px;
+    margin-right: 12px;
+  }
+  .cta-secondary:hover { background: #F6A102; color: #000000; }
+  .cta-address { color: #888888; font-size: 12px; margin-top: 8px; }
+
+  /* Supporting services */
+  .supp-list { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 14px; }
+  .supp-tag {
+    background: #1A1A1A;
+    border: 1px solid #444444;
+    color: #E6E5DE;
+    font-size: 12px;
+    padding: 5px 12px;
+    border-radius: 14px;
+  }
+
+  /* Email draft section */
+  .review-gate {
+    background: #CC0000;
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 14px 20px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    text-align: center;
+    line-height: 1.5;
+  }
+  .email-shell {
+    background: #F5F5F2;
+    color: #111111;
+    border-radius: 8px;
+    padding: 28px 32px;
+    margin-top: 10px;
+  }
+  .email-shell .email-meta { color: #555555; font-size: 12px; margin-bottom: 16px; border-bottom: 1px solid #DDDDDD; padding-bottom: 12px; }
+  .email-shell .subject { color: #111111; font-size: 15px; font-weight: 700; margin-bottom: 16px; }
+  .email-shell p { color: #222222; font-size: 14px; margin-bottom: 14px; line-height: 1.7; }
+  .email-shell .sig { color: #333333; font-size: 13px; margin-top: 20px; line-height: 1.8; }
+  .email-shell a { color: #01A296; }
+
+  /* System notes */
+  .sys-notes {
+    background: #050505;
+    border: 1px solid #333333;
+    border-radius: 6px;
+    padding: 18px 22px;
+    margin-top: 16px;
+    font-family: "Courier New", monospace;
+    font-size: 12px;
+    color: #888888;
+    line-height: 1.7;
+  }
+  .sys-notes .sys-key { color: #01A296; }
+  .sys-notes .sys-val { color: #E6E5DE; }
+
+  /* Tier calc table */
+  .tier-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 12px; }
+  .tier-table th { background: #1A1A1A; color: #01A296; padding: 6px 10px; text-align: left; }
+  .tier-table td { padding: 5px 10px; border-bottom: 1px solid #1A1A1A; color: #E6E5DE; }
+  .tier-table .total-row td { background: #0A0A0A; color: #F8C806; font-weight: 700; }
+
+  /* Divider */
+  hr { border: none; border-top: 1px solid #222222; margin: 30px 0; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <span class="brand">PROFITPULSE | INTERNAL DOSSIER</span>
+  <span class="date">10 Jun 2026</span>
+</header>
+
+<div class="page">
+
+  <!-- ═══════════════════════════════════════════════════════ HEADER -->
+  <div class="section" style="margin-top:28px;">
+    <div class="section-label">Nightly Outreach Run | 10 Jun 2026</div>
+    <h1>Paire</h1>
+    <p style="color:#01A296;font-size:15px;margin-top:6px;">
+      Sustainable direct to consumer apparel brand, South Melbourne VIC<br>
+      Selected because: Smart50 2025 rank 15 confirming revenue above AUD 5M,
+      multichannel expansion at an inflection point, and a CEO who has publicly
+      stated the next chapter is profitability over hyper growth.
+    </p>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════ VERIFIED PROFILE -->
+  <div class="section" style="margin-top:20px;">
+    <div class="section-label">Verified Profile</div>
+    <h2>Firmographics</h2>
+    <table class="data-table">
+      <tr><td class="lbl">Legal name</td><td class="val">Paire</td></tr>
+      <tr><td class="lbl">Website</td><td class="val"><a href="https://www.paire.com" target="_blank">paire.com</a></td></tr>
+      <tr><td class="lbl">Head office</td><td class="val">South Melbourne, VIC (within 50km of Melbourne CBD)</td></tr>
+      <tr><td class="lbl">Founded</td><td class="val">2020 (products launched 2021)</td></tr>
+      <tr><td class="lbl">Industry</td><td class="val">Ecommerce and online retail / DTC apparel</td></tr>
+      <tr><td class="lbl">Revenue FY2025</td><td class="val">$10 million (SmartCompany Smart50 2025, rank 15 award citation)</td></tr>
+      <tr><td class="lbl">Revenue FY2022</td><td class="val">$1.7 million (SmartCompany article, multiple publications)</td></tr>
+      <tr><td class="lbl">Revenue FY2024</td><td class="val">~$6 million (SmartCompany Shark Tank Australia recap, Nathan Yun stated on air)</td></tr>
+      <tr><td class="lbl">Revenue growth</td><td class="val">64% (SmartCompany Smart50 2025)</td></tr>
+      <tr><td class="lbl">Employees</td><td class="val">16 FTE plus 10 casual (SmartCompany Jul 2025)</td></tr>
+      <tr><td class="lbl">Founders</td><td class="val">Nathan Yun (CEO and cofounder), Rex Zhang (Head of Textiles and cofounder)</td></tr>
+      <tr><td class="lbl">Primary contact</td><td class="val">Nathan Yun, CEO and cofounder</td></tr>
+      <tr><td class="lbl">Contact email</td><td class="val">Not publicly disclosed</td></tr>
+      <tr><td class="lbl">Retail locations</td><td class="val">QV Melbourne CBD flagship (permanent, opened Nov 2024); South Melbourne store (permanent) (Ragtrader 2025 / Inside Retail Australia 2025)</td></tr>
+      <tr><td class="lbl">International wholesale</td><td class="val">12 Boarding Gate stores in Singapore; 3 Planet Traveller stores in Malaysia (businessnewsaustralia.com 2025)</td></tr>
+      <tr><td class="lbl">Repeat customer rate</td><td class="val">70% (SmartCompany 2025)</td></tr>
+      <tr><td class="lbl">Five star reviews</td><td class="val">10,000 (SmartCompany 2025)</td></tr>
+      <tr><td class="lbl">Monthly underwear sales</td><td class="val">20,000 units per month (SmartCompany 2025)</td></tr>
+      <tr><td class="lbl">Shark Tank Australia</td><td class="val">Raised AUD 500,000 for 4 percent equity, implied valuation AUD 12.5M (SmartCompany Shark Tank recap Nov 2024)</td></tr>
+      <tr><td class="lbl">Awards</td><td class="val">Smart50 2025 rank 15; Smart50 Rising Star 2025</td></tr>
+      <tr><td class="lbl">Product categories</td><td class="val">Socks, underwear, bras, tops, leggings, activewear, loungewear</td></tr>
+      <tr><td class="lbl">Revenue channels</td><td class="val">DTC online; QV Melbourne CBD store; South Melbourne store; international wholesale (Singapore and Malaysia)</td></tr>
+    </table>
+
+    <h3 style="margin-top:24px;">Verified Headline Metrics</h3>
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-num">$10M</div>
+        <div class="stat-lbl">Revenue FY2025</div>
+        <div class="stat-src">SmartCompany Smart50 2025</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">64%</div>
+        <div class="stat-lbl">Revenue growth, three year average</div>
+        <div class="stat-src">SmartCompany Smart50 2025</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">26</div>
+        <div class="stat-lbl">Employees (16 FTE plus 10 casual)</div>
+        <div class="stat-src">SmartCompany Jul 2025</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">15</div>
+        <div class="stat-lbl">International wholesale stores (SG and MY)</div>
+        <div class="stat-src">businessnewsaustralia.com 2025</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">70%</div>
+        <div class="stat-lbl">Repeat customer rate</div>
+        <div class="stat-src">SmartCompany 2025</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">2020</div>
+        <div class="stat-lbl">Year founded</div>
+        <div class="stat-src">SmartCompany multiple</div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:24px;">Key Commercial Signals</h3>
+    <ul class="signals-list">
+      <li>
+        Smart50 2025 rank 15 confirms revenue above AUD 5M award eligibility threshold
+        <span class="sig-src">SmartCompany Smart50 2025 award citation</span>
+      </li>
+      <li>
+        Permanent bricks and mortar retail: QV Melbourne CBD flagship and South Melbourne store opened from November 2024, converting pop up success into fixed commitments
+        <span class="sig-src">Ragtrader 2025 / Inside Retail Australia 2025</span>
+      </li>
+      <li>
+        International wholesale entry across 15 stores in Singapore (Boarding Gate, 12 doors) and Malaysia (Planet Traveller, 3 doors), with potential to reach 30 stores in Singapore alone
+        <span class="sig-src">businessnewsaustralia.com 2025</span>
+      </li>
+      <li>
+        Raised AUD 500,000 for 4 percent equity on Shark Tank Australia, creating an implied valuation of AUD 12.5 million; sharks described Paire as the most successful company ever on the program
+        <span class="sig-src">SmartCompany Shark Tank Australia recap Nov 2024</span>
+      </li>
+      <li>
+        CEO Nathan Yun has publicly stated the focus is now profitability over hyper growth, an explicit acknowledgement that margin architecture needs attention
+        <span class="sig-src">SmartCompany 2025</span>
+      </li>
+      <li>
+        20,000 units of underwear sold monthly, signalling category scale in a single product line within a six category portfolio
+        <span class="sig-src">SmartCompany 2025</span>
+      </li>
+    </ul>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════ COMMERCIAL GOAL -->
+  <div class="section amber-border" style="margin-top:20px;">
+    <div class="section-label">Inferred Commercial Goal (inference, not verified)</div>
+    <h2>Phase C: Inferred Goal</h2>
+    <p>
+      <strong>Inference:</strong> Paire's most pressing commercial challenge in the next 12 months is
+      understanding which of its product lines and revenue channels are generating real margin,
+      so that the Shark Tank capital and operational resources are deployed where they achieve
+      the highest return.
+    </p>
+    <p>
+      <strong>Evidence behind the inference:</strong>
+    </p>
+    <ul style="margin-left:20px;margin-bottom:12px;color:#E6E5DE;font-size:13px;line-height:1.8;">
+      <li>Revenue has grown from $1.7M (FY2022) to $10M (FY2025) across an expanding product range
+          and channel mix, creating a complex P and L that likely does not have clear per channel
+          or per category visibility.</li>
+      <li>Nathan Yun publicly stated on Shark Tank and in SmartCompany that the next priority is
+          profitability, not hyper growth. That is an implicit acknowledgement that margin clarity
+          is the gap.</li>
+      <li>The business now operates four distinct revenue channels (DTC online, two bricks and mortar
+          stores, wholesale in two international markets), each with materially different economics.</li>
+      <li>The product range has expanded from one category to seven since founding, and it is not
+          publicly known which categories generate the majority of margin.</li>
+      <li>Shark Tank investor expectations require a profitability narrative, not just a revenue narrative.</li>
+    </ul>
+    <p style="color:#888888;font-size:12px;font-style:italic;">
+      This goal is an inference drawn from public commercial signals. It is not a verified statement
+      from the business. The questionnaire will confirm the exact challenge from the prospect directly.
+    </p>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════ WEDGE AND SERVICE -->
+  <div class="section" style="margin-top:20px;">
+    <div class="section-label">Phase D: Wedge and Matched Service</div>
+    <h2>The Wedge</h2>
+
+    <div class="wedge-box">
+      <p>
+        Paire has built something genuinely impressive: from zero to $10M in revenue in four years,
+        Smart50 rank 15, Shark Tank Australia recognition, and a brand that 70 percent of customers
+        return to. The growth record is verifiable across multiple independent publications.
+      </p>
+      <p>
+        The commercial challenge at this stage is not whether the business is growing. It is whether
+        the growth is being generated equally across all the moving parts. Paire now operates four
+        distinct commercial channels: DTC online, QV Melbourne CBD store, South Melbourne store, and
+        wholesale export across 15 retail doors in Singapore and Malaysia. It sells across seven product
+        categories: socks, underwear, bras, tops, leggings, activewear, and loungewear.
+      </p>
+      <p>
+        Each channel and each product category carries a materially different gross margin profile.
+        DTC online: no intermediary, highest per unit margin. Physical retail: fixed lease, staff, and
+        fit out costs that absorb contribution margin. Wholesale: lowest per unit margin but highest
+        volume ceiling. Within products: premium natural fibre socks likely carry strong margin, but
+        activewear and loungewear compete in a different segment with different cost structures.
+      </p>
+      <p>
+        CEO Nathan Yun has publicly stated the business is now prioritising profitability over
+        hyper growth. That statement is an implicit acknowledgement that the current financial
+        architecture does not clearly show which lines are winning. Without a product and channel
+        profitability map, the natural tendency is to invest behind volume rather than margin. The
+        Shark Tank capital of AUD 500,000 deserves to be directed at the highest return lines and
+        channels, not the highest revenue ones.
+      </p>
+      <p>
+        The Product and Service Line Profitability engagement answers the question in three weeks:
+        every product category and every revenue channel, ranked by gross margin, contribution margin,
+        and operational drag, with a kill, fix, or scale decision on each. This is the one financial
+        insight that would most directly inform the next 12 months of capital allocation, pricing
+        decisions, and international expansion strategy.
+      </p>
+    </div>
+
+    <!-- Primary matched service -->
+    <div class="service-match" style="margin-top:24px;">
+      <div class="section-label">Primary Matched Service (G3)</div>
+      <div class="svc-name">Product and Service Line Profitability</div>
+      <div class="svc-price">$3,950 one off. ProfitPulse verified price. Questionnaire confirms exact fit.</div>
+      <div class="svc-desc">
+        A three week project ranking every product or service line by gross margin, contribution
+        margin, and operational drag. For Paire: maps six product categories across four revenue
+        channels with a kill, fix, or scale recommendation on each, and a clear capital allocation
+        direction for the Shark Tank investment.
+      </div>
+    </div>
+
+    <!-- Questionnaire CTA (primary) -->
+    <div style="margin-top:28px;">
+      <div class="section-label">Primary Call to Action: Questionnaire</div>
+      <a class="cta-primary"
+         href="https://profit-pulse.com.au/full-suite-of-products?utm_source=outreach&amp;utm_medium=html&amp;utm_campaign=nightly_outreach&amp;utm_content=paire"
+         target="_blank">
+        Find your fix in two minutes
+      </a>
+      <p class="cta-address" style="margin-top:10px;">
+        profit-pulse.com.au/full-suite-of-products
+      </p>
+      <p style="color:#888888;font-size:12px;margin-top:4px;">
+        Answer a few quick questions and see the solutions matched to your size and industry.
+        Tracking tags are in the link above and in the email href only. The brief carries the clean address.
+      </p>
+    </div>
+
+    <!-- Direct checkout CTA (secondary) -->
+    <div style="margin-top:24px;">
+      <div class="section-label">Secondary Option: Direct Purchase (G3 at inferred tier)</div>
+      <p style="font-size:13px;color:#E6E5DE;margin-bottom:10px;">
+        Already know this is the priority? You can begin with
+        <strong>Product and Service Line Profitability</strong>, $3,950 one off.
+      </p>
+      <a class="cta-secondary"
+         href="https://buy.stripe.com/28EbJ2edi0LSbdugYT3ks1D"
+         target="_blank">
+        Purchase the suggested product now to get started
+      </a>
+      <p style="color:#888888;font-size:11px;margin-top:8px;">
+        The Stripe address is carried only behind the button above and is never shown as visible text.
+        No UTM tags on the Stripe link.
+      </p>
+    </div>
+
+    <!-- Supporting services -->
+    <div style="margin-top:24px;">
+      <div class="section-label">Supporting Services (named only)</div>
+      <div class="supp-list">
+        <span class="supp-tag">C2 Working Capital Unlock</span>
+        <span class="supp-tag">D2 Pricing Reset</span>
+      </div>
+      <p style="color:#888888;font-size:12px;margin-top:10px;">
+        C2: Inventory heavy brand scaling rapidly across channels with 20,000 units per month in one
+        category alone; typical clients release 8 to 15 percent of revenue in trapped cash.
+        D2: A multichannel DTC brand at $10M often has pricing set during the pure DTC phase that
+        has not been recalibrated for physical retail economics or wholesale.
+      </p>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════ EMAIL DRAFT -->
+  <div class="section" style="margin-top:20px;">
+    <div class="section-label">Phase E: Email Draft (for Nitesh review only)</div>
+    <h2>Email Draft</h2>
+
+    <!-- RED REVIEW GATE BANNER -->
+    <div class="review-gate">
+      REVIEW GATE: This email is a draft only. No communication has been sent.
+      Only Nitesh Roopa may authorise and send this message.
+    </div>
+
+    <div class="email-shell">
+      <div class="email-meta">
+        <strong>From:</strong> Nitesh@Profit-Pulse.com.au<br>
+        <strong>To:</strong> Nathan Yun, CEO and cofounder, Paire
+        [insert confirmed email address before sending]<br>
+        <strong>Subject:</strong> Paire's four channels deserve a margin map<br>
+        <strong>Attachment:</strong> Brief_Paire_10Jun2026.pdf
+      </div>
+
+      <p class="subject">Subject: Paire's four channels deserve a margin map</p>
+
+      <p>
+        Hi Nathan,
+      </p>
+
+      <p>
+        I noticed Paire's Smart50 rank 15 earlier this year and then followed the Shark Tank episode
+        with interest. Growing from $1.7 million to $10 million in three years, opening the QV
+        Melbourne flagship, and landing in Singapore and Malaysia is a genuine achievement. The 70
+        percent repeat customer rate is the number that stands out most to me as a CFO: it says the
+        product has real pull, not just good marketing.
+      </p>
+
+      <p>
+        I am Nitesh Roopa, a Chartered Accountant and Managing Partner at ProfitPulse, a fractional
+        CFO and advisory firm based in Brisbane. My background spans 16 years across four countries
+        and over 52 deals including large scale project finance in Africa and Australia. I work
+        specifically with growth stage SMEs on the financial architecture questions that come up when
+        a business like yours moves through an inflection point.
+      </p>
+
+      <p>
+        Paire is now operating across four distinct revenue channels and seven product categories,
+        each with a materially different margin structure. You have publicly stated the next chapter
+        is profitability rather than hyper growth. The practical question that follows is: which
+        product lines and channels are actually carrying the margin, and where should the Shark Tank
+        capital go to generate the highest return? The service I would recommend for that question is
+        the Product and Service Line Profitability engagement, a three week project that ranks every
+        line and channel by gross margin, contribution margin, and operational drag, with a kill,
+        fix, or scale decision on each. I have attached a short brief that sets out the commercial
+        rationale.
+      </p>
+
+      <p>
+        If you want to see the full range of services mapped to your situation, size, and industry,
+        I would point you to the questionnaire at
+        <a href="https://profit-pulse.com.au/full-suite-of-products?utm_source=outreach&amp;utm_medium=email&amp;utm_campaign=nightly_outreach&amp;utm_content=paire"
+           target="_blank">profit-pulse.com.au/full-suite-of-products</a>.
+        It takes two minutes, and the matched services each carry a direct purchase option so
+        you can move at your pace.
+      </p>
+
+      <p>
+        If a conversation first suits you better, I am happy to set up a complimentary 30 minute
+        discovery call with no obligation at all. You can book directly at
+        <a href="https://bookings.cloud.microsoft/book/ProfitPulse1@profit-pulse.com.au/?ismsaljsauthenabled=true"
+           target="_blank">this link</a>.
+        Either way, I hope the brief is useful.
+      </p>
+
+      <div class="sig">
+        Warm regards,<br><br>
+        <strong>Nitesh Roopa</strong><br>
+        CA, Managing Partner<br>
+        ProfitPulse<br>
+        Profit-Pulse.com.au<br>
+        Nitesh@Profit-Pulse.com.au<br>
+        +61 411 876 267
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════ SYSTEM NOTES -->
+  <div class="section" style="margin-top:20px;">
+    <div class="section-label">Phase H: System Notes (internal only)</div>
+    <h2>System Notes</h2>
+
+    <div class="sys-notes">
+      <p><span class="sys-key">RUN DATE</span><br>
+      <span class="sys-val">Executed 09 Jun 2026 at 23:00 AEST. All file dates and content dated 10 Jun 2026.</span></p><br>
+
+      <p><span class="sys-key">SELECTED TARGET</span><br>
+      <span class="sys-val">Paire. Register checked: not present in Outreach_Register.csv. AdUnion (09 Jun 2026) is the only prior entry. No repeat.</span></p><br>
+
+      <p><span class="sys-key">REGISTER STATUS</span><br>
+      <span class="sys-val">Paire added to register as tonight's entry. Status: Draft.</span></p><br>
+
+      <p><span class="sys-key">VERIFIED SOURCES USED</span><br>
+      <span class="sys-val">
+        1. SmartCompany Smart50 2025 award citation (revenue $10M, growth 64%, rank 15, 16 FTE + 10 casual, South Melbourne)<br>
+        2. SmartCompany article "Revenue expanded from $1 million in 2021 to $10 million in 2024" (revenue trajectory)<br>
+        3. SmartCompany Shark Tank Australia recap (raised $500K for 4%, implied valuation $12.5M; Nathan Yun stated $6M revenue prior year)<br>
+        4. SmartCompany "Pop up to permanent: Paire growth strategy" (QV Melbourne and South Melbourne stores)<br>
+        5. businessnewsaustralia.com "Paire makes a stand against fast fashion" (Singapore 12 stores, Malaysia 3 stores)<br>
+        6. Ragtrader / Inside Retail Australia 2025 (QV Melbourne CBD flagship opened)<br>
+        7. SmartCompany 2025 "20,000 units of underwear monthly" and "70% repeat customer rate"
+      </span></p><br>
+
+      <p><span class="sys-key">INFERRED COMMERCIAL GOAL</span><br>
+      <span class="sys-val">
+        INFERENCE (not verified): Paire's primary need is a product and channel profitability map
+        to direct Shark Tank capital and operational resources to the highest margin lines and channels.
+        Evidence: CEO public statement on profitability focus, four channel complexity, seven product
+        portfolio, investor expectations post Shark Tank.
+      </span></p><br>
+
+      <p><span class="sys-key">PRIMARY SERVICE MAPPED</span><br>
+      <span class="sys-val">G3: Product and Service Line Profitability</span></p><br>
+
+      <p><span class="sys-key">INFERRED TIER AND CALCULATION</span><br>
+      <span class="sys-val">
+        Industry: Ecommerce and online retail, bias 3<br>
+        Essential ceiling = 27 - (3 minus 3) times 2 = 27<br>
+        Command ceiling  = 37 - (3 minus 3) times 2 = 37<br><br>
+        Scoring:<br>
+        Revenue $5M-$10M = 5<br>
+        Gross margin 40 to 55 percent (conservative default for DTC apparel) = 3<br>
+        Team 16 to 40 people = 3<br>
+        Locations 2 to 3 sites = 2<br>
+        Business structure single entity (default) = 1<br>
+        Revenue model mix recurring and one off = 2<br>
+        Customer concentration well diversified = 1<br>
+        Funding modest debt (Shark Tank equity plus likely inventory finance) = 2<br>
+        Forward growth 15 to 30 percent (CEO focusing on profitability, not hyper growth) = 4<br>
+        Recent trajectory scaling rapidly (67% FY24 to FY25) = 6<br>
+        Commercial event none announced = 0<br>
+        RAW SCORE = 29<br><br>
+        29 &gt; 27 (Essential ceiling): above Essential<br>
+        29 &lt;= 37 (Command ceiling): within Command<br>
+        Base tier: Command. No adjustments apply.<br>
+        FINAL TIER: Command<br><br>
+        Reason: Revenue near $10M with 26 staff, 2 to 3 locations, scaling rapidly at bias 3
+        (ecommerce) sits between Essential ceiling 27 and Command ceiling 37. Score 29 lands Command.
+      </span></p><br>
+
+      <p><span class="sys-key">QUESTIONNAIRE URL (EMAIL AND DOSSIER, WITH UTM)</span><br>
+      <span class="sys-val">
+        https://profit-pulse.com.au/full-suite-of-products?utm_source=outreach&amp;utm_medium=email&amp;utm_campaign=nightly_outreach&amp;utm_content=paire<br>
+        (Visible text shows only: profit-pulse.com.au/full-suite-of-products)
+      </span></p><br>
+
+      <p><span class="sys-key">DIRECT STRIPE CHECKOUT LINK (G3 COMMAND)</span><br>
+      <span class="sys-val">
+        https://buy.stripe.com/28EbJ2edi0LSbdugYT3ks1D<br>
+        Price: $3,950 one off. Inferred tier: Command.<br>
+        Link is never shown as visible text. Carried only behind CTA button copy.
+        No UTM tags on Stripe link.
+      </span></p><br>
+
+      <p><span class="sys-key">EMAIL_INCLUDE_DIRECT_CHECKOUT</span><br>
+      <span class="sys-val">false. Email leads with questionnaire only. No Stripe link in email.</span></p><br>
+
+      <p><span class="sys-key">TRACKING_ENABLED</span><br>
+      <span class="sys-val">true. UTM tags applied in email href and dossier href. Brief carries no tracking.</span></p><br>
+
+      <p><span class="sys-key">BITLY_SHORTEN</span><br>
+      <span class="sys-val">false. Full URLs used without shortening.</span></p><br>
+
+      <p><span class="sys-key">NOTHING SENT</span><br>
+      <span class="sys-val">
+        CONFIRMED. No email, message, or communication of any kind has been sent.
+        All outputs are drafts for Nitesh Roopa's review only. Only Nitesh Roopa
+        may authorise and send the email.
+      </span></p>
+    </div>
+
+    <!-- Tier calculation detail table -->
+    <h3 style="margin-top:24px;">Tier Engine Calculation (Section 3C)</h3>
+    <table class="tier-table">
+      <tr>
+        <th>Input</th>
+        <th>Band</th>
+        <th>Points</th>
+        <th>Basis</th>
+      </tr>
+      <tr><td>Annual revenue</td><td>$5M to $10M</td><td>5</td><td>Smart50 2025: $10M FY2025</td></tr>
+      <tr><td>Gross margin</td><td>40% to 55%</td><td>3</td><td>Conservative default for DTC apparel (not publicly disclosed)</td></tr>
+      <tr><td>Team size</td><td>16 to 40 people</td><td>3</td><td>26 total: 16 FTE + 10 casual (SmartCompany)</td></tr>
+      <tr><td>Operating locations</td><td>2 to 3 sites</td><td>2</td><td>2 retail stores + HQ confirmed</td></tr>
+      <tr><td>Business structure</td><td>Single entity</td><td>1</td><td>Conservative default (not publicly disclosed)</td></tr>
+      <tr><td>Revenue model</td><td>Mix recurring and one off</td><td>2</td><td>DTC repeat plus single purchases</td></tr>
+      <tr><td>Customer concentration</td><td>Well diversified</td><td>1</td><td>70% repeat rate across many thousands of customers</td></tr>
+      <tr><td>Funding and debt</td><td>Modest debt</td><td>2</td><td>Shark Tank equity raise; likely inventory financing</td></tr>
+      <tr><td>Forward growth</td><td>Growing 15% to 30%</td><td>4</td><td>CEO stated profitability focus; conservative default</td></tr>
+      <tr><td>Recent trajectory</td><td>Scaling rapidly</td><td>6</td><td>$6M FY2024 to $10M FY2025 = ~67% growth</td></tr>
+      <tr><td>Commercial event</td><td>None announced</td><td>0</td><td>No specific event confirmed next 24 months</td></tr>
+      <tr class="total-row"><td colspan="2"><strong>Raw Score</strong></td><td><strong>29</strong></td><td>Industry bias 3 (ecommerce). Essential ceiling 27, Command ceiling 37. Score 29: COMMAND. No adjustments.</td></tr>
+    </table>
+  </div>
+
+</div>
+<!-- end .page -->
+
+</body>
+</html>
