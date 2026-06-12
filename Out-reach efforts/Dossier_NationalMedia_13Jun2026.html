@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProfitPulse Dossier: National Media | 13 Jun 2026</title>
+<style>
+  :root {
+    --black:    #000000;
+    --teal:     #01A296;
+    --amber-b:  #F8C806;
+    --amber-d:  #F6A102;
+    --gold:     #E3A712;
+    --white:    #FFFFFF;
+    --off-wh:   #E6E5DE;
+    --mid-grey: #888888;
+    --drk-grey: #444444;
+    --panel:    #111111;
+    --panel2:   #1A1A1A;
+    --teal-drk: #041A18;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--black);
+    color: var(--off-wh);
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.55;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 24px 20px 40px;
+  }
+  h1 { font-size: 32px; color: var(--amber-b); font-family: Georgia, serif; margin-bottom: 4px; }
+  h2 { font-size: 17px; color: var(--teal); text-transform: uppercase;
+       letter-spacing: 0.08em; margin: 28px 0 10px; border-bottom: 1px solid var(--teal);
+       padding-bottom: 5px; }
+  h3 { font-size: 14px; color: var(--amber-d); margin: 14px 0 6px; }
+  p  { margin-bottom: 10px; }
+  a  { color: var(--teal); }
+  .header-band {
+    background: var(--panel);
+    border-left: 6px solid var(--amber-d);
+    padding: 18px 20px 14px;
+    margin-bottom: 28px;
+  }
+  .header-band .eyebrow {
+    font-size: 11px; color: var(--mid-grey); text-transform: uppercase;
+    letter-spacing: 0.1em; margin-bottom: 6px;
+  }
+  .header-band .why {
+    font-size: 13px; color: var(--off-wh); font-style: italic; margin-top: 8px;
+  }
+  .fact-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; }
+  .fact-table td { padding: 7px 10px; border-bottom: 1px solid #222; font-size: 13px; }
+  .fact-table td:first-child { color: var(--mid-grey); width: 210px; }
+  .fact-table td:last-child  { color: var(--off-wh); font-weight: bold; }
+  .source-note { font-size: 11px; color: var(--mid-grey); font-style: italic; margin-top: 2px; }
+  .stat-row { display: flex; gap: 10px; flex-wrap: wrap; margin: 14px 0; }
+  .stat-card {
+    background: var(--panel);
+    border-top: 3px solid var(--teal);
+    padding: 12px 14px;
+    flex: 1;
+    min-width: 130px;
+  }
+  .stat-card .num { font-size: 24px; font-weight: bold; color: var(--off-wh); }
+  .stat-card .lbl { font-size: 11px; color: var(--mid-grey); margin-top: 3px; }
+  .stat-card .src { font-size: 10px; color: var(--teal); font-style: italic; margin-top: 4px; }
+  .wedge-block {
+    background: var(--teal-drk);
+    border-left: 4px solid var(--teal);
+    padding: 16px 18px;
+    margin: 14px 0;
+    font-size: 13px;
+    line-height: 1.65;
+  }
+  .service-block {
+    background: var(--panel2);
+    border: 1px solid var(--amber-d);
+    border-radius: 6px;
+    padding: 16px 18px;
+    margin: 14px 0;
+  }
+  .service-block .svc-name { font-size: 16px; font-weight: bold; color: var(--amber-b); }
+  .service-block .svc-price { font-size: 13px; color: var(--off-wh); margin-top: 4px; }
+  .service-block .svc-desc  { font-size: 13px; color: var(--mid-grey); margin-top: 8px; }
+  .cta-primary {
+    display: inline-block;
+    background: var(--teal);
+    color: var(--white);
+    font-weight: 700;
+    text-decoration: none;
+    padding: 14px 26px;
+    border-radius: 28px;
+    font-size: 15px;
+    margin: 10px 0 6px;
+  }
+  .cta-secondary {
+    display: inline-block;
+    border: 1.5px solid var(--amber-d);
+    color: var(--amber-d);
+    font-weight: 700;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 24px;
+    font-size: 14px;
+    margin-top: 8px;
+  }
+  .clean-url { font-size: 12px; color: var(--mid-grey); margin-top: 5px; }
+  /* Email section */
+  .review-gate {
+    background: #8B0000;
+    color: #fff;
+    font-weight: bold;
+    font-size: 13px;
+    padding: 12px 16px;
+    border-radius: 4px;
+    margin-bottom: 18px;
+    text-align: center;
+  }
+  .email-wrapper {
+    background: var(--white);
+    color: #111;
+    padding: 28px 30px;
+    border-radius: 6px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .email-wrapper .subject {
+    font-size: 15px; font-weight: bold; color: #111;
+    border-bottom: 1px solid #ddd; padding-bottom: 10px; margin-bottom: 16px;
+  }
+  .email-wrapper p { margin-bottom: 14px; color: #222; }
+  .email-wrapper .sig { margin-top: 20px; border-top: 1px solid #ddd; padding-top: 14px;
+    color: #333; font-size: 13px; line-height: 1.7; }
+  .email-wrapper a { color: #01A296; }
+  .system-notes {
+    background: #0A0A0A;
+    border: 1px solid #222;
+    border-radius: 4px;
+    padding: 16px 18px;
+    font-size: 12px;
+    color: var(--mid-grey);
+    font-family: monospace;
+    line-height: 1.7;
+  }
+  .system-notes .snlabel { color: var(--amber-d); font-weight: bold; }
+  .signals-list { list-style: none; padding: 0; }
+  .signals-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid #1a1a1a;
+    font-size: 13px;
+  }
+  .signals-list li .sig-src { font-size: 11px; color: var(--mid-grey); font-style: italic; }
+  .inferred-tag {
+    display: inline-block;
+    background: #1a1a00;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 10px;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<div class="header-band">
+  <div class="eyebrow">ProfitPulse Nightly Outreach Dossier &nbsp;|&nbsp; Internal Review Only &nbsp;|&nbsp; 13 Jun 2026</div>
+  <h1>National Media</h1>
+  <div class="why">Selected because: Smart50 2025 rank 28, $18.4M revenue, 48 employees, Bundall QLD (Gold Coast). A multi-brand B2B events business with 42 percent verified growth and a public strategy of organic expansion via new event launches. The financial architecture behind a nine-brand portfolio at this revenue and growth rate is the commercial opportunity.</div>
+</div>
+
+
+<!-- ===== VERIFIED PROFILE ===== -->
+<h2>5.2 Verified Profile</h2>
+
+<div class="stat-row">
+  <div class="stat-card">
+    <div class="num">$18.4M</div>
+    <div class="lbl">Revenue, FY2025</div>
+    <div class="src">SmartCompany Smart50 2025 award citation</div>
+  </div>
+  <div class="stat-card">
+    <div class="num">42%</div>
+    <div class="lbl">Three Year Average Growth</div>
+    <div class="src">SmartCompany Smart50 2025 award citation</div>
+  </div>
+  <div class="stat-card">
+    <div class="num">Rank 28</div>
+    <div class="lbl">Smart50 Australia 2025</div>
+    <div class="src">SmartCompany Smart50 2025</div>
+  </div>
+  <div class="stat-card">
+    <div class="num">48</div>
+    <div class="lbl">Team Members</div>
+    <div class="src">SmartCompany Smart50 2025 award citation</div>
+  </div>
+  <div class="stat-card">
+    <div class="num">9+</div>
+    <div class="lbl">Live Event Brands</div>
+    <div class="src">nationalmedia.com.au public portfolio</div>
+  </div>
+  <div class="stat-card">
+    <div class="num">550+</div>
+    <div class="lbl">Combined WHS Show Exhibitors</div>
+    <div class="src">nationalmedia.com.au</div>
+  </div>
+</div>
+
+<table class="fact-table">
+  <tr><td>Company</td><td>National Media Pty Limited</td></tr>
+  <tr><td>Website</td><td>nationalmedia.com.au</td></tr>
+  <tr><td>Head Office</td><td>Bundall, QLD (Gold Coast)</td></tr>
+  <tr><td>Industry</td><td>B2B Trade Exhibitions and Events Production</td></tr>
+  <tr><td>Founded</td><td>1993 (verified: "Since 1993", nationalmedia.com.au)</td></tr>
+  <tr><td>Revenue</td><td>$18.4 million (verified: SmartCompany Smart50 2025 award citation, rank 28)</td></tr>
+  <tr><td>Growth Rate</td><td>42% three year average (verified: Smart50 2025)</td></tr>
+  <tr><td>Employees</td><td>48 (verified: Smart50 2025 award citation)</td></tr>
+  <tr><td>Key Contact</td><td>Mark Harvey, Founder and Managing Director (verified: LinkedIn public profile; Smart50 2025)</td></tr>
+  <tr><td>Contact Email</td><td>Not publicly disclosed</td></tr>
+  <tr><td>LinkedIn</td><td>linkedin.com/in/harvs (Mark Harvey, publicly accessible)</td></tr>
+  <tr><td>Geo Qualification</td><td>Bundall is within 50km of Gold Coast CBD. Gold Coast is listed in TARGET_GEOS. Qualifies.</td></tr>
+  <tr><td>Employee Band</td><td>48 employees. Within the 10 to 50 target band. Qualifies.</td></tr>
+  <tr><td>Revenue Floor</td><td>$18.4 million. Over the AUD 5 million floor. Publicly verified. Qualifies.</td></tr>
+  <tr><td>Established Preference</td><td>Founded 1993. Pre-2015. The preference is noted; this is not a hard requirement.</td></tr>
+</table>
+
+<h3>Key Commercial Signals</h3>
+<ul class="signals-list">
+  <li>FutureBuild Australia launched 11 to 13 June 2026 at ICC Sydney: new event brand debut
+    <span class="sig-src">Source: nationalmedia.com.au, public search results</span></li>
+  <li>Mark Harvey presented at SISO CEO Summit on "Organic Growth via Launches": active strategy of building portfolio through new event brands
+    <span class="sig-src">Source: LinkedIn public profile, public search results</span></li>
+  <li>Workplace Health and Safety Show: three state editions running simultaneously in NSW, QLD, and VIC, 550 plus exhibitors combined
+    <span class="sig-src">Source: nationalmedia.com.au</span></li>
+  <li>Food and Hospitality Week bundles four separate trade shows under one venue: Restaurant and Foodservice Show, Pizza Pasta and Italian Food Show, Cafe and Coffee Show, and RESTECH The Hospitality and Retail Technology Show
+    <span class="sig-src">Source: nationalmedia.com.au</span></li>
+  <li>Smart50 2025 rank 28 of 50: revenue independently verified at $18.4 million with 42 percent three year average growth, placing National Media among Australia's 50 fastest-growing SMEs
+    <span class="sig-src">Source: SmartCompany Smart50 2025 award citation</span></li>
+  <li>Over three decades of operations from Bundall, Gold Coast QLD: established relationships with exhibitor base and strong industry credibility across multiple verticals
+    <span class="sig-src">Source: nationalmedia.com.au</span></li>
+  <li>Blackwoods confirmed as exhibitor across all three WHS Show state editions, joining 550 plus exhibitors: demonstrating multi-state reach and enterprise exhibitor relationships
+    <span class="sig-src">Source: nationalmedia.com.au / public search results</span></li>
+</ul>
+
+
+<!-- ===== WEDGE AND MATCHED SERVICE ===== -->
+<h2>5.3 The Wedge and the Matched Service</h2>
+
+<h3>Inferred Commercial Goal <span class="inferred-tag">Inference, not verified fact</span></h3>
+<p>National Media is growing at 42 percent per year with a stated strategy (from Mark Harvey's public SISO CEO Summit presentation) of organic portfolio expansion through new event launches. The inferred commercial goal for the next 12 months is: continue building the event portfolio while managing the increasing complexity of running nine or more event brands across three states. The most likely financial management gap at this stage is the absence of a rigorous, event-by-event profitability picture. With nine or more brands, some events almost certainly cross-subsidise others. Without clarity on which events generate the real margin, capital allocation for new launches lacks an evidence base.</p>
+
+<div class="wedge-block">
+  <strong style="color:var(--teal)">The Wedge</strong><br><br>
+  National Media has produced trade exhibitions across Australia since 1993. With $18.4 million in revenue, 48 staff, and nine or more active event brands spanning food and hospitality, workplace health and safety, construction, and accommodation technology, it has built a genuinely diverse B2B events portfolio.<br><br>
+  The 42 percent three year average growth rate, verified by the SmartCompany Smart50 2025 award citation, places National Media among Australia's fastest-growing businesses. Mark Harvey's public commentary at the SISO CEO Summit on organic growth via event launches confirms that the strategy is to keep building the portfolio.<br><br>
+  The commercial gap that typically opens at this stage in a multi-brand events business is between the portfolio's total revenue growth and the real margin generated by each individual event. At $18.4 million across nine or more brands, the aggregate number masks what is almost certainly a wide spread of unit economics. Some events will be delivering strong contribution margins. Others will be absorbing shared overhead from the profitable ones, or generating revenue that looks healthy before costs are properly allocated.<br><br>
+  The Product and Service Line Profitability review addresses this directly. In three weeks, it ranks every event brand by gross margin, contribution margin, and operational drag. The output is a clear, evidence-based decision for each brand: scale, reprice, rationalise, or exit. For a leadership team actively allocating capital to new launches, that map is the most leveraged financial insight available.
+</div>
+
+<div class="service-block">
+  <div class="svc-name">Primary Matched Service: Product and Service Line Profitability &nbsp;(G3)</div>
+  <div class="svc-price">$3,950 one off. Verified ProfitPulse price. The questionnaire confirms the exact fit for the prospect's size and industry.</div>
+  <div class="svc-desc">A three week project ranking every product or service line by gross margin, contribution margin, and operational drag. Suited to single entity businesses.</div>
+  <br>
+  <div style="font-size:12px;color:var(--mid-grey)">
+    <strong style="color:var(--off-wh)">Supporting services identified:</strong><br>
+    G1 Operational Intelligence Review (for the full four-lens view including customer concentration across exhibitor base)<br>
+    A4 Strategic Growth Diagnostic (for a costed 12 month growth plan to accompany the profitability map)
+  </div>
+</div>
+
+
+<!-- ===== PRIMARY CTA ===== -->
+<h2>5.3A Primary Call to Action: The Questionnaire</h2>
+<p>Send the prospect to the questionnaire where they triangulate their situation and see solutions matched to their size and industry, each with a direct purchase option.</p>
+
+<a class="cta-primary"
+   href="https://profit-pulse.com.au/full-suite-of-products?utm_source=outreach&amp;utm_medium=html&amp;utm_campaign=nightly_outreach&amp;utm_content=national_media">
+   Find your fix in two minutes
+</a>
+<div class="clean-url">profit-pulse.com.au/full-suite-of-products</div>
+<p style="font-size:12px;color:var(--mid-grey);margin-top:4px">Answer a few quick questions and see the solutions matched to your size and industry.</p>
+
+
+<!-- ===== SECONDARY OPTION ===== -->
+<h2>5.3B Secondary Option: Direct Purchase</h2>
+<p>For the prospect who already knows this is the priority. No tier name shown. Price is the verified ProfitPulse figure. The questionnaire confirms exact fit.</p>
+<p style="font-size:13px">Already know this is the priority? You can begin with <strong>Product and Service Line Profitability</strong>, $3,950 one off.</p>
+
+<a class="cta-secondary" href="https://buy.stripe.com/28EbJ2edi0LSbdugYT3ks1D">
+  Purchase the suggested product now to get started
+</a>
+<p style="font-size:11px;color:var(--mid-grey);margin-top:5px">Direct Stripe checkout. Verified ProfitPulse price. Questionnaire confirms exact fit if preferred first.</p>
+
+
+<!-- ===== EMAIL DRAFT ===== -->
+<h2>5.4 Email Draft</h2>
+
+<div class="review-gate">
+  REVIEW GATE: This email is a draft only. No communication has been sent. Only Nitesh Roopa may authorise and send this message.
+</div>
+
+<div class="email-wrapper">
+  <div class="subject">Subject: The profit picture behind nine event brands</div>
+
+  <p>Hi Mark,</p>
+
+  <p>I came across National Media in the SmartCompany Smart50 2025 list and wanted to reach out. Nine event brands, $18.4 million in revenue, 42 percent growth across three years, and a strategy of organic expansion through new event launches. That is a serious operation and the Smart50 recognition is well earned.</p>
+
+  <p>I am Nitesh Roopa, CA and Managing Partner of ProfitPulse, a Brisbane-based fractional CFO and commercial advisory firm. I work alongside fast-growing businesses to sharpen the financial architecture behind the revenue number. Sixteen years across four countries, 52 deals executed and managed.</p>
+
+  <p>The reason I am reaching out is straightforward. At the stage National Media is at, one of the most valuable financial questions is: which of your event brands is actually generating the real margin once full costs are allocated? I have attached a short brief that maps the opportunity in more detail and explains why the Product and Service Line Profitability review would be the right starting point.</p>
+
+  <p>If you would like to see the full range of ProfitPulse services and find the ones matched to your specific size and industry, the questionnaire at <a href="https://profit-pulse.com.au/full-suite-of-products?utm_source=outreach&amp;utm_medium=email&amp;utm_campaign=nightly_outreach&amp;utm_content=national_media">profit-pulse.com.au/full-suite-of-products</a> takes about two minutes.</p>
+
+  <p>Alternatively, a complimentary 30 minute call is the fastest way to work out whether there is a genuine fit. You can <a href="https://bookings.cloud.microsoft/book/ProfitPulse1@profit-pulse.com.au/?ismsaljsauthenabled=true">book a time here</a>. I appreciate what National Media has built and I am happy to spend 30 minutes sharing what I would look at first.</p>
+
+  <div class="sig">
+    Nitesh Roopa<br>
+    CA, Managing Partner<br>
+    ProfitPulse<br>
+    Profit-Pulse.com.au<br>
+    Nitesh@Profit-Pulse.com.au<br>
+    +61 411 876 267
+  </div>
+</div>
+
+
+<!-- ===== SYSTEM NOTES ===== -->
+<h2>5.5 System Notes (Internal Use Only)</h2>
+
+<div class="system-notes">
+  <div><span class="snlabel">RUN DATE:</span> 12 Jun 2026 at 23:00 Brisbane time (Australia/Brisbane)</div>
+  <div><span class="snlabel">DATE STAMP (next calendar day):</span> 13 Jun 2026</div>
+  <br>
+  <div><span class="snlabel">TARGET SELECTED:</span> National Media Pty Limited</div>
+  <div><span class="snlabel">REGISTER CHECK:</span> National Media does not appear in Outreach_Register.csv. Selection is valid.</div>
+  <br>
+  <div><span class="snlabel">VERIFIED SOURCES USED:</span></div>
+  <div>1. SmartCompany Smart50 2025 award citation: rank 28, $18.4M revenue, 42% growth, 48 employees, Bundall QLD, founder Mark Harvey</div>
+  <div>2. nationalmedia.com.au: event portfolio (Workplace Health and Safety Show, Food and Hospitality Week, Restaurant and Foodservice Show, Pizza Pasta and Italian Food Show, Cafe and Coffee Show, RESTECH, FutureBuild Australia, NoVacancy, Foodservice Australia), WHS Show 550+ exhibitors, founded 1993</div>
+  <div>3. LinkedIn public profile (Mark Harvey, linkedin.com/in/harvs): Founder and Managing Director, Gold Coast QLD, SISO CEO Summit presentation on Organic Growth via Launches</div>
+  <div>4. Public search results: FutureBuild Australia 11-13 June 2026 at ICC Sydney, Blackwoods exhibitor at all three WHS Show events</div>
+  <br>
+  <div><span class="snlabel">INFERRED COMMERCIAL GOAL:</span> Margin clarity across a nine-brand events portfolio prior to further launch investment. This is an inference, not a verified fact.</div>
+  <br>
+  <div><span class="snlabel">MATCHED PRIMARY SERVICE:</span> G3 Product and Service Line Profitability</div>
+  <div><span class="snlabel">SIGNAL MAPPING:</span> Section 3B: "Unsure which products or services make money maps to G3"</div>
+  <div><span class="snlabel">SUPPORTING SERVICES:</span> G1 Operational Intelligence Review; A4 Strategic Growth Diagnostic</div>
+  <br>
+  <div><span class="snlabel">TIER ENGINE (Section 3C):</span></div>
+  <div>Industry: Marketing creative and media agencies (closest match for B2B events producer). Bias = 2.</div>
+  <div>Revenue $10M to $20M = 6 pts | Gross margin 25% to 40% (neutral default for events, not publicly disclosed) = 4 pts</div>
+  <div>Team 41 to 100 = 4 pts | Single location (Bundall HQ) = 1 pt | Company plus trust neutral default = 2 pts</div>
+  <div>Revenue model highly seasonal or lumpy (events at fixed dates) = 3 pts | Customer concentration some reliance on key accounts = 2 pts</div>
+  <div>Funding modest debt neutral default = 2 pts | Forward growth high growth over 30% (42% confirmed) = 6 pts</div>
+  <div>Recent trajectory scaling rapidly = 6 pts | Commercial event expansion (new launches underway) = 2 pts</div>
+  <div>Raw score = 38. Essential ceiling (bias 2) = 29. Command ceiling (bias 2) = 39.</div>
+  <div>38 &lt;= 39 therefore base tier = Command. No lift (margin not above 55%). No drop (growth not consolidating). Final tier = Command.</div>
+  <div><span class="snlabel">INFERRED TIER:</span> Command (internal use only, never shown to prospect)</div>
+  <br>
+  <div><span class="snlabel">QUESTIONNAIRE LINK (HTML dossier):</span> https://profit-pulse.com.au/full-suite-of-products?utm_source=outreach&amp;utm_medium=html&amp;utm_campaign=nightly_outreach&amp;utm_content=national_media</div>
+  <div><span class="snlabel">QUESTIONNAIRE LINK (email href):</span> https://profit-pulse.com.au/full-suite-of-products?utm_source=outreach&amp;utm_medium=email&amp;utm_campaign=nightly_outreach&amp;utm_content=national_media</div>
+  <div><span class="snlabel">QUESTIONNAIRE LINK (brief, clean, no UTM):</span> profit-pulse.com.au/full-suite-of-products</div>
+  <br>
+  <div><span class="snlabel">DIRECT STRIPE CHECKOUT:</span> G3 Product and Service Line Profitability, Command tier, $3,950 one off</div>
+  <div><span class="snlabel">STRIPE URL (internal, never shown as text):</span> https://buy.stripe.com/28EbJ2edi0LSbdugYT3ks1D</div>
+  <div><span class="snlabel">BITLY SHORTEN:</span> false. No short links created.</div>
+  <div><span class="snlabel">EMAIL INCLUDE DIRECT CHECKOUT:</span> false. Stripe link NOT included in email. Questionnaire is the sole CTA in the email.</div>
+  <br>
+  <div><span class="snlabel">NOTHING HAS BEEN SENT.</span> This entire document is a draft for Nitesh Roopa's review and approval only. No communication of any kind has been dispatched.</div>
+  <br>
+  <div><span class="snlabel">FILES SAVED:</span></div>
+  <div>Dossier_NationalMedia_13Jun2026.html</div>
+  <div>Brief_NationalMedia_13Jun2026.pptx</div>
+  <div>Brief_NationalMedia_13Jun2026.pdf</div>
+  <div>Outreach_Register.csv (updated)</div>
+</div>
+
+</body>
+</html>
