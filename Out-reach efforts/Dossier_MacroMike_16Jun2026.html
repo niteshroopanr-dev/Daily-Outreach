@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProfitPulse Dossier | Macro Mike | 16 Jun 2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #000000;
+    color: #E6E5DE;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .page-wrap { max-width: 1080px; margin: 0 auto; padding: 24px 20px 60px; }
+
+  /* ── Header ─────────────────────────────────────────── */
+  .dossier-header {
+    background: #000000;
+    border-left: 6px solid #F6A102;
+    padding: 20px 24px;
+    margin-bottom: 28px;
+  }
+  .dossier-header .brand { color: #01A296; font-size: 11px; font-weight: 700; letter-spacing: 2px; margin-bottom: 6px; }
+  .dossier-header h1 { font-size: 36px; color: #F8C806; margin-bottom: 4px; }
+  .dossier-header .date { color: #01A296; font-size: 13px; }
+  .dossier-header .why { color: #E6E5DE; font-size: 13px; margin-top: 8px; font-style: italic; }
+
+  /* ── Section blocks ─────────────────────────────────── */
+  .section { background: #111111; border-left: 4px solid #01A296; padding: 20px 24px; margin-bottom: 20px; border-radius: 2px; }
+  .section h2 { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: #01A296; text-transform: uppercase; margin-bottom: 14px; }
+  .section h3 { font-size: 16px; color: #F8C806; margin-bottom: 10px; }
+
+  /* ── Profile table ─────────────────────────────────── */
+  .profile-grid { display: grid; grid-template-columns: 220px 1fr; gap: 6px 12px; }
+  .profile-grid .label { color: #888; font-size: 12px; }
+  .profile-grid .value { color: #E6E5DE; font-size: 13px; font-weight: 600; }
+  .source-note { font-size: 10px; color: #555; font-style: italic; }
+
+  /* ── Stat cards ─────────────────────────────────────── */
+  .stat-row { display: flex; gap: 10px; flex-wrap: wrap; margin: 12px 0; }
+  .stat-card {
+    background: #000000;
+    border-top: 3px solid #01A296;
+    padding: 14px 16px;
+    flex: 1 1 140px;
+    min-width: 130px;
+  }
+  .stat-card .num { font-size: 26px; font-weight: 700; color: #F8C806; }
+  .stat-card .lbl { font-size: 11px; color: #E6E5DE; margin-top: 4px; }
+  .stat-card .src { font-size: 9px; color: #555; margin-top: 6px; font-style: italic; }
+
+  /* ── Signals ─────────────────────────────────────────── */
+  .signal { border-left: 3px solid #F6A102; padding: 8px 12px; margin-bottom: 8px; background: #0a0a0a; }
+  .signal .sig-text { font-size: 13px; color: #E6E5DE; }
+  .signal .sig-src  { font-size: 10px; color: #01A296; font-style: italic; margin-top: 3px; }
+
+  /* ── Wedge ───────────────────────────────────────────── */
+  .wedge-block { background: #0d1a19; border: 1px solid #01A296; padding: 18px 20px; border-radius: 3px; margin-top: 10px; }
+  .wedge-block p { margin-bottom: 10px; font-size: 14px; color: #E6E5DE; }
+
+  /* ── Service block ───────────────────────────────────── */
+  .service-block { background: #0a0a0a; border: 1px solid #F6A102; padding: 16px 20px; margin-top: 14px; border-radius: 3px; }
+  .service-block .svc-name { font-size: 20px; font-weight: 700; color: #01A296; }
+  .service-block .svc-price { font-size: 15px; color: #F6A102; font-weight: 700; margin: 6px 0; }
+  .service-block .svc-desc { font-size: 13px; color: #E6E5DE; margin-top: 8px; }
+  .service-block .supporting { font-size: 12px; color: #888; margin-top: 10px; }
+
+  /* ── CTA buttons ─────────────────────────────────────── */
+  .cta-primary {
+    display: inline-block;
+    background: #01A296;
+    color: #FFFFFF;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 16px 28px;
+    border-radius: 30px;
+    font-size: 16px;
+    margin-top: 16px;
+  }
+  .cta-clean-url { color: #E6E5DE; font-size: 13px; margin-top: 8px; }
+
+  .cta-secondary {
+    display: inline-block;
+    border: 1px solid #F6A102;
+    color: #F6A102;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 12px 22px;
+    border-radius: 26px;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+
+  /* ── Review gate ─────────────────────────────────────── */
+  .review-gate {
+    background: #8B0000;
+    border: 2px solid #ff4444;
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 14px 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    border-radius: 3px;
+  }
+
+  /* ── Email draft ─────────────────────────────────────── */
+  .email-wrap { background: #FFFFFF; color: #000000; padding: 30px 36px; border-radius: 3px; }
+  .email-subject { font-size: 16px; font-weight: 700; color: #000000; margin-bottom: 20px; border-bottom: 1px solid #ccc; padding-bottom: 10px; }
+  .email-subject span { font-weight: 400; color: #666; font-size: 14px; display: block; }
+  .email-body p { margin-bottom: 16px; font-size: 14px; color: #111; line-height: 1.7; }
+  .email-body a { color: #01A296; }
+  .email-sig { margin-top: 24px; font-size: 13px; border-top: 1px solid #ccc; padding-top: 14px; color: #333; }
+  .email-sig strong { color: #000; }
+
+  /* ── System notes ─────────────────────────────────────── */
+  .sys-notes { background: #080808; border: 1px solid #333; padding: 16px 20px; border-radius: 3px; font-size: 12px; color: #666; }
+  .sys-notes dt { color: #01A296; font-weight: 700; margin-top: 8px; }
+  .sys-notes dd { margin-left: 16px; color: #888; }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- 5.1 HEADER -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <div class="dossier-header">
+    <div class="brand">PROFITPULSE OUTREACH DOSSIER &nbsp;|&nbsp; INTERNAL REVIEW ONLY</div>
+    <h1>Macro Mike</h1>
+    <div class="date">16 Jun 2026</div>
+    <div class="why">
+      Selected tonight: A Gold Coast plant based health supplement manufacturer with verifiable revenue
+      exceeding $10 million, approximately 50 employees, two major brand collaborations in 12 months
+      (Golden Gaytime and Kellogg's), and a confirmed distribution push into approximately 1,000 new
+      stores from November 2025. The incoming retail expansion creates a precise, time-sensitive
+      working capital opportunity.
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- 5.2 VERIFIED PROFILE -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <div class="section">
+    <h2>5.2 &nbsp; Verified Profile</h2>
+
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="num">Over $10M</div>
+        <div class="lbl">Annual Revenue</div>
+        <div class="src">Podcast "The Frankie Lee" Jan 2023; BNA Jun 2023 "exceeding $1M monthly"</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">50 Staff</div>
+        <div class="lbl">Gold Coast Facility</div>
+        <div class="src">Business News Australia</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">100+</div>
+        <div class="lbl">Product SKUs</div>
+        <div class="src">macromike.com.au/pages/about</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">5,000+</div>
+        <div class="lbl">Retail Stockists</div>
+        <div class="src">macromike.com.au/pages/about</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">500,000+</div>
+        <div class="lbl">Customers</div>
+        <div class="src">macromike.com.au/pages/about</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">2016</div>
+        <div class="lbl">Year Founded</div>
+        <div class="src">Pemba Capital Partners, 2025</div>
+      </div>
+    </div>
+
+    <div class="profile-grid" style="margin-top:18px;">
+      <div class="label">Company</div>
+      <div class="value">Macro Mike</div>
+      <div class="label">Website</div>
+      <div class="value">macromike.com.au</div>
+      <div class="label">Founder and CEO</div>
+      <div class="value">Mike Kellett <span class="source-note">(LinkedIn: linkedin.com/in/macro-mike-kellett)</span></div>
+      <div class="label">Location</div>
+      <div class="value">Burleigh Heads, Gold Coast QLD, 2,000sqm production facility</div>
+      <div class="label">Industry</div>
+      <div class="value">Food and beverage production (plant based health supplements)</div>
+      <div class="label">Employee band</div>
+      <div class="value">50 staff at Gold Coast facility <span class="source-note">(Business News Australia)</span></div>
+      <div class="label">Revenue basis</div>
+      <div class="value">Over $10M annual <span class="source-note">(Podcast "The Frankie Lee" Jan 2023: "from $10k to $10M in revenue inside 3 years"; Business News Australia Jun 2023: "exceeding $1M monthly")</span></div>
+      <div class="label">Products</div>
+      <div class="value">100+ SKUs: protein powders, baking mixes, natural supplements</div>
+      <div class="label">Distribution</div>
+      <div class="value">5,000+ retailers incl. 800+ Coles stores; DTC online retail (60 to 70% of sales)</div>
+      <div class="label">Founded</div>
+      <div class="value">2016 <span class="source-note">(Pemba Capital Partners, 2025)</span></div>
+      <div class="label">Awards</div>
+      <div class="value">2024 Australian Young Entrepreneur Award, Food and Beverage; 2018 Gold Coast Young Entrepreneur of the Year Startup; 2018 Gold Coast Business Awards Health and Wellbeing winner</div>
+    </div>
+
+    <p style="margin-top:16px; font-size:12px; color:#555; font-style:italic;">
+      Note: All figures above are sourced from publicly verifiable material. Gross margin, exact
+      entity structure and debt position are not publicly disclosed and are handled as inferred
+      inputs in the tier engine (Section 5.5 system notes).
+    </p>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- 5.3 WEDGE AND MATCHED SERVICE -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <div class="section">
+    <h2>5.3 &nbsp; The Wedge and Matched Service</h2>
+
+    <div class="wedge-block">
+      <p>
+        Macro Mike is a food manufacturer at a significant inflection point. It has grown from a
+        single SKU protein brownie in a one-bedroom apartment in 2016 to over 100 products
+        in a 2,000sqm Gold Coast facility generating more than $10 million in annual revenue.
+        Two brand collaborations in rapid succession, first the Golden Gaytime partnership
+        in October 2024 (which drove December 2024 stock movement tripling year on year) and
+        then the Kellogg's partnership launching to approximately 1,000 new store doors from
+        November 2025, signal a business in a structural retail step-up.
+      </p>
+      <p>
+        The commercial challenge that follows this trajectory is predictable and well-documented
+        in food manufacturing: cash is consumed by inventory before revenue is collected. A
+        manufacturer fills warehouses, ships to retailers, and waits 30 to 60 or more days for
+        payment. DTC channels are faster but carry their own inventory buffers. With 100+ SKUs
+        across multiple channels, cash trapped in inventory, work in progress, and delayed
+        receivables can represent 8 to 15 percent of annual revenue. At Macro Mike's current
+        scale, that is between $800,000 and $1.5 million in cash that could be freed through
+        structured working capital analysis and a resequenced collection and supplier terms model.
+      </p>
+      <p>
+        The Working Capital Unlock is a four-week ProfitPulse engagement that maps exactly
+        where that cash is trapped, across debtors, inventory, work in progress, supplier
+        terms and banking facilities, and produces a prioritised action list to release it.
+        For a business about to push into approximately 1,000 additional store doors, this is
+        not a nice-to-have. It is the difference between a growth move that fuels itself and
+        one that quietly creates a liquidity crisis six months later.
+      </p>
+    </div>
+
+    <div class="service-block" style="margin-top:20px;">
+      <div class="svc-name">Working Capital Unlock</div>
+      <div class="svc-price">$6,000 one off &nbsp;&nbsp; ProfitPulse verified price &nbsp;|&nbsp; questionnaire confirms exact fit</div>
+      <div class="svc-desc">
+        A four-week project mapping cash trapped in debtors, inventory, work in progress,
+        supplier terms and bank facilities, with a prioritised action list to release cash.
+        Typical clients release 8 to 15 percent of revenue in trapped cash. The questionnaire
+        at profit-pulse.com.au/full-suite-of-products confirms the matched service and price
+        for the prospect's actual situation.
+      </div>
+      <div class="supporting">
+        Supporting services identified: &nbsp;
+        A4 Strategic Growth Diagnostic (international expansion planning)
+        &nbsp;|&nbsp;
+        G3 Product and Service Line Profitability (100+ SKU portfolio rationalisation)
+      </div>
+    </div>
+
+    <h3 style="margin-top:24px; margin-bottom:10px;">5.3A &nbsp; Primary Call to Action: The Questionnaire</h3>
+    <a href="https://profit-pulse.com.au/full-suite-of-products?utm_source=outreach&utm_medium=html&utm_campaign=nightly_outreach&utm_content=macro_mike"
+       class="cta-primary">Find your fix in two minutes</a>
+    <div class="cta-clean-url" style="margin-top:10px;">
+      Answer a few quick questions and see the solutions matched to your size and industry.
+    </div>
+    <div style="color:#888; font-size:13px; margin-top:6px;">
+      profit-pulse.com.au/full-suite-of-products
+    </div>
+
+    <h3 style="margin-top:24px; margin-bottom:10px;">5.3B &nbsp; Secondary Option: Direct Purchase</h3>
+    <p style="font-size:13px; margin-bottom:8px; color:#E6E5DE;">
+      Already know this is the priority? You can begin with the Working Capital Unlock, $6,000 one off.
+    </p>
+    <a href="https://buy.stripe.com/00w4gA7OUfGM5TadMH3ks0z" class="cta-secondary">
+      Purchase the suggested product now to get started
+    </a>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- 5.4 THE EMAIL DRAFT -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <div class="section">
+    <h2>5.4 &nbsp; Email Draft (Review Only)</h2>
+
+    <div class="review-gate">
+      REVIEW GATE: This email is a draft only. No communication has been sent.
+      Only Nitesh Roopa may authorise and send this message.
+    </div>
+
+    <div class="email-wrap">
+      <div class="email-subject">
+        <span>Subject line:</span>
+        Macro Mike and the coming capital step-up
+      </div>
+
+      <div class="email-body">
+        <p>Dear Mike,</p>
+
+        <p>
+          The Golden Gaytime collaboration and the December tripling result were genuinely
+          impressive to follow from here in Brisbane. A plant based protein brand landing a
+          national branded collaboration with Streets and then Kellogg's in the same 12 month window is
+          a rare double, and the stock movement data suggests it translated commercially, not
+          just in reach. I spotted the Kellogg's distribution push announced last October and
+          put Macro Mike on my list that evening.
+        </p>
+
+        <p>
+          I am Nitesh Roopa, Chartered Accountant and Managing Partner of ProfitPulse, a
+          Brisbane fractional CFO and commercial advisory firm. My background spans 16 years
+          across four countries and over 52 deals, from large infrastructure transactions in
+          Africa and Asia through to SME growth advisory here in Australia. I now work with
+          owner-operated businesses that are ambitious enough to need more than an accountant
+          but not yet the size to warrant a full-time CFO.
+        </p>
+
+        <p>
+          What caught my attention is the distribution step-up coming through the Kellogg's
+          launch, approximately 1,000 new store doors from November 2025 with a supermarket
+          push planned for May 2026. At that scale and pace, inventory builds ahead of revenue
+          and retail payment terms run 30 to 60 days behind manufacturing costs. The result
+          is predictable: cash pressure that appears six months after the growth win, not
+          before it. The ProfitPulse Working Capital Unlock is a focused four-week engagement
+          that maps exactly where cash is trapped across inventory, supplier terms and
+          receivables, and produces a prioritised release plan. Typical clients release 8 to
+          15 percent of annual revenue. I have attached a short brief with more detail.
+        </p>
+
+        <p>
+          If you have two minutes, answering a few questions at
+          <a href="https://profit-pulse.com.au/full-suite-of-products?utm_source=outreach&utm_medium=email&utm_campaign=nightly_outreach&utm_content=macro_mike">profit-pulse.com.au/full-suite-of-products</a>
+          will show the solutions matched to your size and industry, with the option to start
+          directly from there.
+        </p>
+
+        <p>
+          If you would prefer to talk first, I am happy to offer a complimentary 30 minute
+          discovery call, no obligation. You can book a time that suits you at
+          <a href="https://bookings.cloud.microsoft/book/ProfitPulse1@profit-pulse.com.au/?ismsaljsauthenabled=true">bookings.cloud.microsoft/book/ProfitPulse1@profit-pulse.com.au</a>.
+        </p>
+
+        <p>Either way, congratulations on what you have built. It is a genuinely impressive story.</p>
+
+        <div class="email-sig">
+          <strong>Nitesh Roopa</strong><br>
+          CA, Managing Partner<br>
+          ProfitPulse<br>
+          Profit-Pulse.com.au<br>
+          Nitesh@Profit-Pulse.com.au<br>
+          +61 411 876 267
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- 5.5 SYSTEM NOTES -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <div class="section">
+    <h2>5.5 &nbsp; System Notes</h2>
+
+    <div class="sys-notes">
+      <dl>
+        <dt>Selected target</dt>
+        <dd>Macro Mike (macromike.com.au), Burleigh Heads, Gold Coast QLD. Confirmed not present
+            in Outreach_Register.csv (only prior entry is AdUnion, 09 Jun 2026).</dd>
+
+        <dt>Verified sources used</dt>
+        <dd>
+          1. Podcast "The Frankie Lee" episode 7 (January 2023): "Macro Mike: The Journey From $10k
+          To $10 Million In Revenue Inside 3 Years":confirms revenue milestone.<br>
+          2. Kim Barrett blog post: "Scaling a $10,000 Self-funded Startup to a $10 Million Supplement
+          Empire in 3 years with Mike Kellett":corroborates revenue figure.<br>
+          3. Business News Australia (June 2023): "the founder is now exceeding his original goal of
+          making a million dollars every month" and international expansion plans.<br>
+          4. Mi3 (October 2025): "Kellanova and Macro Mike join forces for cereal-inspired protein
+          powders":confirms Kellogg's collaboration and approximately 1,000 store distribution
+          from November 2025; supermarket push May 2026.<br>
+          5. Stack3d (September 2025): "Macro Mike partners with Kellogg's for three authentic cereal
+          flavors":corroborates Kellogg's launch.<br>
+          6. Business News Australia (2024 citation): December 2024 stock movement tripling
+          year on year following Golden Gaytime partnership.<br>
+          7. Business News Australia: Golden Gaytime collaboration generated $2.5 million in sales
+          in first year.<br>
+          8. macromike.com.au/pages/about: 100+ SKUs, 5,000+ retailers, 500,000+ customers,
+          35,000+ five-star reviews.<br>
+          9. Pemba Capital Partners (2025): "health food business started in 2016 ... employs nearly
+          50 people".<br>
+          10. Business News Australia: "employs 50 staff" at 2,000sqm Gold Coast facility.<br>
+          11. Gold Coast Titans website (November 2021): Macro Mike Titans sponsorship announcement.<br>
+          12. Business News Australia: 2024 Australian Young Entrepreneur Award, Food and Beverage.
+        </dd>
+
+        <dt>Inferred commercial goal (INFERENCE, not a verified fact)</dt>
+        <dd>
+          Macro Mike is most likely focused in the next 12 months on executing the Kellogg's retail
+          distribution successfully (approximately 1,000 new stores from November 2025 and a
+          supermarket push planned for May 2026) and on managing the working capital demands that
+          come with rapid retail expansion at this scale. International expansion into the US, UK
+          and Europe is a stated medium-term goal and likely requires capital planning. These signals
+          map directly to working capital management and structured growth planning needs.
+        </dd>
+
+        <dt>Matched primary service</dt>
+        <dd>C2 Working Capital Unlock. Signal map match: "Cash tied up in stock, work in progress,
+            or across the whole business, or growth consumes cash maps to C2" (Section 3B).</dd>
+
+        <dt>Inferred size tier and engine output (INTERNAL ONLY, never shown to prospect)</dt>
+        <dd>
+          Industry: Food and beverage production. Bias: 4.<br>
+          Inputs scored: Revenue $10M to $20M (6) + Gross margin 40 to 55% neutral default (3) +
+          Team 41 to 100 (4) + Single location (1) + Single entity default (1) +
+          Revenue model mix default (2) + Some key account reliance default (2) +
+          Modest debt default (2) + Forward growth high over 30% (6) +
+          Recent trajectory scaling rapidly (6) + Commercial event expansion (2) = Raw score 35.<br>
+          Essential ceiling: 25. Command ceiling: 35.<br>
+          Raw score 35 is at or below Command ceiling 35 &rarr; Base tier: Command.<br>
+          Adjustments: gross margin band 3 (not &le;2, no lift); forward growth 6 and GM band 3
+          (not 5, no drop). Final tier: COMMAND.<br>
+          Inferred tier reason: large food manufacturer with active retail expansion, high growth
+          trajectory, neutral margin and debt defaults keep score at the Command ceiling.
+        </dd>
+
+        <dt>Questionnaire URL (in email, with UTM)</dt>
+        <dd>https://profit-pulse.com.au/full-suite-of-products?utm_source=outreach&amp;utm_medium=email&amp;utm_campaign=nightly_outreach&amp;utm_content=macro_mike</dd>
+
+        <dt>Questionnaire URL (in dossier, with UTM)</dt>
+        <dd>https://profit-pulse.com.au/full-suite-of-products?utm_source=outreach&amp;utm_medium=html&amp;utm_campaign=nightly_outreach&amp;utm_content=macro_mike</dd>
+
+        <dt>Questionnaire URL on brief (clean, no tags per Section 6.4)</dt>
+        <dd>profit-pulse.com.au/full-suite-of-products</dd>
+
+        <dt>Direct Stripe checkout link (C2 Working Capital Unlock, Command tier, $6,000)</dt>
+        <dd>https://buy.stripe.com/00w4gA7OUfGM5TadMH3ks0z<br>
+            Address shown only behind the CTA words "Purchase the suggested product now to get
+            started" in dossier, brief and email. Never shown as visible text. No UTM tags appended.</dd>
+
+        <dt>Email direct checkout included</dt>
+        <dd>No. EMAIL_INCLUDE_DIRECT_CHECKOUT is false. Email leads with questionnaire only.</dd>
+
+        <dt>Bitly shortening</dt>
+        <dd>Not applied. BITLY_SHORTEN is false.</dd>
+
+        <dt>Confirmation</dt>
+        <dd>Nothing has been sent. This entire dossier is a draft for Nitesh Roopa's review only.</dd>
+      </dl>
+    </div>
+  </div>
+
+</div><!-- /page-wrap -->
+</body>
+</html>
