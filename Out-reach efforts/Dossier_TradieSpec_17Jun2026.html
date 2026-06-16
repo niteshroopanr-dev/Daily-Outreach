@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProfitPulse Dossier | TradieSpec | 17 Jun 2026</title>
+<style>
+  :root {
+    --black:    #000000;
+    --teal:     #01A296;
+    --amber-b:  #F8C806;
+    --amber-d:  #F6A102;
+    --gold:     #E3A712;
+    --white:    #FFFFFF;
+    --off-white:#E6E5DE;
+    --mid-grey: #666666;
+    --drk-grey: #333333;
+    --muted:    #999999;
+    --light-bg: #F7F7F5;
+    --teal-bg:  #F2FBFA;
+    --teal-drk: #041A18;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--off-white);
+    color: var(--black);
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  .page { max-width: 900px; margin: 0 auto; padding: 24px 16px 48px; }
+
+  /* ── SECTION WRAPPERS ──────────────────────────────────────────────────── */
+  .card {
+    background: var(--white);
+    border-radius: 6px;
+    margin-bottom: 24px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  }
+  .card-header {
+    background: var(--black);
+    color: var(--off-white);
+    padding: 12px 20px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .card-header .company { color: var(--amber-b); font-size: 13px; }
+  .card-body { padding: 20px; }
+
+  /* ── HEADER ────────────────────────────────────────────────────────────── */
+  .main-header {
+    background: var(--black);
+    color: var(--white);
+    padding: 28px 24px 20px;
+    border-radius: 6px;
+    margin-bottom: 24px;
+    border-left: 6px solid var(--amber-d);
+  }
+  .main-header .eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 4px;
+  }
+  .main-header h1 {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--amber-b);
+    margin-bottom: 4px;
+    font-family: Georgia, serif;
+  }
+  .main-header .subtitle {
+    font-size: 13px;
+    color: var(--off-white);
+    margin-bottom: 10px;
+  }
+  .main-header .meta {
+    font-size: 12px;
+    color: var(--mid-grey);
+  }
+
+  /* ── LABELS ────────────────────────────────────────────────────────────── */
+  .section-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 10px;
+  }
+  h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--black);
+    font-family: Georgia, serif;
+    margin-bottom: 12px;
+  }
+  h3 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+  p { margin-bottom: 10px; }
+
+  /* ── STAT GRID ─────────────────────────────────────────────────────────── */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .stat-card {
+    background: var(--black);
+    border-top: 3px solid var(--teal);
+    padding: 12px;
+    border-radius: 4px;
+  }
+  .stat-card .num {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--white);
+    font-family: Georgia, serif;
+    line-height: 1.1;
+  }
+  .stat-card .lbl {
+    font-size: 10px;
+    color: var(--off-white);
+    margin-top: 4px;
+    line-height: 1.3;
+  }
+  .stat-card .src {
+    font-size: 8px;
+    color: #016E65;
+    margin-top: 5px;
+    font-style: italic;
+  }
+
+  /* ── FACT TABLE ────────────────────────────────────────────────────────── */
+  .fact-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .fact-table tr { border-bottom: 1px solid #eee; }
+  .fact-table td { padding: 8px 4px; vertical-align: top; }
+  .fact-table td:first-child {
+    color: var(--mid-grey);
+    font-size: 11px;
+    width: 32%;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding-right: 12px;
+  }
+  .fact-table td:last-child { font-weight: 600; }
+  .src-note {
+    font-size: 10px;
+    color: var(--muted);
+    font-style: italic;
+    display: block;
+    margin-top: 2px;
+    font-weight: 400;
+  }
+
+  /* ── SIGNALS LIST ──────────────────────────────────────────────────────── */
+  .signals { list-style: none; padding: 0; }
+  .signals li {
+    padding: 8px 0 8px 18px;
+    border-bottom: 1px solid #f0f0f0;
+    position: relative;
+    font-size: 13px;
+  }
+  .signals li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 14px;
+    width: 7px;
+    height: 7px;
+    background: var(--teal);
+    border-radius: 50%;
+  }
+  .signals .sig-src {
+    font-size: 10px;
+    color: var(--muted);
+    font-style: italic;
+    display: block;
+    margin-top: 2px;
+  }
+
+  /* ── WEDGE ─────────────────────────────────────────────────────────────── */
+  .wedge-box {
+    background: var(--teal-bg);
+    border-left: 4px solid var(--teal);
+    padding: 16px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    font-size: 13px;
+  }
+  .service-block {
+    background: var(--light-bg);
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  .service-block .svc-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--black);
+    font-family: Georgia, serif;
+  }
+  .service-block .svc-price {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--teal);
+    margin: 4px 0 8px;
+  }
+  .supporting {
+    font-size: 12px;
+    color: var(--mid-grey);
+    margin-top: 10px;
+    font-style: italic;
+  }
+
+  /* ── CTA BUTTONS ───────────────────────────────────────────────────────── */
+  .btn-primary {
+    display: inline-block;
+    background: var(--teal);
+    color: var(--white);
+    font-weight: 700;
+    text-decoration: none;
+    padding: 14px 26px;
+    border-radius: 30px;
+    font-size: 15px;
+    margin-top: 10px;
+    margin-bottom: 6px;
+  }
+  .cta-url-clean {
+    font-size: 12px;
+    color: var(--mid-grey);
+    display: block;
+    margin-top: 6px;
+    margin-bottom: 14px;
+  }
+  .btn-secondary {
+    display: inline-block;
+    border: 2px solid var(--amber-d);
+    color: var(--amber-d);
+    font-weight: 700;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 26px;
+    font-size: 14px;
+    margin-top: 6px;
+  }
+  .checkout-note {
+    font-size: 12px;
+    color: var(--mid-grey);
+    margin-top: 8px;
+  }
+
+  /* ── EMAIL SECTION ─────────────────────────────────────────────────────── */
+  .review-gate {
+    background: #B71C1C;
+    color: var(--white);
+    font-weight: 700;
+    font-size: 13px;
+    padding: 14px 20px;
+    text-align: center;
+    border-radius: 4px 4px 0 0;
+    letter-spacing: 0.02em;
+  }
+  .email-body {
+    background: #FAFAFA;
+    border: 1px solid #ddd;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    padding: 24px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .email-subject {
+    background: #f0f0f0;
+    padding: 10px 14px;
+    border-radius: 3px;
+    font-size: 13px;
+    margin-bottom: 20px;
+  }
+  .email-subject strong { color: var(--black); }
+  .email-body p { margin-bottom: 14px; }
+  .sig-block { margin-top: 20px; border-top: 1px solid #ddd; padding-top: 14px; }
+  .sig-block .name { font-weight: 700; font-size: 15px; }
+  .sig-block .cred { color: var(--mid-grey); font-size: 13px; }
+  .sig-block .contact { font-size: 13px; margin-top: 6px; }
+  .sig-block a { color: var(--teal); text-decoration: none; }
+
+  /* ── SYSTEM NOTES ──────────────────────────────────────────────────────── */
+  .sys-notes {
+    background: #1a1a1a;
+    color: #ccc;
+    border-radius: 6px;
+    padding: 20px;
+    font-family: monospace;
+    font-size: 12px;
+    line-height: 1.8;
+  }
+  .sys-notes .key { color: var(--amber-b); font-weight: 700; }
+  .sys-notes .val { color: #90EE90; }
+  .sys-notes .inf { color: #87CEEB; }
+  .sys-notes .warn { color: #FFD700; }
+
+  /* ── TIER CALC TABLE ───────────────────────────────────────────────────── */
+  .tier-table { width: 100%; border-collapse: collapse; font-size: 12px; margin: 10px 0; }
+  .tier-table th, .tier-table td { padding: 5px 8px; border: 1px solid #333; text-align: left; }
+  .tier-table th { background: #2a2a2a; color: var(--amber-b); }
+  .tier-table td { color: #ccc; }
+  .tier-total td { background: #0a2a28; color: var(--teal); font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- 5.1 HEADER -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div class="main-header">
+    <div class="eyebrow">ProfitPulse Nightly Outreach | Internal Dossier</div>
+    <h1>TradieSpec</h1>
+    <div class="subtitle">
+      Rent to own and flexible trade vehicle hire &nbsp;|&nbsp; Peakhurst, Sydney NSW
+    </div>
+    <div class="meta">
+      Date for: 17 Jun 2026 &nbsp;|&nbsp; Run: 16 Jun 2026 at 23:00 AEST
+      &nbsp;|&nbsp; Prepared for Nitesh Roopa, CA, Managing Partner, ProfitPulse
+    </div>
+    <div style="margin-top:12px;font-size:12px;color:#888;">
+      Selected because: TradieSpec appears in the SmartCompany Smart50 2025 at rank 18,
+      with $15.3 million in verified revenue, 22 employees, a fleet of 600 vehicles across
+      four capital cities, and $13 million raised for national expansion. The business
+      has not appeared in the ProfitPulse outreach register previously.
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- 5.2 VERIFIED PROFILE -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div class="card">
+    <div class="card-header">
+      <span>Verified Profile</span>
+      <span class="company">TradieSpec</span>
+    </div>
+    <div class="card-body">
+
+      <div class="section-label">Headline Stats (all figures sourced from public material)</div>
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="num">$15.3M</div>
+          <div class="lbl">Revenue</div>
+          <div class="src">Smart50 2025, SmartCompany</div>
+        </div>
+        <div class="stat-card">
+          <div class="num">57%</div>
+          <div class="lbl">Three year average growth</div>
+          <div class="src">Smart50 2025, SmartCompany</div>
+        </div>
+        <div class="stat-card">
+          <div class="num">#18</div>
+          <div class="lbl">Smart50 2025 rank of 50</div>
+          <div class="src">SmartCompany, Nov 2025</div>
+        </div>
+        <div class="stat-card">
+          <div class="num">22</div>
+          <div class="lbl">Team members</div>
+          <div class="src">Smart50 2025, SmartCompany</div>
+        </div>
+        <div class="stat-card">
+          <div class="num">600+</div>
+          <div class="lbl">Trade vehicles in fleet</div>
+          <div class="src">Company public statements</div>
+        </div>
+        <div class="stat-card">
+          <div class="num">2,500+</div>
+          <div class="lbl">Trade businesses served</div>
+          <div class="src">Company public statements</div>
+        </div>
+      </div>
+
+      <div class="section-label" style="margin-top:20px;">Firmographics</div>
+      <table class="fact-table">
+        <tr>
+          <td>Website</td>
+          <td>tradiespec.com.au
+            <span class="src-note">Source: Company website</span></td>
+        </tr>
+        <tr>
+          <td>Registered name</td>
+          <td>TradieSpec Pty Ltd
+            <span class="src-note">Source: Public company profile</span></td>
+        </tr>
+        <tr>
+          <td>Head office</td>
+          <td>Peakhurst, NSW (Sydney metro, within 50km of Sydney CBD)
+            <span class="src-note">Source: Company website and public company profiles</span></td>
+        </tr>
+        <tr>
+          <td>Operations</td>
+          <td>Sydney, Melbourne, Brisbane, Perth, Central Coast, Newcastle
+            <span class="src-note">Source: tradiespec.com.au</span></td>
+        </tr>
+        <tr>
+          <td>Founded</td>
+          <td>November 2018
+            <span class="src-note">Source: SmartCompany company profile, Telegraph</span></td>
+        </tr>
+        <tr>
+          <td>Industry</td>
+          <td>Rent to own flexible hire of trade vehicles (utes, vans, tipper trucks)</td>
+        </tr>
+        <tr>
+          <td>Revenue</td>
+          <td>$15.3 million
+            <span class="src-note">Source: SmartCompany Smart50 2025 award citation, Nov 2025</span></td>
+        </tr>
+        <tr>
+          <td>Growth</td>
+          <td>57% three year average
+            <span class="src-note">Source: SmartCompany Smart50 2025 award citation, Nov 2025</span></td>
+        </tr>
+        <tr>
+          <td>Employees</td>
+          <td>22
+            <span class="src-note">Source: SmartCompany Smart50 2025 award citation, Nov 2025</span></td>
+        </tr>
+        <tr>
+          <td>Fleet</td>
+          <td>Over 600 trade ready vehicles
+            <span class="src-note">Source: Company public statements</span></td>
+        </tr>
+        <tr>
+          <td>Customers</td>
+          <td>Over 2,500 trade businesses served since founding
+            <span class="src-note">Source: Company public statements</span></td>
+        </tr>
+        <tr>
+          <td>Funding</td>
+          <td>$13 million raised to fund fleet expansion and national rollout
+            <span class="src-note">Source: Business Daily Media announcement, 2023</span></td>
+        </tr>
+        <tr>
+          <td>CEO</td>
+          <td>Tim Cullen (Cofounder and CEO)
+            <span class="src-note">Source: SmartCompany, Facebook videos, Apollo profile</span></td>
+        </tr>
+        <tr>
+          <td>Cofounders</td>
+          <td>Matt Deeks (Director) and Richard McDonald (Director)
+            <span class="src-note">Source: SmartCompany Smart50 2022, company profiles</span></td>
+        </tr>
+        <tr>
+          <td>Prior Smart50</td>
+          <td>Ranked 9th in SmartCompany Smart50 2022
+            <span class="src-note">Source: SmartCompany Smart50 2022</span></td>
+        </tr>
+        <tr>
+          <td>Strategic goal</td>
+          <td>Become Australia's largest trade vehicle provider (Tim Cullen, public statement)
+            <span class="src-note">Source: Business Daily Media, 2023</span></td>
+        </tr>
+        <tr>
+          <td>Geographic qualifier</td>
+          <td>Head office Peakhurst NSW, within 50km of Sydney CBD. Qualifies under GEO_RULE.</td>
+        </tr>
+        <tr>
+          <td>Employee qualifier</td>
+          <td>22 employees. Qualifies under EMPLOYEE_BAND (10 to 50).</td>
+        </tr>
+        <tr>
+          <td>Revenue qualifier</td>
+          <td>$15.3 million. Exceeds REVENUE_FLOOR (AUD 5 million). Verified by Smart50 2025 citation.</td>
+        </tr>
+      </table>
+
+      <div class="section-label" style="margin-top:20px;">Key Commercial Signals</div>
+      <ul class="signals">
+        <li>
+          $13 million raised to fund national fleet expansion, with the stated goal to double vehicle count within 12 months
+          <span class="sig-src">Source: Business Daily Media, 2023 announcement</span>
+        </li>
+        <li>
+          National operations now span Sydney, Melbourne, Brisbane, Perth, Central Coast, and Newcastle
+          <span class="sig-src">Source: tradiespec.com.au</span>
+        </li>
+        <li>
+          CEO Tim Cullen publicly stated the ambition to become Australia's largest trade vehicle provider
+          <span class="sig-src">Source: Business Daily Media, 2023</span>
+        </li>
+        <li>
+          57% three year average revenue growth places TradieSpec among Australia's top 20 fastest growing SMEs
+          <span class="sig-src">Source: SmartCompany Smart50 2025, Nov 2025</span>
+        </li>
+        <li>
+          Also ranked 9th in SmartCompany Smart50 in 2022, confirming a sustained multiyear high growth trajectory
+          <span class="sig-src">Source: SmartCompany Smart50 2022</span>
+        </li>
+        <li>
+          More than 2,500 trade businesses served since founding in November 2018, with a fleet of 600 vehicles
+          <span class="sig-src">Source: Company public statements</span>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- INFERRED COMMERCIAL GOAL (Section 4C) — clearly marked -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div class="card">
+    <div class="card-header">
+      <span>Inferred Commercial Goal &nbsp;|&nbsp; Section 4C</span>
+    </div>
+    <div class="card-body">
+      <p style="color:#B71C1C;font-size:12px;font-weight:700;margin-bottom:8px;">
+        NOTE: The following is an inference from publicly available evidence. It is not a verified fact about the business.
+      </p>
+      <p>
+        TradieSpec is most likely working toward a controlled doubling of its vehicle fleet over the next 12 months,
+        funded by the $13 million already raised. With six operational locations and a stated goal to become
+        Australia's largest trade vehicle provider, the primary financial challenge in the next 12 to 24 months
+        is capital allocation: deploying the next tranche of fleet investment into the highest return markets
+        and vehicle categories before committing additional capital.
+      </p>
+      <p>
+        Secondary inferences: (1) The rent to own model creates cash flow complexity at scale that is likely
+        not yet formally managed with a 13 week view. (2) With 22 employees and $13 million in fleet financing,
+        there is almost certainly no dedicated CFO level function, which creates risk as covenant management,
+        market sequencing, and potential additional capital rounds approach.
+      </p>
+      <p style="color:var(--mid-grey);font-size:12px;">
+        Evidence base: $13 million raise announcement (Business Daily Media 2023), stated fleet doubling goal,
+        CEO public statement on national ambition, 22-person headcount at $15.3M revenue.
+      </p>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- 5.3 WEDGE AND MATCHED SERVICE -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div class="card">
+    <div class="card-header">
+      <span>The Wedge and Matched Service &nbsp;|&nbsp; Section 4D</span>
+      <span class="company">A5 Capital Allocation Review</span>
+    </div>
+    <div class="card-body">
+
+      <div class="section-label">The Commercial Argument</div>
+      <div class="wedge-box">
+        <p>
+          TradieSpec has raised $13 million and deployed it across a fleet of over 600 vehicles spanning
+          Sydney, Melbourne, Brisbane, Perth, Central Coast, and Newcastle. Revenue stands at $15.3 million
+          with 22 people managing operations across six locations. The business has set a clear public goal:
+          double the fleet within 12 months and become Australia's largest trade vehicle provider.
+        </p>
+        <p>
+          Before the next capital commitment is made, the single most valuable financial analysis available
+          is a rigorous answer to where each dollar of the existing fleet is generating the highest return.
+          Which markets lead on vehicle utilisation? Which vehicle categories (utes, vans, tippers) carry
+          the strongest gross margin? Which customer segments convert from flexible hire to rent to own most
+          reliably, and what does that mean for the capital cycle?
+        </p>
+        <p>
+          Without a formal capital allocation map, expansion risk concentrates in the deployment decision:
+          the next city gets capital because it is the next city, not because the evidence supports it.
+          The Capital Allocation Review is a focused engagement that maps every vehicle category and market
+          against the revenue and margin it produces, ranks the redeployment options, and produces a clear
+          investment thesis for the next fleet round. For a business growing at 57 percent with $13 million
+          already deployed, this is the highest leverage financial insight available in the next 90 days.
+        </p>
+      </div>
+
+      <div class="section-label">Matched Service</div>
+      <div class="service-block">
+        <div class="svc-name">Capital Allocation Review</div>
+        <div class="svc-price">$7,500 one off &nbsp;|&nbsp; ProfitPulse verified price. The questionnaire confirms the exact figure for your situation.</div>
+        <p style="font-size:13px;color:var(--drk-grey);">
+          An independent review of where capital is currently deployed across people, fleet, locations, and
+          marketing against the return generated. Produces a redeployment recommendation with expected ROI
+          on each move. For TradieSpec, this maps the fleet investment by market and vehicle type against
+          the margin each generates, and gives the founding team a clear investment thesis for the next
+          expansion round before committing additional capital.
+        </p>
+        <p class="supporting">
+          Supporting services identified: B1 Fractional CFO Partnership (ongoing senior financial leadership
+          as the fleet doubles) &nbsp;|&nbsp; F1 Capital Raise Feasibility (if a further capital round is
+          being considered to fund the next fleet tranche)
+        </p>
+      </div>
+
+      <!-- 5.3A: Primary CTA -->
+      <div class="section-label" style="margin-top:20px;">5.3A Primary Call to Action: The Questionnaire</div>
+      <p style="font-size:13px;">
+        The questionnaire is the primary front door. Tim answers a few quick questions, sees the services
+        matched to TradieSpec's size and industry, and can purchase directly from the matched results page.
+      </p>
+      <a href="https://profit-pulse.com.au/full-suite-of-products?utm_source=outreach&utm_medium=html&utm_campaign=nightly_outreach&utm_content=tradiespec"
+         class="btn-primary">Find your fix in two minutes</a>
+      <span class="cta-url-clean">
+        Answer a few quick questions and see the solutions matched to your size and industry.
+        <br>profit-pulse.com.au/full-suite-of-products
+      </span>
+
+      <!-- 5.3B: Secondary CTA -->
+      <div class="section-label" style="margin-top:16px;">5.3B Secondary Option: Direct Purchase</div>
+      <p style="font-size:13px;color:var(--drk-grey);">
+        Already know the Capital Allocation Review is the priority? You can begin at $7,500 one off.
+      </p>
+      <a href="https://buy.stripe.com/5kQ9AU7OU9io95m8sn3ks0l" class="btn-secondary">
+        Purchase the suggested product now to get started
+      </a>
+      <p class="checkout-note">
+        Capital Allocation Review &nbsp;|&nbsp; $7,500 one off &nbsp;|&nbsp; ProfitPulse verified price
+        <br>The questionnaire confirms exact fit before purchase if preferred.
+      </p>
+
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- 5.4 THE EMAIL DRAFT -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div class="card">
+    <div class="card-header">
+      <span>Email Draft &nbsp;|&nbsp; Section 5.4 &nbsp;|&nbsp; For review only — not sent</span>
+    </div>
+    <div class="card-body" style="padding:0;">
+
+      <div class="review-gate">
+        REVIEW GATE: This email is a draft only. No communication has been sent.
+        Only Nitesh Roopa may authorise and send this message.
+      </div>
+
+      <div class="email-body">
+        <div class="email-subject">
+          <strong>Subject:</strong>
+          The fleet capital question on TradieSpec's next expansion step
+        </div>
+
+        <p>
+          Hi Tim,
+        </p>
+
+        <p>
+          I came across TradieSpec through the SmartCompany Smart50 2025 rankings, where you placed 18th
+          among Australia's fastest growing small and medium businesses. Reaching $15.3 million in revenue
+          with a fleet of 600 vehicles across four capital cities and 22 people is a genuinely impressive
+          build from a standing start in 2018, and the sustained multiyear growth record across Smart50
+          2022 and 2025 is not something many businesses manage.
+        </p>
+
+        <p>
+          My name is Nitesh Roopa. I am a Chartered Accountant and Managing Partner of ProfitPulse, a
+          fractional CFO and advisory practice based in Brisbane. My background spans 16 years and over
+          52 deals across South Africa, Pan Africa, and Australia, including credit and principal finance
+          roles at Nedbank Capital and a finance and commercial lead role on Queensland's AUD 10 billion
+          Gympie Road Bypass Tunnel. I founded ProfitPulse to bring that level of financial thinking to
+          growing Australian businesses on a fractional basis, without the cost of a full time hire.
+        </p>
+
+        <p>
+          With $13 million already deployed across the fleet and a stated goal to double vehicle count
+          within 12 months, the most valuable financial question for TradieSpec right now is where each
+          dollar of fleet capital is generating the strongest return. The Capital Allocation Review is a
+          focused engagement that maps the fleet by market, vehicle category, and customer segment against
+          the margin each generates, and produces a clear investment thesis for the next expansion round
+          before the capital is committed. I have attached a short brief that outlines what we observed
+          and how the engagement works in more detail.
+        </p>
+
+        <p>
+          If you would like to see which ProfitPulse services are matched to TradieSpec's size, industry,
+          and situation, there is a short questionnaire at
+          <a href="https://profit-pulse.com.au/full-suite-of-products?utm_source=outreach&utm_medium=email&utm_campaign=nightly_outreach&utm_content=tradiespec">profit-pulse.com.au/full-suite-of-products</a>.
+          It takes a few minutes, and the results page shows the matched services each with a direct
+          purchase option.
+        </p>
+
+        <p>
+          If a quick conversation is a better first step, I would be very glad to connect for a
+          complimentary discovery call at
+          <a href="https://bookings.cloud.microsoft/book/ProfitPulse1@profit-pulse.com.au/?ismsaljsauthenabled=true">bookings.cloud.microsoft/book/ProfitPulse1@profit-pulse.com.au</a>.
+          No obligation at all, and happy to make it brief.
+        </p>
+
+        <p>
+          Warm regards,
+        </p>
+
+        <div class="sig-block">
+          <div class="name">Nitesh Roopa</div>
+          <div class="cred">CA, Managing Partner</div>
+          <div class="cred" style="font-weight:700;color:var(--teal);">ProfitPulse</div>
+          <div class="contact">
+            <a href="https://profit-pulse.com.au">Profit-Pulse.com.au</a><br>
+            <a href="mailto:Nitesh@Profit-Pulse.com.au">Nitesh@Profit-Pulse.com.au</a><br>
+            +61 411 876 267<br>
+            <a href="https://linkedin.com/in/nitesh-roopa-77594163">linkedin.com/in/nitesh-roopa-77594163</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- 5.5 SYSTEM NOTES -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div class="card">
+    <div class="card-header"><span>System Notes &nbsp;|&nbsp; Section 5.5 &nbsp;|&nbsp; Internal only</span></div>
+    <div class="card-body">
+      <div class="sys-notes">
+
+        <div><span class="key">TARGET SELECTED</span></div>
+        <div><span class="key">Company:</span> <span class="val">TradieSpec Pty Ltd</span></div>
+        <div><span class="key">Website:</span> <span class="val">tradiespec.com.au</span></div>
+        <div><span class="key">Register check:</span> <span class="val">Not found in Outreach_Register.csv (register has 1 entry: AdUnion). Selection confirmed fresh.</span></div>
+
+        <br>
+        <div><span class="key">VERIFIED SOURCES USED</span></div>
+        <div>1. SmartCompany Smart50 2025 award citation, Nov 2025 (revenue $15.3M, growth 57%, employees 22, rank 18)</div>
+        <div>2. Business Daily Media announcement (national expansion, $13M raise, fleet doubling goal, CEO quote)</div>
+        <div>3. tradiespec.com.au (operational locations, vehicle types, service offering)</div>
+        <div>4. SmartCompany Smart50 2022 (rank 9, cofounders Matt Deeks and Richard McDonald)</div>
+        <div>5. Apollo.io / Facebook videos (CEO Tim Cullen confirmed)</div>
+        <div>6. Public company profiles: ZoomInfo, CBInsights (founding date November 2018)</div>
+
+        <br>
+        <div><span class="key">INFERRED COMMERCIAL GOAL</span> <span class="inf">(inference, not a verified fact)</span></div>
+        <div><span class="inf">Fleet capital allocation optimisation ahead of the next expansion round. Evidence: $13M raise, fleet doubling goal, national ambition, 22-person team at $15.3M revenue.</span></div>
+
+        <br>
+        <div><span class="key">TIER ENGINE (Section 3C)</span></div>
+        <div>Industry: Transport, logistics and freight &mdash; <span class="val">bias 4</span></div>
+        <div>Essential ceiling: 27 &minus; (4&minus;3) &times; 2 = <span class="val">25</span></div>
+        <div>Command ceiling:   37 &minus; (4&minus;3) &times; 2 = <span class="val">35</span></div>
+        <br>
+        <table class="tier-table">
+          <tr><th>Input</th><th>Band chosen</th><th>Points</th><th>Basis</th></tr>
+          <tr><td>Annual revenue</td><td>$10M to $20M</td><td>6</td><td>$15.3M verified, Smart50 2025</td></tr>
+          <tr><td>Gross margin</td><td>40% to 55%</td><td>3</td><td>Conservative mid band for vehicle hire; assumed</td></tr>
+          <tr><td>Team size</td><td>16 to 40</td><td>3</td><td>22 employees, Smart50 2025</td></tr>
+          <tr><td>Operating locations</td><td>4 or more</td><td>4</td><td>6 locations verified: tradiespec.com.au</td></tr>
+          <tr><td>Business structure</td><td>Company plus trust / two entities</td><td>2</td><td>Conservative default; external investors present</td></tr>
+          <tr><td>Revenue model</td><td>Mix of recurring and one off</td><td>2</td><td>Rental (recurring) and rent to own (transitional)</td></tr>
+          <tr><td>Customer concentration</td><td>Well diversified</td><td>1</td><td>Over 2,500 trade businesses; no key account concentration stated</td></tr>
+          <tr><td>Funding and debt</td><td>Significant debt or facilities</td><td>3</td><td>$13M raise with likely fleet financing covenants</td></tr>
+          <tr><td>Forward growth</td><td>High growth (over 30%)</td><td>6</td><td>Stated goal to double fleet; national expansion underway</td></tr>
+          <tr><td>Recent trajectory</td><td>Scaling rapidly</td><td>6</td><td>57% three year average, Smart50 rank 18</td></tr>
+          <tr><td>Commercial event</td><td>Capital raise</td><td>5</td><td>Fleet doubling likely requires further capital draw or raise</td></tr>
+          <tr class="tier-total"><td colspan="2">RAW SCORE</td><td>41</td><td>41 &gt; 35 (Command ceiling) &rarr; Executive base tier</td></tr>
+        </table>
+        <br>
+        <div>Lift check: gross margin band = 3 (not &le;2). No lift applied.</div>
+        <div>Drop check: gross margin band = 3 (not 5). No drop applied.</div>
+        <div><span class="key">FINAL TIER: Executive</span> <span class="warn">(internal only, never shown to prospect)</span></div>
+        <div><span class="warn">Tier driven reason: $15.3M revenue + 6 locations + $13M fleet financing + high growth forward outlook pushes raw score to 41, comfortably into Executive range for a bias-4 industry.</span></div>
+
+        <br>
+        <div><span class="key">MATCHED SERVICE</span></div>
+        <div>Primary code: <span class="val">A5</span></div>
+        <div>Primary name: <span class="val">Capital Allocation Review</span></div>
+        <div>Price shown: <span class="val">$7,500 one off (Executive tier price, verified ProfitPulse catalogue)</span></div>
+        <div>Signal map: <span class="val">Funding signals &rarr; "where to put existing capital maps to A5" (Section 3B)</span></div>
+        <div>Supporting codes: <span class="val">B1 Fractional CFO Partnership, F1 Capital Raise Feasibility</span></div>
+
+        <br>
+        <div><span class="key">QUESTIONNAIRE LINK (with UTM, email)</span></div>
+        <div><span class="val">https://profit-pulse.com.au/full-suite-of-products?utm_source=outreach&utm_medium=email&utm_campaign=nightly_outreach&utm_content=tradiespec</span></div>
+
+        <div><span class="key">QUESTIONNAIRE LINK (with UTM, HTML dossier)</span></div>
+        <div><span class="val">https://profit-pulse.com.au/full-suite-of-products?utm_source=outreach&utm_medium=html&utm_campaign=nightly_outreach&utm_content=tradiespec</span></div>
+
+        <div><span class="key">BRIEF (PPTX / PDF)</span></div>
+        <div><span class="val">Questionnaire shows clean URL with no UTM per Section 6.4. Stripe link is hidden behind CTA text per Section 6.4.</span></div>
+
+        <br>
+        <div><span class="key">DIRECT STRIPE CHECKOUT (A5, Executive tier)</span></div>
+        <div><span class="val">https://buy.stripe.com/5kQ9AU7OU9io95m8sn3ks0l</span></div>
+        <div>Tier used: <span class="warn">Executive (internal only)</span> &nbsp;|&nbsp; Price displayed to prospect: <span class="val">$7,500 one off</span></div>
+        <div>No UTM tags on Stripe link. Stripe address never shown as visible text to prospect (behind CTA words only).</div>
+
+        <br>
+        <div><span class="key">EMAIL CONFIG</span></div>
+        <div>EMAIL_INCLUDE_DIRECT_CHECKOUT: <span class="val">false</span> &rarr; Stripe link not included in email. Email leads with questionnaire only.</div>
+        <div>BITLY_SHORTEN: <span class="val">false</span> &rarr; No short links created.</div>
+        <div>TRACKING_ENABLED: <span class="val">true</span> &rarr; UTM tags applied to questionnaire link in email and HTML dossier.</div>
+
+        <br>
+        <div><span class="key">FILES SAVED</span></div>
+        <div><span class="val">Dossier_TradieSpec_17Jun2026.html</span></div>
+        <div><span class="val">Brief_TradieSpec_17Jun2026.pptx</span></div>
+        <div><span class="val">Brief_TradieSpec_17Jun2026.pdf</span></div>
+        <div><span class="val">Outreach_Register.csv (new row appended)</span></div>
+
+        <br>
+        <div><span class="key">NOTHING HAS BEEN SENT.</span></div>
+        <div>Every communication above is a draft for Nitesh Roopa's review only. No email, message, or communication has been dispatched. Only Nitesh Roopa may authorise and send.</div>
+
+      </div>
+    </div>
+  </div>
+
+</div><!-- /page -->
+</body>
+</html>
