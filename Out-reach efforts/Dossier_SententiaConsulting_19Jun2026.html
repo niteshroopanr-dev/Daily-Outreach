@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>INTERNAL DOSSIER | Sententia Consulting | 19 Jun 2026</title>
+<style>
+:root {
+  --black:   #000000;
+  --teal:    #01A296;
+  --amb-b:   #F8C806;
+  --amb-d:   #F6A102;
+  --gold:    #E3A712;
+  --white:   #FFFFFF;
+  --off-wh:  #E6E5DE;
+  --card:    #111111;
+  --panel:   #1A1A1A;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--black);
+  color: var(--off-wh);
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.68;
+  max-width: 920px;
+  margin: 0 auto;
+  padding-bottom: 80px;
+}
+.top-stripe {
+  height: 5px;
+  background: linear-gradient(90deg, var(--teal) 0%, var(--amb-b) 55%, var(--amb-d) 100%);
+}
+.page-header {
+  background: var(--card);
+  border-bottom: 1px solid #1e1e1e;
+  padding: 28px 40px 22px 40px;
+}
+.page-header .eyebrow {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--teal);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.page-header h1 {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--amb-b);
+  margin-bottom: 8px;
+  line-height: 1.1;
+}
+.page-header .date-tag {
+  font-size: 13px;
+  color: #666;
+}
+.page-header .rationale {
+  font-size: 14px;
+  color: var(--off-wh);
+  margin-top: 14px;
+  border-left: 3px solid var(--teal);
+  padding-left: 14px;
+  line-height: 1.6;
+}
+section {
+  padding: 32px 40px;
+  border-bottom: 1px solid #1c1c1c;
+}
+.sec-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--teal);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+h2 { font-size: 20px; font-weight: 700; color: var(--white); margin-bottom: 16px; }
+h3 { font-size: 16px; font-weight: 700; color: var(--amb-b); margin-bottom: 10px; }
+.stats-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0;
+}
+.stat-chip {
+  background: var(--card);
+  border-top: 3px solid var(--teal);
+  padding: 14px 16px;
+  flex: 1;
+  min-width: 130px;
+}
+.stat-chip .num {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--amb-b);
+  line-height: 1.1;
+}
+.stat-chip .lbl {
+  font-size: 11px;
+  color: var(--off-wh);
+  margin-top: 5px;
+  line-height: 1.35;
+}
+.stat-chip .src {
+  font-size: 9px;
+  color: #555;
+  margin-top: 4px;
+}
+table.dt { width: 100%; border-collapse: collapse; margin: 14px 0; }
+table.dt tr { border-bottom: 1px solid #1a1a1a; }
+table.dt td { padding: 10px 12px; vertical-align: top; font-size: 13.5px; }
+table.dt .lc { color: #777; width: 36%; font-weight: 600; }
+table.dt .vc { color: var(--off-wh); }
+table.dt .note { color: #555; font-size: 11px; font-style: italic; }
+.inference-tag {
+  display: inline-block;
+  background: #1a1400;
+  border: 1px solid var(--amb-d);
+  color: var(--amb-d);
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 3px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+.wedge {
+  background: var(--panel);
+  border-left: 4px solid var(--teal);
+  padding: 22px 26px;
+  font-size: 14.5px;
+  line-height: 1.75;
+  margin: 20px 0;
+  color: var(--off-wh);
+}
+.wedge p + p { margin-top: 14px; }
+.service-card {
+  background: var(--card);
+  border: 1px solid #252525;
+  padding: 24px 28px;
+  margin: 18px 0;
+}
+.svc-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--amb-b);
+  margin-bottom: 6px;
+}
+.svc-price {
+  font-size: 15px;
+  color: var(--teal);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+.svc-desc {
+  font-size: 14px;
+  color: var(--off-wh);
+  line-height: 1.65;
+}
+.supporting-list {
+  margin-top: 16px;
+  font-size: 13px;
+  color: #888;
+}
+.supporting-list span { color: var(--off-wh); font-weight: 600; }
+.cta-block { margin: 28px 0 8px 0; }
+a.btn-primary {
+  display: inline-block;
+  background: var(--teal);
+  color: var(--white);
+  font-weight: 700;
+  text-decoration: none;
+  padding: 16px 28px;
+  border-radius: 30px;
+  font-size: 16px;
+}
+.cta-clean-url {
+  font-size: 13px;
+  color: #666;
+  margin-top: 8px;
+}
+a.btn-secondary {
+  display: inline-block;
+  border: 1px solid var(--amb-d);
+  color: var(--amb-d);
+  font-weight: 700;
+  text-decoration: none;
+  padding: 11px 20px;
+  border-radius: 24px;
+  font-size: 14px;
+  margin-top: 10px;
+}
+.secondary-intro {
+  font-size: 13.5px;
+  color: #aaa;
+  margin: 18px 0 6px 0;
+}
+.review-gate {
+  background: #6B0000;
+  border: 2px solid #DD0000;
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 14px;
+  text-align: center;
+  padding: 14px 20px;
+  margin-bottom: 22px;
+  line-height: 1.5;
+}
+.email-wrap {
+  background: var(--panel);
+  padding: 28px 32px;
+  font-size: 15px;
+  line-height: 1.82;
+}
+.email-subject-line {
+  font-size: 13px;
+  font-weight: 700;
+  color: #777;
+  margin-bottom: 4px;
+}
+.email-subject-val {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--amb-b);
+  margin-bottom: 22px;
+}
+.email-body p + p { margin-top: 16px; }
+.email-sig {
+  border-top: 1px solid #2e2e2e;
+  margin-top: 24px;
+  padding-top: 16px;
+  font-size: 13.5px;
+  color: #aaa;
+  line-height: 1.8;
+}
+.sys-notes {
+  background: #080808;
+  border: 1px solid #1a1a1a;
+  padding: 24px 28px;
+  font-size: 13px;
+  color: #777;
+  line-height: 1.75;
+}
+.sys-notes strong { color: var(--teal); }
+.sys-notes .mono {
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  color: #555;
+  word-break: break-all;
+}
+</style>
+</head>
+<body>
+<div class="top-stripe"></div>
+
+<!-- ═══════════════════ 5.1 HEADER ═══════════════════ -->
+<div class="page-header">
+  <div class="eyebrow">ProfitPulse | Internal Research Dossier | For Review Only</div>
+  <h1>Sententia Consulting</h1>
+  <div class="date-tag">Prepared for: 19 Jun 2026</div>
+  <div class="rationale">
+    A Canberra based government and public sector management consultancy with verified revenue surpassing $10 million,
+    a 60.20 percent three year CAGR per the AFR Fast 100 2025 list, and active national expansion into Melbourne.
+    Selected tonight for the strength and specificity of the growth signal and the clear opportunity to map
+    financial architecture alongside the ambition.
+  </div>
+</div>
+
+<!-- ═══════════════════ 5.2 VERIFIED PROFILE ═══════════════════ -->
+<section>
+  <div class="sec-label">Verified Profile</div>
+  <div class="stats-row">
+    <div class="stat-chip">
+      <div class="num">Over $10M</div>
+      <div class="lbl">Annual revenue surpassed</div>
+      <div class="src">AFR Fast 100 2025, #45 citation</div>
+    </div>
+    <div class="stat-chip">
+      <div class="num">60.20%</div>
+      <div class="lbl">Three year CAGR</div>
+      <div class="src">AFR Fast 100 2025, #45 citation</div>
+    </div>
+    <div class="stat-chip">
+      <div class="num">#45</div>
+      <div class="lbl">AFR Fast 100 2025 rank</div>
+      <div class="src">AFR Fast 100 2025</div>
+    </div>
+    <div class="stat-chip">
+      <div class="num">2020</div>
+      <div class="lbl">Year founded (two person operation)</div>
+      <div class="src">consultancy.com.au company history</div>
+    </div>
+    <div class="stat-chip">
+      <div class="num">50+</div>
+      <div class="lbl">Government and not for profit clients</div>
+      <div class="src">sententiaconsulting.com.au profile</div>
+    </div>
+    <div class="stat-chip">
+      <div class="num">#28</div>
+      <div class="lbl">AFR Fast Starters 2022 rank</div>
+      <div class="src">AFR Fast Starters 2022 citation</div>
+    </div>
+  </div>
+
+  <table class="dt">
+    <tr><td class="lc">Company name</td><td class="vc">Sententia Consulting</td></tr>
+    <tr><td class="lc">Website</td><td class="vc">sententiaconsulting.com.au</td></tr>
+    <tr><td class="lc">Headquarters</td><td class="vc">Canberra, ACT<br><span class="note">Within 50km of Canberra CBD, qualifies under geo rule</span></td></tr>
+    <tr><td class="lc">Second office</td><td class="vc">Melbourne, VIC<br><span class="note">Source: consultancy.com.au expansion announcement</span></td></tr>
+    <tr><td class="lc">Founded</td><td class="vc">2020 (as a two person operation in March 2020)<br><span class="note">Source: consultancy.com.au and company history</span></td></tr>
+    <tr><td class="lc">Industry</td><td class="vc">Government and public sector management consulting</td></tr>
+    <tr><td class="lc">Services</td><td class="vc">Strategy and risk management; probity and integrity; financial management advisory; project management<br><span class="note">Source: sententiaconsulting.com.au</span></td></tr>
+    <tr><td class="lc">Revenue</td><td class="vc">Surpassed $10 million<br><span class="note">Source: AFR Fast 100 2025, rank 45 citation (60.20% CAGR). Earlier milestone: over $5 million in FY2022, source: AFR Fast Starters 2022 citation, rank 28</span></td></tr>
+    <tr><td class="lc">Employee count</td><td class="vc">Not publicly disclosed (exact figure). Industry profile indicates 21 to 50 range; at AFR Fast Starters 2022 the firm had 18 employees and has grown materially since.<br><span class="note">Note: precise current headcount is not verified from a public source</span></td></tr>
+    <tr><td class="lc">Awards</td><td class="vc">AFR Fast 100 2025 (#45, 60.20% CAGR); AFR Fast Starters 2022 (#28)<br><span class="note">Source: respective AFR award citations</span></td></tr>
+    <tr><td class="lc">Client base</td><td class="vc">50+ clients across federal, state, and territory government agencies, and the not for profit sector<br><span class="note">Source: sententiaconsulting.com.au</span></td></tr>
+    <tr><td class="lc">Revenue growth driver</td><td class="vc">240 percent jump in government contract value, revenue almost tripled<br><span class="note">Source: consultancy.com.au, news coverage of Sententia growth announcement</span></td></tr>
+    <tr><td class="lc">Primary contact</td><td class="vc">Mark Harrison, cofounder and Managing Director<br><span class="note">Source: sententiaconsulting.com.au; consultancy.com.au profiles; LinkedIn: linkedin.com/in/mark-harrison-53326241</span></td></tr>
+    <tr><td class="lc">Additional leadership</td><td class="vc">Brioni Bale, Managing Director (recently promoted, leads Canberra office growth)<br>Tom [surname not publicly disclosed], Managing Director, Melbourne office<br><span class="note">Source: consultancy.com.au promotion announcement</span></td></tr>
+    <tr><td class="lc">Contact email</td><td class="vc">Not publicly disclosed</td></tr>
+    <tr><td class="lc">LinkedIn (Mark Harrison)</td><td class="vc">linkedin.com/in/mark-harrison-53326241</td></tr>
+  </table>
+
+  <div style="margin-top:18px;">
+    <div class="sec-label" style="margin-bottom:10px;">Key Commercial Signals</div>
+    <ul style="padding-left:18px; font-size:14px; line-height:1.9; color:var(--off-wh);">
+      <li>Revenue tripled in under five years via a 240 percent jump in government contract value (Source: consultancy.com.au)</li>
+      <li>AFR Fast 100 2025 rank 45 with 60.20 percent CAGR, following AFR Fast Starters 2022 rank 28 (Source: AFR award citations)</li>
+      <li>Geographic expansion into Melbourne with a dedicated Managing Director appointed for that office (Source: consultancy.com.au)</li>
+      <li>Major recruitment drive announced in 2024 to 2025, including professionals from Protiviti and other firms (Source: consultancy.com.au)</li>
+      <li>Active 2025 Graduate Program with applications open, indicating sustained team scaling is planned (Source: sententiaconsulting.com.au)</li>
+      <li>Serves 50 or more clients across federal, state, and territory government and not for profit sectors (Source: sententiaconsulting.com.au)</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══════════════════ 5.3 WEDGE AND MATCHED SERVICE ═══════════════════ -->
+<section>
+  <div class="sec-label">Commercial Goal and Matched Service</div>
+
+  <div style="margin-bottom:16px;">
+    <span class="inference-tag">Inference</span>
+    <strong style="color:var(--off-wh); font-size:14px;">Inferred commercial goal</strong>
+  </div>
+  <p style="font-size:14px; color:#aaa; margin-bottom:20px;">
+    The following is an inference from observed public evidence, not a verified fact.
+    Sententia Consulting has tripled its revenue on the back of government contract wins and expanded nationally.
+    The inferred priority for the next 12 months is building the financial planning and growth direction capability
+    to sustain and direct the business beyond $10 million in revenue, including understanding which contracts and
+    service lines produce the strongest margin, and mapping the capacity and funding model for continued expansion.
+  </p>
+
+  <div class="wedge">
+    <p>
+      Sententia Consulting has tripled its revenue in under five years on the back of a 240 percent jump in
+      government contract value. That is a genuinely exceptional result for a firm that launched as a two person
+      operation from Canberra in 2020. The recognition on the AFR Fast 100 2025 list at rank 45 confirms
+      what the commercial trajectory already shows: this is a business that knows how to win contracts.
+    </p>
+    <p>
+      What follows a phase of contract driven growth is always the same question for a Chartered Accountant
+      looking at the business: is the firm earning margin on the right engagements, and does the financial
+      architecture have enough visibility to direct the next phase rather than simply react to it?
+    </p>
+    <p>
+      For a government consultancy at $10 million and above in annual revenue, with a Melbourne office recently
+      opened and a team that is actively growing through senior hires and a graduate program, the next 12 months
+      will be defined by whether the financial planning keeps pace with the operational ambition.
+      A structured 12 month growth plan, with revenue, capacity, and margin headroom mapped across three scenarios,
+      converts the momentum into direction. That is precisely what the Strategic Growth Diagnostic produces.
+    </p>
+  </div>
+
+  <div class="service-card">
+    <div class="svc-name">Strategic Growth Diagnostic</div>
+    <div class="svc-price">$5,000 one off. ProfitPulse verified price. Questionnaire confirms your exact service and pricing.</div>
+    <div class="svc-desc">
+      A six week engagement that maps revenue, capacity, and margin headroom, then produces a 12 month growth plan
+      with funding and capital allocation steps spelled out. Three scenario modelling: base, downside, and upside.
+      For Sententia Consulting, this maps which contract types and service lines carry the strongest margin,
+      how the current team capacity translates to revenue, and what the financial model looks like for
+      the next geographic or service expansion.
+    </div>
+    <div class="supporting-list">
+      <strong>Supporting services also identified:</strong><br>
+      <span>G4 Workforce Capacity and Utilisation Review:</span> for a utilisation based consulting firm,
+      measuring billable mix, revenue per full time employee, and capacity headroom is the critical efficiency lever
+      as the team scales.<br>
+      <span>D4 Budgeting and Forecasting Setup:</span> at $10 million and above with multiple office locations,
+      a formal annual budget and rolling 12 month forecast gives the leadership team the instruments to run the next phase.
+    </div>
+  </div>
+
+  <!-- 5.3A PRIMARY CTA -->
+  <div class="cta-block">
+    <div class="sec-label">Primary: Find Your Fix via the Questionnaire</div>
+    <a class="btn-primary"
+       href="https://profit-pulse.com.au/full-suite-of-products?utm_source=outreach&utm_medium=html&utm_campaign=nightly_outreach&utm_content=sententia_consulting">
+      Find your fix in two minutes
+    </a>
+    <div class="cta-clean-url">
+      Answer a few quick questions and see the solutions matched to your size and industry.<br>
+      profit-pulse.com.au/full-suite-of-products
+    </div>
+  </div>
+
+  <!-- 5.3B SECONDARY OPTION -->
+  <div style="margin-top:24px;">
+    <div class="sec-label">Secondary: Direct Purchase</div>
+    <p class="secondary-intro">
+      Already know the Strategic Growth Diagnostic is the priority? You can begin directly at $5,000 one off.
+    </p>
+    <a class="btn-secondary"
+       href="https://buy.stripe.com/eVqdRad9e66cftK23Z3ks0h">
+      Purchase the suggested product now to get started
+    </a>
+  </div>
+</section>
+
+<!-- ═══════════════════ 5.4 EMAIL DRAFT ═══════════════════ -->
+<section>
+  <div class="sec-label">Email Draft (For Review Only)</div>
+  <div class="review-gate">
+    REVIEW GATE: This email is a draft only. No communication has been sent.
+    Only Nitesh Roopa may authorise and send this message.
+  </div>
+
+  <div class="email-wrap">
+    <div class="email-subject-line">Subject line:</div>
+    <div class="email-subject-val">Congratulations on AFR Fast 100 and a brief observation</div>
+
+    <div class="email-body">
+      <p>Dear Mark,</p>
+
+      <p>
+        I came across Sententia Consulting's inclusion on the AFR Fast 100 2025 list this week
+        and wanted to reach out. Tripling revenue in under five years on the back of government contract
+        wins, and then expanding to Melbourne with your own managing director there, is a genuinely
+        impressive result. The 60.20 percent three year CAGR tells a consistent story and it is clearly
+        earned, not accidental.
+      </p>
+
+      <p>
+        My name is Nitesh Roopa. I am a Chartered Accountant and Managing Partner of ProfitPulse,
+        a Brisbane based fractional CFO and advisory firm. Over 16 years I have executed and managed
+        more than 52 deals across four countries, including infrastructure programmes and capital
+        transactions up to USD 1.3 billion. I now work with growing Australian businesses to make sure
+        the financial architecture keeps pace with the commercial ambition.
+      </p>
+
+      <p>
+        A business at your stage, having crossed $10 million in revenue and opened a second office,
+        typically reaches a point where the financial plan shifts from instinct to instrument. I have
+        attached a short brief with one specific commercial observation on Sententia's position and
+        the service I think creates the most value right now: the Strategic Growth Diagnostic.
+        It maps revenue, capacity, and margin headroom and produces a 12 month growth plan across
+        three scenarios.
+      </p>
+
+      <p>
+        The quickest way to triangulate your situation is to answer a few short questions at
+        <a href="https://profit-pulse.com.au/full-suite-of-products?utm_source=outreach&utm_medium=email&utm_campaign=nightly_outreach&utm_content=sententia_consulting"
+           style="color:var(--teal);">profit-pulse.com.au/full-suite-of-products</a>.
+        The page matches solutions to your size and industry, and each matched service has a direct option
+        to get started.
+      </p>
+
+      <p>
+        If you would prefer to talk first, I would be glad to offer a complimentary 30 minute discovery
+        call at your convenience:
+        <a href="https://bookings.cloud.microsoft/book/ProfitPulse1@profit-pulse.com.au/?ismsaljsauthenabled=true"
+           style="color:var(--teal);">bookings.cloud.microsoft/book/ProfitPulse1@profit-pulse.com.au</a>.
+        Either way, I hope the brief is a useful read.
+      </p>
+
+      <p>Warm regards,</p>
+    </div>
+
+    <div class="email-sig">
+      Nitesh Roopa<br>
+      CA, Managing Partner<br>
+      ProfitPulse<br>
+      Profit-Pulse.com.au<br>
+      Nitesh@Profit-Pulse.com.au<br>
+      +61 411 876 267
+    </div>
+  </div>
+  <p style="font-size:12px; color:#555; margin-top:10px;">
+    Note: EMAIL_INCLUDE_DIRECT_CHECKOUT is false. No Stripe checkout link has been included in this email draft.
+    The questionnaire is the lead call to action. The brief (PDF) is the attachment reference.
+  </p>
+</section>
+
+<!-- ═══════════════════ 5.5 SYSTEM NOTES ═══════════════════ -->
+<section>
+  <div class="sec-label">System Notes (Internal Only)</div>
+  <div class="sys-notes">
+    <p><strong>Selected target:</strong> Sententia Consulting. Confirmed not present in Outreach_Register.csv prior to this run. This is a fresh target.</p>
+    <p style="margin-top:10px;"><strong>Register check:</strong> Existing register contained one entry: AdUnion (09 Jun 2026). Sententia Consulting does not match. Selection is valid.</p>
+    <p style="margin-top:10px;"><strong>Verified sources used:</strong></p>
+    <ul style="padding-left:18px; margin-top:6px;">
+      <li>AFR Fast 100 2025, rank 45 citation (revenue over $10M, CAGR 60.20%)</li>
+      <li>AFR Fast Starters 2022, rank 28 citation (revenue over $5M in FY2022, 18 employees)</li>
+      <li>consultancy.com.au: growth milestone announcement, Melbourne office expansion, Brioni Bale promotion, recruitment drive, five new hires announcement</li>
+      <li>sententiaconsulting.com.au: company profile, services, client base, team structure</li>
+      <li>LinkedIn: Mark Harrison profile (public), linkedin.com/in/mark-harrison-53326241</li>
+    </ul>
+    <p style="margin-top:10px;"><strong>Inferred commercial goal:</strong> Building financial planning and growth direction capability to sustain and direct the business beyond $10M in revenue. THIS IS AN INFERENCE based on observed growth trajectory, geographic expansion, and active hiring. It is not a verified stated objective of the company.</p>
+    <p style="margin-top:10px;"><strong>Matched service code:</strong> A4</p>
+    <p style="margin-top:10px;"><strong>Matched service name:</strong> Strategic Growth Diagnostic</p>
+    <p style="margin-top:10px;"><strong>Inferred tier:</strong> Command</p>
+    <p style="margin-top:4px;"><strong>Tier engine summary:</strong> Industry = Management and IT consulting, bias 1. Inputs (band scores): revenue $10M to $20M (6), gross margin 55% to 70% industry default (2), team 16 to 40 (3), locations 2 to 3 (2), business structure single entity default (1), revenue model mix (2), customer concentration well diversified (1), funding modest default (2), forward growth 15% to 30% conservative (4), recent trajectory scaling rapidly per 60.20% CAGR (6), commercial event none (0). Raw score = 29. Essential ceiling = 27 minus (1 minus 3) times 2 = 31. Command ceiling = 37 minus (1 minus 3) times 2 = 41. Base tier: Essential (29 is at or below 31). Lift applied: gross margin band 2 (at or below 2) AND forward growth band 4 (at or above 4). Essential lifts to Command. Final tier: Command. No drop applies (gross margin is not band 5).</p>
+    <p style="margin-top:10px;"><strong>Questionnaire URL (in dossier, with UTM):</strong></p>
+    <div class="mono">https://profit-pulse.com.au/full-suite-of-products?utm_source=outreach&utm_medium=html&utm_campaign=nightly_outreach&utm_content=sententia_consulting</div>
+    <p style="margin-top:10px;"><strong>Questionnaire URL (in email draft, with UTM):</strong></p>
+    <div class="mono">https://profit-pulse.com.au/full-suite-of-products?utm_source=outreach&utm_medium=email&utm_campaign=nightly_outreach&utm_content=sententia_consulting</div>
+    <p style="margin-top:10px;"><strong>Questionnaire URL (on brief, clean, no UTM):</strong></p>
+    <div class="mono">profit-pulse.com.au/full-suite-of-products</div>
+    <p style="margin-top:10px;"><strong>Direct Stripe checkout (A4, Command tier, $5,000):</strong></p>
+    <div class="mono">https://buy.stripe.com/eVqdRad9e66cftK23Z3ks0h</div>
+    <p style="margin-top:10px;"><strong>EMAIL_INCLUDE_DIRECT_CHECKOUT:</strong> false. The Stripe checkout link was NOT included in the email draft. The email leads with the questionnaire as the primary call to action. The checkout link appears in the dossier (section 5.3B) and will appear on slide three of the brief.</p>
+    <p style="margin-top:10px;"><strong>BITLY_SHORTEN:</strong> false. No short links created.</p>
+    <p style="margin-top:10px;"><strong>Status:</strong> Nothing has been sent. This dossier and all associated materials are drafts for Nitesh Roopa's review only. No communication of any kind has been dispatched.</p>
+  </div>
+</section>
+
+<div style="padding: 20px 40px; font-size:11px; color:#333; border-top:1px solid #1a1a1a;">
+  ProfitPulse Internal System | Run: 18 Jun 2026 23:00 AEST | Content dated: 19 Jun 2026 |
+  Nitesh Roopa, CA, Managing Partner | Profit-Pulse.com.au
+</div>
+</body>
+</html>
