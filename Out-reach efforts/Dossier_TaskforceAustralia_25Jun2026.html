@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dossier: Taskforce Australia | 25 Jun 2026 | ProfitPulse Internal Review</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #000; color: #E6E5DE; font-family: 'Segoe UI', Arial, sans-serif; font-size: 15px; line-height: 1.6; }
+  .page { max-width: 980px; margin: 0 auto; padding: 0 0 60px 0; }
+
+  /* Top bar */
+  .top-bar { background: #01A296; padding: 14px 28px; display: flex; justify-content: space-between; align-items: center; }
+  .top-bar .brand { font-size: 13px; font-weight: 700; color: #000; letter-spacing: 1px; }
+  .top-bar .date { font-size: 13px; color: #000; }
+
+  /* Section containers */
+  .section { padding: 36px 28px 0 28px; }
+  .section-label { font-size: 11px; font-weight: 700; color: #01A296; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 14px; }
+
+  /* Header card */
+  .header-card { background: #111; border-left: 5px solid #F6A102; padding: 28px 32px; margin-bottom: 0; }
+  .header-card h1 { font-size: 36px; font-weight: 700; color: #F8C806; margin-bottom: 6px; }
+  .header-card .descriptor { font-size: 14px; color: #01A296; margin-bottom: 16px; }
+  .header-card .reason { font-size: 14px; color: #E6E5DE; }
+
+  /* Verified profile */
+  .profile-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; margin-top: 16px; }
+  .profile-item { background: #1a1a1a; border-top: 3px solid #01A296; padding: 14px 18px; }
+  .profile-item .label { font-size: 10px; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .profile-item .value { font-size: 15px; font-weight: 600; color: #E6E5DE; }
+  .profile-item .source { font-size: 10px; color: #01A296; margin-top: 4px; }
+
+  /* Stat cards row */
+  .stat-cards { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+  .stat-card { background: #000; border-top: 4px solid #01A296; padding: 16px 18px; min-width: 140px; flex: 1; }
+  .stat-card .num { font-size: 28px; font-weight: 700; color: #F8C806; font-family: Georgia, serif; }
+  .stat-card .lbl { font-size: 10px; color: #E6E5DE; margin-top: 4px; }
+  .stat-card .src { font-size: 9px; color: #01A296; margin-top: 6px; font-style: italic; }
+
+  /* Wedge box */
+  .wedge-box { background: #111; border-left: 5px solid #01A296; padding: 26px 30px; margin-top: 16px; }
+  .wedge-box p { margin-bottom: 14px; color: #E6E5DE; font-size: 14px; }
+  .wedge-box p:last-child { margin-bottom: 0; }
+
+  /* Service match */
+  .service-block { background: #041A18; border: 1px solid #01A296; padding: 22px 28px; margin-top: 16px; }
+  .service-block .service-name { font-size: 20px; font-weight: 700; color: #F8C806; margin-bottom: 6px; }
+  .service-block .service-price { font-size: 16px; font-weight: 600; color: #01A296; margin-bottom: 12px; }
+  .service-block .service-desc { font-size: 13px; color: #E6E5DE; margin-bottom: 16px; }
+  .service-block .supporting { font-size: 12px; color: #888; }
+
+  /* CTA buttons */
+  .cta-primary { display: inline-block; background: #01A296; color: #fff; font-weight: 700; text-decoration: none; padding: 16px 32px; border-radius: 30px; font-size: 16px; margin-top: 16px; }
+  .cta-url-note { font-size: 13px; color: #888; margin-top: 8px; }
+  .cta-url-clean { font-weight: 600; color: #01A296; }
+  .cta-secondary { display: inline-block; border: 1px solid #F6A102; color: #F6A102; font-weight: 700; text-decoration: none; padding: 12px 24px; border-radius: 26px; font-size: 14px; margin-top: 14px; }
+  .cta-secondary-note { font-size: 13px; color: #E6E5DE; margin-top: 10px; }
+
+  /* Review gate banner */
+  .review-gate { background: #cc0000; color: #fff; font-weight: 700; font-size: 14px; padding: 16px 28px; text-align: center; border-radius: 4px; margin-bottom: 24px; }
+
+  /* Email draft */
+  .email-draft { background: #111; border: 1px solid #444; padding: 32px 36px; margin-top: 16px; }
+  .email-subject { font-size: 14px; font-weight: 700; color: #F8C806; margin-bottom: 20px; border-bottom: 1px solid #333; padding-bottom: 12px; }
+  .email-body p { font-size: 14px; color: #E6E5DE; margin-bottom: 16px; }
+  .email-sig { font-size: 13px; color: #E6E5DE; border-top: 1px solid #333; padding-top: 18px; margin-top: 18px; line-height: 1.8; }
+  .email-sig .name { font-weight: 700; color: #F8C806; font-size: 15px; }
+  .email-sig .teal { color: #01A296; }
+  .email-link { color: #01A296; }
+
+  /* System notes */
+  .system-notes { background: #0d0d0d; border: 1px solid #222; padding: 24px 28px; margin-top: 16px; font-size: 12px; color: #888; line-height: 1.8; }
+  .system-notes .note-label { color: #F6A102; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; }
+  .system-notes table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+  .system-notes td { padding: 5px 12px 5px 0; vertical-align: top; }
+  .system-notes td:first-child { white-space: nowrap; color: #666; width: 210px; }
+  .system-notes td:last-child { color: #aaa; }
+
+  hr.teal { border: none; border-top: 1px solid #01A296; margin: 28px 0 0 0; }
+  .inference-note { font-size: 12px; color: #F6A102; font-style: italic; margin-top: 6px; }
+
+  .signals-list { list-style: none; margin-top: 14px; }
+  .signals-list li { padding: 8px 0 8px 18px; border-bottom: 1px solid #1a1a1a; font-size: 13px; color: #E6E5DE; position: relative; }
+  .signals-list li::before { content: ""; position: absolute; left: 0; top: 16px; width: 8px; height: 8px; background: #01A296; border-radius: 50%; }
+  .signals-list li .sig-src { font-size: 10px; color: #01A296; font-style: italic; display: block; margin-top: 2px; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <span class="brand">PROFITPULSE | INTERNAL REVIEW DOSSIER</span>
+    <span class="date">25 Jun 2026</span>
+  </div>
+
+  <!-- 5.1 HEADER -->
+  <div class="section" style="padding-top:28px;">
+    <div class="header-card">
+      <div class="section-label">Tonight's Target</div>
+      <h1>Taskforce Australia</h1>
+      <div class="descriptor">Technology enabled property maintenance and compliance platform &nbsp;|&nbsp; Burnley, Melbourne VIC</div>
+      <div class="reason">
+        Selected because a publicly verified $12.8M revenue business with 19 staff, targeting 50 to 60 percent CAGR over three years across four simultaneous growth vectors, is precisely the profile that benefits most from a costed 12 month growth plan with scenario modelling. The Smart50 award series provides three independent, verified data points over three consecutive years. The housing division signal, the equity plan, and the AI platform investment create a clear capital allocation question that has a ProfitPulse answer.
+      </div>
+    </div>
+  </div>
+
+  <!-- 5.2 VERIFIED PROFILE -->
+  <div class="section" style="padding-top:32px;">
+    <div class="section-label">5.2 &mdash; Verified Profile</div>
+
+    <div class="stat-cards">
+      <div class="stat-card">
+        <div class="num">$12.8M</div>
+        <div class="lbl">Revenue (FY2025)</div>
+        <div class="src">SmartCompany Smart50 2025, Nov 2025</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">31%</div>
+        <div class="lbl">Year on year growth</div>
+        <div class="src">SmartCompany Smart50 2025, Nov 2025</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">19</div>
+        <div class="lbl">Full time team members</div>
+        <div class="src">SmartCompany Smart50 2025, Nov 2025</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">5,500</div>
+        <div class="lbl">Tradespeople in network</div>
+        <div class="src">SmartCompany Smart50 2025, Nov 2025</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">#37</div>
+        <div class="lbl">Smart50 2025 national rank</div>
+        <div class="src">SmartCompany Smart50 2025, Nov 2025</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">500</div>
+        <div class="lbl">Real estate agency clients</div>
+        <div class="src">taskforce.com.au and PropTechPRO company profile</div>
+      </div>
+    </div>
+
+    <div class="profile-grid" style="margin-top:16px;">
+      <div class="profile-item">
+        <div class="label">Company</div>
+        <div class="value">Taskforce Australia Pty Ltd</div>
+      </div>
+      <div class="profile-item">
+        <div class="label">Website</div>
+        <div class="value">taskforce.com.au</div>
+      </div>
+      <div class="profile-item">
+        <div class="label">Head office</div>
+        <div class="value">Burnley, VIC 3121 (Melbourne)</div>
+        <div class="source">SmartCompany Smart50 2025</div>
+      </div>
+      <div class="profile-item">
+        <div class="label">Founded</div>
+        <div class="value">2014</div>
+        <div class="source">SmartCompany Smart50 series; company public record</div>
+      </div>
+      <div class="profile-item">
+        <div class="label">Revenue (FY2024)</div>
+        <div class="value">$9.7 million</div>
+        <div class="source">SmartCompany Smart50 2024, Nov 2024</div>
+      </div>
+      <div class="profile-item">
+        <div class="label">Revenue (FY2023)</div>
+        <div class="value">$7.43 million</div>
+        <div class="source">SmartCompany Smart50 2023</div>
+      </div>
+      <div class="profile-item">
+        <div class="label">Growth (FY2024)</div>
+        <div class="value">26%</div>
+        <div class="source">SmartCompany Smart50 2024</div>
+      </div>
+      <div class="profile-item">
+        <div class="label">Three-year CAGR target</div>
+        <div class="value">50 to 60 percent</div>
+        <div class="source">SmartCompany Smart50 2025</div>
+      </div>
+      <div class="profile-item">
+        <div class="label">Smart50 rank (2024)</div>
+        <div class="value">#46 of 50</div>
+        <div class="source">SmartCompany Smart50 2024</div>
+      </div>
+      <div class="profile-item">
+        <div class="label">Smart50 rank (2025)</div>
+        <div class="value">#37 of 50</div>
+        <div class="source">SmartCompany Smart50 2025</div>
+      </div>
+      <div class="profile-item">
+        <div class="label">Key decision maker</div>
+        <div class="value">Jason Bright</div>
+        <div class="source">SmartCompany Smart50 2024 and 2025</div>
+      </div>
+      <div class="profile-item">
+        <div class="label">Title</div>
+        <div class="value">Founder and Managing Director</div>
+        <div class="source">SmartCompany and company materials</div>
+      </div>
+      <div class="profile-item">
+        <div class="label">Contact email</div>
+        <div class="value">Not publicly disclosed</div>
+      </div>
+      <div class="profile-item">
+        <div class="label">Industry</div>
+        <div class="value">Real estate technology and property maintenance</div>
+        <div class="source">Company description, taskforce.com.au and PropTechPRO</div>
+      </div>
+      <div class="profile-item">
+        <div class="label">Revenue per employee</div>
+        <div class="value">Approximately $674K (calculated from public figures)</div>
+        <div class="source">Derived from Smart50 2025 verified figures; displayed as calculated observation, not a disclosed company metric</div>
+      </div>
+      <div class="profile-item">
+        <div class="label">Platform</div>
+        <div class="value">RentSafe (automated safety compliance) and HousingSolutions (community housing)</div>
+        <div class="source">taskforce.com.au and PropTechPRO</div>
+      </div>
+    </div>
+
+    <p class="inference-note" style="margin-top:14px;">Note: Revenue per employee figure is a calculated observation from two verified public figures, not a company-disclosed metric. It is presented in the dossier only as a commercial observation and is not displayed as a data card on the prospect-facing brief.</p>
+
+    <div class="section-label" style="margin-top:24px;">Key Commercial Signals (all verified)</div>
+    <ul class="signals-list">
+      <li>Three consecutive Smart50 placements (2023, 2024, 2025), with national ranking improving from shortlist to #46 to #37.
+        <span class="sig-src">SmartCompany Smart50 series 2023, 2024, and 2025.</span>
+      </li>
+      <li>Revenue grew from $7.43M (FY2023) to $9.7M (FY2024) to $12.8M (FY2025), a cumulative 72 percent increase in two years.
+        <span class="sig-src">SmartCompany Smart50 2023, 2024, and 2025 award citations.</span>
+      </li>
+      <li>Housing division publicly named the strongest and most profitable area of the business, with social housing expansion described as a priority growth area.
+        <span class="sig-src">SmartCompany Smart50 2025.</span>
+      </li>
+      <li>Founders have publicly committed to a 50 to 60 percent CAGR over the next three years via organically funded organic growth, a clear statement of strategic ambition.
+        <span class="sig-src">SmartCompany Smart50 2025.</span>
+      </li>
+      <li>Four point growth agenda publicly stated: social housing expansion, staff equity plan, AI platform development, and organic growth in the core compliance business.
+        <span class="sig-src">SmartCompany Smart50 2025.</span>
+      </li>
+      <li>RentSafe platform launched 2021, serving 500 real estate agencies with automated electrical, gas, and smoke alarm compliance checks for rental properties.
+        <span class="sig-src">taskforce.com.au and PropTechPRO company profile.</span>
+      </li>
+    </ul>
+  </div>
+
+  <hr class="teal">
+
+  <!-- 5.3 WEDGE AND MATCHED SERVICE -->
+  <div class="section" style="padding-top:32px;">
+    <div class="section-label">5.3 &mdash; The Commercial Wedge and Matched Service</div>
+
+    <div class="wedge-box">
+      <p>
+        Taskforce Australia operates at $674K revenue per employee, which places it in genuinely rare territory for a services business. The RentSafe platform has demonstrated clear product market fit and created a repeatable compliance revenue base with 500 real estate agency clients. The founders have publicly stated a 50 to 60 percent CAGR ambition for the next three years and have identified four simultaneous growth vectors to get there.
+      </p>
+      <p>
+        The challenge is not identifying opportunities. The challenge is sequencing four competing priorities against a finite capital and team bandwidth, and building a growth plan that is fundable and executable rather than aspirational. Social housing expansion requires a different sales motion and contract structure than the existing real estate agency base. The staff equity plan has balance sheet and cashflow implications. The AI platform investment is a capital decision with a return horizon. Organic growth in the core business competes for the same team attention as all three of the above.
+      </p>
+      <p>
+        A Strategic Growth Diagnostic maps the revenue, capacity, and margin headroom of the current business, then produces a 12 month growth plan with funding and capital allocation steps spelled out across three scenarios. This is the exact instrument that converts Jason Bright's stated ambition into a structured and financeable plan. Without it, all four growth vectors remain intentions rather than an executable roadmap with sequenced resource allocation.
+      </p>
+    </div>
+
+    <!-- Inferred commercial goal -->
+    <p class="inference-note" style="margin-top:18px;">
+      Inferred commercial goal (inference, not a verified fact): Taskforce is most likely focused on structuring the financial architecture to support a tripling of revenue over three years across four growth vectors, while managing cashflow and capital allocation with a lean 19-person team. The housing division is the named priority growth area. The evidence base for this inference is the publicly stated CAGR target, the four point growth agenda, and the housing division statement, all from the Smart50 2025 citation.
+    </p>
+
+    <!-- Matched service block -->
+    <div class="service-block" style="margin-top:24px;">
+      <div class="section-label">Primary Matched Service</div>
+      <div class="service-name">Strategic Growth Diagnostic</div>
+      <div class="service-price">$5,000 &nbsp;one off &nbsp;|&nbsp; ProfitPulse verified price &nbsp;|&nbsp; Questionnaire confirms exact fit for the prospect</div>
+      <div class="service-desc">
+        A six week engagement that maps revenue, capacity, and margin headroom, then produces a 12 month growth plan with funding and capital allocation steps spelled out. Three scenario modelling. Designed for businesses with a clear growth target that need the financial architecture to support it. Exactly maps to the signal: wants a costed 12 month growth plan.
+      </div>
+      <div class="service-desc" style="color:#888;">Signal map: "Wants a costed 12 month growth plan" maps to A4 (Section 3B). Supporting: "Reinvesting but unsure where" maps to A5; "Wants a live view of numbers" maps to D3.</div>
+      <div class="supporting">
+        Supporting services also identified:
+        A5 Capital Allocation Review (where to allocate capital across four growth vectors)
+        &nbsp;|&nbsp;
+        D3 KPI Dashboard Build and Run (live financial visibility for a rapidly scaling team)
+      </div>
+    </div>
+
+    <!-- 5.3A PRIMARY CTA -->
+    <div style="margin-top:28px;">
+      <div class="section-label">5.3A &mdash; Primary Call to Action: The Questionnaire</div>
+      <p style="color:#E6E5DE; font-size:13px; margin-top:10px;">
+        The questionnaire is the primary front door. The prospect answers a short set of questions and sees services matched to their situation, size, and industry, each with a direct Stripe checkout option. This confirms the exact fit before any purchase.
+      </p>
+      <a href="https://profit-pulse.com.au/full-suite-of-products?utm_source=outreach&utm_medium=html&utm_campaign=nightly_outreach&utm_content=taskforce_australia"
+         class="cta-primary">
+        Find your fix in two minutes
+      </a>
+      <div class="cta-url-note">
+        Clean address (shown to prospect):
+        <span class="cta-url-clean">profit-pulse.com.au/full-suite-of-products</span>
+        <br>
+        Tracking: UTM tags (source=outreach, medium=html, campaign=nightly_outreach, content=taskforce_australia) are carried in the href above, not in the visible text.
+      </div>
+    </div>
+
+    <!-- 5.3B SECONDARY: DIRECT PURCHASE -->
+    <div style="margin-top:24px;">
+      <div class="section-label">5.3B &mdash; Secondary Option: Direct Purchase</div>
+      <p class="cta-secondary-note">
+        Already know the Strategic Growth Diagnostic is the priority? You can begin directly at the verified ProfitPulse price of $5,000 one off.
+      </p>
+      <a href="https://buy.stripe.com/eVqdRad9e66cftK23Z3ks0h" class="cta-secondary">
+        Purchase the suggested product now to get started
+      </a>
+      <div class="cta-url-note" style="margin-top:8px;">
+        The Stripe address is held behind the button above and is never shown as visible text. BITLY_SHORTEN is false; no short link used.
+      </div>
+    </div>
+  </div>
+
+  <hr class="teal">
+
+  <!-- 5.4 EMAIL DRAFT -->
+  <div class="section" style="padding-top:32px;">
+    <div class="section-label">5.4 &mdash; Email Draft for Review</div>
+
+    <div class="review-gate">
+      REVIEW GATE: This email is a draft only. No communication has been sent.
+      Only Nitesh Roopa may authorise and send this message.
+    </div>
+
+    <div class="email-draft">
+      <div class="email-subject">
+        Subject: Financial architecture for Taskforce's next growth chapter
+      </div>
+
+      <div class="email-body">
+        <p>
+          Hi Jason,
+        </p>
+        <p>
+          I came across Taskforce Australia through the SmartCompany Smart50 list. Three consecutive placements with a ranking that has improved each year, a housing division that you have publicly described as your strongest and most profitable area, and a stated target of 50 to 60 percent CAGR over the next three years. That combination stood out, and I wanted to reach out directly.
+        </p>
+        <p>
+          My name is Nitesh Roopa. I am a Chartered Accountant and the Managing Partner of ProfitPulse, a Brisbane based fractional CFO and commercial advisory practice. I have 16 years of experience across four countries, with 52 deals executed and managed across my career in energy finance, infrastructure, and growth businesses. I work with founder-led businesses at exactly the stage Taskforce is at now: strong core model, clear growth ambition, and a need for the financial architecture to match the vision.
+        </p>
+        <p>
+          The reason I am reaching out is that you have publicly named four growth vectors for the next three years: social housing expansion, a staff equity plan, AI platform development, and organic growth in your core compliance business. All four are genuine opportunities. The question I find most useful at this stage is: how do you sequence and fund all four in a way that does not spread the capital too thinly and leaves each vector genuinely resourced? That is precisely what a Strategic Growth Diagnostic is built to answer: a six week engagement that maps your revenue, capacity, and margin headroom, then produces a costed 12 month growth plan across three scenarios. I have attached a short brief that lays out the commercial observation in more detail.
+        </p>
+        <p>
+          If you would like to see how ProfitPulse approaches this, the clearest starting point is a short questionnaire at
+          <a href="https://profit-pulse.com.au/full-suite-of-products?utm_source=outreach&utm_medium=email&utm_campaign=nightly_outreach&utm_content=taskforce_australia"
+             class="email-link">profit-pulse.com.au/full-suite-of-products</a>.
+          It takes about two minutes and shows you the services matched to your situation, size, and industry, each with the option to get started directly from there.
+        </p>
+        <p>
+          If you would prefer to talk it through first, I would be glad to offer a complimentary 30 minute discovery call. You can book directly at
+          <a href="https://bookings.cloud.microsoft/book/ProfitPulse1@profit-pulse.com.au/?ismsaljsauthenabled=true"
+             class="email-link">bookings.cloud.microsoft/book/ProfitPulse1@profit-pulse.com.au</a>.
+          No agenda beyond a genuine conversation about where Taskforce is headed and whether there is a fit.
+        </p>
+        <p>
+          Either way, what you have built is impressive and I hope this is a useful prompt at the right moment.
+        </p>
+
+        <div class="email-sig">
+          <div class="name">Nitesh Roopa</div>
+          CA, Managing Partner<br>
+          <span class="teal">ProfitPulse</span><br>
+          <a href="https://profit-pulse.com.au" class="email-link">Profit-Pulse.com.au</a><br>
+          <a href="mailto:Nitesh@Profit-Pulse.com.au" class="email-link">Nitesh@Profit-Pulse.com.au</a><br>
+          +61 411 876 267<br>
+          <a href="https://linkedin.com/in/nitesh-roopa-77594163" class="email-link" style="font-size:12px;">linkedin.com/in/nitesh-roopa-77594163</a>
+        </div>
+      </div>
+    </div>
+
+    <p style="font-size:12px; color:#666; margin-top:14px; padding-left:28px;">
+      Note: EMAIL_INCLUDE_DIRECT_CHECKOUT is false. No Stripe checkout link is included in the email draft above. The questionnaire leads. The brief PDF is referenced as the attachment.
+    </p>
+  </div>
+
+  <hr class="teal">
+
+  <!-- 5.5 SYSTEM NOTES -->
+  <div class="section" style="padding-top:32px;">
+    <div class="section-label">5.5 &mdash; System Notes (Internal Only)</div>
+    <div class="system-notes">
+
+      <div class="note-label">Target Selection</div>
+      <table>
+        <tr><td>Selected business</td><td>Taskforce Australia Pty Ltd</td></tr>
+        <tr><td>In register check</td><td>PASS. Only existing entry is AdUnion (09 Jun 2026). Taskforce Australia does not appear in the register.</td></tr>
+        <tr><td>Register file</td><td>Out-reach efforts/Outreach_Register.csv</td></tr>
+      </table>
+
+      <div class="note-label" style="margin-top:18px;">Verified Sources Used</div>
+      <table>
+        <tr><td>Source 1</td><td>SmartCompany Smart50 2025 award citation (November 2025): revenue $12.8M, 31% growth, 19 employees, Burnley VIC, rank #37, targeting 50 to 60% CAGR, housing division named strongest and most profitable, four point growth agenda.</td></tr>
+        <tr><td>Source 2</td><td>SmartCompany Smart50 2024 award citation (November 2024): revenue $9.7M, 26% growth, 19 employees, rank #46.</td></tr>
+        <tr><td>Source 3</td><td>SmartCompany Smart50 2023 award citation: revenue $7.43M, 108.61% growth, shortlisted for Innovation Award.</td></tr>
+        <tr><td>Source 4</td><td>taskforce.com.au (company website): RentSafe platform description, HousingSolutions service, 500 real estate agency clients, Burnley VIC address confirmed.</td></tr>
+        <tr><td>Source 5</td><td>PropTechPRO company profile: 5,000 tradespeople (2024 data, updated to 5,500 per Smart50 2025), 500 real estate agencies, national network description.</td></tr>
+      </table>
+
+      <div class="note-label" style="margin-top:18px;">Inferred Goal</div>
+      <table>
+        <tr><td>Inference</td><td>Taskforce is working toward structuring the financial and capital architecture to support a tripling of revenue over three years via four simultaneous growth vectors. This is an INFERENCE based on the verified public evidence above, not a confirmed fact from the company.</td></tr>
+      </table>
+
+      <div class="note-label" style="margin-top:18px;">Service and Tier (Internal Record)</div>
+      <table>
+        <tr><td>Primary service code</td><td>A4</td></tr>
+        <tr><td>Primary service name</td><td>Strategic Growth Diagnostic</td></tr>
+        <tr><td>Inferred tier</td><td>Command</td></tr>
+        <tr><td>Tier reason</td><td>Raw score 29 (revenue $10M to $20M = 6, margin default 25 to 40% = 4, team 16 to 40 = 3, single location = 1, single entity = 1, mixed model = 2, some key accounts = 2, debt free = 0, high growth target over 30% = 6, recent trajectory growing = 4, no commercial event = 0). Industry: real estate agencies and property management, bias 3. Essential ceiling 27, Command ceiling 37. Score 29 is above 27 and at or below 37. Base tier Command. No adjustment (margin not above 55%, growth not declining). Final tier: Command.</td></tr>
+        <tr><td>Command price</td><td>$5,000 one off</td></tr>
+        <tr><td>Supporting services</td><td>A5 Capital Allocation Review; D3 KPI Dashboard Build and Run</td></tr>
+      </table>
+
+      <div class="note-label" style="margin-top:18px;">Links and Tracking</div>
+      <table>
+        <tr><td>Questionnaire (email href)</td><td>https://profit-pulse.com.au/full-suite-of-products?utm_source=outreach&amp;utm_medium=email&amp;utm_campaign=nightly_outreach&amp;utm_content=taskforce_australia</td></tr>
+        <tr><td>Questionnaire (dossier href)</td><td>https://profit-pulse.com.au/full-suite-of-products?utm_source=outreach&amp;utm_medium=html&amp;utm_campaign=nightly_outreach&amp;utm_content=taskforce_australia</td></tr>
+        <tr><td>Questionnaire (brief clean)</td><td>profit-pulse.com.au/full-suite-of-products (no UTM tags on brief, per Section 6.4)</td></tr>
+        <tr><td>Stripe checkout (A4 Command)</td><td>https://buy.stripe.com/eVqdRad9e66cftK23Z3ks0h</td></tr>
+        <tr><td>Stripe shown as text?</td><td>No. The Stripe address is held behind CTA words only. Never shown as visible text.</td></tr>
+        <tr><td>BITLY_SHORTEN</td><td>false. No short links created.</td></tr>
+        <tr><td>TRACKING_ENABLED</td><td>true. UTM tags applied to questionnaire links in email and dossier.</td></tr>
+        <tr><td>EMAIL_INCLUDE_DIRECT_CHECKOUT</td><td>false. No Stripe link in email draft.</td></tr>
+      </table>
+
+      <div class="note-label" style="margin-top:18px;">Files Saved</div>
+      <table>
+        <tr><td>HTML dossier</td><td>Out-reach efforts/Dossier_TaskforceAustralia_25Jun2026.html</td></tr>
+        <tr><td>PPTX brief</td><td>Out-reach efforts/Brief_TaskforceAustralia_25Jun2026.pptx</td></tr>
+        <tr><td>PDF brief</td><td>Out-reach efforts/Brief_TaskforceAustralia_25Jun2026.pdf</td></tr>
+      </table>
+
+      <div class="note-label" style="margin-top:18px;">Dispatch Status</div>
+      <table>
+        <tr><td>Status</td><td style="color:#cc4444; font-weight:700;">NOTHING HAS BEEN SENT. All outputs are drafts for Nitesh Roopa's review only. No email, message, or communication of any kind has been dispatched.</td></tr>
+      </table>
+
+    </div>
+  </div>
+
+  <div style="height:40px;"></div>
+</div>
+</body>
+</html>
