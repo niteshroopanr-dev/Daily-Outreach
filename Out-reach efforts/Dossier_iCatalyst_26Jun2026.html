@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProfitPulse Internal Dossier | iCatalyst | 26 Jun 2026</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Arial, sans-serif; background: #E6E5DE; color: #000000; font-size: 15px; }
+
+/* Header */
+.pp-header { background: #000000; color: #FFFFFF; padding: 18px 36px; display: flex; justify-content: space-between; align-items: center; }
+.pp-header .logo { font-size: 20px; font-weight: 700; color: #F8C806; letter-spacing: 2px; }
+.pp-header .tag { font-size: 12px; color: #E6E5DE; }
+
+/* Main container */
+.wrap { max-width: 920px; margin: 0 auto; padding: 32px 16px; }
+
+/* Company hero */
+.hero { background: #FFFFFF; border-left: 7px solid #01A296; border-radius: 3px; padding: 28px 32px; margin-bottom: 24px; }
+.hero h1 { font-size: 34px; font-weight: 700; color: #000000; margin-bottom: 4px; }
+.hero .date-stamp { font-size: 13px; font-weight: 700; color: #01A296; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
+.hero .why { font-size: 15px; color: #000000; line-height: 1.6; }
+
+/* Section cards */
+.card { background: #FFFFFF; border-radius: 3px; padding: 28px 32px; margin-bottom: 24px; }
+.sec-label { font-size: 11px; font-weight: 700; color: #01A296; letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 14px; border-bottom: 2px solid #F8C806; padding-bottom: 6px; display: inline-block; }
+
+/* Profile table */
+table.profile { width: 100%; border-collapse: collapse; }
+table.profile tr { border-bottom: 1px solid #E6E5DE; }
+table.profile td { padding: 10px 8px; font-size: 14px; vertical-align: top; }
+table.profile td.label { font-weight: 700; color: #000000; width: 220px; }
+table.profile td.val { color: #000000; }
+.src { font-size: 11px; color: #01A296; margin-left: 6px; font-style: italic; }
+.nd { color: #888888; font-style: italic; }
+
+/* Wedge block */
+.wedge-block { background: #000000; color: #E6E5DE; border-radius: 3px; padding: 24px 28px; margin: 20px 0; }
+.wedge-block .wlabel { font-size: 11px; font-weight: 700; color: #F8C806; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+.wedge-block p { font-size: 14px; line-height: 1.8; }
+
+/* Service box */
+.service-box { border: 2px solid #01A296; border-radius: 3px; padding: 22px 26px; margin: 18px 0; }
+.service-name { font-size: 20px; font-weight: 700; color: #01A296; margin-bottom: 6px; }
+.service-desc { font-size: 14px; color: #000000; line-height: 1.7; margin-bottom: 14px; }
+.price-line { font-size: 26px; font-weight: 700; color: #000000; margin-bottom: 4px; }
+.price-note { font-size: 13px; color: #666666; }
+
+/* CTA buttons */
+.cta-wrap { margin-top: 22px; }
+.btn-primary { display: inline-block; background: #01A296; color: #FFFFFF; font-weight: 700; text-decoration: none; padding: 16px 28px; border-radius: 30px; font-family: Arial, sans-serif; font-size: 16px; }
+.btn-url { color: #000000; font-size: 13px; margin-top: 8px; display: block; }
+.btn-secondary-wrap { margin-top: 20px; padding-top: 16px; border-top: 1px solid #E6E5DE; }
+.btn-secondary-intro { font-size: 14px; color: #000000; margin-bottom: 8px; }
+.btn-secondary { display: inline-block; border: 2px solid #F6A102; color: #F6A102; font-weight: 700; text-decoration: none; padding: 11px 20px; border-radius: 26px; font-family: Arial, sans-serif; font-size: 14px; }
+
+/* Supporting services */
+.support-box { background: #E6E5DE; border-radius: 3px; padding: 14px 18px; margin-top: 16px; }
+.support-box h4 { font-size: 11px; font-weight: 700; color: #000000; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
+.support-box p { font-size: 13px; color: #000000; }
+
+/* Review gate banner */
+.review-gate { background: #CC0000; color: #FFFFFF; font-weight: 700; text-align: center; padding: 14px 20px; border-radius: 3px; font-size: 15px; margin-bottom: 20px; line-height: 1.5; }
+
+/* Email block */
+.email-outer { background: #FFFFFF; border: 1px solid #E6E5DE; border-radius: 3px; padding: 28px 32px; }
+.email-meta { font-size: 13px; color: #666666; margin-bottom: 16px; border-bottom: 1px solid #E6E5DE; padding-bottom: 12px; }
+.email-meta span { font-weight: 700; color: #000000; }
+.email-subject-line { font-size: 16px; font-weight: 700; color: #000000; margin-bottom: 20px; }
+.email-subject-line span { color: #01A296; }
+.email-para { font-size: 14px; line-height: 1.8; color: #000000; margin-bottom: 16px; }
+.email-sig { font-size: 14px; line-height: 1.8; color: #000000; margin-top: 20px; padding-top: 12px; border-top: 1px solid #E6E5DE; }
+
+/* System notes */
+.sys-notes { background: #000000; border-radius: 3px; padding: 24px 28px; }
+.sys-notes .snlabel { font-size: 11px; font-weight: 700; color: #F8C806; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px; }
+.sys-notes ul { padding-left: 18px; }
+.sys-notes li { font-size: 12px; color: #E6E5DE; line-height: 1.9; }
+
+/* Footer */
+.pp-footer { text-align: center; font-size: 11px; color: #888888; padding: 24px 16px; }
+</style>
+</head>
+<body>
+
+<!-- Header bar -->
+<div class="pp-header">
+  <div class="logo">PROFITPULSE</div>
+  <div class="tag">Internal Research Dossier | For Nitesh Roopa Only | 26 Jun 2026</div>
+</div>
+
+<div class="wrap">
+
+  <!-- 5.1 Hero header -->
+  <div class="hero">
+    <div class="date-stamp">26 Jun 2026</div>
+    <h1>iCatalyst</h1>
+    <p class="why">Selected because iCatalyst earns over 70% of its $13.5M revenue from time-billed consultant work, has just integrated a Brisbane acquisition, and now operates 50 consultants across four cities with no mapped utilisation baseline. The Workforce Capacity and Utilisation Review is the most immediate value lever.</p>
+  </div>
+
+  <!-- 5.2 Verified profile -->
+  <div class="card">
+    <div class="sec-label">Verified Company Profile</div>
+    <table class="profile">
+      <tr>
+        <td class="label">Company</td>
+        <td class="val">iCatalyst Pty Ltd</td>
+      </tr>
+      <tr>
+        <td class="label">Website</td>
+        <td class="val"><a href="https://icatalyst.com.au" style="color:#01A296;">icatalyst.com.au</a></td>
+      </tr>
+      <tr>
+        <td class="label">Head office</td>
+        <td class="val">Subiaco WA (within 10 km of Perth CBD)<span class="src">SmartCompany Smart50 2025</span></td>
+      </tr>
+      <tr>
+        <td class="label">National offices</td>
+        <td class="val">Perth, Melbourne, Sydney, Brisbane<span class="src">icatalyst.com.au, 2025</span></td>
+      </tr>
+      <tr>
+        <td class="label">Founded</td>
+        <td class="val">2020 (began operations 2021)<span class="src">ARN, SmartCompany profiles</span></td>
+      </tr>
+      <tr>
+        <td class="label">Industry</td>
+        <td class="val">Microsoft Dynamics 365 and Power Platform consulting</td>
+      </tr>
+      <tr>
+        <td class="label">Service lines</td>
+        <td class="val">Dynamics 365 Business Central, Dynamics 365 Finance and Supply Chain, Dynamics 365 CRM, Power Platform, AI workshop and Copilot deployment<span class="src">icatalyst.com.au</span></td>
+      </tr>
+      <tr>
+        <td class="label">Co-founders and Directors</td>
+        <td class="val">Andrew Devitt, Dennis Chan, Justin Martin<span class="src">SmartCompany Smart50 2024 and 2025 profiles</span></td>
+      </tr>
+      <tr>
+        <td class="label">Employees</td>
+        <td class="val">50<span class="src">SmartCompany Smart50 2025 submission, Nov 2025</span></td>
+      </tr>
+      <tr>
+        <td class="label">Revenue (FY2025)</td>
+        <td class="val">AUD $13.5 million<span class="src">SmartCompany Smart50 2025 submission, Nov 2025</span></td>
+      </tr>
+      <tr>
+        <td class="label">Revenue (FY2024)</td>
+        <td class="val">AUD $9.5 million<span class="src">SmartCompany Smart50 2024 submission, Nov 2024</span></td>
+      </tr>
+      <tr>
+        <td class="label">Revenue (FY2023)</td>
+        <td class="val">AUD $5.22 million<span class="src">SmartCompany Smart50 2023 submission, Nov 2023</span></td>
+      </tr>
+      <tr>
+        <td class="label">Revenue growth (FY2025)</td>
+        <td class="val">60% year on year<span class="src">SmartCompany Smart50 2025</span></td>
+      </tr>
+      <tr>
+        <td class="label">Revenue growth (FY2024)</td>
+        <td class="val">162% year on year<span class="src">SmartCompany Smart50 2024</span></td>
+      </tr>
+      <tr>
+        <td class="label">Time-based revenue share</td>
+        <td class="val">Over 70%<span class="src">Microsoft Customer Stories case study, icatalyst case study, Microsoft.com</span></td>
+      </tr>
+      <tr>
+        <td class="label">Average deal size trajectory</td>
+        <td class="val">Grew from AUD $100,000 to AUD $350,000<span class="src">Microsoft Customer Stories case study, Microsoft.com</span></td>
+      </tr>
+      <tr>
+        <td class="label">Award recognitions</td>
+        <td class="val">Smart50 2025 rank 16, Smart50 2024 rank 4, Smart50 2023 rank 40 (SmartCompany); WA Business Awards 2025 Finalist Medium-sized Business<span class="src">SmartCompany, WA Business Awards announcements</span></td>
+      </tr>
+      <tr>
+        <td class="label">Recent acquisition</td>
+        <td class="val">Beyond CRM, Brisbane, Microsoft Dynamics 365 Customer Engagement and Power Platform specialist<span class="src">iTWire and ecommercenews.com.au, Jun 2025</span></td>
+      </tr>
+      <tr>
+        <td class="label">Primary contact</td>
+        <td class="val">Justin Martin, Co-Founder and Director</td>
+      </tr>
+      <tr>
+        <td class="label">Contact email</td>
+        <td class="val"><span class="nd">Not publicly disclosed</span></td>
+      </tr>
+      <tr>
+        <td class="label">Employee band</td>
+        <td class="val">Qualifies within the 10 to 50 band</td>
+      </tr>
+      <tr>
+        <td class="label">Revenue floor</td>
+        <td class="val">Verified over AUD $5 million from multiple award submission sources</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- 5.3 Wedge and matched service -->
+  <div class="card">
+    <div class="sec-label">The Wedge and Matched Service</div>
+
+    <div class="wedge-block">
+      <div class="wlabel">Commercial Argument</div>
+      <p>iCatalyst generates over 70% of its $13.5M revenue from time-billed consultant work, confirmed by the Microsoft Customer Stories case study. With 50 consultants now operating across Perth, Melbourne, Sydney, and Brisbane, and the Beyond CRM team freshly integrated in June 2025, the founders are running a utilisation-dependent business at scale without a mapped baseline for revenue per head or billable mix across offices. At $13.5M across 50 staff, the business is generating strong revenue overall. The risk at this stage is not topline growth but whether that revenue is distributed evenly across the national team, or whether certain practices or locations are carrying the load while others dilute margin as they ramp. The Workforce Capacity and Utilisation Review maps billable mix, revenue per full time employee, and capacity headroom across all four offices and all service lines, giving the founders an evidence base before the next round of east coast hiring. This is the exact decision point the founders face now: before signing the next 5 to 10 consultants across Melbourne, Sydney, and Brisbane, they need to know where the existing 50 are generating value and where the capacity sits.</p>
+    </div>
+
+    <div class="service-box">
+      <div class="service-name">Workforce Capacity and Utilisation Review</div>
+      <div class="service-desc">A four week review of how team time and capacity translate into revenue and margin. For utilisation-based businesses, it measures billable mix, revenue per full time employee, and capacity headroom across locations and service lines. Produces a prioritised recommendation on where to invest the next hiring or training dollar.</div>
+      <div class="price-line">$5,000 one off</div>
+      <div class="price-note">Verified ProfitPulse price. The questionnaire confirms the exact figure for this business.</div>
+
+      <div class="cta-wrap">
+        <a class="btn-primary" href="https://profit-pulse.com.au/full-suite-of-products?utm_source=outreach&utm_medium=html&utm_campaign=nightly_outreach&utm_content=icatalyst">
+          Find your fix in two minutes
+        </a>
+        <span class="btn-url">profit-pulse.com.au/full-suite-of-products</span>
+        <div style="color:#000000;font-size:13px;margin-top:6px;">Answer a few quick questions and see the solutions matched to your size and industry.</div>
+      </div>
+
+      <div class="btn-secondary-wrap">
+        <p class="btn-secondary-intro">Already know this is the priority? You can begin with the Workforce Capacity and Utilisation Review at $5,000 one off.</p>
+        <a class="btn-secondary" href="https://buy.stripe.com/14A3cwc5a66c4P6dMH3ks1G">
+          Purchase the suggested product now to get started
+        </a>
+      </div>
+    </div>
+
+    <div class="support-box">
+      <h4>Supporting Services (where evidence warrants)</h4>
+      <p><strong>Product and Service Line Profitability (G3):</strong> iCatalyst operates across five distinct service lines (Business Central, Finance and Supply Chain, CRM, Power Platform, AI). Ranking each by gross margin and contribution would reveal which practice to scale and which to rebalance.</p>
+      <p style="margin-top:8px;"><strong>Fractional CFO Partnership (B1):</strong> As the founders manage a four-city consulting business with an integrated acquisition and a national expansion agenda, a monthly financial partner at the table would lift decision quality at the pace the business is moving.</p>
+    </div>
+  </div>
+
+  <!-- 5.4 Email draft -->
+  <div class="card">
+    <div class="sec-label">Email Draft for Nitesh Roopa</div>
+
+    <div class="review-gate">
+      REVIEW GATE: This email is a draft only. No communication has been sent. Only Nitesh Roopa may authorise and send this message.
+    </div>
+
+    <div class="email-outer">
+      <div class="email-meta">
+        <div><span>To:</span> Justin Martin, Co-Founder and Director, iCatalyst</div>
+        <div><span>From:</span> Nitesh@Profit-Pulse.com.au</div>
+        <div><span>Subject:</span> iCatalyst utilisation as you integrate Beyond CRM</div>
+        <div><span>Attachment:</span> Brief_iCatalyst_26Jun2026.pdf</div>
+      </div>
+
+      <div class="email-subject-line">Subject: <span>iCatalyst utilisation as you integrate Beyond CRM</span></div>
+
+      <div class="email-para">Hi Justin,</div>
+
+      <div class="email-para">Congratulations on the Beyond CRM acquisition. I came across the announcement on iTWire and noticed iCatalyst has now placed on the Smart50 for three consecutive years, most recently at rank 16 with $13.5M in revenue. That kind of sustained growth from a Perth base into a national footprint is genuinely impressive and clearly deliberate.</div>
+
+      <div class="email-para">My name is Nitesh Roopa. I am a Chartered Accountant and Managing Partner of ProfitPulse, a Brisbane fractional CFO and advisory firm for growth-stage businesses. I have 16 years of experience across 4 countries and have executed and managed over 52 deals spanning capital markets, infrastructure, and advisory mandates. I work with businesses at exactly your stage: growing fast, building national capacity, and needing the financial architecture to match the ambition.</div>
+
+      <div class="email-para">As you bring the Beyond CRM team on board and hit 50 consultants across four cities, the question I would want to test is whether the existing capacity is generating consistent returns across the business. With over 70% of your revenue time-based, the next hiring wave along the east coast carries real risk if you do not have a clear picture of billable mix, revenue per head, and capacity headroom by office today. I have put together a short brief, attached, that walks through a Workforce Capacity and Utilisation Review and what it would surface for a business like yours right now.</div>
+
+      <div class="email-para">If you would like to see the solutions matched specifically to iCatalyst's size and situation, the quickest way is to answer a few short questions at:<br>
+        <a href="https://profit-pulse.com.au/full-suite-of-products?utm_source=outreach&utm_medium=email&utm_campaign=nightly_outreach&utm_content=icatalyst" style="color:#01A296;font-weight:700;">profit-pulse.com.au/full-suite-of-products</a><br>
+        It takes about two minutes and shows you the services matched to your industry and scale, each with a direct purchase option if you want to move quickly.
+      </div>
+
+      <div class="email-para">If you would prefer a conversation first, I am happy to offer a complimentary discovery call. You can book a time directly here:<br>
+        <a href="https://bookings.cloud.microsoft/book/ProfitPulse1@profit-pulse.com.au/?ismsaljsauthenabled=true" style="color:#01A296;">Book a complimentary discovery call</a>
+      </div>
+
+      <div class="email-sig">
+        Warm regards,<br><br>
+        <strong>Nitesh Roopa</strong><br>
+        CA, Managing Partner<br>
+        ProfitPulse<br>
+        <a href="https://profit-pulse.com.au" style="color:#01A296;">Profit-Pulse.com.au</a><br>
+        Nitesh@Profit-Pulse.com.au<br>
+        +61 411 876 267
+      </div>
+    </div>
+  </div>
+
+  <!-- 5.5 System notes -->
+  <div class="card">
+    <div class="sec-label">System Notes</div>
+    <div class="sys-notes">
+      <div class="snlabel">Internal Reference Only</div>
+      <ul>
+        <li><strong>Selected target:</strong> iCatalyst Pty Ltd. Confirmed not present in Outreach_Register.csv (only prior entry is AdUnion, 09 Jun 2026). No repeat breach.</li>
+        <li><strong>Verified sources:</strong> SmartCompany Smart50 2025 (rank 16, $13.5M, 60% growth, Nov 2025); SmartCompany Smart50 2024 (rank 4, $9.5M, 162% growth, Nov 2024); SmartCompany Smart50 2023 (rank 40, ~$5.22M); Microsoft Customer Stories case study (70%+ time-based revenue, deal size $100K to $350K); iTWire and ecommercenews.com.au (Beyond CRM acquisition, Jun 2025); icatalyst.com.au (national offices, service lines); ARN "iCatalyst seeks out east coast growth opportunities"; WA Business Awards 2025 Finalist announcement.</li>
+        <li><strong>Inferred commercial goal (INFERENCE, not verified fact):</strong> The founders need a baseline on consultant utilisation across four cities before the next east coast hiring wave. The Beyond CRM integration and three consecutive years of 60%+ growth create immediate pressure to optimise team economics rather than simply adding headcount.</li>
+        <li><strong>Matched primary service:</strong> G4 Workforce Capacity and Utilisation Review</li>
+        <li><strong>Matched supporting services:</strong> G3 Product and Service Line Profitability, B1 Fractional CFO Partnership</li>
+        <li><strong>Inferred size tier:</strong> Command. Tier engine raw score 41. Industry bias 1 (Management and IT consulting). Essential ceiling 31, Command ceiling 41. Score 41 sits at the Command ceiling. No lift adjustment (gross margin default 40 to 55% = 3 points, lift requires 2 or fewer). No drop adjustment (drop requires margin = 5). Assumptions: gross margin 40 to 55% (mid-band default, not publicly disclosed); single entity (default); revenue model mix recurring and one-off; some reliance on key accounts; modest debt. Forward growth 6 points (targeting over 30% per FY2026 east coast plan); recent trajectory 6 points (scaling rapidly at 60%); commercial event acquisition 5 points (Beyond CRM Jun 2025).</li>
+        <li><strong>Verified price at inferred tier:</strong> $5,000 one off</li>
+        <li><strong>Questionnaire URL (email, with UTM):</strong> https://profit-pulse.com.au/full-suite-of-products?utm_source=outreach&utm_medium=email&utm_campaign=nightly_outreach&utm_content=icatalyst</li>
+        <li><strong>Questionnaire URL (dossier, with UTM):</strong> https://profit-pulse.com.au/full-suite-of-products?utm_source=outreach&utm_medium=html&utm_campaign=nightly_outreach&utm_content=icatalyst</li>
+        <li><strong>Direct Stripe checkout link (G4 at Command, $5,000):</strong> https://buy.stripe.com/14A3cwc5a66c4P6dMH3ks1G</li>
+        <li><strong>Stripe link tier used:</strong> Command</li>
+        <li><strong>EMAIL_INCLUDE_DIRECT_CHECKOUT:</strong> false. Email leads with questionnaire only. No Stripe link in email.</li>
+        <li><strong>BITLY_SHORTEN:</strong> false. Full URLs used throughout.</li>
+        <li><strong>TRACKING_ENABLED:</strong> true. UTM tags applied to questionnaire links in email and dossier. No UTM tags on Stripe link. No UTM tags on brief.</li>
+        <li><strong>Send status:</strong> Nothing sent. This dossier, the brief, and the email draft are for Nitesh Roopa's review only. No communication has been dispatched.</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<div class="pp-footer">
+  Prepared by ProfitPulse | Internal research dossier | 26 Jun 2026 | Nitesh Roopa CA, Managing Partner | Profit-Pulse.com.au
+</div>
+
+</body>
+</html>
