@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProfitPulse Dossier | Taskforce Australia | 27 Jun 2026</title>
+<style>
+  :root {
+    --black:    #000000;
+    --teal:     #01A296;
+    --amber-b:  #F8C806;
+    --amber-d:  #F6A102;
+    --gold:     #E3A712;
+    --white:    #FFFFFF;
+    --off-white:#E6E5DE;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--off-white);
+    color: var(--black);
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  .page-wrap { max-width: 900px; margin: 0 auto; padding: 20px; }
+
+  /* ── Header ─────────────────────────────────────────────── */
+  .dossier-header {
+    background: var(--black);
+    color: var(--white);
+    padding: 28px 32px;
+    border-left: 8px solid var(--amber-d);
+    margin-bottom: 20px;
+  }
+  .dossier-header .tag {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--teal);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .dossier-header h1 {
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--amber-b);
+    margin-bottom: 6px;
+  }
+  .dossier-header .sub {
+    font-size: 13px;
+    color: var(--off-white);
+  }
+  .dossier-header .date-bar {
+    margin-top: 12px;
+    font-size: 12px;
+    color: #888;
+  }
+
+  /* ── Cards / Sections ───────────────────────────────────── */
+  .card {
+    background: var(--white);
+    border-left: 5px solid var(--teal);
+    padding: 22px 26px;
+    margin-bottom: 18px;
+  }
+  .card.amber-border { border-left-color: var(--amber-d); }
+  .card.gold-border  { border-left-color: var(--gold); }
+  .card.black-border { border-left-color: var(--black); background: var(--black); color: var(--off-white); }
+  .section-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--teal);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .card.black-border .section-label { color: var(--amber-b); }
+  h2 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+  h3 { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+  p  { margin-bottom: 10px; }
+
+  /* ── Stat grid ──────────────────────────────────────────── */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin: 14px 0;
+  }
+  .stat-tile {
+    background: var(--black);
+    border-top: 3px solid var(--teal);
+    padding: 14px 12px 10px;
+  }
+  .stat-tile .stat-num {
+    font-size: 26px;
+    font-weight: 900;
+    color: var(--amber-b);
+    line-height: 1.1;
+  }
+  .stat-tile .stat-label {
+    font-size: 10px;
+    color: var(--off-white);
+    margin-top: 4px;
+    line-height: 1.35;
+  }
+  .stat-tile .stat-src {
+    font-size: 8px;
+    color: var(--teal);
+    margin-top: 5px;
+    font-style: italic;
+  }
+
+  /* ── Fact table ─────────────────────────────────────────── */
+  .fact-table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+  .fact-table td {
+    padding: 7px 10px;
+    border-bottom: 1px solid #e8e8e8;
+    vertical-align: top;
+    font-size: 13px;
+  }
+  .fact-table td:first-child {
+    font-weight: 700;
+    color: var(--teal);
+    width: 36%;
+    white-space: nowrap;
+  }
+
+  /* ── Wedge block ────────────────────────────────────────── */
+  .wedge-block {
+    background: var(--black);
+    color: var(--off-white);
+    padding: 20px 24px;
+    border-left: 5px solid var(--amber-d);
+    margin-bottom: 18px;
+  }
+  .wedge-block .section-label { color: var(--amber-b); }
+
+  /* ── Service block ──────────────────────────────────────── */
+  .service-block {
+    background: #f8f8f8;
+    border-left: 5px solid var(--teal);
+    padding: 18px 22px;
+    margin-bottom: 12px;
+  }
+  .service-block .service-name {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 5px;
+  }
+  .service-block .service-price {
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--teal);
+    margin-bottom: 8px;
+  }
+
+  /* ── CTA buttons ─────────────────────────────────────────── */
+  .cta-primary {
+    display: inline-block;
+    background: var(--teal);
+    color: var(--white) !important;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 16px 28px;
+    border-radius: 30px;
+    font-size: 16px;
+    margin-top: 12px;
+    margin-bottom: 6px;
+  }
+  .cta-secondary {
+    display: inline-block;
+    border: 1.5px solid var(--amber-d);
+    color: var(--amber-d) !important;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 12px 22px;
+    border-radius: 26px;
+    font-size: 14px;
+    margin-top: 8px;
+  }
+  .cta-clean-url {
+    font-size: 13px;
+    color: #555;
+    margin-top: 6px;
+  }
+
+  /* ── Review gate banner ─────────────────────────────────── */
+  .review-gate {
+    background: #b30000;
+    color: var(--white);
+    font-weight: 700;
+    font-size: 14px;
+    text-align: center;
+    padding: 14px 20px;
+    margin-bottom: 18px;
+    border: 2px solid #ff4444;
+  }
+
+  /* ── Email draft ────────────────────────────────────────── */
+  .email-outer {
+    background: #fafafa;
+    border: 1.5px solid #ddd;
+    padding: 22px 26px;
+  }
+  .email-subject {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--black);
+  }
+  .email-body p { margin-bottom: 14px; font-size: 14px; line-height: 1.6; }
+  .email-sig { margin-top: 22px; font-size: 13px; border-top: 1px solid #ddd; padding-top: 14px; }
+  .email-sig .sig-name { font-size: 15px; font-weight: 700; }
+  .email-sig .sig-line { color: #555; }
+  .email-sig .sig-teal { color: var(--teal); }
+
+  /* ── System notes ───────────────────────────────────────── */
+  .system-notes {
+    background: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 18px 22px;
+    font-size: 12px;
+    color: #444;
+  }
+  .system-notes h3 { font-size: 13px; margin-bottom: 8px; color: var(--black); }
+  .system-notes ul { padding-left: 18px; }
+  .system-notes li { margin-bottom: 5px; }
+  .system-notes .mono { font-family: monospace; font-size: 11px; word-break: break-all; }
+
+  @media (max-width: 600px) {
+    .stat-grid { grid-template-columns: repeat(2, 1fr); }
+    .dossier-header h1 { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!-- 5.1 HEADER                                                          -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<div class="dossier-header">
+  <div class="tag">ProfitPulse Internal Dossier</div>
+  <h1>Taskforce Australia</h1>
+  <div class="sub">Field service management platform and property safety compliance, Burnley VIC</div>
+  <div class="date-bar">
+    Prepared for: Nitesh Roopa, CA, Managing Partner, ProfitPulse &nbsp;|&nbsp; Date: 27 Jun 2026
+  </div>
+</div>
+
+<div class="card" style="background:#01A296;color:#fff;border-left-color:#F8C806;margin-bottom:18px;padding:14px 20px;">
+  <strong>Why selected tonight:</strong> Taskforce Australia posted $12.8M in revenue with 31% three year average growth (Smart50 2025, rank 37). Nineteen employees coordinate 5,500 tradespeople across two distinct and structurally different revenue channels. The launch of RentRepair as a subscription maintenance product and the doubling of agency clients in 12 months create a clear, verifiable commercial wedge for ProfitPulse. Not previously contacted. Not in the outreach register.
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!-- 5.2 VERIFIED PROFILE                                                -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<div class="card">
+  <div class="section-label">Verified Profile</div>
+  <h2>Firmographics and Verified Facts</h2>
+  <table class="fact-table">
+    <tr><td>Company Name</td><td>Taskforce Australia Pty Ltd</td></tr>
+    <tr><td>Website</td><td>taskforce.com.au</td></tr>
+    <tr><td>Location</td><td>Suite 3, 151 Barkly Avenue, Burnley VIC 3121 (within 50km of Melbourne CBD)</td></tr>
+    <tr><td>Founded</td><td>2014</td></tr>
+    <tr><td>Founders</td><td>Jason Bright (cofounder) and Campbell Sallabank (cofounder, Managing Director)</td></tr>
+    <tr><td>Revenue (FY2025)</td><td><strong>$12.8 million</strong> &mdash; <em>Source: SmartCompany Smart50 2025 award citation, rank 37 of 50</em></td></tr>
+    <tr><td>Revenue (FY2024)</td><td>$9.7 million &mdash; <em>Source: SmartCompany Smart50 2024 award citation, rank 46 of 50</em></td></tr>
+    <tr><td>Three Year Average Growth</td><td>31% per annum &mdash; <em>Source: SmartCompany Smart50 2025</em></td></tr>
+    <tr><td>Employee Count</td><td>19 &mdash; <em>Source: SmartCompany Smart50 2025</em></td></tr>
+    <tr><td>Tradespeople Network</td><td>5,500 tradespeople coordinated through the platform &mdash; <em>Source: SmartCompany Smart50 2024 and 2025</em></td></tr>
+    <tr><td>Jobs Delivered</td><td>140,000+ jobs via RentSafe since 2021 &mdash; <em>Source: SmartCompany Smart50 2025</em></td></tr>
+    <tr><td>Consumer Brand Clients</td><td>20 major consumer brands including Brilliant Lighting, Nero, Universal Fans &mdash; <em>Source: SmartCompany Smart50 2024 and 2025</em></td></tr>
+    <tr><td>Real Estate Clients</td><td>300+ real estate offices, 180 major real estate brands &mdash; <em>Source: SmartCompany Smart50 2025</em></td></tr>
+    <tr><td>Products</td><td>RentSafe (automated property safety compliance since 2021), RentRepair (subscription maintenance, launched), Manufacturer Warranty Services &mdash; <em>Source: taskforce.com.au and SmartCompany</em></td></tr>
+    <tr><td>Industry</td><td>Field service management platform, property safety compliance, building and specialist trades technology</td></tr>
+    <tr><td>Gross Margin</td><td>Not publicly disclosed</td></tr>
+    <tr><td>Business Structure</td><td>Not publicly disclosed</td></tr>
+    <tr><td>Funding Position</td><td>Not publicly disclosed</td></tr>
+    <tr><td>Primary Contact</td><td>Campbell Sallabank, Managing Director &mdash; <em>Source: RocketReach / SmartCompany citations</em></td></tr>
+    <tr><td>Contact Email</td><td>Not publicly disclosed (to be sourced by Nitesh before sending)</td></tr>
+    <tr><td>Awards</td><td>Smart50 2023, Smart50 2024 (rank 46), Smart50 2025 (rank 37), Most Innovative Proptech at 2024 Proptech Awards Sydney (PropTech Australia), Telstra Best of Business Victorian State Winner</td></tr>
+  </table>
+</div>
+
+<div class="stat-grid" style="margin-bottom:18px;">
+  <div class="stat-tile">
+    <div class="stat-num">$12.8M</div>
+    <div class="stat-label">Revenue FY2025</div>
+    <div class="stat-src">Smart50 2025, rank 37</div>
+  </div>
+  <div class="stat-tile">
+    <div class="stat-num">31%</div>
+    <div class="stat-label">Three year average growth in revenue</div>
+    <div class="stat-src">Smart50 2025</div>
+  </div>
+  <div class="stat-tile">
+    <div class="stat-num">19</div>
+    <div class="stat-label">Team members</div>
+    <div class="stat-src">Smart50 2025</div>
+  </div>
+  <div class="stat-tile">
+    <div class="stat-num">5,500</div>
+    <div class="stat-label">Tradespeople in platform network</div>
+    <div class="stat-src">Smart50 2024 and 2025</div>
+  </div>
+  <div class="stat-tile">
+    <div class="stat-num">140K+</div>
+    <div class="stat-label">Jobs delivered via RentSafe since 2021</div>
+    <div class="stat-src">Smart50 2025</div>
+  </div>
+  <div class="stat-tile">
+    <div class="stat-num">2014</div>
+    <div class="stat-label">Year founded</div>
+    <div class="stat-src">Company records / SmartCompany</div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!-- 5.3 THE WEDGE AND MATCHED SERVICE                                   -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<div class="wedge-block">
+  <div class="section-label">Commercial Wedge</div>
+  <h2 style="color:var(--amber-b);margin-bottom:12px;">The Commercial Argument</h2>
+  <p>
+    Taskforce Australia has built something genuinely rare: 19 people coordinating 5,500 tradespeople, 140,000+ compliance and maintenance jobs, and a client roster spanning 20 consumer brands and more than 300 real estate offices. Three consecutive Smart50 appearances and a move from $9.7 million to $12.8 million in a single year confirm the momentum is real.
+  </p>
+  <p>
+    The commercial question that follows this growth is precise. Taskforce operates two structurally different revenue channels within one entity. RentSafe delivers compliance work for manufacturers and real estate offices on a per job basis. RentRepair, launched as Australia's only complete subscription maintenance service, brings a fixed monthly fee model aimed directly at rental providers. These two channels have fundamentally different economics: one is volume and frequency driven, the other is recurring revenue with customer lifetime value and churn dynamics. Until each client, across both channels, is ranked by gross margin contribution, revenue per job, and effort to serve, the business is navigating its next growth phase on revenue totals alone.
+  </p>
+  <p>
+    A Customer Concentration and Profitability Map answers this in three weeks. Every client ranked by revenue, gross margin contribution, and effort to serve. The output is a clear action list: which manufacturer accounts to grow, which real estate offices to reprice, and which subscription customers are on track to return value over their lifetime. For a business doubling its agency client base and launching a second revenue engine simultaneously, this is the foundational commercial intelligence for the next phase.
+  </p>
+  <p style="font-size:12px;color:#aaa;margin-top:8px;">
+    <em>Note to Nitesh: The inferred commercial goal is margin clarity ahead of a multichannel growth phase. This is an inference based on public evidence, not a verified statement from the business.</em>
+  </p>
+</div>
+
+<div class="card amber-border" style="margin-bottom:12px;">
+  <div class="section-label">Matched Service (Primary)</div>
+  <div class="service-block">
+    <div class="service-name">Customer Concentration and Profitability Map</div>
+    <div class="service-price">$3,950 &nbsp;<span style="font-size:14px;font-weight:400;color:#555;">one off &nbsp;|&nbsp; ProfitPulse verified price</span></div>
+    <p style="font-size:13px;color:#333;margin-bottom:0;">
+      A focused three week project that ranks every customer by revenue, gross margin contribution, and effort to serve. For Taskforce Australia, this maps both manufacturer clients and real estate agency clients to reveal which accounts drive the real margin after tradie fees, platform costs, and coordination effort are allocated. Output: a prioritised action list covering which accounts to grow, which to reprice, and which to reset. The questionnaire at profit-pulse.com.au/full-suite-of-products confirms the exact scope and price for Taskforce's size and industry before any commitment.
+    </p>
+  </div>
+  <p style="font-size:12px;color:#777;margin-top:8px;">
+    Supporting services (where evidence supports): <strong>G3 Product and Service Line Profitability</strong> (ranking RentSafe vs RentRepair vs Manufacturer Warranty by margin) and <strong>C1 13 Week Cash Flow Build</strong> (managing the cash timing shift as subscription billing scales alongside per job revenue).
+  </p>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!-- 5.3A PRIMARY CTA                                                     -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<div class="card" style="background:#f0faf9;border-left-color:var(--teal);margin-bottom:12px;">
+  <div class="section-label">Step One for Taskforce Australia</div>
+  <h3>Questionnaire: See the solutions matched to their size and industry</h3>
+  <p style="font-size:13px;color:#333;">
+    This is the primary call to action. The prospect answers a short set of questions, the page matches services to their situation, size, and industry, and each matched service carries a direct Stripe checkout.
+  </p>
+  <a class="cta-primary"
+     href="https://profit-pulse.com.au/full-suite-of-products?utm_source=outreach&utm_medium=html&utm_campaign=nightly_outreach&utm_content=taskforce_australia">
+    Find your fix in two minutes
+  </a>
+  <div class="cta-clean-url">profit-pulse.com.au/full-suite-of-products</div>
+  <p style="margin-top:8px;font-size:12px;color:#777;">
+    The visible address shown to the prospect is always the clean address above. UTM tags are carried inside the link href only and are never shown as visible text.
+  </p>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!-- 5.3B SECONDARY OPTION                                               -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<div class="card amber-border" style="background:#fffdf0;margin-bottom:18px;">
+  <div class="section-label">Shortcut: Direct Purchase</div>
+  <h3>Already know this is the priority?</h3>
+  <p style="font-size:13px;color:#333;margin-bottom:6px;">
+    You can begin with the <strong>Customer Concentration and Profitability Map</strong> at the verified ProfitPulse price of <strong>$3,950 one off</strong>. The questionnaire at profit-pulse.com.au/full-suite-of-products remains the preferred first step to confirm the exact scope for Taskforce Australia's size and industry.
+  </p>
+  <a class="cta-secondary"
+     href="https://buy.stripe.com/14AbJ21qw2U0ftK0ZV3ks1A">
+    Purchase the suggested product now to get started
+  </a>
+  <p style="margin-top:8px;font-size:11px;color:#999;">
+    The Stripe checkout address is never shown as visible text. It is held behind the call to action words above only.
+  </p>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!-- 5.4 EMAIL DRAFT                                                      -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<div class="review-gate">
+  REVIEW GATE: This email is a draft only. No communication has been sent. Only Nitesh Roopa may authorise and send this message.
+</div>
+
+<div class="card" style="margin-bottom:18px;">
+  <div class="section-label">Email Draft for Nitesh Roopa to Review and Send</div>
+
+  <div class="email-outer">
+    <div class="email-subject">
+      SUBJECT: Taskforce Australia and which channel drives your real margin
+    </div>
+    <div class="email-body">
+      <p>Hi Campbell,</p>
+
+      <p>
+        I noticed Taskforce Australia placed 37th on the SmartCompany Smart50 list this year, climbing from 46th in 2024. Three consecutive appearances and a move from $9.7 million to $12.8 million in a single year is a genuine result. The platform model and the RentRepair subscription launch caught my attention specifically.
+      </p>
+
+      <p>
+        My name is Nitesh Roopa. I am a Chartered Accountant and Managing Partner of ProfitPulse, a Brisbane based fractional CFO and financial advisory firm. I spent 16 years across four countries executing and managing over 52 transactions in corporate finance before founding ProfitPulse to work with fast growing SMEs. I work with businesses that have outgrown their original financial architecture and need a senior financial lens before their next growth phase.
+      </p>
+
+      <p>
+        The question I would want answered about Taskforce at this stage is which of your two channels, manufacturer warranty and compliance on the one hand, and real estate agency managed maintenance on the other, drives the real margin after tradie fees, platform costs, and coordination effort are allocated. RentSafe and RentRepair have structurally different economics and pricing both against the same cost base makes it very difficult to know which engine to invest in. A Customer Concentration and Profitability Map works through this in three weeks, ranking every client by revenue, gross margin contribution, and effort to serve. I have attached a short brief with the detail.
+      </p>
+
+      <p>
+        If you would like to see the solutions matched to your size and industry, the questionnaire takes two minutes and presents options with direct purchase links: <a href="https://profit-pulse.com.au/full-suite-of-products?utm_source=outreach&utm_medium=email&utm_campaign=nightly_outreach&utm_content=taskforce_australia" style="color:#01A296;">profit-pulse.com.au/full-suite-of-products</a>
+      </p>
+
+      <p>
+        If you would prefer to talk first, I am happy to book a complimentary 30-minute call with no obligation. You can find a time that suits at <a href="https://bookings.cloud.microsoft/book/ProfitPulse1@profit-pulse.com.au/?ismsaljsauthenabled=true" style="color:#01A296;">bookings.cloud.microsoft/book/ProfitPulse1@profit-pulse.com.au</a>
+      </p>
+
+      <p>
+        If now is not the right moment, no reply needed. I wish you all the best with the next phase of growth.
+      </p>
+
+      <div class="email-sig">
+        <div class="sig-name">Nitesh Roopa</div>
+        <div class="sig-line">CA, Managing Partner</div>
+        <div class="sig-line">ProfitPulse</div>
+        <div class="sig-teal">Profit-Pulse.com.au</div>
+        <div class="sig-teal">Nitesh@Profit-Pulse.com.au</div>
+        <div class="sig-line">+61 411 876 267</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!-- 5.5 SYSTEM NOTES                                                    -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<div class="system-notes">
+  <h3>System Notes (Internal Only, Nitesh Roopa Use Only)</h3>
+  <ul>
+    <li><strong>Target selected:</strong> Taskforce Australia. Confirmed NOT in the Outreach_Register.csv prior to this run (only existing entry: AdUnion, 09 Jun 2026).</li>
+    <li><strong>Revenue verification:</strong> $12.8M confirmed via SmartCompany Smart50 2025 award citation (public award data, not estimated). Prior year $9.7M confirmed via Smart50 2024 award citation.</li>
+    <li><strong>Verified sources used:</strong>
+      <ul>
+        <li>SmartCompany Smart50 2025 (rank 37): revenue $12.8M, growth 31%, employees 19</li>
+        <li>SmartCompany Smart50 2024 (rank 46): revenue $9.7M, growth 26%</li>
+        <li>SmartCompany Smart50 2023: presence confirmed</li>
+        <li>PropTech Australia: Most Innovative Proptech 2024 award</li>
+        <li>Eliteagent.com: Telstra Best of Business Victorian State Winner citation</li>
+        <li>taskforce.com.au and rentsafe.taskforce.com.au: platform and product details</li>
+        <li>SmartCompany Smart50 2024 and 2025 citations: 5,500 tradespeople, 140,000+ jobs, 20 consumer brands, 300 real estate offices, 180 major real estate brands</li>
+        <li>RocketReach: Campbell Sallabank as Managing Director role verification</li>
+      </ul>
+    </li>
+    <li><strong>Inferred commercial goal:</strong> Margin clarity across two structurally different revenue channels (RentSafe per job model and RentRepair subscription model) ahead of the next growth phase. This is an inference based on public evidence about the dual channel revenue model and the RentRepair launch. Not a verified statement from the business.</li>
+    <li><strong>Matched service (primary):</strong> G2, Customer Concentration and Profitability Map</li>
+    <li><strong>Matched service (supporting):</strong> G3 Product and Service Line Profitability, C1 13 Week Cash Flow Build</li>
+    <li><strong>Inferred tier:</strong> Command. Reason: Building and specialist trades industry (bias 4), Essential ceiling 25, Command ceiling 35. Raw score 30 (Revenue $10-$20M=6, Gross margin assumed 25-40%=4, Team 16-40=3, Single location=1, Single entity=1, Mixed revenue model=2, Well diversified customers=1, Modest debt=2, Growing 15-30%=4, Growing trajectory=4, Expansion event=2). Raw score 30 above Essential ceiling 25 and at or below Command ceiling 35. No tier adjustment applies. Final tier: Command.</li>
+    <li><strong>Questionnaire URL (dossier, with UTM):</strong><br>
+      <span class="mono">https://profit-pulse.com.au/full-suite-of-products?utm_source=outreach&amp;utm_medium=html&amp;utm_campaign=nightly_outreach&amp;utm_content=taskforce_australia</span>
+    </li>
+    <li><strong>Questionnaire URL (email, with UTM):</strong><br>
+      <span class="mono">https://profit-pulse.com.au/full-suite-of-products?utm_source=outreach&amp;utm_medium=email&amp;utm_campaign=nightly_outreach&amp;utm_content=taskforce_australia</span>
+    </li>
+    <li><strong>Direct Stripe checkout (G2, Command tier, $3,950):</strong><br>
+      <span class="mono">https://buy.stripe.com/14AbJ21qw2U0ftK0ZV3ks1A</span>
+    </li>
+    <li><strong>EMAIL_INCLUDE_DIRECT_CHECKOUT:</strong> false. No Stripe link included in the email. The email leads with the questionnaire only.</li>
+    <li><strong>BITLY_SHORTEN:</strong> false. No short links generated. Full URLs used.</li>
+    <li><strong>TRACKING_ENABLED:</strong> true. UTM tags applied to questionnaire links in email and dossier. No UTM tags on brief (as per Section 6.4). No UTM tags on Stripe links.</li>
+    <li><strong>Brief files:</strong> Brief_TaskforceAustralia_27Jun2026.pptx and Brief_TaskforceAustralia_27Jun2026.pdf saved to Out-reach efforts/</li>
+    <li><strong>Confirmation:</strong> No email, message, or communication of any kind has been sent. All outputs are drafts for Nitesh Roopa to review and act on. Only Nitesh Roopa may authorise and send any communication to this prospect.</li>
+  </ul>
+</div>
+
+</div>
+</body>
+</html>
