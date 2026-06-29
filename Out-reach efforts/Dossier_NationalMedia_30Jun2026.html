@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>National Media | ProfitPulse Dossier | 30 Jun 2026</title>
+<style>
+  :root {
+    --black:     #000000;
+    --teal:      #01A296;
+    --amber-b:   #F8C806;
+    --amber-d:   #F6A102;
+    --gold:      #E3A712;
+    --white:     #FFFFFF;
+    --off-white: #E6E5DE;
+    --panel:     #111111;
+    --mid-grey:  #888888;
+    --drk-grey:  #444444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: var(--black);
+    color: var(--off-white);
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 24px 20px 60px;
+  }
+  /* Typography */
+  h1 { font-size: 2.4rem; color: var(--amber-b); font-weight: 700; line-height: 1.1; }
+  h2 { font-size: 1.3rem; color: var(--teal); text-transform: uppercase;
+       letter-spacing: 0.06em; font-weight: 700; margin-bottom: 12px; }
+  h3 { font-size: 1.05rem; color: var(--amber-d); font-weight: 700; margin-bottom: 6px; }
+  p  { line-height: 1.65; font-size: 0.95rem; color: var(--off-white); }
+
+  /* Review gate */
+  .review-gate {
+    background: #7B0000;
+    border: 2px solid #FF4444;
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin-bottom: 28px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--white);
+    text-align: center;
+    letter-spacing: 0.03em;
+  }
+
+  /* Section divider */
+  .section { margin-bottom: 40px; }
+  .section-header {
+    border-left: 5px solid var(--teal);
+    padding-left: 14px;
+    margin-bottom: 18px;
+  }
+  .card {
+    background: var(--panel);
+    border-radius: 8px;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+  }
+
+  /* Stat grid */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+  .stat-card {
+    background: var(--black);
+    border: 1px solid var(--teal);
+    border-top: 3px solid var(--teal);
+    border-radius: 6px;
+    padding: 14px 16px;
+  }
+  .stat-card .number {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--amber-b);
+    line-height: 1.1;
+  }
+  .stat-card .label {
+    font-size: 0.78rem;
+    color: var(--off-white);
+    margin-top: 4px;
+    line-height: 1.35;
+  }
+  .stat-card .source {
+    font-size: 0.68rem;
+    color: var(--mid-grey);
+    margin-top: 6px;
+    font-style: italic;
+  }
+
+  /* Data table */
+  .data-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; }
+  .data-table td { padding: 8px 10px; font-size: 0.88rem; border-bottom: 1px solid #222; vertical-align: top; }
+  .data-table td:first-child { color: var(--mid-grey); width: 38%; font-weight: 600; }
+  .data-table td:last-child  { color: var(--off-white); }
+
+  /* Signal list */
+  .signal-list { list-style: none; padding: 0; }
+  .signal-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid #1a1a1a;
+    font-size: 0.9rem;
+    color: var(--off-white);
+    padding-left: 16px;
+    position: relative;
+  }
+  .signal-list li::before {
+    content: '\25B8';
+    color: var(--teal);
+    position: absolute;
+    left: 0;
+  }
+
+  /* Service block */
+  .service-block {
+    background: var(--panel);
+    border: 1px solid var(--teal);
+    border-radius: 8px;
+    padding: 20px 22px;
+    margin-bottom: 18px;
+  }
+  .service-name { font-size: 1.2rem; color: var(--amber-b); font-weight: 700; }
+  .service-price { font-size: 1.0rem; color: var(--teal); font-weight: 600; margin-top: 4px; }
+  .service-desc { font-size: 0.9rem; color: var(--off-white); margin-top: 10px; line-height: 1.6; }
+
+  /* CTA buttons */
+  .cta-primary {
+    display: inline-block;
+    background: var(--teal);
+    color: var(--white);
+    font-weight: 700;
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: 30px;
+    font-size: 1rem;
+    margin-top: 12px;
+    margin-bottom: 8px;
+  }
+  .cta-clean-url {
+    font-size: 0.85rem;
+    color: var(--mid-grey);
+    margin-top: 6px;
+    font-style: italic;
+  }
+  .cta-secondary {
+    display: inline-block;
+    border: 1px solid var(--amber-d);
+    color: var(--amber-d);
+    font-weight: 700;
+    text-decoration: none;
+    padding: 11px 22px;
+    border-radius: 26px;
+    font-size: 0.92rem;
+    margin-top: 10px;
+  }
+
+  /* Email draft */
+  .email-container {
+    background: #0d0d0d;
+    border: 1px solid #222;
+    border-radius: 8px;
+    padding: 0;
+    overflow: hidden;
+    margin-bottom: 18px;
+  }
+  .email-header {
+    background: #1a1a1a;
+    padding: 14px 20px;
+    font-size: 0.85rem;
+    color: var(--mid-grey);
+  }
+  .email-header strong { color: var(--off-white); }
+  .email-body {
+    padding: 22px 24px;
+    font-size: 0.92rem;
+    line-height: 1.75;
+    color: var(--off-white);
+  }
+  .email-body p { margin-bottom: 14px; }
+
+  /* System notes */
+  .sys-notes {
+    background: #0a0a0a;
+    border: 1px solid #1e1e1e;
+    border-radius: 8px;
+    padding: 18px 20px;
+    font-size: 0.82rem;
+    color: var(--mid-grey);
+    line-height: 1.7;
+  }
+  .sys-notes dt { color: var(--teal); font-weight: 700; margin-top: 10px; }
+  .sys-notes dd { margin-left: 16px; color: var(--off-white); }
+
+  .tag-teal { color: var(--teal); font-weight: 600; }
+  .tag-amber { color: var(--amber-b); font-weight: 600; }
+  .separator { border: none; border-top: 1px solid #222; margin: 28px 0; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- 5.1 HEADER -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<div style="border-left:5px solid #01A296;padding-left:16px;margin-bottom:30px;">
+  <p style="font-size:0.78rem;color:#888;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px;">
+    ProfitPulse Internal Dossier &nbsp;|&nbsp; 30 Jun 2026
+  </p>
+  <h1>National Media</h1>
+  <p style="margin-top:8px;font-size:1.0rem;color:#888;">
+    B2B exhibitions and events company, Bundall, Gold Coast QLD. Selected because a
+    documented acquisition spree that doubled revenue to $18.4M in a single year, combined
+    with 13 national events and 10 distinct brands under active integration, signals an
+    urgent need for strategic financial leadership at the CEO level.
+  </p>
+</div>
+
+<hr class="separator">
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- 5.2 VERIFIED PROFILE -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header"><h2>Verified Profile</h2></div>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="number">$18.4M</div>
+      <div class="label">Annual Revenue</div>
+      <div class="source">SmartCompany Smart50 2025, rank 28 citation</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">42%</div>
+      <div class="label">Three Year Average Growth Rate</div>
+      <div class="source">SmartCompany Smart50 2025, published Nov 2025</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">48</div>
+      <div class="label">Employees</div>
+      <div class="source">SmartCompany Smart50 2025 profile</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">13</div>
+      <div class="label">National Events Across 10 Brands</div>
+      <div class="source">Exhibition Industry News, Nov 2025</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">#28</div>
+      <div class="label">Smart50 2025 Rank</div>
+      <div class="source">SmartCompany Smart50 2025</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">#62</div>
+      <div class="label">AFR Fast 100 2025 Rank</div>
+      <div class="source">Australian Financial Review Fast 100 2025</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <table class="data-table">
+      <tr><td>Legal Name</td><td>National Media Pty Ltd</td></tr>
+      <tr><td>Website</td><td>nationalmedia.com.au</td></tr>
+      <tr><td>Founded</td><td>1993 (over 30 years in B2B exhibitions)</td></tr>
+      <tr><td>Headquarters</td><td>Bundall, Gold Coast, Queensland</td></tr>
+      <tr><td>Additional Offices</td><td>Sydney NSW and Melbourne VIC</td></tr>
+      <tr><td>Industry</td><td>B2B exhibitions and events, digital media</td></tr>
+      <tr><td>Revenue</td><td>$18.4 million (Smart50 2025 citation)</td></tr>
+      <tr><td>Revenue Trend</td><td>Doubled in the past year (Exhibition Industry News, Nov 2025)</td></tr>
+      <tr><td>Three Year Growth Average</td><td>42% (Smart50 2025)</td></tr>
+      <tr><td>Employees</td><td>48 (Smart50 2025 profile)</td></tr>
+      <tr><td>Events Portfolio</td><td>13 national events across 10 distinctive industry brands (Exhibition Industry News)</td></tr>
+      <tr><td>Primary Contact</td><td>Brad Langton, Chief Executive Officer</td></tr>
+      <tr><td>Contact Email</td><td>blangton@nationalmedia.com.au (ZoomInfo pattern)</td></tr>
+      <tr><td>Contact LinkedIn</td><td>linkedin.com/in/bradlangton</td></tr>
+      <tr><td>Other Key Leadership</td><td>Mark Harvey (Founder, Managing Director), Holly Doughty (Finance Director), Shannon Terry (General Manager Operations), Bradley Smeeton (Commercial Director)</td></tr>
+      <tr><td>Revenue Basis</td><td>Publicly verified via Smart50 2025 award citation; independently confirmed by AFR Fast 100 2025 eligibility (minimum $5M required)</td></tr>
+    </table>
+  </div>
+
+  <div class="section-header" style="margin-top:24px;"><h2>Key Commercial Signals</h2></div>
+  <div class="card">
+    <ul class="signal-list">
+      <li><strong>Revenue doubled in the past year</strong> as a result of organic growth and three acquisition programmes (Exhibition Industry News, Nov 2025)</li>
+      <li><strong>AFR Fast 100 2025 rank 62</strong> and <strong>Smart50 2025 rank 28</strong> confirming two independent award citations for revenue scale and growth velocity</li>
+      <li><strong>Three confirmed acquisitions in 12 to 18 months:</strong> Workplace Health and Safety Shows (Sydney, Brisbane, Melbourne); Foodservice Australia, Food and Hospitality Queensland, Aged Care Catering Summit, National Restaurant Conference, and Australian Chef of the Year (from Specialised Events); and Cafe Culture and Cafe Biz Expo (announced October 2025, Cafe Show Australia press release)</li>
+      <li><strong>Sean Edwards joins as Strategic Advisor</strong> for a two year term to steer the cafe and coffee expansion, confirming active integration work in progress (Cafe Culture Digital, Oct 2025)</li>
+      <li><strong>Building a national multi-vertical B2B events empire</strong> spanning food service, hospitality, workplace health and safety, fitness and wellness, architecture, design, construction, and accommodation (Exhibition Industry News, Nov 2025)</li>
+      <li><strong>CEO Brad Langton</strong> named Co-Founder of NoVacancy Hotel and Accommodation Industry Expo, signalling strategic ambition beyond operational management</li>
+    </ul>
+  </div>
+</div>
+
+<hr class="separator">
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- 5.3 THE WEDGE AND MATCHED SERVICE -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header"><h2>The Wedge</h2></div>
+  <div class="card">
+    <p>
+      National Media has executed a textbook roll-up in the B2B events sector: three acquisition
+      programmes in roughly 18 months have doubled revenue to $18.4 million and stretched the
+      portfolio to 13 national events across 10 distinct industry brands. That is an impressive
+      pace of external growth. The tension it creates is equally clear. A 48-person team is now
+      responsible for integrating multiple acquired portfolios simultaneously, running a national
+      event calendar, managing show-level P and Ls across wildly different sectors, from aged
+      care catering to fitness to architecture, and deciding which acquisitions to pursue next.
+    </p>
+    <p style="margin-top:12px;">
+      The Finance Director (Holly Doughty) is in place to handle operational finance. What
+      National Media at $18.4 million, in active acquisition mode, genuinely needs is a senior
+      strategic CFO voice at the boardroom level: someone who can model acquisition economics
+      before a deal is signed, build the capital allocation framework across 10 brands, stress
+      test integration scenarios, and produce the board-grade reporting that tells Brad Langton
+      exactly where the portfolio margin is coming from and where it is leaking. That is a
+      distinct capability from operational finance, and it is precisely what ProfitPulse's
+      Fractional CFO Partnership delivers at a fixed monthly fee.
+    </p>
+    <p style="margin-top:12px;">
+      <em style="color:#888;font-size:0.85rem;">
+        Note: The inferred commercial goal is strategic financial leadership to support
+        active M and A integration and capital allocation across a growing multi-brand
+        portfolio. This is an inference from public evidence, not a verified fact.
+      </em>
+    </p>
+  </div>
+
+  <div class="service-block">
+    <div class="service-name">Fractional CFO Partnership</div>
+    <div class="service-price">$4,950 per month &nbsp;&bull;&nbsp; ProfitPulse verified price &nbsp;&bull;&nbsp; Questionnaire confirms exact fit</div>
+    <div class="service-desc">
+      A senior financial partner at the table on a monthly cadence. Includes monthly management
+      pack, quarterly board grade review, ad hoc decision support and a single annual deep dive.
+      For National Media, this means acquisition economics modelling, portfolio-level capital
+      allocation, integration milestone tracking, and the financial architecture that keeps pace
+      with 42 percent compounding growth.
+    </div>
+  </div>
+
+  <div style="margin-top:10px;margin-bottom:6px;font-size:0.85rem;color:#888;">Supporting services identified (not primary):</div>
+  <ul class="signal-list" style="font-size:0.88rem;">
+    <li><strong>G3 Product and Service Line Profitability:</strong> rank every exhibition by gross margin, contribution margin, and operational drag</li>
+    <li><strong>A4 Strategic Growth Diagnostic:</strong> six week engagement mapping revenue, capacity, and margin headroom with a 12 month growth plan including capital steps for the next acquisition</li>
+  </ul>
+</div>
+
+<!-- 5.3A PRIMARY CTA -->
+<div class="section">
+  <div class="section-header"><h2>Primary Call to Action</h2></div>
+  <div class="card" style="text-align:center;padding:28px;">
+    <p style="font-size:1.0rem;color:#ccc;margin-bottom:4px;">
+      The front door for Brad Langton. He answers a few quick questions and sees the solutions
+      matched to his size, industry, and situation, each with a direct Stripe checkout.
+    </p>
+    <a class="cta-primary"
+       href="https://profit-pulse.com.au/full-suite-of-products?utm_source=outreach&utm_medium=html&utm_campaign=nightly_outreach&utm_content=national_media">
+      Find your fix in two minutes
+    </a>
+    <div class="cta-clean-url">profit-pulse.com.au/full-suite-of-products</div>
+    <p style="font-size:0.8rem;color:#666;margin-top:8px;">
+      Tracking tags are embedded in the href above. The visible address shown to the prospect
+      is always the clean address above, never the tagged version.
+    </p>
+  </div>
+</div>
+
+<!-- 5.3B SECONDARY DIRECT PURCHASE -->
+<div class="section">
+  <div class="section-header"><h2>Secondary Option: Direct Purchase</h2></div>
+  <div class="card" style="text-align:center;padding:28px;">
+    <p style="font-size:0.92rem;color:#ccc;margin-bottom:4px;">
+      Already know the Fractional CFO Partnership is the priority? You can begin with
+      the Fractional CFO Partnership, $4,950 per month.
+    </p>
+    <a class="cta-secondary"
+       href="https://buy.stripe.com/cNibJ28SYbqwepG3833ks0q">
+      Purchase the suggested product now to get started
+    </a>
+    <p style="font-size:0.78rem;color:#555;margin-top:10px;">
+      Stripe address is not shown as visible text. It is embedded only in the link above.
+      No UTM tags are appended to Stripe links.
+    </p>
+  </div>
+</div>
+
+<hr class="separator">
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- 5.4 EMAIL DRAFT -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header"><h2>Email Draft</h2></div>
+
+  <div class="review-gate">
+    REVIEW GATE: This email is a draft only. No communication has been sent.
+    Only Nitesh Roopa may authorise and send this message.
+  </div>
+
+  <div class="email-container">
+    <div class="email-header">
+      <div><strong>To:</strong> Brad Langton &lt;blangton@nationalmedia.com.au&gt;</div>
+      <div><strong>From:</strong> Nitesh Roopa &lt;Nitesh@Profit-Pulse.com.au&gt;</div>
+      <div style="margin-top:8px;"><strong>Subject:</strong> National Media and the financial architecture question</div>
+    </div>
+    <div class="email-body">
+      <p>Hi Brad,</p>
+
+      <p>
+        Congratulations on ranking 28th in this year's Smart50 and 62nd in the AFR Fast 100 at
+        the same time. Doubling revenue in a single year while integrating three acquired
+        portfolios is a genuinely impressive achievement, and the Cafe Culture and Cafe Biz Expo
+        acquisition announced in October rounds out what has been a remarkable run of commercial
+        execution.
+      </p>
+
+      <p>
+        My name is Nitesh Roopa. I am a Chartered Accountant and Managing Partner of ProfitPulse,
+        a Brisbane-based fractional CFO practice. Prior to founding ProfitPulse, I spent seven
+        years with Nedbank CIB across energy finance and principal equity roles, and two years as
+        Finance and Commercial Lead on the AUD 10 billion Gympie Road Bypass Tunnel detailed
+        business case for QIC on behalf of Queensland Treasury. Across 16 years and 52 deals,
+        the pattern I have seen most clearly is that acquisition-led growth creates a specific
+        financial architecture challenge that operational finance alone does not solve.
+      </p>
+
+      <p>
+        At $18.4 million and growing, with 13 events, 10 brands, and three recent portfolio
+        additions still in integration, the question for National Media is not whether you
+        have great operational finance in place. The question is whether you have a senior
+        strategic financial voice modelling acquisition economics before the next deal,
+        allocating capital across your brand portfolio by return rather than by instinct, and
+        building the reporting cadence that turns all of that activity into a clear P and L
+        story. The Fractional CFO Partnership is exactly that capability, at a monthly fee and
+        without a full-time C suite hire. I have attached a short brief for your review.
+      </p>
+
+      <p>
+        If you would like to see the solutions matched to your size and industry, the best
+        starting point is a short questionnaire at
+        <a href="https://profit-pulse.com.au/full-suite-of-products?utm_source=outreach&utm_medium=email&utm_campaign=nightly_outreach&utm_content=national_media"
+           style="color:#01A296;">profit-pulse.com.au/full-suite-of-products</a>.
+        It takes two minutes and shows you the services matched to your situation, each with
+        a direct option to start.
+      </p>
+
+      <p>
+        If you would prefer to talk through it first, I am happy to offer a complimentary
+        30 minute discovery call. You can book directly at
+        <a href="https://bookings.cloud.microsoft/book/ProfitPulse1@profit-pulse.com.au/?ismsaljsauthenabled=true"
+           style="color:#01A296;">bookings.cloud.microsoft/book/ProfitPulse1@profit-pulse.com.au</a>.
+        Either way, I look forward to the conversation.
+      </p>
+
+      <p>
+        Warm regards,<br><br>
+        <strong>Nitesh Roopa</strong><br>
+        CA, Managing Partner<br>
+        ProfitPulse<br>
+        Profit-Pulse.com.au<br>
+        Nitesh@Profit-Pulse.com.au<br>
+        +61 411 876 267
+      </p>
+    </div>
+  </div>
+</div>
+
+<hr class="separator">
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- 5.5 SYSTEM NOTES -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header"><h2>System Notes</h2></div>
+  <div class="sys-notes">
+    <dl>
+      <dt>Target Selected</dt>
+      <dd>National Media Pty Ltd, Bundall, Gold Coast QLD. Confirmed not present in Outreach_Register.csv (only prior entry is AdUnion, 09 Jun 2026).</dd>
+
+      <dt>Verified Sources Used</dt>
+      <dd>1. SmartCompany Smart50 2025 (rank 28 citation) confirming $18.4M revenue, 42% three year growth, 48 employees. Published Nov 2025. URL: smartcompany.com.au/smart50-awards-2025/national-media-ranks-28-smart50-awards-2025/<br>
+      2. Exhibition Industry News, Nov 2025: "National Media Joins the AFR Fast 100" confirming AFR Fast 100 2025 rank 62, revenue doubled in the past year, 13 events across 10 brands, workforce of event and commercial specialists. URL: exhibitionindustrynews.com.au/2025/11/national-media-joins-the-afr-fast-100<br>
+      3. Cafe Show Australia press release, Oct 2025: National Media acquires Cafe Culture and Cafe Biz Expo. URL: cafeshow.com.au/national-media-acquires-cafe-culture-and-cafe-biz-expo/<br>
+      4. Foodservice Australia press release: National Media acquires Foodservice Australia, Food and Hospitality Queensland, Aged Care Catering Summit, National Restaurant Conference, Australian Chef of the Year from Specialised Events. URL: foodserviceaustralia.com.au<br>
+      5. ZoomInfo profile confirming CEO Brad Langton and email pattern blangton@nationalmedia.com.au<br>
+      6. LinkedIn profile au.linkedin.com/in/bradlangton confirming Brad Langton as CEO<br>
+      7. theorg.com org chart confirming leadership team including Mark Harvey, Holly Doughty, Shannon Terry, Bradley Smeeton</dd>
+
+      <dt>Inferred Commercial Goal</dt>
+      <dd>INFERENCE, NOT VERIFIED FACT. National Media is most likely pursuing strategic financial leadership to support active M and A integration and capital allocation across its multi-brand portfolio. Evidence: three acquisitions in 18 months, revenue doubled in one year, 10 distinct brand P and Ls to manage, Finance Director in place but no CFO-level strategic role evident publicly. The company appears to be at an inflection point where operational finance is covered but strategic financial architecture is the constraint on disciplined growth.</dd>
+
+      <dt>Matched Service Code and Name</dt>
+      <dd>Primary: B1 Fractional CFO Partnership<br>
+      Supporting: G3 Product and Service Line Profitability, A4 Strategic Growth Diagnostic</dd>
+
+      <dt>Inferred Tier and Reason</dt>
+      <dd>Command. Raw score 39 equals the Command ceiling at industry bias 2 (Marketing creative and media agencies), landing exactly at Command before adjustments. No adjustment conditions met (margin mid-band, forward growth moderate). Full engine output: Revenue 6, Margin 3, Team 4, Locations 4, Structure 1, Revenue model 2, Concentration 1, Debt 3, Forward growth 4, Recent trajectory 6, Commercial event 5. Raw score 39. Bias 2, Essential ceiling 29, Command ceiling 39. Base tier Command, no adjustment. Final tier Command.</dd>
+
+      <dt>Questionnaire URL with UTM Tags</dt>
+      <dd>https://profit-pulse.com.au/full-suite-of-products?utm_source=outreach&amp;utm_medium=email&amp;utm_campaign=nightly_outreach&amp;utm_content=national_media (for email)<br>
+      https://profit-pulse.com.au/full-suite-of-products?utm_source=outreach&amp;utm_medium=html&amp;utm_campaign=nightly_outreach&amp;utm_content=national_media (for this HTML dossier)</dd>
+
+      <dt>Direct Stripe Checkout Link and Tier</dt>
+      <dd>Service: B1 Fractional CFO Partnership, Command tier, $4,950 per month.<br>
+      Link: https://buy.stripe.com/cNibJ28SYbqwepG3833ks0q<br>
+      Source: Appendix A of standing instruction document, B1 Command row.</dd>
+
+      <dt>Email Includes Direct Checkout Link</dt>
+      <dd>No. EMAIL_INCLUDE_DIRECT_CHECKOUT is false. The email leads with the questionnaire only. The Stripe link appears in this dossier and on slide three of the brief, not in the email.</dd>
+
+      <dt>Nothing Has Been Sent</dt>
+      <dd>Confirmed. No email, message, or communication has been sent. This dossier is a draft for Nitesh Roopa's review only. Only Nitesh Roopa may authorise and send the email.</dd>
+    </dl>
+  </div>
+</div>
+
+<div style="text-align:center;margin-top:40px;font-size:0.78rem;color:#444;border-top:1px solid #1a1a1a;padding-top:16px;">
+  Prepared by Nitesh Roopa CA, Managing Partner, ProfitPulse &nbsp;|&nbsp;
+  Profit-Pulse.com.au &nbsp;|&nbsp; 30 Jun 2026 &nbsp;|&nbsp; Internal use only
+</div>
+
+</body>
+</html>
