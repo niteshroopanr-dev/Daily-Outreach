@@ -196,7 +196,7 @@ def build(data, out_path):
     col_w = Inches(4.05)
     col_gap = Inches(0.12)
     col_top = Inches(1.6)
-    col_h = Inches(4.95)
+    col_h = Inches(3.35)
     fills = [TEAL, BLACK, GOLD]
     text_colours = [WHITE, WHITE, BLACK]
     idx_colours = [BLACK, AMBER_B, BLACK]
@@ -210,11 +210,11 @@ def build(data, out_path):
                   col_w - Inches(0.5), Inches(0.7), font_name=SERIF, font_size=15.5,
                   bold=True, colour=text_colours[i], line_spacing=1.05)
         add_text(s2, obs["body"], x + Inches(0.25), col_top + Inches(1.75),
-                  col_w - Inches(0.5), Inches(3.0), font_name=SANS, font_size=10.5,
+                  col_w - Inches(0.5), Inches(1.5), font_name=SANS, font_size=10.5,
                   colour=text_colours[i], line_spacing=1.18)
         x = Inches(x.inches + col_w.inches + col_gap.inches)
 
-    add_text(s2, data["warm_line"], Inches(0.35), Inches(6.65), Inches(12.6),
+    add_text(s2, data["warm_line"], Inches(0.35), Inches(5.4), Inches(12.6),
               Inches(0.35), font_name=SANS, font_size=10.5, italic=True,
               colour=RGBColor(0x44, 0x44, 0x44))
 
@@ -258,26 +258,26 @@ def build(data, out_path):
     # Right column, credibility panel
     right_x = Inches(8.25)
     right_w = Inches(4.73)
-    add_rect(s3, right_x, Inches(1.15), right_w, Inches(5.55), BLACK)
+    add_rect(s3, right_x, Inches(1.15), right_w, Inches(4.25), BLACK)
     add_text(s3, "Nitesh Roopa", right_x + Inches(0.25), Inches(1.4), right_w - Inches(0.5),
               Inches(0.4), font_name=SERIF, font_size=17, bold=True, colour=AMBER_B)
     add_text(s3, "CA, Managing Partner, ProfitPulse", right_x + Inches(0.25), Inches(1.82),
               right_w - Inches(0.5), Inches(0.32), font_name=SANS, font_size=11,
               colour=WHITE)
-    cred_paras = [{"text": "•  " + c, "size": 10, "colour": OFF_WHITE, "font": SANS,
+    cred_paras = [{"text": "•  " + c, "size": 10.5, "colour": OFF_WHITE, "font": SANS,
                    "space_after": 6} for c in data["credibility_points"]]
     add_multiline(s3, cred_paras, right_x + Inches(0.25), Inches(2.3), right_w - Inches(0.5),
-                  Inches(1.9), line_spacing=1.1)
+                  Inches(1.5), line_spacing=1.1)
 
-    add_rect(s3, right_x + Inches(0.25), Inches(4.3), right_w - Inches(0.5), Pt(1), TEAL)
+    add_rect(s3, right_x + Inches(0.25), Inches(3.75), right_w - Inches(0.5), Pt(1), TEAL)
     contact_paras = [
         {"text": "Profit-Pulse.com.au", "size": 10.5, "colour": OFF_WHITE, "font": SANS, "space_after": 4},
         {"text": "Nitesh@Profit-Pulse.com.au", "size": 10.5, "colour": TEAL, "font": SANS, "space_after": 4},
         {"text": "+61 411 876 267", "size": 10.5, "colour": OFF_WHITE, "font": SANS, "space_after": 4},
         {"text": "linkedin.com/in/nitesh-roopa-77594163", "size": 10.5, "colour": TEAL, "font": SANS},
     ]
-    add_multiline(s3, contact_paras, right_x + Inches(0.25), Inches(4.5), right_w - Inches(0.5),
-                  Inches(1.5))
+    add_multiline(s3, contact_paras, right_x + Inches(0.25), Inches(3.95), right_w - Inches(0.5),
+                  Inches(1.2))
 
     prs.save(out_path)
     print(f"PPTX saved: {out_path}")
