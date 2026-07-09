@@ -6,6 +6,8 @@ Data driven: edit the DATA dict at the bottom (or import and call build()).
 """
 
 import copy
+import zipfile
+import shutil
 from pptx import Presentation
 from pptx.util import Inches, Pt, Emu
 from pptx.dml.color import RGBColor
@@ -46,6 +48,13 @@ def add_rect(slide, left, top, width, height, fill_colour, line_colour=None, lin
     else:
         shape.line.fill.background()
     shape.shadow.inherit = False
+    # Strip the theme <p:style> block entirely, its effectRef otherwise renders a
+    # shadow in LibreOffice even with an empty effectLst on spPr.
+    style_el = shape._element.find(
+        "{http://schemas.openxmlformats.org/presentationml/2006/main}style"
+    )
+    if style_el is not None:
+        shape._element.remove(style_el)
     return shape
 
 
@@ -119,6 +128,30 @@ def add_hyperlink_note(shape, url):
             r.hyperlink.address = url
 
 
+def fix_theme_hyperlink_colours(pptx_path):
+    """PowerPoint themes default a:hlink/a:folHlink to blue/purple. Renderers such
+    as LibreOffice apply that theme colour to any hyperlinked run regardless of
+    direct run formatting, which would put a non brand blue on the slide. Force
+    both to brand black so hyperlinked text stays within the seven allowed colours."""
+    tmp_path = pptx_path + ".tmp"
+    with zipfile.ZipFile(pptx_path, "r") as zin, zipfile.ZipFile(tmp_path, "w", zipfile.ZIP_DEFLATED) as zout:
+        for item in zin.infolist():
+            data = zin.read(item.filename)
+            if item.filename.startswith("ppt/theme/theme") and item.filename.endswith(".xml"):
+                text = data.decode("utf-8")
+                text = text.replace(
+                    "<a:hlink><a:srgbClr val=\"0000FF\"/></a:hlink>",
+                    "<a:hlink><a:srgbClr val=\"000000\"/></a:hlink>",
+                )
+                text = text.replace(
+                    "<a:folHlink><a:srgbClr val=\"800080\"/></a:folHlink>",
+                    "<a:folHlink><a:srgbClr val=\"000000\"/></a:folHlink>",
+                )
+                data = text.encode("utf-8")
+            zout.writestr(item, data)
+    shutil.move(tmp_path, pptx_path)
+
+
 def house_chrome(slide, eyebrow, right_label, date_str):
     """Left accent stripe, black header band, footer line. Call first on every slide."""
     set_background(slide, WHITE)
@@ -187,9 +220,6 @@ def build(data, out_path):
     # ---------------- SLIDE 2 ----------------
     s2 = prs.slides.add_slide(blank)
     house_chrome(s2, "THE OPPORTUNITY", company, date_str)
-    add_text(s2, "Three commercial observations from ProfitPulse", Inches(0.35), Inches(0.32),
-              Inches(0), Inches(0), font_size=1)  # placeholder removed below
-    # subtitle line just under header band
     add_text(s2, "Three commercial observations from ProfitPulse", Inches(0.35), Inches(1.02),
               Inches(9.0), Inches(0.3), font_name="Calibri", font_size=12, bold=False,
               colour=BLACK, italic=True, align=PP_ALIGN.LEFT)
@@ -287,5 +317,6 @@ def build(data, out_path):
                    line_spacing=1.1)
 
     prs.save(out_path)
+    fix_theme_hyperlink_colours(out_path)
     print(f"PPTX saved: {out_path}")
     return out_path
