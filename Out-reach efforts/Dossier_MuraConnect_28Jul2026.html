@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProfitPulse Outreach Dossier | MuraConnect | 28 Jul 2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, Helvetica, sans-serif; background: #000000; color: #FFFFFF; font-size: 16px; line-height: 1.6; }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 24px 20px; }
+
+  .pp_header { border-bottom: 3px solid #01A296; padding-bottom: 28px; margin-bottom: 32px; }
+  .pp_brand { color: #01A296; font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px; }
+  .pp_company { color: #F8C806; font-size: 36px; font-weight: 700; margin-bottom: 8px; }
+  .pp_date { color: #E6E5DE; font-size: 14px; margin-bottom: 14px; }
+  .pp_framing { color: #E6E5DE; font-size: 16px; border-left: 4px solid #01A296; padding-left: 16px; margin-top: 14px; line-height: 1.7; }
+
+  .sec { background: #000000; border: 1px solid #01A296; border-radius: 8px; padding: 28px; margin-bottom: 24px; }
+  .sec_title { color: #F8C806; font-size: 13px; font-weight: 700; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #01A296; text-transform: uppercase; letter-spacing: 2px; }
+  .sec h3 { color: #01A296; font-size: 17px; font-weight: 700; margin-bottom: 14px; }
+
+  .pgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .pitem { background: #000000; border: 1px solid #E6E5DE; border-radius: 6px; padding: 14px; }
+  .plabel { color: #F6A102; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .pvalue { color: #FFFFFF; font-size: 15px; font-weight: 600; }
+  .psrc { color: #E6E5DE; font-size: 11px; margin-top: 4px; font-style: italic; }
+
+  .rankings { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 18px; }
+  .rank_badge { background: #000000; border: 1px solid #01A296; border-radius: 6px; padding: 12px 16px; text-align: center; flex: 1; min-width: 150px; }
+  .rank_num { color: #F8C806; font-size: 26px; font-weight: 700; }
+  .rank_list { color: #E6E5DE; font-size: 12px; margin-top: 2px; }
+  .rank_year { color: #E6E5DE; font-size: 11px; opacity: 0.8; }
+
+  .wedge { background: #000000; border-left: 4px solid #01A296; padding: 20px 24px; border-radius: 0 8px 8px 0; margin-bottom: 22px; color: #E6E5DE; font-size: 16px; line-height: 1.8; }
+
+  .inf_note { background: #000000; border: 1px solid #F6A102; border-radius: 4px; padding: 8px 14px; font-size: 12px; color: #F6A102; margin-bottom: 20px; }
+
+  .svc_block { background: #000000; border: 2px solid #01A296; border-radius: 10px; padding: 24px; margin-bottom: 20px; }
+  .svc_code { color: #F6A102; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 6px; }
+  .svc_name { color: #01A296; font-size: 22px; font-weight: 700; margin-bottom: 10px; }
+  .svc_desc { color: #E6E5DE; font-size: 15px; line-height: 1.7; margin-bottom: 18px; }
+  .svc_meta { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; margin-bottom: 10px; }
+  .price_display { color: #F8C806; font-size: 20px; font-weight: 700; }
+  .cadence { color: #E6E5DE; font-size: 13px; }
+  .tier_reason { color: #E6E5DE; font-size: 13px; margin-top: 8px; font-style: italic; opacity: 0.85; }
+
+  .sup_list { margin-top: 18px; }
+  .sup_item { background: #000000; border: 1px solid #E3A712; border-radius: 6px; padding: 12px 16px; margin-bottom: 8px; }
+  .sup_label { color: #E3A712; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .sup_name { color: #FFFFFF; font-size: 15px; }
+  .sup_note { color: #E6E5DE; font-size: 12px; margin-top: 3px; }
+
+  .cta_section { background: #000000; border: 1px solid #01A296; border-radius: 10px; padding: 24px; margin-top: 22px; }
+  .cta_heading { color: #FFFFFF; font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+  .cta_sub { color: #E6E5DE; font-size: 13px; margin-bottom: 16px; }
+  .btn_primary { display: inline-block; background: #01A296; color: #FFFFFF; font-weight: 700; text-decoration: none; padding: 16px 28px; border-radius: 30px; font-family: Arial, sans-serif; font-size: 16px; }
+  .btn_note { color: #E6E5DE; font-size: 13px; margin-top: 10px; }
+  .clean_addr { color: #01A296; font-size: 14px; margin-top: 6px; }
+
+  .sec_cta { margin-top: 20px; padding-top: 20px; border-top: 1px solid #01A296; }
+  .sec_cta_text { color: #E6E5DE; font-size: 14px; margin-bottom: 10px; }
+  .btn_secondary { display: inline-block; border: 2px solid #F6A102; color: #F6A102; font-weight: 700; text-decoration: none; padding: 12px 22px; border-radius: 26px; font-family: Arial, sans-serif; font-size: 15px; }
+
+  .review_gate { background: #CC0000; color: #FFFFFF; font-weight: 700; font-size: 15px; padding: 18px 22px; border-radius: 6px; margin-bottom: 22px; text-align: center; border: 2px solid #FFFFFF; }
+
+  .contact_block { background: #000000; border: 1px solid #F6A102; border-radius: 8px; padding: 20px; margin-bottom: 20px; }
+  .contact_verified { background: #000000; border: 1px solid #01A296; border-radius: 6px; padding: 10px 14px; margin-bottom: 10px; }
+  .contact_tag_v { color: #01A296; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+  .contact_tag_i { color: #F6A102; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+  .contact_addr { color: #FFFFFF; font-size: 15px; margin-top: 3px; }
+  .contact_src { color: #E6E5DE; font-size: 11px; margin-top: 2px; font-style: italic; }
+  .contact_guess_row { background: #000000; border: 1px solid #E6E5DE; border-radius: 6px; padding: 8px 14px; margin-bottom: 6px; }
+
+  .email_frame { background: #000000; border: 1px solid #01A296; border-radius: 8px; overflow: hidden; }
+  .email_top { background: #000000; padding: 14px 22px; border-bottom: 1px solid #01A296; }
+  .email_field { color: #E6E5DE; font-size: 13px; margin-bottom: 5px; }
+  .email_field span { color: #FFFFFF; }
+  .email_field .placeholder_tag { color: #F6A102; font-style: italic; }
+  .email_body_wrap { padding: 24px 22px; color: #E6E5DE; font-size: 15px; line-height: 1.85; }
+  .email_body_wrap p { margin-bottom: 18px; }
+  .email_body_wrap a { color: #01A296; word-break: break-all; }
+  .email_sig { border-top: 1px solid #01A296; padding-top: 16px; margin-top: 8px; }
+  .email_sig p { margin-bottom: 4px; color: #E6E5DE; }
+
+  .sys_notes { background: #000000; border: 1px solid #E6E5DE; border-radius: 6px; padding: 20px; }
+  .sys_item { margin-bottom: 10px; font-size: 13px; color: #E6E5DE; }
+  .sys_label { color: #F6A102; font-weight: 700; }
+
+  @media (max-width: 620px) {
+    .pgrid { grid-template-columns: 1fr; }
+    .rankings { flex-direction: column; }
+    .pp_company { font-size: 26px; }
+    .svc_meta { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- 5.1 HEADER -->
+  <div class="pp_header">
+    <div class="pp_brand">ProfitPulse &nbsp;&bull;&nbsp; Internal Research Dossier</div>
+    <div class="pp_company">MuraConnect</div>
+    <div class="pp_date">Prepared for: 28 Jul 2026</div>
+    <div class="pp_framing">
+      An Indigenous owned Brisbane recruitment, IT project management and cultural consultancy that ranked sixth of fifty nationally in the 2025 Smart50 Awards, growing revenue 90 percent to $10.1 million. At that growth rate, the gap between paying placed staff and collecting from enterprise and government clients is the number most likely to bite next.
+    </div>
+  </div>
+
+  <!-- 5.2 VERIFIED PROFILE -->
+  <div class="sec">
+    <div class="sec_title">Verified Profile</div>
+    <div class="pgrid">
+      <div class="pitem">
+        <div class="plabel">Company</div>
+        <div class="pvalue">MuraConnect (Mura Connect Pty Ltd)</div>
+        <div class="psrc">muraconnect.com.au</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Location</div>
+        <div class="pvalue">Suite 7, 36 Agnes Street, Fortitude Valley QLD 4006</div>
+        <div class="psrc">Company contact page</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Industry</div>
+        <div class="pvalue">Recruitment, IT project management and Indigenous cultural consultancy</div>
+        <div class="psrc">Company website (About and Services pages)</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Founded</div>
+        <div class="pvalue">2017</div>
+        <div class="psrc">Company records; cofounder public statements</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Revenue</div>
+        <div class="pvalue">$10.1 million</div>
+        <div class="psrc">SmartCompany Smart50 2025 award citation (company self reported)</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Revenue growth</div>
+        <div class="pvalue">90% year on year</div>
+        <div class="psrc">SmartCompany Smart50 2025 award citation</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Smart50 2025 rank</div>
+        <div class="pvalue">6th of 50</div>
+        <div class="psrc">SmartCompany, Nov 2025</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Ownership</div>
+        <div class="pvalue">51% owned by CEO and cofounder Phil Ahmat</div>
+        <div class="psrc">Supply Nation accreditation basis, company website</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">CEO and cofounder</div>
+        <div class="pvalue">Phil Ahmat</div>
+        <div class="psrc">Company website; public LinkedIn profile; ZoomInfo listing</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Cofounders</div>
+        <div class="pvalue">Anthony Singh and Ash Kumar</div>
+        <div class="psrc">Company records; public founder statements</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Government supplier status</div>
+        <div class="pvalue">Registered supplier on the buy.nsw panel</div>
+        <div class="psrc">buy.nsw.gov.au supplier directory</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Accreditation</div>
+        <div class="pvalue">Supply Nation accredited Indigenous business</div>
+        <div class="psrc">Company website</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Team size</div>
+        <div class="pvalue">Not publicly disclosed by the company</div>
+        <div class="psrc">Third party aggregator (SignalHire) suggests a 10 to 50 person band; not company confirmed, used only as an internal tier assumption, see System Notes</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Team experience claim</div>
+        <div class="pvalue">More than 25 years serving high performing public and private clients</div>
+        <div class="psrc">Company website (Services page)</div>
+      </div>
+    </div>
+
+    <div class="sec" style="margin-top: 20px; margin-bottom: 0;">
+      <div class="sec_title" style="font-size: 12px;">Public Ranking (Verified, 2025)</div>
+      <div class="rankings">
+        <div class="rank_badge">
+          <div class="rank_num">6th</div>
+          <div class="rank_list">SmartCompany Smart50</div>
+          <div class="rank_year">2025 of 50 nationally, Nov 2025</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5.3 THE WEDGE AND MATCHED SERVICE -->
+  <div class="sec">
+    <div class="sec_title">Commercial Wedge and Matched Service</div>
+
+    <div class="inf_note">
+      The inferred commercial goal below is derived from verified public evidence about MuraConnect's growth rate, revenue model and client base. It is an inference, not a verified fact, and is labelled as such.
+    </div>
+
+    <h3>Inferred Commercial Goal</h3>
+    <div class="wedge">
+      MuraConnect has grown revenue 90 percent in a year to $10.1 million on a recruitment and IT project management model, placing staff and contractors with public sector and enterprise clients. Businesses built this way typically pay placed people weekly or fortnightly while their own invoices to government and enterprise clients settle on 30 to 60 day terms. The faster the placement book grows, the wider that funding gap becomes, even while the profit and loss statement looks strong.
+      <br><br>
+      As a Supply Nation accredited, Indigenous owned provider registered on the buy.nsw government panel, MuraConnect likely wins a meaningful share of its revenue through public sector and enterprise procurement relationships, which tend to carry the longest payment terms of any client type. At this pace of growth, the inferred goal for the next 12 months is to find and release the cash currently trapped in that timing gap before it constrains the next round of placements.
+      <br><br>
+      This is an inference from verified public information about the business. It may not reflect the actual situation at MuraConnect.
+    </div>
+
+    <h3>Matched Service</h3>
+    <div class="svc_block">
+      <div class="svc_code">Primary Service &bull; Code C2</div>
+      <div class="svc_name">Working Capital Unlock</div>
+      <div class="svc_desc">
+        A four week project mapping cash trapped in debtors, inventory, work in progress, supplier terms and bank facilities, with a prioritised action list to release it. For a placement led business, this maps exactly where the gap sits between paying people and collecting from clients, and what to do about it.
+      </div>
+      <div class="svc_meta">
+        <div class="price_display">$6,000</div>
+        <div class="cadence">one off &bull; ProfitPulse verified price, questionnaire confirms exact fit</div>
+      </div>
+      <div class="tier_reason">
+        Price shown is the verified ProfitPulse figure for this service. Full tier engine workings are recorded once in System Notes below for traceability; the questionnaire confirms the exact fit from Phil Ahmat's own answers.
+      </div>
+    </div>
+
+    <!-- 5.3A PRIMARY CTA: QUESTIONNAIRE -->
+    <div class="cta_section">
+      <div class="cta_heading">Step 1: Triangulate through the questionnaire</div>
+      <div class="cta_sub">The prospect answers a few short questions. The page matches services to their size and industry. Every matched service carries a direct purchase option. This is the preferred front door.</div>
+      <a class="btn_primary"
+         href="https://profit-pulse.com.au/services/find-your-fit/?utm_source=outreach&utm_medium=html&utm_campaign=nightly_outreach&utm_content=muraconnect">
+        Find your fit in two minutes
+      </a>
+      <div class="btn_note">
+        Answer a few quick questions and see the solutions matched to your size and industry.
+      </div>
+      <div class="clean_addr">profit-pulse.com.au/services/find-your-fit</div>
+
+      <!-- 5.3B SECONDARY CTA: DIRECT PURCHASE -->
+      <div class="sec_cta">
+        <div class="sec_cta_text">
+          Already know Working Capital Unlock is the priority? You can begin directly at the verified price: $6,000 one off.
+        </div>
+        <a class="btn_secondary"
+           href="https://buy.stripe.com/00w4gA7OUfGM5TadMH3ks0z">
+          Purchase the suggested product now to get started
+        </a>
+        <div class="btn_note" style="margin-top: 8px;">
+          Direct Stripe checkout for C2 Working Capital Unlock at the price shown above. No UTM tags appended.
+          The questionnaire confirms the exact fit before purchase if preferred.
+        </div>
+      </div>
+    </div>
+
+    <div class="sup_list">
+      <div style="color: #E6E5DE; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; margin-top: 22px;">Supporting Services (named only, evidence supported)</div>
+      <div class="sup_item">
+        <div class="sup_label">Supporting Service 1 &bull; Code B1</div>
+        <div class="sup_name">Fractional CFO Partnership</div>
+        <div class="sup_note">A senior financial partner on a monthly cadence. Relevant once the working capital gap is mapped, to keep steering cash and margin as placements keep scaling at this rate.</div>
+      </div>
+      <div class="sup_item">
+        <div class="sup_label">Supporting Service 2 &bull; Code C1</div>
+        <div class="sup_name">13 Week Cash Flow Build</div>
+        <div class="sup_note">A rolling 13 week forecast with three scenarios. Relevant for ongoing visibility of the timing gap between payroll and client settlement as the placement book grows.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5.3C LIKELY CONTACT EMAIL ADDRESSES -->
+  <div class="sec">
+    <div class="sec_title">Likely Contact Email Addresses (Internal Use Only, Never Shown To Prospect)</div>
+    <div class="contact_block">
+      <div class="contact_verified">
+        <div class="contact_tag_v">Verified, generic</div>
+        <div class="contact_addr">connect@muraconnect.com.au</div>
+        <div class="contact_src">Source: MuraConnect official Contact page (muraconnect.com.au/contact)</div>
+      </div>
+
+      <div style="color: #E6E5DE; font-size: 13px; margin: 14px 0 8px 0;">
+        No individually verified email was found for Phil Ahmat, CEO and Cofounder. ZoomInfo lists a masked address in the form "p***@muraconnect.com.au", consistent with but not confirming the formats below. Domain used: muraconnect.com.au. The following are inferred, unverified guesses to be chosen and confirmed by Nitesh before any send:
+      </div>
+      <div class="contact_guess_row"><span class="contact_tag_i">Inferred</span> &nbsp; phil@muraconnect.com.au</div>
+      <div class="contact_guess_row"><span class="contact_tag_i">Inferred</span> &nbsp; phil.ahmat@muraconnect.com.au</div>
+      <div class="contact_guess_row"><span class="contact_tag_i">Inferred</span> &nbsp; philahmat@muraconnect.com.au</div>
+      <div class="contact_guess_row"><span class="contact_tag_i">Inferred</span> &nbsp; pahmat@muraconnect.com.au</div>
+      <div class="contact_guess_row"><span class="contact_tag_i">Inferred</span> &nbsp; phil_ahmat@muraconnect.com.au</div>
+    </div>
+  </div>
+
+  <!-- 5.4 EMAIL DRAFT -->
+  <div class="sec">
+    <div class="sec_title">Email Draft</div>
+
+    <div class="review_gate">
+      REVIEW GATE: This email is a draft only. No communication has been sent.
+      Only Nitesh Roopa may authorise and send this message.
+    </div>
+
+    <div class="email_frame">
+      <div class="email_top">
+        <div class="email_field">To: <span>phil.ahmat@muraconnect.com.au</span> <span class="placeholder_tag">(placeholder, inferred format, confirm before sending)</span></div>
+        <div class="email_field">From: <span>Nitesh@Profit-Pulse.com.au</span></div>
+        <div class="email_field">Subject: <span>A note on MuraConnect's growth and cash timing</span></div>
+        <div class="email_field">Attachment: <span>Brief_MuraConnect_28Jul2026.pdf</span></div>
+      </div>
+      <div class="email_body_wrap">
+        <p>Hi Phil,</p>
+        <p>
+          I noticed MuraConnect placed sixth nationally in this year's Smart50 Awards, with revenue growing 90 percent to $10.1 million. Building that kind of momentum as a Supply Nation accredited, Indigenous owned business is a genuinely impressive result, and the recognition is well earned.
+        </p>
+        <p>
+          I am Nitesh Roopa, Chartered Accountant and Managing Partner of ProfitPulse, a Brisbane based fractional CFO and advisory firm. I spent sixteen years across four countries working on finance and capital transactions, including as Finance and Commercial Lead on the ten billion dollar Gympie Road Bypass Tunnel business case for Queensland Treasury, and I now work with growth stage Australian businesses on exactly the financial questions that come with a scale up like this one.
+        </p>
+        <p>
+          At ninety percent growth, the placement funded model that recruitment and IT project businesses run on tends to pull harder on cash than the profit and loss statement shows, since staff are usually paid before enterprise and government clients settle. I have attached a short brief on where that gap likely sits for MuraConnect and how a Working Capital Unlock addresses it directly.
+        </p>
+        <p>
+          If it is useful, this link takes two minutes and shows the ProfitPulse solutions matched to your size and industry:<br>
+          <a href="https://profit-pulse.com.au/services/find-your-fit/?utm_source=outreach&utm_medium=email&utm_campaign=nightly_outreach&utm_content=muraconnect">profit-pulse.com.au/services/find-your-fit</a>
+        </p>
+        <p>
+          If you would rather talk it through first, you are welcome to book a complimentary discovery call here:<br>
+          <a href="https://bookings.cloud.microsoft/book/ProfitPulse1@profit-pulse.com.au/?ismsaljsauthenabled=true">Book a complimentary discovery call</a>
+        </p>
+        <p>Warm regards,</p>
+        <div class="email_sig">
+          <p><strong>Nitesh Roopa</strong></p>
+          <p>CA, Managing Partner</p>
+          <p>ProfitPulse</p>
+          <p><a href="https://profit-pulse.com.au">Profit-Pulse.com.au</a></p>
+          <p><a href="mailto:Nitesh@Profit-Pulse.com.au">Nitesh@Profit-Pulse.com.au</a></p>
+          <p>+61 411 876 267</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5.5 SYSTEM NOTES -->
+  <div class="sec">
+    <div class="sec_title">System Notes</div>
+    <div class="sys_notes">
+      <div class="sys_item"><span class="sys_label">Run date:</span> 27 Jul 2026 (23:00 Brisbane time). Output date for all files: 28 Jul 2026.</div>
+      <div class="sys_item"><span class="sys_label">Target selected:</span> MuraConnect, Fortitude Valley, Brisbane QLD. Register checked against Outreach_Register.csv: only prior entry is AdUnion (09 Jun 2026). No prior entry for MuraConnect exists. Selection is valid.</div>
+      <div class="sys_item">
+        <span class="sys_label">Verified sources used:</span>
+        <br>1. SmartCompany Smart50 2025 award citation (rank 6, revenue $10.1M, growth 90%, founded 2017, Brisbane QLD)
+        <br>2. MuraConnect company website, About and Services pages (founders, Supply Nation accreditation, 51% ownership, 25 plus years team experience claim)
+        <br>3. MuraConnect company website, Contact page (registered office Suite 7, 36 Agnes Street, Fortitude Valley QLD 4006; connect@muraconnect.com.au)
+        <br>4. buy.nsw.gov.au supplier directory, MURA CONNECT PTY LTD supplier profile
+        <br>5. ZoomInfo listing for Phil Ahmat, Director, MuraConnect (title confirmation, masked email format)
+        <br>6. Public founder statements (Facebook, industry coverage) confirming Phil Ahmat as CEO and cofounder alongside Anthony Singh and Ash Kumar
+        <br>7. SignalHire company profile (used only as an internal, unverified team size assumption for the tier engine, not displayed as a verified fact)
+      </div>
+      <div class="sys_item">
+        <span class="sys_label">Inferred commercial goal:</span> Releasing cash trapped in the timing gap between paying placed staff and collecting from public sector and enterprise clients, as 90 percent revenue growth widens that gap. This is an inference from public evidence, not a verified fact from MuraConnect.
+      </div>
+      <div class="sys_item"><span class="sys_label">Primary matched service:</span> C2 Working Capital Unlock</div>
+      <div class="sys_item"><span class="sys_label">Supporting services named:</span> B1 Fractional CFO Partnership; C1 13 Week Cash Flow Build</div>
+      <div class="sys_item">
+        <span class="sys_label">Tier engine output:</span>
+        Industry: Indigenous owned enterprises and social enterprises (also consistent with Recruitment and labour hire), bias 3.
+        Raw score inputs: Revenue $10M to $20M (6), Gross margin mid band default (3), Team 16 to 40 default (3), Single location (1), Company plus trust default (2), Mixed revenue model default (2), Some key account reliance default (2), Modest debt default (2), Forward growth 15 to 30% inferred from momentum (4), Recent trajectory scaling rapidly, verified 90% growth (6), No commercial event identified (0). Raw score: 31.
+        Essential ceiling at bias 3 = 27. Command ceiling at bias 3 = 37.
+        Base tier: Command (31 is above 27, at or below 37).
+        No adjustment triggered (margin band 3 does not meet the lift or drop conditions). Final tier: Command.
+      </div>
+      <div class="sys_item">
+        <span class="sys_label">Questionnaire URL (email):</span>
+        https://profit-pulse.com.au/services/find-your-fit/?utm_source=outreach&amp;utm_medium=email&amp;utm_campaign=nightly_outreach&amp;utm_content=muraconnect
+      </div>
+      <div class="sys_item">
+        <span class="sys_label">Questionnaire URL (HTML dossier):</span>
+        https://profit-pulse.com.au/services/find-your-fit/?utm_source=outreach&amp;utm_medium=html&amp;utm_campaign=nightly_outreach&amp;utm_content=muraconnect
+      </div>
+      <div class="sys_item">
+        <span class="sys_label">Questionnaire URL (PPTX and PDF brief):</span>
+        https://profit-pulse.com.au/services/find-your-fit/ (clean address, no UTM tags, per Section 6.4 brief link rules)
+      </div>
+      <div class="sys_item">
+        <span class="sys_label">Direct Stripe checkout link used:</span>
+        C2 Working Capital Unlock, Command tier, $6,000 one off.
+        Link: https://buy.stripe.com/00w4gA7OUfGM5TadMH3ks0z
+        No UTM tags appended to Stripe link.
+      </div>
+      <div class="sys_item">
+        <span class="sys_label">Contact email basis:</span> Domain muraconnect.com.au. Verified generic address found (connect@muraconnect.com.au, company Contact page). No individually verified address found for Phil Ahmat; five inferred formats listed in Section 5.3C above, all marked unverified. The email draft To line uses phil.ahmat@muraconnect.com.au as a placeholder only, not presented as verified.
+      </div>
+      <div class="sys_item">
+        <span class="sys_label">EMAIL_INCLUDE_DIRECT_CHECKOUT:</span> false. The email leads with the questionnaire. No Stripe checkout link appears in the email body.
+      </div>
+      <div class="sys_item">
+        <span class="sys_label">BITLY_SHORTEN:</span> false. No short links created.
+      </div>
+      <div class="sys_item"><span class="sys_label">Nothing has been sent.</span> Every output in this dossier is a draft for Nitesh Roopa's review only. No email, message, or communication of any kind has been dispatched.</div>
+      <div class="sys_item">
+        <span class="sys_label">Files saved:</span>
+        Out-reach efforts/Dossier_MuraConnect_28Jul2026.html
+        Out-reach efforts/Brief_MuraConnect_28Jul2026.pptx
+        Out-reach efforts/Brief_MuraConnect_28Jul2026.pdf
+        Out-reach efforts/Outreach_Register.csv (updated)
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align: center; color: #E6E5DE; font-size: 12px; padding: 20px 0; opacity: 0.7;">
+    ProfitPulse &nbsp;&bull;&nbsp; Confidential Internal Dossier &nbsp;&bull;&nbsp; Profit-Pulse.com.au &nbsp;&bull;&nbsp; 28 Jul 2026
+  </div>
+
+</div>
+</body>
+</html>
