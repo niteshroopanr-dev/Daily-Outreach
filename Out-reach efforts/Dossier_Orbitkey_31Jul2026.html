@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProfitPulse Internal Dossier: Orbitkey, 31 Jul 2026</title>
+<style>
+  :root {
+    --black: #000000;
+    --teal: #01A296;
+    --amber-bright: #F8C806;
+    --amber-deep: #F6A102;
+    --gold: #E3A712;
+    --white: #FFFFFF;
+    --off-white: #E6E5DE;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 0;
+    background: var(--white);
+    color: var(--black);
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.5;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 0 20px 60px; }
+  header.hero {
+    background: var(--black);
+    color: var(--white);
+    padding: 36px 20px;
+    border-bottom: 6px solid var(--teal);
+  }
+  header.hero .inner { max-width: 860px; margin: 0 auto; }
+  header.hero .eyebrow {
+    color: var(--amber-bright);
+    letter-spacing: 2px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  header.hero h1 { font-size: 36px; margin: 8px 0 4px; }
+  header.hero .sub { color: var(--off-white); font-size: 15px; margin: 0; }
+  header.hero .why {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid var(--off-white);
+    color: var(--off-white);
+    font-size: 14px;
+    font-style: italic;
+  }
+  h2.section {
+    color: var(--teal);
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin: 44px 0 14px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--off-white);
+  }
+  table.profile { width: 100%; border-collapse: collapse; font-size: 14px; }
+  table.profile td { padding: 9px 6px; border-bottom: 1px solid var(--off-white); vertical-align: top; }
+  table.profile td.k { width: 220px; font-weight: bold; color: var(--black); }
+  table.profile td.src { color: var(--teal); font-size: 12px; }
+  .stat-grid { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 6px; }
+  .stat-card {
+    background: var(--black);
+    color: var(--white);
+    border-top: 4px solid var(--teal);
+    border-radius: 4px;
+    padding: 14px 16px;
+    flex: 1 1 150px;
+    min-width: 150px;
+  }
+  .stat-card .num { color: var(--amber-bright); font-size: 26px; font-weight: bold; }
+  .stat-card .lbl { color: var(--off-white); font-size: 12px; margin-top: 4px; }
+  .stat-card .src { color: var(--teal); font-size: 10px; margin-top: 8px; }
+  ul.signals { padding-left: 20px; font-size: 14px; }
+  ul.signals li { margin-bottom: 8px; }
+  .wedge-block { font-size: 15px; margin-top: 6px; }
+  .wedge-block p { margin: 0 0 12px; }
+  .service-card {
+    background: var(--off-white);
+    border: 1px solid var(--off-white);
+    border-left: 6px solid var(--teal);
+    border-radius: 4px;
+    padding: 20px;
+    margin-top: 18px;
+  }
+  .service-card h3 { margin: 0 0 6px; font-size: 20px; color: var(--black); }
+  .service-card .price { font-size: 22px; font-weight: bold; color: var(--amber-deep); margin: 6px 0; }
+  .service-card .note { font-size: 11px; color: var(--black); }
+  .supporting { font-size: 13px; margin-top: 14px; color: var(--black); }
+  .cta-primary {
+    display: inline-block;
+    background: var(--teal);
+    color: var(--white);
+    font-weight: 700;
+    text-decoration: none;
+    padding: 16px 28px;
+    border-radius: 30px;
+    font-size: 16px;
+    margin-top: 18px;
+  }
+  .cta-sub { color: var(--black); font-size: 14px; margin-top: 8px; }
+  .cta-secondary {
+    display: inline-block;
+    border: 1px solid var(--amber-deep);
+    color: var(--amber-deep);
+    font-weight: 700;
+    text-decoration: none;
+    padding: 12px 22px;
+    border-radius: 26px;
+    font-size: 15px;
+    margin-top: 10px;
+  }
+  .contact-box {
+    background: var(--off-white);
+    border: 1px solid var(--off-white);
+    border-radius: 4px;
+    padding: 18px 20px;
+    font-size: 14px;
+  }
+  .contact-box .verified-tag { color: var(--teal); font-weight: bold; font-size: 11px; text-transform: uppercase; }
+  .contact-box .inferred-tag { color: var(--amber-deep); font-weight: bold; font-size: 11px; text-transform: uppercase; }
+  .contact-box table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+  .contact-box td { padding: 6px 4px; border-bottom: 1px solid var(--off-white); font-size: 13px; }
+  .review-banner {
+    background: #B00020;
+    color: var(--white);
+    padding: 16px 20px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+  .email-box {
+    border: 1px solid var(--off-white);
+    border-radius: 4px;
+    padding: 24px;
+    background: var(--white);
+  }
+  .email-box .field { font-size: 12px; color: var(--black); margin-bottom: 6px; }
+  .email-box .field b { color: var(--black); }
+  .email-box .subject { font-size: 16px; font-weight: bold; margin: 14px 0 18px; }
+  .email-box p { font-size: 14px; margin: 0 0 14px; }
+  .email-box .sig { margin-top: 18px; font-size: 14px; }
+  .email-box .sig b { display: block; }
+  .sysnotes {
+    background: var(--black);
+    color: var(--off-white);
+    border-radius: 4px;
+    padding: 20px;
+    font-size: 12.5px;
+    font-family: "Courier New", Courier, monospace;
+    line-height: 1.7;
+  }
+  .sysnotes .k { color: var(--teal); }
+  footer.page-footer {
+    margin-top: 50px;
+    padding-top: 16px;
+    border-top: 1px solid var(--off-white);
+    font-size: 11px;
+    color: var(--black);
+  }
+  a { color: var(--teal); }
+  @media (max-width: 600px) {
+    .stat-grid { flex-direction: column; }
+    table.profile td.k { width: 140px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="inner">
+    <div class="eyebrow">Internal Review Dossier, Nitesh Only</div>
+    <h1>Orbitkey</h1>
+    <p class="sub">31 Jul 2026 &nbsp;&bull;&nbsp; Orbitkey Pty Ltd &nbsp;&bull;&nbsp; Richmond VIC, Melbourne</p>
+    <p class="why">Selected tonight because it is a fresh, publicly verified fast growth story, a $24.6 million revenue,
+    44 person consumer goods brand that has funded 20 percent average growth entirely without external capital,
+    now carrying real working capital exposure across a global logistics footprint.</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <h2 class="section">Verified Profile</h2>
+  <table class="profile">
+    <tr><td class="k">Company</td><td>Orbitkey (Orbitkey Pty Ltd)<br><span class="src">Source: SmartCompany Smart50 2025; Crunchbase</span></td></tr>
+    <tr><td class="k">Website</td><td>orbitkey.com</td></tr>
+    <tr><td class="k">Location</td><td>6/45 Vere Street, Richmond VIC 3121, plus a Kensington VIC design studio, both well inside 50km of Melbourne CBD<br><span class="src">Source: Dun and Bradstreet company profile; LinkedIn job listing</span></td></tr>
+    <tr><td class="k">Industry</td><td>Design led everyday carry accessories, sold via direct ecommerce and global wholesale</td></tr>
+    <tr><td class="k">Founded</td><td>2013, by Rex Kuo and Charles Ng<br><span class="src">Source: SmartCompany Smart50 2025; Crunchbase</span></td></tr>
+    <tr><td class="k">Employees</td><td>44 people<br><span class="src">Source: SmartCompany Smart50 2025 award profile</span></td></tr>
+    <tr><td class="k">Annual revenue</td><td>$24.6 million, cited alongside 20 percent average growth<br><span class="src">Source: SmartCompany Smart50 2025 award profile</span></td></tr>
+    <tr><td class="k">Gross margin</td><td>Not publicly disclosed. Modelled at a neutral 40 to 55 percent band for the tier engine.</td></tr>
+    <tr><td class="k">Business structure</td><td>Single primary operating entity, with a distributed staff footprint across design and sourcing roles. Not publicly evident whether any staff sit in separate legal entities.</td></tr>
+    <tr><td class="k">Funding and debt</td><td>Bootstrapped. Founders state a deliberate preference to remain independent of external investors, funding growth through retail cash flow and Kickstarter pre sales.<br><span class="src">Source: SmartCompany crowdfunding feature, quote attributed to Rex Kuo</span></td></tr>
+    <tr><td class="k">Decision maker</td><td>Rex Kuo, Co Founder and Managing Director, with the company since founding in November 2013<br><span class="src">Source: The Org; Crunchbase; LinkedIn (au.linkedin.com/in/rex-kuo-6327b17a)</span></td></tr>
+  </table>
+
+  <h2 class="section">Stat Cards</h2>
+  <div class="stat-grid">
+    <div class="stat-card"><div class="num">$24.6M</div><div class="lbl">Annual revenue</div><div class="src">SmartCompany Smart50 2025</div></div>
+    <div class="stat-card"><div class="num">20%</div><div class="lbl">Average 3 year growth</div><div class="src">SmartCompany Smart50 2025</div></div>
+    <div class="stat-card"><div class="num">44</div><div class="lbl">People on the team</div><div class="src">SmartCompany Smart50 2025</div></div>
+    <div class="stat-card"><div class="num">83.7</div><div class="lbl">B Corp impact score</div><div class="src">B Lab Global directory</div></div>
+    <div class="stat-card"><div class="num">$8M+</div><div class="lbl">Raised via Kickstarter</div><div class="src">SmartCompany, 11 campaigns</div></div>
+  </div>
+
+  <h2 class="section">Key Commercial Signals</h2>
+  <ul class="signals">
+    <li>B Corp Certified, impact score 83.7 against a global median of 50.9. Source: B Lab Global.</li>
+    <li>2025 Australian Export Award winner, Creative Industries category, plus the Governor of Victoria Export Award in the same category. Source: exportawards.gov.au; global.vic.gov.au.</li>
+    <li>New Richmond headquarters built, sitting alongside the existing Kensington design studio. Source: company published material.</li>
+    <li>Eleventh Kickstarter campaign, the Daily Tote, raised over $393,500, continuing a stated strategy of funding growth without external investors. Source: SmartCompany crowdfunding feature.</li>
+    <li>South Korea flagged as a significant emerging export growth market. Source: exportawards.gov.au.</li>
+    <li>Smart50 2025 ranking, an independent, current confirmation of continued fast growth. Source: SmartCompany.</li>
+  </ul>
+  <p style="font-size:11px;color:var(--black);">Only one clean, independently sourced revenue and headcount snapshot was found (Smart50 2025). No reliable second year figure exists, so no time series chart is shown, per Rule 2.</p>
+
+  <h2 class="section">The Inferred Commercial Goal</h2>
+  <p style="font-size:14px;">Orbitkey is most likely working to fund continued 20 percent plus growth, being inventory across five global third party logistics warehouses, new headquarters capex, and expansion into new export markets such as South Korea, without taking on external capital, given the founders' stated preference to remain self funded and independent. This is an inference from the pattern of evidence, being the bootstrapped funding stance, the capex signals, and the growth trajectory, not a verified fact.</p>
+
+  <h2 class="section">The Wedge and the Matched Service</h2>
+  <div class="wedge-block">
+    <p>Orbitkey has built something rare, a compounding, self funded consumer goods brand. SmartCompany's Smart50 2025 profile cites 20 percent average growth with zero institutional debt and zero external investors, even after eleven Kickstarter campaigns and export growth into more than 100 countries. Co founder Rex Kuo has stated the founders' preference to stay independent, funding growth through pre sales and retail cash flow rather than outside capital.</p>
+    <p>That strategy works well until growth itself becomes the constraint on cash. Orbitkey now holds and moves stock across five third party logistics warehouses globally to service a wholesale network of roughly 3,000 retail partners plus its own ecommerce channel, and the newly built Richmond headquarters adds a further capital commitment on top. At 20 percent growth, every dollar of that growth has to be pre funded in stock before it converts back to cash from a retailer or a Kickstarter backer, typically weeks or months later.</p>
+    <p>Without a discipline built specifically for cash timing across that footprint, growth can quietly outrun the cash available to fund it. The Working Capital Unlock maps exactly where cash is trapped, in stock, in wholesale terms, and in 3PL commitments across the business, and produces a prioritised, quantified action list to release it, cash that keeps Orbitkey funding its own growth on its own terms.</p>
+  </div>
+
+  <div class="service-card">
+    <h3>Working Capital Unlock</h3>
+    <p>A four week project mapping cash trapped in debtors, inventory, work in progress, supplier terms and bank facilities, with a prioritised action list to release cash.</p>
+    <div class="price">$6,000 one off</div>
+    <div class="note">A verified ProfitPulse figure. The questionnaire confirms the exact fit and price for Orbitkey's size before purchase.</div>
+  </div>
+  <div class="supporting">Supporting services also worth noting: KPI Dashboard Build and Run, Product and Service Line Profitability.</div>
+
+  <h2 class="section">Primary Call To Action, The Questionnaire</h2>
+  <a class="cta-primary" href="https://profit-pulse.com.au/services/find-your-fit/?utm_source=outreach&amp;utm_medium=html&amp;utm_campaign=nightly_outreach&amp;utm_content=orbitkey">Find your fit in two minutes</a>
+  <div class="cta-sub">Answer a few quick questions and see the solutions matched to your size and industry.<br>
+  <strong>profit-pulse.com.au/services/find-your-fit</strong></div>
+
+  <h2 class="section">Secondary Option, Direct Purchase</h2>
+  <p style="font-size:14px;">Already know this is the priority? You can begin with Working Capital Unlock, $6,000 one off.</p>
+  <a class="cta-secondary" href="https://buy.stripe.com/00w4gA7OUfGM5TadMH3ks0z">Purchase the suggested product now to get started</a>
+
+  <h2 class="section">Likely Contact Email Addresses</h2>
+  <div class="contact-box">
+    <p>No individual email address for Rex Kuo is publicly verifiable. Only a masked aggregator pattern hint exists
+    (ZoomInfo shows "r***@orbitkey.com"), which is not a primary source, so it is not treated as verified.
+    The company domain orbitkey.com is confirmed from the company's own website.</p>
+    <p><span class="inferred-tag">Inferred, unverified, confirm before use</span></p>
+    <table>
+      <tr><td><strong>rex@orbitkey.com</strong></td><td>firstname@domain, most likely format for a founder led small business</td></tr>
+      <tr><td>rex.kuo@orbitkey.com</td><td>firstname.lastname@domain</td></tr>
+      <tr><td>rexkuo@orbitkey.com</td><td>firstnamelastname@domain</td></tr>
+      <tr><td>rkuo@orbitkey.com</td><td>firstinitiallastname@domain</td></tr>
+      <tr><td>rex_kuo@orbitkey.com</td><td>firstname_lastname@domain</td></tr>
+    </table>
+    <p style="margin-top:12px;"><span class="verified-tag">Verified, safe fallback</span></p>
+    <table>
+      <tr><td>sales@orbitkey.com</td><td>Published wholesale and sales enquiries address. Source: Orbitkey contact pages.</td></tr>
+      <tr><td>press@orbitkey.com</td><td>Published media enquiries address. Source: Orbitkey contact pages.</td></tr>
+    </table>
+    <p style="margin-top:12px;font-size:11px;color:var(--black);">Best guess carried to the email draft below and to the register: rex@orbitkey.com, marked inferred. Confirm the real address, or use LinkedIn InMail to Rex Kuo, before any send.</p>
+  </div>
+
+  <h2 class="section">The Email Draft</h2>
+  <div class="review-banner">REVIEW GATE: This email is a draft only. No communication has been sent.
+  Only Nitesh Roopa may authorise and send this message.</div>
+  <div class="email-box">
+    <div class="field"><b>To:</b> rex@orbitkey.com &nbsp;<em>(placeholder, inferred and unverified, confirm before sending)</em></div>
+    <div class="field"><b>From:</b> Nitesh@Profit-Pulse.com.au</div>
+    <div class="subject">Subject: Orbitkey's growth, and the cash behind it</div>
+
+    <p>Congratulations on Orbitkey's Smart50 2025 ranking and the Export Award win in the Creative Industries category this year, well earned recognition for a genuinely Melbourne built brand now trading in more than 100 countries.</p>
+
+    <p>My name is Nitesh Roopa, a Chartered Accountant and Managing Partner of ProfitPulse here in Brisbane. Over sixteen years I have worked on more than fifty deals across four countries, including as Finance and Commercial Lead on a ten billion dollar infrastructure business case for Queensland Treasury, so I spend most of my time inside the financial engine of growing businesses.</p>
+
+    <p>What caught my attention about Orbitkey is the growth story itself, twenty percent average growth, funded through retail cash flow and Kickstarter pre sales rather than outside capital, now moving stock through five global logistics warehouses to serve close to three thousand retail partners. That is exactly the point where fast growing, inventory heavy businesses can find cash tied up faster than it converts back, even while the business itself is thriving. Our Working Capital Unlock is built for precisely this pattern, and I have attached a short brief with the detail.</p>
+
+    <p>If it is useful, the quickest way to see where this fits for a business at Orbitkey's size is a short questionnaire we built. It triangulates your situation in a couple of minutes and shows the solutions matched to your size and industry:
+    <a href="https://profit-pulse.com.au/services/find-your-fit/?utm_source=outreach&amp;utm_medium=email&amp;utm_campaign=nightly_outreach&amp;utm_content=orbitkey">profit-pulse.com.au/services/find-your-fit</a></p>
+
+    <p>If you would rather talk it through first, I am always happy to offer a complimentary discovery call, no obligation:
+    <a href="https://bookings.cloud.microsoft/book/ProfitPulse1@profit-pulse.com.au/?ismsaljsauthenabled=true">book a time here</a>. Either way, congratulations again on the milestone year.</p>
+
+    <div class="sig">
+      <b>Nitesh Roopa</b>
+      CA, Managing Partner<br>
+      ProfitPulse<br>
+      Profit-Pulse.com.au<br>
+      Nitesh@Profit-Pulse.com.au<br>
+      +61 411 876 267
+    </div>
+  </div>
+
+  <h2 class="section">System Notes</h2>
+  <div class="sysnotes">
+    <div><span class="k">Selected target:</span> Orbitkey (Orbitkey Pty Ltd). Confirmed not present in Outreach_Register.csv prior to this run; only prior entry is AdUnion, 09 Jun 2026.</div><br>
+    <div><span class="k">Verified sources used:</span> SmartCompany Smart50 2025 award profile, SmartCompany Kickstarter feature, exportawards.gov.au Creative Industries winner profile, Victorian Government GOVEA 2025 winners booklet, B Lab Global bcorporation.net, Dun and Bradstreet company profile, The Org, Crunchbase, LinkedIn company and personal profiles.</div><br>
+    <div><span class="k">Inferred goal:</span> Funding continued growth and global inventory without external capital, an inference, not a verified fact, see section above.</div><br>
+    <div><span class="k">Matched service:</span> C2, Working Capital Unlock. Supporting: D3 KPI Dashboard Build and Run, G3 Product and Service Line Profitability.</div><br>
+    <div><span class="k">Inferred tier:</span> Command. Raw score 30 (revenue over $20M scores 7, gross margin not disclosed so neutral default 40 to 55% scores 3, team 41 to 100 scores 4, 2 sites scores 2, single entity scores 1, revenue model mix of recurring and one off neutral default scores 2, well diversified concentration scores 1, debt free scores 0, forward growth 15 to 30% scores 4, recent trajectory growing scores 4, commercial event expansion into new export market scores 2) against E commerce and online retail industry bias 3, giving an Essential ceiling of 27 and a Command ceiling of 37. Base tier Command. No lift applies (margin band 3 is not 2 or less). No drop applies (margin band is not 5). Final tier Command. This matches DEFAULT_TIER, used as a cross check only, the engine was run in full.</div><br>
+    <div><span class="k">Questionnaire URL used:</span> https://profit-pulse.com.au/services/find-your-fit/?utm_source=outreach&amp;utm_medium=html&amp;utm_campaign=nightly_outreach&amp;utm_content=orbitkey</div><br>
+    <div><span class="k">Direct Stripe checkout used:</span> https://buy.stripe.com/00w4gA7OUfGM5TadMH3ks0z (Working Capital Unlock, Command tier, $6,000 one off)</div><br>
+    <div><span class="k">Contact email:</span> Domain orbitkey.com confirmed from the company website. No verified individual address found for Rex Kuo, only a masked aggregator pattern hint (not used as evidence). Best guess rex@orbitkey.com is an inferred, unverified placeholder. Verified generic fallbacks sales@orbitkey.com and press@orbitkey.com are published by the company.</div><br>
+    <div><span class="k">Email direct checkout link included:</span> No. EMAIL_INCLUDE_DIRECT_CHECKOUT is false, so the email leads with the questionnaire only.</div><br>
+    <div><span class="k">Send status:</span> Nothing has been sent. This entire dossier, the brief, and the email draft are for Nitesh Roopa's review only.</div>
+  </div>
+
+  <footer class="page-footer">Prepared by Nitesh Roopa CA, Managing Partner and Founder, ProfitPulse, Profit-Pulse.com.au. Internal dossier for review only, 31 Jul 2026.</footer>
+
+</div>
+</body>
+</html>
