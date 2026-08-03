@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProfitPulse Outreach Dossier | Paire | 04 Aug 2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, Helvetica, sans-serif; background: #000000; color: #FFFFFF; font-size: 16px; line-height: 1.6; }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 24px 20px; }
+
+  .pp_header { border-bottom: 3px solid #01A296; padding-bottom: 28px; margin-bottom: 32px; }
+  .pp_brand { color: #01A296; font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px; }
+  .pp_company { color: #F8C806; font-size: 36px; font-weight: 700; margin-bottom: 8px; }
+  .pp_date { color: #E6E5DE; font-size: 14px; margin-bottom: 14px; }
+  .pp_framing { color: #E6E5DE; font-size: 16px; border-left: 4px solid #01A296; padding-left: 16px; margin-top: 14px; line-height: 1.7; }
+
+  .sec { background: #111111; border: 1px solid #222222; border-radius: 8px; padding: 28px; margin-bottom: 24px; }
+  .sec_title { color: #F8C806; font-size: 13px; font-weight: 700; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #01A296; text-transform: uppercase; letter-spacing: 2px; }
+  .sec h3 { color: #01A296; font-size: 17px; font-weight: 700; margin-bottom: 14px; }
+
+  .pgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .pitem { background: #1a1a1a; border-radius: 6px; padding: 14px; }
+  .plabel { color: #F6A102; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .pvalue { color: #FFFFFF; font-size: 15px; font-weight: 600; }
+  .psrc { color: #888888; font-size: 11px; margin-top: 4px; }
+
+  .flag_note { background: #1a1500; border: 1px solid #F6A102; border-radius: 4px; padding: 10px 14px; font-size: 12.5px; color: #F8C806; margin-top: 16px; line-height: 1.6; }
+
+  .wedge { background: #071212; border-left: 4px solid #01A296; padding: 20px 24px; border-radius: 0 8px 8px 0; margin-bottom: 22px; color: #E6E5DE; font-size: 16px; line-height: 1.8; }
+  .inf_note { background: #1a1500; border: 1px solid #F6A102; border-radius: 4px; padding: 8px 14px; font-size: 12px; color: #F6A102; margin-bottom: 20px; }
+
+  .svc_block { background: #041a18; border: 2px solid #01A296; border-radius: 10px; padding: 24px; margin-bottom: 20px; }
+  .svc_code { color: #F6A102; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 6px; }
+  .svc_name { color: #01A296; font-size: 22px; font-weight: 700; margin-bottom: 10px; }
+  .svc_desc { color: #E6E5DE; font-size: 15px; line-height: 1.7; margin-bottom: 18px; }
+  .price_display { color: #F8C806; font-size: 22px; font-weight: 700; }
+  .cadence { color: #AAAAAA; font-size: 13px; margin-left: 8px; }
+  .price_note { color: #888888; font-size: 12.5px; margin-top: 8px; font-style: italic; }
+
+  .sup_list { margin-top: 18px; }
+  .sup_item { background: #1a1a1a; border-radius: 6px; padding: 12px 16px; margin-bottom: 8px; }
+  .sup_label { color: #E3A712; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .sup_name { color: #FFFFFF; font-size: 15px; }
+
+  .cta_primary { display: inline-block; background: #01A296; color: #FFFFFF; font-weight: 700; text-decoration: none; padding: 16px 28px; border-radius: 30px; font-size: 16px; }
+  .cta_sub { color: #E6E5DE; font-size: 14px; margin-top: 10px; }
+  .cta_secondary { display: inline-block; border: 1px solid #F6A102; color: #F6A102; font-weight: 700; text-decoration: none; padding: 12px 22px; border-radius: 26px; font-size: 15px; margin-top: 6px; }
+  .cta_secondary_intro { color: #E6E5DE; font-size: 14.5px; margin-bottom: 10px; }
+
+  .contact_block { background: #1a1a1a; border-radius: 6px; padding: 16px; margin-bottom: 10px; }
+  .contact_flag_verified { color: #01A296; font-size: 11px; font-weight: 700; text-transform: uppercase; }
+  .contact_flag_inferred { color: #F6A102; font-size: 11px; font-weight: 700; text-transform: uppercase; }
+  .contact_addr { color: #FFFFFF; font-size: 15px; font-weight: 600; margin: 4px 0; }
+  .contact_src { color: #888888; font-size: 12px; }
+
+  .review_banner { background: #B00000; color: #FFFFFF; font-weight: 700; padding: 18px 20px; border-radius: 6px; margin-bottom: 24px; font-size: 14.5px; line-height: 1.6; border: 2px solid #FFFFFF; }
+  .email_box { background: #0a0a0a; border: 1px solid #333333; border-radius: 8px; padding: 24px; }
+  .email_meta { color: #888888; font-size: 13px; margin-bottom: 6px; }
+  .email_meta b { color: #E6E5DE; }
+  .email_subject { color: #F8C806; font-size: 17px; font-weight: 700; margin: 14px 0; }
+  .email_body p { color: #E6E5DE; font-size: 15px; margin-bottom: 16px; line-height: 1.8; }
+  .email_sig { color: #E6E5DE; font-size: 15px; line-height: 1.7; margin-top: 8px; }
+  .email_sig b { color: #FFFFFF; }
+  .placeholder_tag { color: #F6A102; font-size: 12px; font-weight: 700; }
+
+  .sysnotes { color: #AAAAAA; font-size: 13.5px; line-height: 1.9; }
+  .sysnotes b { color: #E6E5DE; }
+  a { color: #01A296; }
+  .footer_note { text-align: center; color: #555555; font-size: 12px; margin-top: 30px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- 5.1 HEADER -->
+  <div class="pp_header">
+    <div class="pp_brand">ProfitPulse Nightly Outreach, Internal Review Only</div>
+    <div class="pp_company">Paire</div>
+    <div class="pp_date">04 Aug 2026</div>
+    <div class="pp_framing">
+      Selected tonight because Paire is compounding revenue at 64% a year (Smart50 2025), running three
+      capital intensive expansions at once, a permanent Melbourne flagship with planned Sydney stores, a
+      Singapore wholesale relationship, and a 2026 United States direct to consumer launch, with no public
+      evidence of a single costed plan tying the three together.
+    </div>
+  </div>
+
+  <!-- 5.2 VERIFIED PROFILE -->
+  <div class="sec">
+    <div class="sec_title">Verified Profile</div>
+    <div class="pgrid">
+      <div class="pitem">
+        <div class="plabel">Legal name</div>
+        <div class="pvalue">Paire Pty Ltd</div>
+        <div class="psrc">Source: ASIC style entity naming per LinkedIn and ZoomInfo listings</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Website</div>
+        <div class="pvalue">paire.com.au</div>
+        <div class="psrc">Also trades as paire.com and pairela.com for the United States market</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Location</div>
+        <div class="pvalue">South Melbourne VIC, plus a flagship store at QV Melbourne</div>
+        <div class="psrc">Source: company support page, Smart50 2024 and 2025 profiles</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Industry</div>
+        <div class="pvalue">Direct to consumer apparel and textiles, merino blend basics through outerwear</div>
+        <div class="psrc">Source: SmartCompany, PowerRetail, FashionUnited</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Employees</div>
+        <div class="pvalue">Approximately 26 to 40 people</div>
+        <div class="psrc">Source: 16 full time plus 10 casual, SmartCompany Smart50 2025; a team of 40, FashionUnited 2026</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Founded</div>
+        <div class="pvalue">2020</div>
+        <div class="psrc">Source: SmartCompany Smart50 2024 profile, FashionUnited 2026</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">FY2025 revenue</div>
+        <div class="pvalue">$9.4 million, 64% growth</div>
+        <div class="psrc">Source: SmartCompany, Smart50 Awards 2025, rank 15</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Revenue history</div>
+        <div class="pvalue">$2.15M (2023), $5.9M (2024), $9.4M (2025)</div>
+        <div class="psrc">Source: SmartCompany Smart50 award citations, 2023 to 2025</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Primary contact</div>
+        <div class="pvalue">Nathan Yun, Co Founder and CEO</div>
+        <div class="psrc">Source: PowerRetail, SmartCompany, ZoomInfo, LinkedIn</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Funding or debt position</div>
+        <div class="pvalue">Not publicly disclosed</div>
+        <div class="psrc">Shark Tank Australia pitch reported, final deal outcome not confirmed in public sources</div>
+      </div>
+    </div>
+    <div class="flag_note">
+      Data integrity note: a Crunchbase record showing a $655,000 raise in 2019 under the name PAIRE belongs
+      to an unrelated United States trousers brand and has been excluded from this dossier. Employee counts
+      from LinkedIn, ZoomInfo, RocketReach, PitchBook, and Tracxn ranged from 6 to 28 and were judged
+      unreliable against the two directly sourced journalism figures used above.
+    </div>
+  </div>
+
+  <!-- 5.3 THE WEDGE AND MATCHED SERVICE -->
+  <div class="sec">
+    <div class="sec_title">The Wedge and the Matched Service</div>
+    <div class="inf_note">
+      Inference, not a verified fact: Paire's most likely 12 month priority is disciplined capital allocation
+      and funding sequencing across its concurrent retail, wholesale, and United States expansion, rather than
+      a single operational fix. This is inferred from the pace of revenue growth, the number of simultaneous
+      expansion fronts, the stated headcount growth, and the absence of any public evidence of a closed
+      funding round following the Shark Tank Australia pitch.
+    </div>
+    <div class="wedge">
+      Paire has proven it can grow, three consecutive Smart50 appearances and a compounding revenue line from
+      $2.15 million to $9.4 million in two years. The harder problem now is sequencing. A permanent flagship
+      plus planned Sydney stores, a Singapore wholesale partner, and a 2026 United States launch each draw on
+      the same cash and the same management attention. The Strategic Growth Diagnostic maps revenue, capacity,
+      and margin headroom across all three fronts and produces a 12 month plan that spells out funding and
+      capital allocation steps for each, so growth decisions get made against one plan rather than three
+      separate ones.
+    </div>
+    <div class="svc_block">
+      <div class="svc_code">Service A4</div>
+      <div class="svc_name">Strategic Growth Diagnostic</div>
+      <div class="svc_desc">
+        A six week engagement that maps revenue, capacity, and margin headroom, then produces a 12 month
+        growth plan with funding and capital allocation steps spelled out. Includes three scenario modelling.
+      </div>
+      <div><span class="price_display">$5,000</span><span class="cadence">one off, ProfitPulse verified price</span></div>
+      <div class="price_note">The questionnaire confirms the exact fit and price for Paire's specific situation.</div>
+    </div>
+    <div class="sup_list">
+      <div class="sup_item">
+        <div class="sup_label">Supporting service</div>
+        <div class="sup_name">Capital Allocation Review</div>
+      </div>
+      <div class="sup_item">
+        <div class="sup_label">Supporting service</div>
+        <div class="sup_name">Capital Raise Feasibility</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5.3A PRIMARY CTA -->
+  <div class="sec" style="text-align:center;">
+    <a class="cta_primary"
+       href="https://profit-pulse.com.au/services/find-your-fit/?utm_source=outreach&utm_medium=html&utm_campaign=nightly_outreach&utm_content=paire">
+       Find your fit in two minutes
+    </a>
+    <div class="cta_sub">
+      Answer a few quick questions and see the solutions matched to your size and industry.<br>
+      profit-pulse.com.au/services/find-your-fit
+    </div>
+  </div>
+
+  <!-- 5.3B SECONDARY OPTION -->
+  <div class="sec">
+    <div class="cta_secondary_intro">
+      Already know this is the priority? You can begin with Strategic Growth Diagnostic, $5,000 one off.
+    </div>
+    <a class="cta_secondary" href="https://buy.stripe.com/eVqdRad9e66cftK23Z3ks0h">
+      Purchase the suggested product now to get started
+    </a>
+  </div>
+
+  <!-- 5.3C LIKELY CONTACT EMAIL ADDRESSES -->
+  <div class="sec">
+    <div class="sec_title">Likely Contact Email Addresses, Internal Use Only</div>
+    <div class="contact_block">
+      <div class="contact_flag_verified">Verified, generic</div>
+      <div class="contact_addr">hello@paire.com.au</div>
+      <div class="contact_src">Source: company support and contact page (support.paire.com.au/contact)</div>
+    </div>
+    <div class="contact_block">
+      <div class="contact_flag_inferred">Inferred, unconfirmed, decision maker Nathan Yun</div>
+      <div class="contact_addr">nathan@paire.com.au</div>
+      <div class="contact_addr">nathan.yun@paire.com.au</div>
+      <div class="contact_addr">nathanyun@paire.com.au</div>
+      <div class="contact_addr">nyun@paire.com.au</div>
+      <div class="contact_addr">nathan_yun@paire.com.au</div>
+      <div class="contact_src">
+        ZoomInfo displays a masked address in the form n***@paire.com.au for Nathan Yun, confirming the domain
+        and first initial pattern but not the unmasked address. These five formats are guesses only, to be
+        chosen and confirmed by Nitesh before any send.
+      </div>
+    </div>
+  </div>
+
+  <!-- 5.4 EMAIL DRAFT -->
+  <div class="sec">
+    <div class="sec_title">Email Draft</div>
+    <div class="review_banner">
+      REVIEW GATE: This email is a draft only. No communication has been sent.
+      Only Nitesh Roopa may authorise and send this message.
+    </div>
+    <div class="email_box">
+      <div class="email_meta">To: <span class="placeholder_tag">[PLACEHOLDER, CONFIRM BEFORE SENDING]</span> nathan@paire.com.au</div>
+      <div class="email_meta">From: <b>Nitesh@Profit-Pulse.com.au</b></div>
+      <div class="email_subject">Subject: A question about Paire's next growth chapter</div>
+      <div class="email_body">
+        <p>
+          Hi Nathan, I saw Paire's result in this year's SmartCompany Smart50 Awards, rank 15, on revenue
+          growth of 64% to $9.4 million. Three straight years on that list, and a Shark Tank appearance along
+          the way, is a genuinely rare run for a business that started in 2020.
+        </p>
+        <p>
+          I am Nitesh Roopa, a Chartered Accountant and Managing Partner at ProfitPulse, a Brisbane based
+          fractional CFO and advisory practice. Over 16 years across 4 countries I have worked on more than
+          52 deals, from Australian scaleups through to a USD 1.3 billion infrastructure financing, and now
+          spend my time helping ambitious owners like you turn fast growth into a properly funded plan.
+        </p>
+        <p>
+          What caught my attention about Paire is that you are running three growth fronts at once, the
+          Melbourne and planned Sydney stores, the Singapore wholesale relationship, and the 2026 United
+          States launch, and I could not find any public sign of a single plan that sequences the funding
+          and capital allocation across all three. That is exactly what our Strategic Growth Diagnostic is
+          built for, and I have attached a short brief with the detail.
+        </p>
+        <p>
+          If it is useful, you can answer a few quick questions here and see the solutions matched to your
+          size and industry:
+          <a href="https://profit-pulse.com.au/services/find-your-fit/?utm_source=outreach&utm_medium=email&utm_campaign=nightly_outreach&utm_content=paire">profit-pulse.com.au/services/find-your-fit</a>
+        </p>
+        <p>
+          If you would rather just talk it through, I am very happy to do a complimentary discovery call,
+          you can grab a time here:
+          <a href="https://bookings.cloud.microsoft/book/ProfitPulse1@profit-pulse.com.au/?ismsaljsauthenabled=true">Book a discovery call</a>.
+          Either way, congratulations again on the Smart50 result, it is well earned.
+        </p>
+      </div>
+      <div class="email_sig">
+        <b>Nitesh Roopa</b><br>
+        CA, Managing Partner<br>
+        ProfitPulse<br>
+        Profit-Pulse.com.au<br>
+        Nitesh@Profit-Pulse.com.au<br>
+        +61 411 876 267
+      </div>
+    </div>
+  </div>
+
+  <!-- 5.5 SYSTEM NOTES -->
+  <div class="sec">
+    <div class="sec_title">System Notes</div>
+    <div class="sysnotes">
+      <b>Selected target:</b> Paire Pty Ltd (paire.com.au). Confirmed not present in Outreach_Register.csv
+      prior to this run (only AdUnion listed, run dated 09 Jun 2026).<br><br>
+      <b>Sources used:</b> SmartCompany Smart50 award citations 2023, 2024, and 2025; FashionUnited (2026);
+      PowerRetail founder profile; company support and contact page; ZoomInfo and LinkedIn for headcount and
+      contact cross reference (used only for domain and pattern confirmation, not as primary revenue sources).
+      Direct fetches of smartcompany.com.au and fashionunited.uk were blocked by the research sandbox's
+      outbound proxy, so these facts were sourced via search engine snippet extraction with citation; treat
+      the underlying publisher citation, not the snippet tool, as the source of record.<br><br>
+      <b>Inferred goal:</b> Disciplined capital allocation and funding sequencing across concurrent retail,
+      wholesale, and United States expansion. Marked as an inference in Section 5.3, not a verified fact.<br><br>
+      <b>Matched service:</b> A4, Strategic Growth Diagnostic. Supporting services named: A5 Capital Allocation
+      Review, F1 Capital Raise Feasibility.<br><br>
+      <b>Inferred tier:</b> Command (internal only, never shown to Paire). Section 3C engine, industry bias 3
+      (ecommerce and online retail), raw score 35 against an Essential ceiling of 27 and a Command ceiling of
+      37, no lift or drop adjustment applied (margin band 3, forward growth band 6, neither adjustment
+      threshold met). Gross margin band (40% to 55%) and business structure (single entity) used neutral,
+      evidence informed defaults where no public figure existed, per the tier engine's inference guidance;
+      recorded here, never shown to the prospect.<br><br>
+      <b>Questionnaire URL used:</b>
+      https://profit-pulse.com.au/services/find-your-fit/?utm_source=outreach&amp;utm_medium=html&amp;utm_campaign=nightly_outreach&amp;utm_content=paire
+      (dossier), medium=email in the email draft.<br><br>
+      <b>Direct Stripe checkout used:</b> https://buy.stripe.com/eVqdRad9e66cftK23Z3ks0h, A4 Strategic Growth
+      Diagnostic at the Command tier, $5,000 one off. No UTM tags applied, per rule.<br><br>
+      <b>Contact email domain:</b> paire.com.au. Verified generic address found (hello@paire.com.au, company
+      support page). No individual address for Nathan Yun was found unmasked; ZoomInfo confirms only the
+      domain and a masked first initial pattern. The five listed individual addresses are inferred guesses,
+      to be confirmed by Nitesh before any send. Register contact_email field recorded as
+      nathan@paire.com.au (inferred).<br><br>
+      <b>Email direct checkout inclusion:</b> EMAIL_INCLUDE_DIRECT_CHECKOUT is false, so no Stripe link appears
+      in the email draft, only the questionnaire link and the booking link.<br><br>
+      <b>Confirmation:</b> Nothing has been sent. This dossier, the brief, and the email draft are for
+      Nitesh Roopa's review only.
+    </div>
+  </div>
+
+  <div class="footer_note">ProfitPulse Nightly Outreach Engine v3.3, internal document, not for external distribution</div>
+</div>
+</body>
+</html>
