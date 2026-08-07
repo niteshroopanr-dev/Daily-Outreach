@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProfitPulse Outreach Dossier | Catalytic IT | 08 Aug 2026</title>
+<style>
+  /* Brand colours only: #000000 #01A296 #F8C806 #F6A102 #E3A712 #FFFFFF #E6E5DE
+     Panels are differentiated with a 1px teal or amber border on the black page
+     background, never a different fill shade. De-emphasis uses opacity on an
+     in-palette colour rather than a grey. The single sanctioned exception is
+     the red review gate banner, mandated by name in Rule 7. */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, Helvetica, sans-serif; background: #000000; color: #FFFFFF; font-size: 16px; line-height: 1.6; }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 24px 20px; }
+
+  .pp_header { border-bottom: 3px solid #01A296; padding-bottom: 28px; margin-bottom: 32px; }
+  .pp_brand { color: #01A296; font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px; }
+  .pp_company { color: #F8C806; font-size: 36px; font-weight: 700; margin-bottom: 8px; }
+  .pp_date { color: #E6E5DE; font-size: 14px; margin-bottom: 14px; }
+  .pp_framing { color: #E6E5DE; font-size: 16px; border-left: 4px solid #01A296; padding-left: 16px; margin-top: 14px; line-height: 1.7; }
+
+  .sec { background: #000000; border: 1px solid #01A296; border-radius: 8px; padding: 28px; margin-bottom: 24px; }
+  .sec_title { color: #F8C806; font-size: 13px; font-weight: 700; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #01A296; text-transform: uppercase; letter-spacing: 2px; }
+  .sec h3 { color: #01A296; font-size: 17px; font-weight: 700; margin-bottom: 14px; }
+
+  .pgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .pitem { background: #000000; border: 1px solid #E6E5DE; opacity: 0.92; border-radius: 6px; padding: 14px; }
+  .plabel { color: #F6A102; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .pvalue { color: #FFFFFF; font-size: 15px; font-weight: 600; }
+  .psrc { color: #E6E5DE; opacity: 0.65; font-size: 11px; margin-top: 4px; }
+
+  .rankings { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 18px; }
+  .rank_badge { background: #000000; border: 1px solid #01A296; border-radius: 6px; padding: 12px 16px; text-align: center; flex: 1; min-width: 150px; }
+  .rank_num { color: #F8C806; font-size: 26px; font-weight: 700; }
+  .rank_list { color: #E6E5DE; font-size: 12px; margin-top: 2px; }
+  .rank_year { color: #E6E5DE; opacity: 0.65; font-size: 11px; }
+
+  .wedge { background: #000000; border-left: 4px solid #01A296; padding: 20px 24px; border-radius: 0 8px 8px 0; margin-bottom: 22px; color: #E6E5DE; font-size: 16px; line-height: 1.8; }
+
+  .inf_note { background: #000000; border: 1px solid #F6A102; border-radius: 4px; padding: 8px 14px; font-size: 12px; color: #F6A102; margin-bottom: 20px; }
+
+  .svc_block { background: #000000; border: 2px solid #01A296; border-radius: 10px; padding: 24px; margin-bottom: 20px; }
+  .svc_code { color: #F6A102; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 6px; }
+  .svc_name { color: #01A296; font-size: 22px; font-weight: 700; margin-bottom: 10px; }
+  .svc_desc { color: #E6E5DE; font-size: 15px; line-height: 1.7; margin-bottom: 18px; }
+  .svc_meta { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; margin-bottom: 10px; }
+  .price_display { color: #F8C806; font-size: 20px; font-weight: 700; }
+  .cadence { color: #E6E5DE; opacity: 0.7; font-size: 13px; }
+  .price_note { color: #E6E5DE; opacity: 0.7; font-size: 13px; margin-top: 8px; }
+
+  .sup_list { margin-top: 18px; }
+  .sup_item { background: #000000; border: 1px solid #E3A712; border-radius: 6px; padding: 12px 16px; margin-bottom: 8px; }
+  .sup_label { color: #E3A712; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .sup_name { color: #FFFFFF; font-size: 15px; }
+  .sup_note { color: #E6E5DE; opacity: 0.7; font-size: 12px; margin-top: 3px; }
+
+  .cta_section { background: #000000; border: 1px solid #01A296; border-radius: 10px; padding: 24px; margin-top: 22px; }
+  .cta_heading { color: #FFFFFF; font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+  .cta_sub { color: #E6E5DE; opacity: 0.75; font-size: 13px; margin-bottom: 16px; }
+  .btn_primary { display: inline-block; background: #01A296; color: #FFFFFF; font-weight: 700; text-decoration: none; padding: 16px 28px; border-radius: 30px; font-family: Arial, sans-serif; font-size: 16px; }
+  .btn_note { color: #E6E5DE; opacity: 0.6; font-size: 13px; margin-top: 10px; }
+
+  .sec_cta { margin-top: 20px; padding-top: 20px; border-top: 1px solid #01A296; }
+  .sec_cta_text { color: #E6E5DE; font-size: 14px; margin-bottom: 10px; }
+  .btn_secondary { display: inline-block; border: 2px solid #F6A102; color: #F6A102; font-weight: 700; text-decoration: none; padding: 12px 22px; border-radius: 26px; font-family: Arial, sans-serif; font-size: 15px; }
+
+  .contact_block { background: #000000; border: 1px solid #F8C806; border-radius: 8px; padding: 20px; margin-top: 18px; }
+  .contact_heading { color: #F8C806; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+  .contact_row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #E6E5DE; opacity: 0.9; font-size: 14px; }
+  .contact_row:last-child { border-bottom: none; }
+  .contact_addr { color: #FFFFFF; font-family: 'Courier New', monospace; }
+  .contact_tag_verified { color: #01A296; font-size: 11px; font-weight: 700; text-transform: uppercase; }
+  .contact_tag_inferred { color: #F6A102; font-size: 11px; font-weight: 700; text-transform: uppercase; }
+  .contact_src { color: #E6E5DE; opacity: 0.6; font-size: 11px; margin-top: 2px; }
+  .contact_footnote { color: #E6E5DE; opacity: 0.75; font-size: 12px; margin-top: 14px; line-height: 1.6; }
+
+  /* Rule 7 sanctioned exception: the review gate banner must be visibly red. */
+  .review_gate { background: #cc0000; color: #FFFFFF; font-weight: 700; font-size: 15px; padding: 18px 22px; border-radius: 6px; margin-bottom: 22px; text-align: center; border: 2px solid #FFFFFF; }
+
+  .email_frame { background: #000000; border: 1px solid #E6E5DE; opacity: 0.97; border-radius: 8px; overflow: hidden; }
+  .email_top { background: #000000; padding: 14px 22px; border-bottom: 1px solid #01A296; }
+  .email_field { color: #E6E5DE; opacity: 0.75; font-size: 13px; margin-bottom: 5px; }
+  .email_field span { color: #E6E5DE; opacity: 1; }
+  .email_field .placeholder_tag { color: #F6A102; font-size: 11px; font-weight: 700; margin-left: 6px; }
+  .email_body_wrap { padding: 24px 22px; color: #E6E5DE; font-size: 15px; line-height: 1.85; }
+  .email_body_wrap p { margin-bottom: 18px; }
+  .email_body_wrap a { color: #01A296; word-break: break-all; }
+  .email_sig { border-top: 1px solid #01A296; padding-top: 16px; margin-top: 8px; }
+  .email_sig p { margin-bottom: 4px; color: #E6E5DE; }
+
+  .sys_notes { background: #000000; border: 1px solid #E6E5DE; opacity: 0.95; border-radius: 6px; padding: 20px; }
+  .sys_item { margin-bottom: 10px; font-size: 13px; color: #E6E5DE; }
+  .sys_item .sys_label { opacity: 1; }
+  .sys_label { color: #F6A102; font-weight: 700; }
+
+  @media (max-width: 620px) {
+    .pgrid { grid-template-columns: 1fr; }
+    .rankings { flex-direction: column; }
+    .pp_company { font-size: 26px; }
+    .svc_meta { flex-direction: column; align-items: flex-start; }
+    .contact_row { flex-direction: column; align-items: flex-start; gap: 4px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ============================================================
+       5.1  HEADER
+  ============================================================ -->
+  <div class="pp_header">
+    <div class="pp_brand">ProfitPulse &nbsp;&bull;&nbsp; Internal Research Dossier</div>
+    <div class="pp_company">Catalytic IT</div>
+    <div class="pp_date">Prepared for: 08 Aug 2026</div>
+    <div class="pp_framing">
+      A 23 person Perth managed IT and cybersecurity consultancy that has grown revenue from 2.5 million to 7.4 million dollars in about four years across three separate SmartCompany Smart50 citations, and has now stated a plan to build a brand new sales team and push into two new markets. That is a funding and planning question worth surfacing before the spend accelerates.
+    </div>
+  </div>
+
+  <!-- ============================================================
+       5.2  VERIFIED PROFILE
+  ============================================================ -->
+  <div class="sec">
+    <div class="sec_title">Verified Profile</div>
+    <div class="pgrid">
+      <div class="pitem">
+        <div class="plabel">Company</div>
+        <div class="pvalue">Catalytic IT (Catalytic IT Pty Ltd)</div>
+        <div class="psrc">catalyticit.com.au</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Location</div>
+        <div class="pvalue">Burswood, WA (Perth metro, about 3km from CBD)</div>
+        <div class="psrc">Company Contact page</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Industry</div>
+        <div class="pvalue">Managed IT services and cybersecurity consultancy</div>
+        <div class="psrc">Company About page; SmartCompany Smart50 2025 profile</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Founded</div>
+        <div class="pvalue">2013</div>
+        <div class="psrc">SmartCompany Smart50 2023 profile; company About page</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Revenue (FY2025)</div>
+        <div class="pvalue">$7.4 million</div>
+        <div class="psrc">SmartCompany Smart50 2025 award citation, rank 40 of 50</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Revenue Growth (FY2025)</div>
+        <div class="pvalue">28% year on year</div>
+        <div class="psrc">SmartCompany Smart50 2025 award citation</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Revenue Trajectory</div>
+        <div class="pvalue">$2.5M (FY2021) to $4.46M (Smart50 2023) to $7.4M (Smart50 2025)</div>
+        <div class="psrc">SmartCompany Smart50 2023 and 2025 profiles</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Team Size</div>
+        <div class="pvalue">23 employees</div>
+        <div class="psrc">SmartCompany Smart50 2025 profile (also cited in Smart50 2023 profile)</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Director</div>
+        <div class="pvalue">Michael Lester (Director since 2014)</div>
+        <div class="psrc">Company About page; LinkedIn public profile</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Co Director</div>
+        <div class="pvalue">Esteban Vidal (Director since 2020)</div>
+        <div class="psrc">Company About page</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Second Office</div>
+        <div class="pvalue">Devonport, Tasmania (opened, exact date not disclosed)</div>
+        <div class="psrc">Devonport Chamber of Commerce member listing</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Client Base</div>
+        <div class="pvalue">Education, medical and SME or government sectors in Australia; clients also in Singapore and Malaysia</div>
+        <div class="psrc">Company About page; LinkedIn company profile</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Workplace Certification</div>
+        <div class="pvalue">Great Place To Work Australia certified</div>
+        <div class="psrc">Great Place To Work company profile page</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Margin, Debt and Concentration</div>
+        <div class="pvalue">Not publicly disclosed</div>
+        <div class="psrc">No public statement found; treated as unverified in the tier engine</div>
+      </div>
+    </div>
+
+    <!-- Rankings -->
+    <div class="sec" style="margin-top: 20px; margin-bottom: 0; background: #000000;">
+      <div class="sec_title" style="font-size: 12px;">Public Rankings (Verified)</div>
+      <div class="rankings">
+        <div class="rank_badge">
+          <div class="rank_num">20th</div>
+          <div class="rank_list">SmartCompany Smart50</div>
+          <div class="rank_year">2023, revenue $4.46M, growth 34.97%</div>
+        </div>
+        <div class="rank_badge">
+          <div class="rank_num">40th</div>
+          <div class="rank_list">SmartCompany Smart50</div>
+          <div class="rank_year">2025, revenue $7.4M, growth 28%</div>
+        </div>
+        <div class="rank_badge">
+          <div class="rank_num">Listed</div>
+          <div class="rank_list">techpartner.news Fast50</div>
+          <div class="rank_year">2025, Australian IT partner growth list</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       5.3  THE WEDGE AND MATCHED SERVICE
+  ============================================================ -->
+  <div class="sec">
+    <div class="sec_title">Commercial Wedge and Matched Service</div>
+
+    <div class="inf_note">
+      The inferred commercial goal below is derived from verified public evidence about Catalytic IT's growth trajectory, stated hiring plan and stated market expansion plan. It is an inference, not a verified fact, and is labelled as such.
+    </div>
+
+    <h3>Inferred Commercial Goal</h3>
+    <div class="wedge">
+      Catalytic IT appears to be moving from an organic, delivery led growth phase into a deliberately engineered sales and geographic expansion phase, funded so far entirely through operating performance, with no external raise or debt facility found anywhere in the public record.
+      <br><br>
+      This is inferred from two things read together. First, the business has stated a specific plan to build a brand new sales team over the next 12 months, per its own Smart50 2025 profile. Second, the delivery headcount shows almost no movement, 23 people cited in both the 2023 and 2025 Smart50 profiles, while revenue nearly tripled from 2.5 million to 7.4 million over the same period. That combination points to a business that has been productivity led, not headcount led, and is now about to add a genuinely different kind of cost, a sales function, on top of two new market entries, a Devonport, Tasmania office already open and a planned Kuala Lumpur entry.
+      <br><br>
+      This is an inference from verified public information about the business. It may not reflect the actual internal plan at Catalytic IT.
+    </div>
+
+    <h3>Matched Service</h3>
+    <div class="svc_block">
+      <div class="svc_code">Primary Service &bull; Code A4</div>
+      <div class="svc_name">Strategic Growth Diagnostic</div>
+      <div class="svc_desc">
+        A six week engagement that maps revenue, capacity and margin headroom, then produces a 12 month growth plan with funding and capital allocation steps spelled out, tested across three scenarios. Built for exactly this situation: a business committing to a new sales function and new markets that needs the spend and the timing costed out before it accelerates.
+      </div>
+      <div class="svc_meta">
+        <div class="price_display">$3,950</div>
+        <div class="cadence">one off</div>
+      </div>
+      <div class="price_note">
+        This is the verified ProfitPulse price for the matched service. The questionnaire confirms the exact fit and price for Catalytic IT's own situation.
+      </div>
+    </div>
+
+    <!-- CTA: Primary (Questionnaire) -->
+    <div class="cta_section">
+      <div class="cta_heading">Step 1: Triangulate through the questionnaire</div>
+      <div class="cta_sub">The prospect answers a few short questions. The page matches services to their size and industry. Every matched service carries a direct purchase option. This is the preferred front door.</div>
+      <a class="btn_primary"
+         href="https://profit-pulse.com.au/services/find-your-fit/?utm_source=outreach&utm_medium=html&utm_campaign=nightly_outreach&utm_content=catalytic_it">
+        Find your fit in two minutes
+      </a>
+      <div class="btn_note">
+        Visible address: profit-pulse.com.au/services/find-your-fit &nbsp;(UTM tags live only in the href above, never in the visible text)
+      </div>
+
+      <!-- CTA: Secondary (Direct Checkout) -->
+      <div class="sec_cta">
+        <div class="sec_cta_text">
+          Already know the Strategic Growth Diagnostic is the priority? Begin directly at the verified price: $3,950 one off.
+        </div>
+        <a class="btn_secondary"
+           href="https://buy.stripe.com/28E4gA0msgKQchy5gb3ks0g">
+          Purchase the suggested product now to get started
+        </a>
+        <div class="btn_note" style="margin-top: 8px;">
+          Direct Stripe checkout for A4 at the price shown. No UTM tags appended.
+          The questionnaire confirms the exact fit before purchase if preferred.
+        </div>
+      </div>
+    </div>
+
+    <!-- Supporting Services -->
+    <div class="sup_list">
+      <div style="color: #E6E5DE; opacity: 0.75; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; margin-top: 22px;">Supporting Service (named only, evidence supported)</div>
+      <div class="sup_item">
+        <div class="sup_label">Supporting Service &bull; Code A5</div>
+        <div class="sup_name">Capital Allocation Review</div>
+        <div class="sup_note">Independent review of where capital is deployed against return generated, with a redeployment recommendation. Directly relevant once the growth plan is set, to decide how much goes to the new sales team versus the Kuala Lumpur entry versus the existing delivery team.</div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         5.3C  LIKELY CONTACT EMAIL ADDRESSES
+    ============================================================ -->
+    <div class="contact_block">
+      <div class="contact_heading">Likely Contact Email Addresses (internal use only, never shown on the brief)</div>
+
+      <div class="contact_row">
+        <div>
+          <div class="contact_addr">info@catalyticit.com.au</div>
+          <div class="contact_src">Company Contact page; Devonport Chamber of Commerce listing; techpartner.news MSP Index profile</div>
+        </div>
+        <div class="contact_tag_verified">Verified, generic</div>
+      </div>
+
+      <div class="contact_row">
+        <div>
+          <div class="contact_addr">michael.lester@catalyticit.com.au</div>
+          <div class="contact_src">Inferred format: firstname.lastname at the verified domain</div>
+        </div>
+        <div class="contact_tag_inferred">Inferred, most likely</div>
+      </div>
+
+      <div class="contact_row">
+        <div>
+          <div class="contact_addr">michael@catalyticit.com.au</div>
+          <div class="contact_src">Inferred format: firstname at the verified domain</div>
+        </div>
+        <div class="contact_tag_inferred">Inferred</div>
+      </div>
+
+      <div class="contact_row">
+        <div>
+          <div class="contact_addr">mlester@catalyticit.com.au</div>
+          <div class="contact_src">Inferred format: first initial plus lastname at the verified domain</div>
+        </div>
+        <div class="contact_tag_inferred">Inferred</div>
+      </div>
+
+      <div class="contact_row">
+        <div>
+          <div class="contact_addr">michaellester@catalyticit.com.au</div>
+          <div class="contact_src">Inferred format: firstnamelastname at the verified domain</div>
+        </div>
+        <div class="contact_tag_inferred">Inferred</div>
+      </div>
+
+      <div class="contact_row">
+        <div>
+          <div class="contact_addr">michael_lester@catalyticit.com.au</div>
+          <div class="contact_src">Inferred format: firstname underscore lastname at the verified domain</div>
+        </div>
+        <div class="contact_tag_inferred">Inferred</div>
+      </div>
+
+      <div class="contact_footnote">
+        No named staff email format was found in public sources for catalyticit.com.au, only the generic info@ address, which is confirmed across three independent listings. The five individual addresses above are guesses at Michael Lester's likely personal work address, built from his verified name and the verified domain, and are unverified. Nitesh should confirm the correct address, or default to info@catalyticit.com.au, before any send.
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       5.4  EMAIL DRAFT
+  ============================================================ -->
+  <div class="sec">
+    <div class="sec_title">Email Draft</div>
+
+    <div class="review_gate">
+      REVIEW GATE: This email is a draft only. No communication has been sent.
+      Only Nitesh Roopa may authorise and send this message.
+    </div>
+
+    <div class="email_frame">
+      <div class="email_top">
+        <div class="email_field">To: <span>michael.lester@catalyticit.com.au</span><span class="placeholder_tag">PLACEHOLDER, INFERRED, CONFIRM BEFORE SENDING</span></div>
+        <div class="email_field">From: <span>Nitesh@Profit-Pulse.com.au</span></div>
+        <div class="email_field">Subject: <span>The numbers behind Catalytic IT's next growth chapter</span></div>
+        <div class="email_field">Attachment: <span>Brief_CatalyticIT_08Aug2026.pdf</span></div>
+      </div>
+      <div class="email_body_wrap">
+        <p>
+          Hi Michael,
+        </p>
+        <p>
+          I noticed Catalytic IT has now made the SmartCompany Smart50 twice, most recently at rank 40 in 2025, with revenue growing from 4.46 million to 7.4 million dollars since your first appearance on the list in 2023. Building that from a Perth base, across education, medical and government clients, is a genuinely strong result.
+        </p>
+        <p>
+          I am Nitesh Roopa, CA, Managing Partner at ProfitPulse, a Brisbane based fractional CFO and advisory firm. I spent sixteen years across four countries on capital transactions and financial strategy, including energy finance and principal equity roles at Nedbank CIB where deal sizes ranged from USD 15 million to USD 1.3 billion, and I now work with Australian SMEs on cash flow, growth planning and investor ready reporting.
+        </p>
+        <p>
+          The opportunity that prompted this note: your Smart50 profile mentions plans to build a new sales team over the next 12 months alongside your Devonport office and a planned Kuala Lumpur entry. That is a different growth mode to the delivery led hiring that got Catalytic IT here, and it is worth costing out properly before the spend accelerates. ProfitPulse's Strategic Growth Diagnostic does exactly that, mapping revenue, capacity and margin headroom into a funded 12 month plan. I have attached a short brief with more detail.
+        </p>
+        <p>
+          If it is useful, this two minute questionnaire triangulates your situation and shows the ProfitPulse services matched to your size and industry, each with a direct purchase option:<br>
+          <a href="https://profit-pulse.com.au/services/find-your-fit/?utm_source=outreach&utm_medium=email&utm_campaign=nightly_outreach&utm_content=catalytic_it">profit-pulse.com.au/services/find-your-fit</a>
+        </p>
+        <p>
+          If you would rather talk it through first, you are welcome to book a complimentary discovery call here:<br>
+          <a href="https://bookings.cloud.microsoft/book/ProfitPulse1@profit-pulse.com.au/?ismsaljsauthenabled=true">Book a complimentary discovery call</a>
+        </p>
+        <p>Warm regards,</p>
+        <div class="email_sig">
+          <p><strong>Nitesh Roopa</strong></p>
+          <p>CA, Managing Partner</p>
+          <p>ProfitPulse</p>
+          <p><a href="https://profit-pulse.com.au">Profit-Pulse.com.au</a></p>
+          <p><a href="mailto:Nitesh@Profit-Pulse.com.au">Nitesh@Profit-Pulse.com.au</a></p>
+          <p>+61 411 876 267</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       5.5  SYSTEM NOTES
+  ============================================================ -->
+  <div class="sec">
+    <div class="sec_title">System Notes</div>
+    <div class="sys_notes">
+      <div class="sys_item"><span class="sys_label">Run date:</span> 07 Aug 2026 (23:00 Brisbane time). Output date for all files: 08 Aug 2026.</div>
+      <div class="sys_item"><span class="sys_label">Target selected:</span> Catalytic IT, Burswood WA. Checked against the full outreach history across every prior run branch (AdUnion, Taskforce Australia, National Media, Hampr, Sententia Consulting, Paire, iCatalyst, Macro Mike, MuraConnect, My Wealth Solutions, Equality Media + Marketing, Orbitkey, AH Fencing, TradieSpec, Truckit.net). No prior entry for Catalytic IT exists. Selection is valid.</div>
+      <div class="sys_item">
+        <span class="sys_label">Verified sources used:</span>
+        <br>1. SmartCompany Smart50 2025 award citation: rank 40, revenue $7.4M, growth 28%, employees 23
+        <br>2. SmartCompany Smart50 2023 award citation: rank 20, revenue $4.46M, growth 34.97%, employees 23, prior year revenue $2.5M
+        <br>3. techpartner.news 2025 Fast50 list: Catalytic IT named
+        <br>4. Company About page (catalyticit.com.au/about): founding history, Michael Lester and Esteban Vidal director dates
+        <br>5. Company Contact page (catalyticit.com.au/contact): Burswood WA head office address, info@ generic email
+        <br>6. Devonport Chamber of Commerce member listing: Devonport, Tasmania office and info@ address
+        <br>7. Great Place To Work Australia company profile page: certification
+        <br>8. LinkedIn company profile: Singapore and Malaysia client base
+        <br>9. LinkedIn public profile, Michael Lester: Director, Catalytic IT
+      </div>
+      <div class="sys_item">
+        <span class="sys_label">Inferred commercial goal:</span> Moving from delivery led organic growth into a funded, engineered sales and geographic expansion phase. This is an inference from public evidence, not a verified fact from Catalytic IT.
+      </div>
+      <div class="sys_item"><span class="sys_label">Primary matched service:</span> A4 Strategic Growth Diagnostic</div>
+      <div class="sys_item"><span class="sys_label">Supporting service named:</span> A5 Capital Allocation Review</div>
+      <div class="sys_item">
+        <span class="sys_label">Tier engine output (internal only, never shown to the prospect):</span>
+        Industry: Management and IT consulting, bias 1.
+        Raw score inputs: Revenue $5M to $10M (5), Gross margin 40 to 55% assumed neutral default (3, no public disclosure), Team 16 to 40 (3), Two locations, Burswood and Devonport (2), Single entity assumed default (1, no ABN structure found), Mixed revenue model assumed default (2), Some key account reliance assumed default (2), Modest debt assumed default (2), Forward growth 15 to 30% inferred from stated new sales team and Kuala Lumpur plan (4), Recent trajectory growing at 28% (4), Commercial event: second site or expansion, Devonport plus planned Kuala Lumpur (2). Raw score: 30.
+        Essential ceiling at bias 1 = 31. Command ceiling at bias 1 = 41.
+        Base tier: Essential (30 is at or below 31).
+        No adjustment triggered (margin band 3 does not qualify for the upward lift, which needs 2 or less; margin band 3 also does not qualify for the downward drop, which needs 5). Final tier: Essential.
+        The questionnaire confirms the exact tier from Michael Lester's own answers. Tier name never appears outside this internal note.
+      </div>
+      <div class="sys_item">
+        <span class="sys_label">Questionnaire URL (email):</span>
+        https://profit-pulse.com.au/services/find-your-fit/?utm_source=outreach&amp;utm_medium=email&amp;utm_campaign=nightly_outreach&amp;utm_content=catalytic_it
+      </div>
+      <div class="sys_item">
+        <span class="sys_label">Questionnaire URL (HTML dossier):</span>
+        https://profit-pulse.com.au/services/find-your-fit/?utm_source=outreach&amp;utm_medium=html&amp;utm_campaign=nightly_outreach&amp;utm_content=catalytic_it
+      </div>
+      <div class="sys_item">
+        <span class="sys_label">Direct Stripe checkout link used:</span>
+        A4 Strategic Growth Diagnostic, Essential tier internally, $3,950 one off.
+        Link: https://buy.stripe.com/28E4gA0msgKQchy5gb3ks0g
+        No UTM tags appended to the Stripe link.
+      </div>
+      <div class="sys_item">
+        <span class="sys_label">Contact email domain used:</span> catalyticit.com.au. Verified generic address found: info@catalyticit.com.au (three independent listings). No verified named individual address found. Five inferred formats listed above for Michael Lester are guesses, unverified, to be confirmed by Nitesh before any send.
+      </div>
+      <div class="sys_item">
+        <span class="sys_label">EMAIL_INCLUDE_DIRECT_CHECKOUT:</span> false. The email leads with the questionnaire. No Stripe checkout link appears in the email body.
+      </div>
+      <div class="sys_item">
+        <span class="sys_label">BITLY_SHORTEN:</span> false. No short links created.
+      </div>
+      <div class="sys_item"><span class="sys_label">Nothing has been sent.</span> Every output in this dossier is a draft for Nitesh Roopa's review only. No email, message, or communication of any kind has been dispatched.</div>
+      <div class="sys_item">
+        <span class="sys_label">Files saved:</span>
+        Out-reach efforts/Dossier_CatalyticIT_08Aug2026.html
+        Out-reach efforts/Brief_CatalyticIT_08Aug2026.pptx
+        Out-reach efforts/Brief_CatalyticIT_08Aug2026.pdf
+        Out-reach efforts/Outreach_Register.csv (updated)
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div style="text-align: center; color: #E6E5DE; opacity: 0.6; font-size: 12px; padding: 20px 0;">
+    ProfitPulse &nbsp;&bull;&nbsp; Confidential Internal Dossier &nbsp;&bull;&nbsp; Profit-Pulse.com.au &nbsp;&bull;&nbsp; 08 Aug 2026
+  </div>
+
+</div>
+</body>
+</html>
