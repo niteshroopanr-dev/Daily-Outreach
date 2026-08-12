@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProfitPulse Outreach Dossier | al.ive body | 13 Aug 2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, Helvetica, sans-serif; background: #000000; color: #FFFFFF; font-size: 16px; line-height: 1.6; }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 24px 20px; }
+
+  .pp_header { border-bottom: 3px solid #01A296; padding-bottom: 28px; margin-bottom: 32px; }
+  .pp_brand { color: #01A296; font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px; }
+  .pp_company { color: #F8C806; font-size: 36px; font-weight: 700; margin-bottom: 8px; }
+  .pp_date { color: #E6E5DE; font-size: 14px; margin-bottom: 14px; }
+  .pp_framing { color: #E6E5DE; font-size: 16px; border-left: 4px solid #01A296; padding-left: 16px; margin-top: 14px; line-height: 1.7; }
+
+  .sec { background: #111111; border: 1px solid #222222; border-radius: 8px; padding: 28px; margin-bottom: 24px; }
+  .sec_title { color: #F8C806; font-size: 13px; font-weight: 700; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #01A296; text-transform: uppercase; letter-spacing: 2px; }
+  .sec h3 { color: #01A296; font-size: 17px; font-weight: 700; margin-bottom: 14px; }
+
+  .pgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .pitem { background: #1a1a1a; border-radius: 6px; padding: 14px; }
+  .plabel { color: #F6A102; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .pvalue { color: #FFFFFF; font-size: 15px; font-weight: 600; }
+  .psrc { color: #888888; font-size: 11px; margin-top: 4px; }
+  .not_disclosed { color: #999999; font-style: italic; }
+
+  .wedge { background: #071212; border-left: 4px solid #01A296; padding: 20px 24px; border-radius: 0 8px 8px 0; margin-bottom: 22px; color: #E6E5DE; font-size: 16px; line-height: 1.8; }
+  .inf_note { background: #1a1500; border: 1px solid #F6A102; border-radius: 4px; padding: 8px 14px; font-size: 12px; color: #F6A102; margin-bottom: 20px; }
+
+  .svc_block { background: #041a18; border: 2px solid #01A296; border-radius: 10px; padding: 24px; margin-bottom: 20px; }
+  .svc_code { color: #F6A102; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 6px; }
+  .svc_name { color: #01A296; font-size: 22px; font-weight: 700; margin-bottom: 10px; }
+  .svc_desc { color: #E6E5DE; font-size: 15px; line-height: 1.7; margin-bottom: 18px; }
+  .svc_meta { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; margin-bottom: 4px; }
+  .price_display { color: #F8C806; font-size: 20px; font-weight: 700; }
+  .cadence { color: #888888; font-size: 13px; }
+  .price_caption { color: #666666; font-size: 12px; margin-top: 8px; font-style: italic; }
+
+  .sup_list { margin-top: 18px; }
+  .sup_item { background: #1a1a1a; border-radius: 6px; padding: 12px 16px; margin-bottom: 8px; }
+  .sup_label { color: #E3A712; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .sup_name { color: #FFFFFF; font-size: 15px; }
+
+  .cta_primary { display: inline-block; background: #01A296; color: #FFFFFF; font-weight: 700; text-decoration: none; padding: 16px 28px; border-radius: 30px; font-family: Arial, Helvetica, sans-serif; font-size: 16px; }
+  .cta_sub { color: #E6E5DE; font-size: 14px; margin-top: 10px; }
+  .cta_addr { color: #01A296; font-size: 13px; margin-top: 6px; }
+
+  .cta_secondary { display: inline-block; border: 1px solid #F6A102; color: #F6A102; font-weight: 700; text-decoration: none; padding: 12px 22px; border-radius: 26px; font-family: Arial, Helvetica, sans-serif; font-size: 15px; margin-top: 10px; }
+  .sec_copy { color: #E6E5DE; font-size: 14px; margin-bottom: 6px; }
+
+  .email_block { margin-top: 8px; }
+  .contact_list { margin-top: 6px; }
+  .contact_item { background: #1a1a1a; border-radius: 6px; padding: 12px 16px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+  .contact_addr { color: #FFFFFF; font-size: 15px; font-family: Consolas, monospace; }
+  .badge_verified { background: #01A296; color: #000000; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 12px; text-transform: uppercase; letter-spacing: 1px; }
+  .badge_inferred { background: #F6A102; color: #000000; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 12px; text-transform: uppercase; letter-spacing: 1px; }
+  .contact_src { color: #888888; font-size: 12px; width: 100%; margin-top: 2px; }
+
+  .review_banner { background: #E3170A; color: #FFFFFF; font-weight: 700; padding: 16px 20px; border-radius: 6px; margin-bottom: 20px; font-size: 15px; line-height: 1.5; text-align: center; }
+  .email_meta { background: #1a1a1a; border-radius: 6px; padding: 14px 18px; margin-bottom: 16px; }
+  .email_meta div { margin-bottom: 4px; font-size: 14px; color: #E6E5DE; }
+  .email_meta span.k { color: #888888; }
+  .email_body { background: #0a0a0a; border: 1px solid #222222; border-radius: 6px; padding: 22px; color: #E6E5DE; font-size: 15px; line-height: 1.8; white-space: pre-wrap; }
+
+  .notes_list { color: #cccccc; font-size: 13px; line-height: 1.9; }
+  .notes_list li { margin-bottom: 6px; margin-left: 18px; }
+  .tier_note { color: #F6A102; }
+
+  a { color: #01A296; }
+  .footer_note { text-align: center; color: #444444; font-size: 12px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #1a1a1a; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="pp_header">
+    <div class="pp_brand">ProfitPulse Outreach Dossier, internal review only</div>
+    <div class="pp_company">al.ive body</div>
+    <div class="pp_date">13 Aug 2026</div>
+    <div class="pp_framing">
+      Selected tonight because al.ive body is scaling fast on two fronts at once, a product
+      range that has nearly doubled and a wholesale network that has passed 850 stockists,
+      while a newly disclosed growth capital partnership makes the next 12 months a natural
+      moment to confirm where the margin actually sits.
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec_title">Verified Profile</div>
+    <div class="pgrid">
+      <div class="pitem"><div class="plabel">Legal entity</div><div class="pvalue">AL.IVE BODY PTY LTD, ACN 635 011 960</div><div class="psrc">Source: Dun and Bradstreet company profile</div></div>
+      <div class="pitem"><div class="plabel">Location</div><div class="pvalue">Colonel Light Gardens, Adelaide SA, about 6km from the CBD</div><div class="psrc">Source: Dun and Bradstreet company profile</div></div>
+      <div class="pitem"><div class="plabel">Industry</div><div class="pvalue">E commerce and online retail, personal and home care</div><div class="psrc">Source: company website, alivebody.com.au</div></div>
+      <div class="pitem"><div class="plabel">Founded</div><div class="pvalue">2020</div><div class="psrc">Source: InDaily, 40 Under 40, 2023; EY Australia 2025 finalist profile</div></div>
+      <div class="pitem"><div class="plabel">FY24 revenue</div><div class="pvalue">$22 million, reported as an estimate</div><div class="psrc">Source: SmartCompany, Smart50 Awards 2023, Rising Star writeup</div></div>
+      <div class="pitem"><div class="plabel">FY25 revenue</div><div class="pvalue">$30 million, reported as a projection</div><div class="psrc">Source: EY Australia, Meet the 2025 finalists, Alisa Fraser and Lysandra Fraser</div></div>
+      <div class="pitem"><div class="plabel">Team size</div><div class="pvalue">Banded 11 to 50 employees</div><div class="psrc">Source: company LinkedIn page. Third party aggregators show a wider spread, 9 to 27, not used as fact</div></div>
+      <div class="pitem"><div class="plabel">Operating locations</div><div class="pvalue"><span class="not_disclosed">Single known Adelaide HQ and warehouse; further sites not publicly disclosed</span></div><div class="psrc">Source: Add To Cart podcast interview with founders</div></div>
+      <div class="pitem"><div class="plabel">Business structure</div><div class="pvalue"><span class="not_disclosed">Not publicly disclosed beyond the single Pty Ltd entity identified; a full ASIC extract was not accessible through free search</span></div><div class="psrc">Source: Dun and Bradstreet company profile</div></div>
+      <div class="pitem"><div class="plabel">Customer concentration</div><div class="pvalue">No concentration data disclosed; distribution diversified across 850 plus stockists including Myer</div><div class="psrc">Source: EY Australia 2025 finalist profile</div></div>
+      <div class="pitem"><div class="plabel">Retail stockists</div><div class="pvalue">Grew from 750 to over 850, Australia and New Zealand</div><div class="psrc">Source: SmartCompany 2023; EY Australia 2025 finalist profile</div></div>
+      <div class="pitem"><div class="plabel">Product range</div><div class="pvalue">Grew from 50 to over 90 lines across seven categories</div><div class="psrc">Source: EY Australia 2025 finalist profile</div></div>
+      <div class="pitem"><div class="plabel">Capital event</div><div class="pvalue">Growth capital partnership with Unmarked Group, terms not disclosed</div><div class="psrc">Source: SmartCompany, Up the ante with expertise, published August 2026</div></div>
+      <div class="pitem"><div class="plabel">Decision maker</div><div class="pvalue">Alisa Fraser, CEO and Co Founder</div><div class="psrc">Source: The Org profile; InDaily 40 Under 40, 2023</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec_title">The Commercial Goal, an Inference</div>
+    <div class="inf_note">Inference, not a verified statement by the company</div>
+    <p style="color:#E6E5DE; font-size:15px; line-height:1.8;">
+      Based on the verified evidence, product lines nearly doubling, the stockist network
+      passing 850, new senior sales and customer experience hires, and a freshly disclosed
+      growth capital partnership explicitly framed as fuel for further scale, al.ive body is
+      most likely working toward disciplined, profitable scaling over the next 12 months,
+      specifically making sure that rapid product and channel expansion converts into margin
+      rather than just top line growth.
+    </p>
+  </div>
+
+  <div class="sec">
+    <div class="sec_title">The Wedge and the Matched Service</div>
+    <h3>The commercial argument</h3>
+    <div class="wedge">
+      al.ive body has grown its range from roughly 50 to more than 90 products across seven
+      categories while simultaneously expanding from 750 to over 850 wholesale stockists,
+      including Myer, on top of its direct to consumer channel. Two channels with very
+      different margin structures, discounting, freight, and retailer terms differ sharply
+      between direct and wholesale, layered on top of rapid SKU growth, is exactly the
+      condition under which product line and channel profitability tends to blur. With fresh
+      growth capital now in the business specifically to fund further scale, confirming which
+      lines and channels actually earn their keep, before the next wave of launches and the
+      next round of stockist growth, is the highest leverage financial exercise available to
+      al.ive body right now.
+    </div>
+
+    <div class="svc_block">
+      <div class="svc_code">Matched service, G3</div>
+      <div class="svc_name">Product and Service Line Profitability</div>
+      <div class="svc_desc">
+        A three week project ranking every product line by gross margin, contribution margin
+        and operational drag, so growth capital and shelf space go to the lines that actually
+        earn it.
+      </div>
+      <div class="svc_meta">
+        <div class="price_display">$3,950</div>
+        <div class="cadence">one off</div>
+      </div>
+      <div class="price_caption">Verified ProfitPulse figure. The questionnaire confirms the exact fit for al.ive body.</div>
+    </div>
+
+    <div class="sup_list">
+      <div class="sup_item"><div class="sup_label">Supporting service</div><div class="sup_name">A5 Capital Allocation Review</div></div>
+      <div class="sup_item"><div class="sup_label">Supporting service</div><div class="sup_name">B1 Fractional CFO Partnership</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec_title">Primary Call to Action, the Questionnaire</div>
+    <a class="cta_primary" href="https://profit-pulse.com.au/services/find-your-fit/?utm_source=outreach&amp;utm_medium=html&amp;utm_campaign=nightly_outreach&amp;utm_content=alive_body">Find your fit in two minutes</a>
+    <div class="cta_sub">Answer a few quick questions and see the solutions matched to your size and industry.</div>
+    <div class="cta_addr">profit-pulse.com.au/services/find-your-fit</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec_title">Secondary Option, Direct Purchase</div>
+    <p class="sec_copy">Already know this is the priority? You can begin with Product and Service Line Profitability, $3,950.</p>
+    <a class="cta_secondary" href="https://buy.stripe.com/28EbJ2edi0LSbdugYT3ks1D">Purchase the suggested product now to get started</a>
+  </div>
+
+  <div class="sec">
+    <div class="sec_title">Likely Contact Email Addresses, Internal Use Only</div>
+    <p class="sec_copy" style="margin-bottom:14px;">Never shown on the client facing brief. For Nitesh to choose and confirm before any send.</p>
+    <div class="contact_list">
+      <div class="contact_item">
+        <span class="contact_addr">hello@alivebody.com.au</span>
+        <span class="badge_verified">Verified</span>
+        <span class="contact_src">General enquiries address, observed publicly on the company Facebook page. Safe fallback, not addressed to Alisa Fraser personally.</span>
+      </div>
+      <div class="contact_item">
+        <span class="contact_addr">alisa@alivebody.com.au</span>
+        <span class="badge_inferred">Inferred</span>
+        <span class="contact_src">Firstname at domain. Aggregator data (LeadIQ) suggests this pattern company wide; not directly observed on site, treat as a guess.</span>
+      </div>
+      <div class="contact_item">
+        <span class="contact_addr">alisa.fraser@alivebody.com.au</span>
+        <span class="badge_inferred">Inferred</span>
+        <span class="contact_src">Firstname.lastname at domain, common format guess.</span>
+      </div>
+      <div class="contact_item">
+        <span class="contact_addr">alisafraser@alivebody.com.au</span>
+        <span class="badge_inferred">Inferred</span>
+        <span class="contact_src">Firstnamelastname at domain, common format guess.</span>
+      </div>
+      <div class="contact_item">
+        <span class="contact_addr">afraser@alivebody.com.au</span>
+        <span class="badge_inferred">Inferred</span>
+        <span class="contact_src">First initial and lastname at domain, common format guess.</span>
+      </div>
+      <div class="contact_item">
+        <span class="contact_addr">alisa_fraser@alivebody.com.au</span>
+        <span class="badge_inferred">Inferred</span>
+        <span class="contact_src">Firstname underscore lastname at domain, common format guess.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec_title">The Email Draft</div>
+    <div class="review_banner">
+      REVIEW GATE: This email is a draft only. No communication has been sent.<br>
+      Only Nitesh Roopa may authorise and send this message.
+    </div>
+    <div class="email_meta">
+      <div><span class="k">To (placeholder, confirm before sending):</span> alisa@alivebody.com.au, inferred and unverified. Safe fallback: hello@alivebody.com.au, verified general address.</div>
+      <div><span class="k">Subject:</span> A quick thought on al.ive body's product range</div>
+      <div><span class="k">Attachment:</span> Brief_alive_body_13Aug2026.pdf</div>
+    </div>
+    <div class="email_body">Hi Alisa,
+
+I read about al.ive body's Smart50 Rising Star win and saw EY name you and Lysandra among the 2025 Entrepreneur of the Year finalists. Growing from a 2020 launch to more than ninety products across seven categories and past 850 stockists nationally is a genuinely strong run.
+
+I am Nitesh Roopa, a Chartered Accountant and Managing Partner of ProfitPulse, a Brisbane based fractional CFO practice. Over sixteen years across four countries I have worked on more than fifty deals, including as Finance and Commercial Lead on the ten billion dollar Gympie Road Bypass Tunnel business case for Queensland Treasury.
+
+With the product range nearly doubling and the stockist network now past 850, including Myer, the natural next question is which lines and channels are actually carrying the margin as the range keeps growing. That is exactly what our Product and Service Line Profitability engagement is built to answer, and I have put together a short brief on al.ive body specifically, attached as a PDF.
+
+If it is useful, you are welcome to answer a few quick questions here and see the ProfitPulse solutions matched to your size and industry: <a href="https://profit-pulse.com.au/services/find-your-fit/?utm_source=outreach&amp;utm_medium=email&amp;utm_campaign=nightly_outreach&amp;utm_content=alive_body">profit-pulse.com.au/services/find-your-fit</a>
+
+If you would rather talk first, I am always happy to do a complimentary, no obligation discovery call: <a href="https://bookings.cloud.microsoft/book/ProfitPulse1@profit-pulse.com.au/?ismsaljsauthenabled=true">book a time here</a>. Congratulations again on the growth, it is well earned.
+
+Nitesh Roopa
+CA, Managing Partner
+ProfitPulse
+Profit-Pulse.com.au
+Nitesh@Profit-Pulse.com.au
++61 411 876 267</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec_title">System Notes, Internal Only</div>
+    <ul class="notes_list">
+      <li>Selected target: al.ive body, Colonel Light Gardens, Adelaide SA. Confirmed not present in Outreach_Register.csv, which lists only AdUnion.</li>
+      <li>Verified sources used: SmartCompany Smart50 2023 Rising Star profile; SmartCompany Smart50 2025 coverage; SmartCompany August 2026 article on the Unmarked Group growth partnership; EY Australia 2025 Entrepreneur of the Year finalist profile; InDaily 40 Under 40, 2023; company LinkedIn page; Dun and Bradstreet company profile; The Org (Alisa Fraser, CEO title); company Facebook page (hello@alivebody.com.au).</li>
+      <li>Inferred commercial goal: disciplined, profitable scaling over the next 12 months as product range and wholesale distribution grow quickly. Marked as an inference, not a company statement.</li>
+      <li>Matched service: G3, Product and Service Line Profitability. Supporting services: A5 Capital Allocation Review, B1 Fractional CFO Partnership.</li>
+      <li class="tier_note">Inferred tier (internal only, never shown to the prospect): Command. Section 3C raw score 33 (revenue over $20M = 7, margin 40 to 55% assumed neutral = 3, team 16 to 40 assumed from the LinkedIn 11 to 50 band = 3, single location = 1, single entity assumed = 1, mixed revenue model = 2, well diversified concentration = 1, modest debt assumed neutral = 2, forward growth 15 to 30% = 4, recent trajectory growing = 4, commercial event capital raise = 5) against an Essential ceiling of 27 and a Command ceiling of 37 for industry bias 3, E commerce and online retail. No lift or drop adjustment triggered. Several inputs are neutral assumptions where public data was not available, flagged above; the questionnaire will confirm the prospect's exact tier.</li>
+      <li>Questionnaire URL used in this dossier: https://profit-pulse.com.au/services/find-your-fit/?utm_source=outreach&amp;utm_medium=html&amp;utm_campaign=nightly_outreach&amp;utm_content=alive_body. Email variant uses utm_medium=email. The brief carries the clean, untagged address only.</li>
+      <li>Direct Stripe checkout link used: https://buy.stripe.com/28EbJ2edi0LSbdugYT3ks1D, G3 at the Command tier, $3,950 one off. No UTM tags applied.</li>
+      <li>Contact email domain: alivebody.com.au. No verified individual address was found for Alisa Fraser. hello@alivebody.com.au is a verified general address, observed on the company Facebook page. All other addresses listed are inferred format guesses, unconfirmed, to be chosen and confirmed by Nitesh before any send.</li>
+      <li>EMAIL_INCLUDE_DIRECT_CHECKOUT is false. The email draft does not include the Stripe link and leads with the questionnaire only.</li>
+      <li>Confirmation: nothing has been sent. This dossier, the brief, and the email draft are for Nitesh Roopa's review only.</li>
+    </ul>
+  </div>
+
+  <div class="footer_note">ProfitPulse nightly outreach engine, v3.3. Internal document, never for external distribution.</div>
+</div>
+</body>
+</html>
