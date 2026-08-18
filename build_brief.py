@@ -1,455 +1,315 @@
 """
 ProfitPulse Brief Builder
-Target: AdUnion | Date: 09 Jun 2026
-Three-slide prospect-facing deck. Brand colours only. Zero dashes.
+Target: Sniip | Date: 19 Aug 2026
+Three-slide prospect-facing deck. House style v3.3. Brand colours only. Zero dashes.
 """
 
 from pptx import Presentation
-from pptx.util import Inches, Pt, Emu
-from pptx.dml.color import RGBColor
-from pptx.enum.text import PP_ALIGN
-from pptx.oxml.ns import qn
 from pptx.util import Inches, Pt
-import copy
+from pptx.dml.color import RGBColor
+from pptx.enum.text import PP_ALIGN, MSO_ANCHOR
+from pptx.enum.text import MSO_AUTO_SIZE
 
-# ── Brand colours ─────────────────────────────────────────────────────────────
-BLACK      = RGBColor(0x00, 0x00, 0x00)
-TEAL       = RGBColor(0x01, 0xA2, 0x96)
-AMBER_B    = RGBColor(0xF8, 0xC8, 0x06)
-AMBER_D    = RGBColor(0xF6, 0xA1, 0x02)
-GOLD       = RGBColor(0xE3, 0xA7, 0x12)
-WHITE      = RGBColor(0xFF, 0xFF, 0xFF)
-OFF_WHITE  = RGBColor(0xE6, 0xE5, 0xDE)
-DARK_PANEL = RGBColor(0x11, 0x11, 0x11)
-TEAL_DARK  = RGBColor(0x04, 0x1A, 0x18)
+# Brand colours, official logo palette only
+BLACK     = RGBColor(0x00, 0x00, 0x00)
+TEAL      = RGBColor(0x01, 0xA2, 0x96)
+AMBER_B   = RGBColor(0xF8, 0xC8, 0x06)
+AMBER_D   = RGBColor(0xF6, 0xA1, 0x02)
+GOLD      = RGBColor(0xE3, 0xA7, 0x12)
+WHITE     = RGBColor(0xFF, 0xFF, 0xFF)
+OFF_WHITE = RGBColor(0xE6, 0xE5, 0xDE)
 
-# Slide dimensions: widescreen 13.333" x 7.5"
+SERIF = "Georgia"
+SANS  = "Arial"
+
 W = Inches(13.333)
 H = Inches(7.5)
 
+DATE_STR = "19 Aug 2026"
+COMPANY  = "Sniip"
 
-def set_background(slide, colour):
-    """Fill the slide background with a solid colour."""
-    bg = slide.background
-    fill = bg.fill
+
+def set_bg(slide, colour):
+    fill = slide.background.fill
     fill.solid()
     fill.fore_color.rgb = colour
 
 
-def add_rect(slide, left, top, width, height, fill_colour, line_colour=None, line_width=None):
-    """Add a filled rectangle shape."""
-    shape = slide.shapes.add_shape(
-        1,  # MSO_SHAPE_TYPE.RECTANGLE
-        left, top, width, height
-    )
-    shape.fill.solid()
-    shape.fill.fore_color.rgb = fill_colour
+def rect(slide, left, top, width, height, colour, line_colour=None, line_w=None):
+    shp = slide.shapes.add_shape(1, left, top, width, height)
+    shp.fill.solid()
+    shp.fill.fore_color.rgb = colour
     if line_colour:
-        shape.line.color.rgb = line_colour
-        if line_width:
-            shape.line.width = line_width
+        shp.line.color.rgb = line_colour
+        shp.line.width = line_w or Pt(1)
     else:
-        shape.line.fill.background()  # no line
-    return shape
+        shp.line.fill.background()
+    shp.shadow.inherit = False
+    return shp
 
 
-def add_text(slide, text, left, top, width, height,
-             font_name="Arial", font_size=18, bold=False,
-             colour=WHITE, align=PP_ALIGN.LEFT,
-             wrap=True, italic=False):
-    """Add a text box."""
-    txBox = slide.shapes.add_textbox(left, top, width, height)
-    tf = txBox.text_frame
+def text(slide, s, left, top, width, height, size=12, bold=False, italic=False,
+         colour=BLACK, align=PP_ALIGN.LEFT, font=SANS, anchor=None, wrap=True,
+         line_spacing=None):
+    box = slide.shapes.add_textbox(left, top, width, height)
+    tf = box.text_frame
     tf.word_wrap = wrap
-    tf.auto_size = None
-
+    tf.auto_size = MSO_AUTO_SIZE.NONE
+    if anchor:
+        tf.vertical_anchor = anchor
+    tf.margin_left = 0
+    tf.margin_right = 0
+    tf.margin_top = 0
+    tf.margin_bottom = 0
     p = tf.paragraphs[0]
     p.alignment = align
-    run = p.add_run()
-    run.text = text
-    run.font.name = font_name
-    run.font.size = Pt(font_size)
-    run.font.bold = bold
-    run.font.italic = italic
-    run.font.color.rgb = colour
-    return txBox
+    if line_spacing:
+        p.line_spacing = line_spacing
+    r = p.add_run()
+    r.text = s
+    r.font.name = font
+    r.font.size = Pt(size)
+    r.font.bold = bold
+    r.font.italic = italic
+    r.font.color.rgb = colour
+    return box
 
 
-def add_multiline(slide, lines, left, top, width, height,
-                  font_name="Arial", default_size=14,
-                  default_colour=OFF_WHITE, default_bold=False,
-                  align=PP_ALIGN.LEFT, spacing_after=None):
-    """
-    Add a text box with multiple lines. Each element of `lines` is either:
-      - a string (uses defaults), or
-      - a dict with keys: text, size, colour, bold, italic
-    """
-    txBox = slide.shapes.add_textbox(left, top, width, height)
-    tf = txBox.text_frame
-    tf.word_wrap = True
-
+def multiline(slide, lines, left, top, width, height, font=SANS, align=PP_ALIGN.LEFT,
+              space_after=4, wrap=True):
+    box = slide.shapes.add_textbox(left, top, width, height)
+    tf = box.text_frame
+    tf.word_wrap = wrap
+    tf.auto_size = MSO_AUTO_SIZE.NONE
+    tf.margin_left = 0
+    tf.margin_right = 0
+    tf.margin_top = 0
+    tf.margin_bottom = 0
     first = True
-    for line in lines:
-        if isinstance(line, str):
-            cfg = {"text": line, "size": default_size,
-                   "colour": default_colour, "bold": default_bold,
-                   "italic": False}
-        else:
-            cfg = {
-                "text":   line.get("text", ""),
-                "size":   line.get("size", default_size),
-                "colour": line.get("colour", default_colour),
-                "bold":   line.get("bold", default_bold),
-                "italic": line.get("italic", False),
-            }
-
-        if first:
-            p = tf.paragraphs[0]
-            first = False
-        else:
-            p = tf.add_paragraph()
-
+    for ln in lines:
+        cfg = {"text": ln, "size": 11, "colour": BLACK, "bold": False, "italic": False} \
+            if isinstance(ln, str) else {
+                "text": ln.get("text", ""), "size": ln.get("size", 11),
+                "colour": ln.get("colour", BLACK), "bold": ln.get("bold", False),
+                "italic": ln.get("italic", False)}
+        p = tf.paragraphs[0] if first else tf.add_paragraph()
+        first = False
         p.alignment = align
-        if spacing_after:
-            p.space_after = Pt(spacing_after)
-        run = p.add_run()
-        run.text = cfg["text"]
-        run.font.name = font_name
-        run.font.size = Pt(cfg["size"])
-        run.font.bold = cfg["bold"]
-        run.font.italic = cfg["italic"]
-        run.font.color.rgb = cfg["colour"]
-
-    return txBox
+        p.space_after = Pt(space_after)
+        r = p.add_run()
+        r.text = cfg["text"]
+        r.font.name = font
+        r.font.size = Pt(cfg["size"])
+        r.font.bold = cfg["bold"]
+        r.font.italic = cfg["italic"]
+        r.font.color.rgb = cfg["colour"]
+    return box
 
 
-# ══════════════════════════════════════════════════════════════════════════════
-# BUILD PRESENTATION
-# ══════════════════════════════════════════════════════════════════════════════
+def chrome(slide, eyebrow, header_right=None):
+    """Fixed chrome: left accent stripe, black header band, footer line."""
+    set_bg(slide, WHITE)
+    rect(slide, Inches(0), Inches(0), Inches(0.1), H, AMBER_D)
+    rect(slide, Inches(0), Inches(0), W, Inches(1.0), BLACK)
+    text(slide, eyebrow, Inches(0.35), Inches(0.32), Inches(8.5), Inches(0.4),
+         size=12, bold=True, colour=OFF_WHITE, font=SANS, anchor=MSO_ANCHOR.MIDDLE)
+    text(slide, header_right or "PROFITPULSE", Inches(9.0), Inches(0.32), Inches(4.0), Inches(0.4),
+         size=13, bold=True, colour=TEAL, align=PP_ALIGN.RIGHT, font=SANS,
+         anchor=MSO_ANCHOR.MIDDLE)
+    # footer
+    rect(slide, Inches(0.35), Inches(7.03), Inches(12.6), Pt(0.75), TEAL)
+    text(slide, "Prepared by Nitesh Roopa CA, Managing Partner and Founder, ProfitPulse, "
+                "Profit-Pulse.com.au",
+         Inches(0.35), Inches(7.1), Inches(9.5), Inches(0.3),
+         size=8, colour=BLACK, font=SANS)
+    text(slide, DATE_STR, Inches(10.5), Inches(7.1), Inches(2.45), Inches(0.3),
+         size=8, colour=BLACK, align=PP_ALIGN.RIGHT, font=SANS)
+
+
+def stat_card(slide, left, top, width, height, number, label_lines, source):
+    rect(slide, left, top, width, height, BLACK)
+    rect(slide, left, top, width, Pt(4), TEAL)
+    text(slide, number, left + Inches(0.15), top + Inches(0.12), width - Inches(0.3), Inches(0.42),
+         size=27, bold=True, colour=AMBER_B, font=SERIF)
+    multiline(slide, [{"text": l, "size": 10.5, "colour": OFF_WHITE} for l in label_lines],
+              left + Inches(0.15), top + Inches(0.8), width - Inches(0.3), Inches(0.5),
+              font=SANS, space_after=0)
+    text(slide, source, left + Inches(0.15), top + height - Inches(0.26), width - Inches(0.3),
+         Inches(0.22), size=7, colour=OFF_WHITE, italic=True, font=SANS)
+
+
 prs = Presentation()
-prs.slide_width  = W
+prs.slide_width = W
 prs.slide_height = H
-blank_layout = prs.slide_layouts[6]  # completely blank
+blank = prs.slide_layouts[6]
 
+# ═══════════════════════════════════════════════════════════════════════════
+# SLIDE 1 — COMMERCIAL INTELLIGENCE BRIEF
+# ═══════════════════════════════════════════════════════════════════════════
+s1 = prs.slides.add_slide(blank)
+chrome(s1, "COMMERCIAL INTELLIGENCE BRIEF")
 
-# ────────────────────────────────────────────────────────────────────────────
-# SLIDE 1: THE OPENING
-# ────────────────────────────────────────────────────────────────────────────
-s1 = prs.slides.add_slide(blank_layout)
-set_background(s1, BLACK)
+text(s1, "Sniip", Inches(0.35), Inches(1.15), Inches(8), Inches(0.85),
+     size=42, bold=True, colour=BLACK, font=SERIF)
+text(s1, "Consumer and business bill payment platform, Brisbane, Queensland",
+     Inches(0.35), Inches(2.05), Inches(11), Inches(0.3),
+     size=13, colour=BLACK, font=SANS)
 
-# Teal left accent bar
-add_rect(s1, Inches(0), Inches(0), Inches(0.08), H, TEAL)
+cards = [
+    ("2014", ["Founded in", "Brisbane"], "Sniip company site"),
+    ("200K+", ["Business and personal", "customers"], "Sniip company site"),
+    ("$500M+", ["Processed in", "bill payments"], "Sniip company site"),
+    ("2025", ["AFR Fast 100", "debut year"], "AFR Fast 100 2025 list"),
+    ("5", ["Major payment partners", "added"], "Company & partner news"),
+]
+card_w = Inches(2.3)
+gap = Inches(0.15)
+x = Inches(0.35)
+y = Inches(2.4)
+card_h = Inches(1.6)
+for num, lbl, src in cards:
+    stat_card(s1, x, y, card_w, card_h, num, lbl, src)
+    x += card_w + gap
 
-# ProfitPulse brand mark, top left
-add_text(s1, "PROFITPULSE",
-         left=Inches(0.25), top=Inches(0.32), width=Inches(4), height=Inches(0.4),
-         font_size=11, bold=True, colour=TEAL, align=PP_ALIGN.LEFT)
+text(s1, "KEY COMMERCIAL SIGNALS", Inches(0.35), Inches(4.35), Inches(6), Inches(0.3),
+     size=12, bold=True, colour=TEAL, font=SANS)
 
-# Teal divider line under brand mark
-add_rect(s1, Inches(0.25), Inches(0.76), Inches(3.0), Pt(2), TEAL)
+signals = [
+    "Debuted on the AFR Fast 100 2025, confirming FY25 revenue above five million dollars.",
+    "Won Best Innovation in Payments at the Fintech Australia Finnies Awards, June 2025.",
+    "Named a finalist again in the same category at the 2026 Finnies Awards.",
+    "Added BPAY, American Express, Qantas Frequent Flyer, Virgin and WEX Motorpass as partners.",
+    "LinkedIn lists a team of 11 to 50 people running the platform from Brisbane.",
+    "Founded in 2014 by Damien Vasta, who remains Founder and Chief Executive Officer.",
+]
+multiline(s1, [{"text": "•  " + s, "size": 11.5, "colour": BLACK} for s in signals],
+          Inches(0.35), Inches(4.72), Inches(12.6), Inches(2.1), font=SANS, space_after=6)
 
-# Company name: AdUnion, large amber heading
-add_text(s1, "AdUnion",
-         left=Inches(0.25), top=Inches(1.15), width=Inches(9), height=Inches(1.2),
-         font_size=68, bold=True, colour=AMBER_B, align=PP_ALIGN.LEFT)
+# ═══════════════════════════════════════════════════════════════════════════
+# SLIDE 2 — THE OPPORTUNITY
+# ═══════════════════════════════════════════════════════════════════════════
+s2 = prs.slides.add_slide(blank)
+chrome(s2, "THE OPPORTUNITY", "SNIIP")
 
-# Opportunity line 1
-add_text(s1, "Three years of compounding growth.",
-         left=Inches(0.25), top=Inches(2.45), width=Inches(9.5), height=Inches(0.6),
-         font_size=26, bold=False, colour=WHITE, align=PP_ALIGN.LEFT)
+text(s2, "Three commercial observations from ProfitPulse",
+     Inches(0.35), Inches(1.15), Inches(12.5), Inches(0.4),
+     size=15, bold=True, colour=BLACK, font=SERIF)
 
-# Opportunity line 2
-add_text(s1, "The next stage belongs to margin clarity.",
-         left=Inches(0.25), top=Inches(3.05), width=Inches(9.5), height=Inches(0.6),
-         font_size=26, bold=False, colour=OFF_WHITE, align=PP_ALIGN.LEFT)
+col_w = Inches(4.0)
+col_h = Inches(4.55)
+col_top = Inches(1.75)
+col_gap = Inches(0.13)
+col_x = [Inches(0.35), Inches(0.35) + col_w + col_gap, Inches(0.35) + 2 * (col_w + col_gap)]
+col_fill = [TEAL, BLACK, GOLD]
+col_text = [WHITE, WHITE, BLACK]
+col_accent = [BLACK, AMBER_B, BLACK]
 
-# Teal horizontal accent line
-add_rect(s1, Inches(0.25), Inches(3.72), Inches(5.0), Pt(2), TEAL)
-
-# Verified metrics row
-add_multiline(
-    s1,
-    [
-        {"text": "$9.3M revenue   •   81% three year growth   •   10 people",
-         "size": 15, "colour": OFF_WHITE, "bold": False},
-        {"text": "Smart50 2025 #8   •   AFR Fast 100 2025 #26   •   Deloitte Tech Fast 50 2025 #31",
-         "size": 13, "colour": TEAL, "bold": False},
-    ],
-    left=Inches(0.25), top=Inches(3.85), width=Inches(12.5), height=Inches(0.9),
-    default_size=14, default_colour=OFF_WHITE,
-)
-
-# Right side: large teal accent word
-add_text(s1, "MELBOURNE",
-         left=Inches(9.5), top=Inches(1.5), width=Inches(3.5), height=Inches(0.5),
-         font_size=11, bold=True, colour=TEAL, align=PP_ALIGN.RIGHT)
-add_text(s1, "2016",
-         left=Inches(9.5), top=Inches(2.0), width=Inches(3.5), height=Inches(0.8),
-         font_size=48, bold=True, colour=RGBColor(0x22, 0x22, 0x22), align=PP_ALIGN.RIGHT)
-add_text(s1, "Founded",
-         left=Inches(9.5), top=Inches(2.8), width=Inches(3.5), height=Inches(0.4),
-         font_size=11, bold=False, colour=RGBColor(0x44, 0x44, 0x44), align=PP_ALIGN.RIGHT)
-
-# Date, bottom right
-add_text(s1, "09 Jun 2026",
-         left=Inches(10), top=Inches(6.9), width=Inches(3.0), height=Inches(0.4),
-         font_size=12, bold=False, colour=RGBColor(0x44, 0x44, 0x44), align=PP_ALIGN.RIGHT)
-
-# ProfitPulse tag, bottom left
-add_text(s1, "Profit-Pulse.com.au",
-         left=Inches(0.25), top=Inches(6.9), width=Inches(4), height=Inches(0.4),
-         font_size=12, bold=False, colour=RGBColor(0x44, 0x44, 0x44), align=PP_ALIGN.LEFT)
-
-
-# ────────────────────────────────────────────────────────────────────────────
-# SLIDE 2: THE INSIGHT
-# ────────────────────────────────────────────────────────────────────────────
-s2 = prs.slides.add_slide(blank_layout)
-set_background(s2, BLACK)
-
-# Teal left accent bar
-add_rect(s2, Inches(0), Inches(0), Inches(0.08), H, TEAL)
-
-# Header bar
-add_rect(s2, Inches(0.08), Inches(0), Inches(W - Inches(0.08)), Inches(0.95), DARK_PANEL)
-
-# Slide title
-add_text(s2, "THE INSIGHT",
-         left=Inches(0.25), top=Inches(0.15), width=Inches(7), height=Inches(0.6),
-         font_size=13, bold=True, colour=AMBER_B, align=PP_ALIGN.LEFT)
-
-# Company name in header
-add_text(s2, "AdUnion",
-         left=Inches(9), top=Inches(0.15), width=Inches(4), height=Inches(0.6),
-         font_size=13, bold=True, colour=TEAL, align=PP_ALIGN.RIGHT)
-
-# ── LEFT COLUMN: Verified data ──────────────────────────────────────────────
-left_panel_x = Inches(0.25)
-left_panel_w = Inches(4.5)
-
-add_text(s2, "Verified facts",
-         left=left_panel_x, top=Inches(1.05), width=left_panel_w, height=Inches(0.35),
-         font_size=11, bold=True, colour=TEAL, align=PP_ALIGN.LEFT)
-
-# Data items
-data_items = [
-    ("Revenue (FY2024)",        "$9.3 million"),
-    ("3 year growth",           "81% average"),
-    ("Revenue since 2023",      "Tripled"),
-    ("Team size",               "10 people"),
-    ("Smart50 2025",            "Rank 8 of 50"),
-    ("AFR Fast 100 2025",       "Rank 26"),
-    ("Deloitte Tech Fast 50",   "Rank 31"),
-    ("Founded",                 "2016"),
-    ("Location",                "Cremorne, Melbourne VIC"),
-    ("Managing Director",       "Robert Ong"),
+observations = [
+    ("01", "Five partners, one finance team",
+     "In roughly a year Sniip added BPAY, American Express, Qantas Frequent Flyer, "
+     "Virgin Australia Business Flyer and WEX Motorpass. Each partner carries its own "
+     "settlement cycle and margin profile. Layering five economic models onto one "
+     "finance function in twelve months tests reporting fast."),
+    ("02", "A Fast 100 debut raises the bar",
+     "Sniip's AFR Fast 100 2025 debut confirms revenue growth strong enough to clear "
+     "the five million dollar threshold on a three year view. Lists like this draw "
+     "investor and partner attention. Converting that attention well means board "
+     "grade numbers are ready on request, not assembled after the fact."),
+    ("03", "A rewards liability needs a steady hand",
+     "Every bill paid can earn points across Qantas, Virgin and Amex programs. That "
+     "is a growing liability sitting behind a fast growing transaction base. A "
+     "monthly Fractional CFO Partnership keeps cash position, partner economics and "
+     "the management pack as sharp as the product roadmap."),
 ]
 
-y = Inches(1.45)
-for label, val in data_items:
-    # Label
-    add_text(s2, label,
-             left=left_panel_x, top=y, width=Inches(2.1), height=Inches(0.38),
-             font_size=11, bold=False, colour=RGBColor(0x88, 0x88, 0x88), align=PP_ALIGN.LEFT)
-    # Value
-    add_text(s2, val,
-             left=Inches(2.45), top=y, width=Inches(2.3), height=Inches(0.38),
-             font_size=11, bold=True, colour=OFF_WHITE, align=PP_ALIGN.LEFT)
-    y += Inches(0.38)
+for i, (num, head, para) in enumerate(observations):
+    cx = col_x[i]
+    rect(s2, cx, col_top, col_w, col_h, col_fill[i])
+    text(s2, num, cx + Inches(0.25), col_top + Inches(0.2), col_w - Inches(0.5), Inches(0.65),
+         size=30, bold=True, colour=col_accent[i], font=SERIF)
+    text(s2, head, cx + Inches(0.25), col_top + Inches(0.95), col_w - Inches(0.5), Inches(0.75),
+         size=14.5, bold=True, colour=col_text[i], font=SANS, wrap=True)
+    text(s2, para, cx + Inches(0.25), col_top + Inches(1.75), col_w - Inches(0.5), Inches(2.6),
+         size=10.5, colour=col_text[i], font=SANS, wrap=True, line_spacing=1.12)
 
-# Source note
-add_text(s2, "Source: SmartCompany Smart50 2025 award citation and public industry publications",
-         left=left_panel_x, top=Inches(5.42), width=left_panel_w, height=Inches(0.5),
-         font_size=9, bold=False, colour=RGBColor(0x55, 0x55, 0x55), align=PP_ALIGN.LEFT,
-         italic=True)
+text(s2, "These observations are offered in good faith. Sniip has built something "
+         "genuinely impressive. The question is simply whether the financial "
+         "architecture keeps pace with the partnership roadmap.",
+     Inches(0.35), Inches(6.42), Inches(12.6), Inches(0.55),
+     size=10.5, italic=True, colour=BLACK, font=SANS, wrap=True)
 
-# ── Vertical divider ────────────────────────────────────────────────────────
-add_rect(s2, Inches(4.9), Inches(1.0), Pt(1.5), Inches(5.7), TEAL)
+# ═══════════════════════════════════════════════════════════════════════════
+# SLIDE 3 — THE RECOMMENDATION AND HOW TO START
+# ═══════════════════════════════════════════════════════════════════════════
+s3 = prs.slides.add_slide(blank)
+chrome(s3, "THE RECOMMENDATION", "SNIIP")
 
-# ── RIGHT COLUMN: Wedge ─────────────────────────────────────────────────────
-right_x = Inches(5.1)
-right_w = Inches(7.9)
+# Left column
+lx = Inches(0.35)
+lw = Inches(7.3)
 
-add_text(s2, "The commercial observation",
-         left=right_x, top=Inches(1.05), width=right_w, height=Inches(0.35),
-         font_size=11, bold=True, colour=TEAL, align=PP_ALIGN.LEFT)
+text(s3, "Fractional CFO Partnership", lx, Inches(1.2), lw, Inches(0.55),
+     size=24, bold=True, colour=BLACK, font=SERIF)
+text(s3, "$4,950 per month", lx, Inches(1.78), lw, Inches(0.4),
+     size=16, bold=True, colour=TEAL, font=SANS)
+text(s3, "ProfitPulse verified price. The questionnaire confirms the exact fit for Sniip.",
+     lx, Inches(2.16), lw, Inches(0.3), size=9.5, italic=True,
+     colour=BLACK, font=SANS)
 
-wedge = (
-    "AdUnion has compounded at 81 percent over three years and now manages "
-    "streaming campaigns for Samsung, Tubi, Tangerine Telecom, and a growing "
-    "roster across retail, travel, and financial services. With ten people "
-    "generating $9.3 million in revenue, productivity is exceptional.\n\n"
-    "The question that follows rapid, diversified growth is: which clients "
-    "drive the real margin after the full cost of service, team time, and "
-    "platform investment are allocated? In most agencies at this stage, the "
-    "answer is uneven. The clients that look largest by revenue are not always "
-    "the ones that yield the most to the business.\n\n"
-    "The Customer Concentration and Profitability Map answers that question "
-    "in three weeks: every client ranked by revenue, gross margin contribution, "
-    "and effort to serve. The output is a clear action list: grow these, "
-    "reprice these, reset these."
-)
+text(s3, "A senior financial partner at the table each month: management pack, "
+         "quarterly board grade review, and support as new partnerships add complexity.",
+     lx, Inches(2.5), lw, Inches(0.6), size=11.5, colour=BLACK,
+     font=SANS, wrap=True)
 
-add_text(s2, wedge,
-         left=right_x, top=Inches(1.45), width=right_w, height=Inches(4.3),
-         font_size=13, bold=False, colour=OFF_WHITE, align=PP_ALIGN.LEFT,
-         wrap=True)
+# Step one block
+rect(s3, lx, Inches(3.25), lw, Inches(1.35), OFF_WHITE, line_colour=TEAL, line_w=Pt(1))
+text(s3, "Step one, answer a few quick questions", lx + Inches(0.2), Inches(3.4), lw - Inches(0.4),
+     Inches(0.35), size=12.5, bold=True, colour=BLACK, font=SANS)
+text(s3, "See the solutions matched to your size and industry.", lx + Inches(0.2), Inches(3.78),
+     lw - Inches(0.4), Inches(0.3), size=10.5, colour=BLACK, font=SANS)
+text(s3, "profit-pulse.com.au/services/find-your-fit", lx + Inches(0.2), Inches(4.1),
+     lw - Inches(0.4), Inches(0.35), size=12, bold=True, colour=TEAL, font=SANS)
 
-# ── Bottom: Matched service bar ──────────────────────────────────────────────
-add_rect(s2, Inches(0.08), Inches(6.3), W - Inches(0.08), Inches(0.9), TEAL_DARK)
-add_rect(s2, Inches(0.08), Inches(6.3), Inches(0.4), Inches(0.9), TEAL)
+# Direct CTA
+rect(s3, lx, Inches(4.85), lw, Inches(0.62), TEAL)
+text(s3, "Purchase the suggested product now to get started", lx, Inches(4.85), lw, Inches(0.62),
+     size=13, bold=True, colour=WHITE, align=PP_ALIGN.CENTER, font=SANS, anchor=MSO_ANCHOR.MIDDLE)
 
-add_multiline(
-    s2,
-    [
-        {"text": "Matched Service: Customer Concentration and Profitability Map  (G2)",
-         "size": 14, "colour": AMBER_B, "bold": True},
-        {"text": "Command tier  •  $3,950 one off  •  ProfitPulse verified price  •  Questionnaire confirms exact fit",
-         "size": 11, "colour": OFF_WHITE, "bold": False},
-    ],
-    left=Inches(0.7), top=Inches(6.35), width=Inches(12.3), height=Inches(0.85),
-    default_size=12, default_colour=OFF_WHITE,
-)
+text(s3, "Prefer a conversation first?", lx, Inches(5.65), lw, Inches(0.3),
+     size=10.5, colour=BLACK, font=SANS)
+text(s3, "Book a complimentary discovery call", lx, Inches(5.95), lw, Inches(0.35),
+     size=12, bold=True, colour=AMBER_D, font=SANS)
 
-# Footer
-add_text(s2, "Profit-Pulse.com.au",
-         left=Inches(0.25), top=Inches(7.15), width=Inches(4), height=Inches(0.3),
-         font_size=10, bold=False, colour=RGBColor(0x44, 0x44, 0x44), align=PP_ALIGN.LEFT)
-add_text(s2, "09 Jun 2026",
-         left=Inches(10), top=Inches(7.15), width=Inches(3), height=Inches(0.3),
-         font_size=10, bold=False, colour=RGBColor(0x44, 0x44, 0x44), align=PP_ALIGN.RIGHT)
+# Right column: credibility panel
+rx = Inches(7.95)
+rw = Inches(5.03)
+rect(s3, rx, Inches(1.2), rw, Inches(5.1), BLACK)
+rect(s3, rx, Inches(1.2), rw, Pt(4), TEAL)
+text(s3, "Nitesh Roopa", rx + Inches(0.25), Inches(1.42), rw - Inches(0.5), Inches(0.4),
+     size=17, bold=True, colour=AMBER_B, font=SERIF)
+text(s3, "CA, Managing Partner, ProfitPulse", rx + Inches(0.25), Inches(1.82), rw - Inches(0.5),
+     Inches(0.3), size=11, colour=OFF_WHITE, font=SANS)
 
-
-# ────────────────────────────────────────────────────────────────────────────
-# SLIDE 3: THE CALL TO ACTION
-# ────────────────────────────────────────────────────────────────────────────
-s3 = prs.slides.add_slide(blank_layout)
-set_background(s3, BLACK)
-
-# Teal left accent bar
-add_rect(s3, Inches(0), Inches(0), Inches(0.08), H, TEAL)
-
-# Header bar
-add_rect(s3, Inches(0.08), Inches(0), W - Inches(0.08), Inches(0.95), DARK_PANEL)
-add_text(s3, "FIND THE RIGHT FIX FOR YOUR BUSINESS",
-         left=Inches(0.25), top=Inches(0.15), width=Inches(9), height=Inches(0.6),
-         font_size=13, bold=True, colour=AMBER_B, align=PP_ALIGN.LEFT)
-add_text(s3, "AdUnion",
-         left=Inches(9.5), top=Inches(0.15), width=Inches(3.5), height=Inches(0.6),
-         font_size=13, bold=True, colour=TEAL, align=PP_ALIGN.RIGHT)
-
-# ── PRIMARY CTA ─────────────────────────────────────────────────────────────
-add_rect(s3, Inches(0.25), Inches(1.1), Inches(7.9), Inches(2.4), TEAL_DARK,
-         line_colour=TEAL, line_width=Pt(1))
-
-add_text(s3, "Step 1: Answer a few quick questions",
-         left=Inches(0.45), top=Inches(1.18), width=Inches(7.5), height=Inches(0.4),
-         font_size=14, bold=True, colour=AMBER_B, align=PP_ALIGN.LEFT)
-
-add_text(s3,
-         "See the solutions matched to your size and industry, each with a direct purchase option.",
-         left=Inches(0.45), top=Inches(1.6), width=Inches(7.5), height=Inches(0.45),
-         font_size=12, bold=False, colour=OFF_WHITE, align=PP_ALIGN.LEFT)
-
-add_text(s3,
-         "profit-pulse.com.au/full-suite-of-products?"
-         "utm_source=outreach&utm_medium=pptx&utm_campaign=nightly_outreach&utm_content=adunion",
-         left=Inches(0.45), top=Inches(2.08), width=Inches(7.5), height=Inches(0.55),
-         font_size=11, bold=False, colour=TEAL, align=PP_ALIGN.LEFT)
-
-add_text(s3, "QUESTIONNAIRE",
-         left=Inches(0.45), top=Inches(2.68), width=Inches(2.5), height=Inches(0.5),
-         font_size=11, bold=True, colour=TEAL, align=PP_ALIGN.LEFT)
-
-# ── SEPARATOR ───────────────────────────────────────────────────────────────
-add_rect(s3, Inches(0.25), Inches(3.62), Inches(7.9), Pt(1.5), TEAL)
-add_text(s3, "Or start directly",
-         left=Inches(0.45), top=Inches(3.69), width=Inches(4), height=Inches(0.35),
-         font_size=11, bold=False, colour=RGBColor(0x66, 0x66, 0x66), align=PP_ALIGN.LEFT)
-
-# ── DIRECT CHECKOUT ─────────────────────────────────────────────────────────
-add_rect(s3, Inches(0.25), Inches(4.1), Inches(7.9), Inches(1.85),
-         RGBColor(0x1a, 0x15, 0x00),
-         line_colour=AMBER_D, line_width=Pt(1))
-
-add_text(s3, "Customer Concentration and Profitability Map",
-         left=Inches(0.45), top=Inches(4.18), width=Inches(7.5), height=Inches(0.45),
-         font_size=14, bold=True, colour=AMBER_D, align=PP_ALIGN.LEFT)
-
-add_multiline(
-    s3,
-    [
-        {"text": "Command tier  •  $3,950 one off  •  ProfitPulse verified price",
-         "size": 12, "colour": OFF_WHITE, "bold": False},
-        {"text": "Questionnaire confirms exact tier before purchase if preferred.",
-         "size": 11, "colour": RGBColor(0x88, 0x88, 0x88), "bold": False},
-    ],
-    left=Inches(0.45), top=Inches(4.65), width=Inches(7.5), height=Inches(0.6),
-)
-
-add_text(s3,
-         "buy.stripe.com/14AbJ21qw2U0ftK0ZV3ks1A",
-         left=Inches(0.45), top=Inches(5.27), width=Inches(7.5), height=Inches(0.45),
-         font_size=11, bold=False, colour=AMBER_D, align=PP_ALIGN.LEFT)
-
-# ── BOOKING LINK ─────────────────────────────────────────────────────────────
-add_text(s3, "Prefer a conversation first?",
-         left=Inches(0.45), top=Inches(6.05), width=Inches(7.5), height=Inches(0.35),
-         font_size=11, bold=False, colour=OFF_WHITE, align=PP_ALIGN.LEFT)
-
-add_text(s3,
-         "Book a complimentary discovery call:  "
-         "bookings.cloud.microsoft/book/ProfitPulse1@profit-pulse.com.au/",
-         left=Inches(0.45), top=Inches(6.4), width=Inches(7.5), height=Inches(0.45),
-         font_size=10, bold=False, colour=TEAL, align=PP_ALIGN.LEFT)
-
-# ── SIGNATURE BLOCK (right side) ────────────────────────────────────────────
-add_rect(s3, Inches(8.45), Inches(1.1), Inches(4.6), Inches(5.7),
-         RGBColor(0x0a, 0x0a, 0x0a),
-         line_colour=RGBColor(0x22, 0x22, 0x22), line_width=Pt(1))
-
-add_text(s3, "NITESH ROOPA",
-         left=Inches(8.65), top=Inches(1.25), width=Inches(4.2), height=Inches(0.5),
-         font_size=18, bold=True, colour=AMBER_B, align=PP_ALIGN.LEFT)
-
-add_text(s3, "CA, Managing Partner",
-         left=Inches(8.65), top=Inches(1.75), width=Inches(4.2), height=Inches(0.35),
-         font_size=13, bold=False, colour=WHITE, align=PP_ALIGN.LEFT)
-
-add_text(s3, "ProfitPulse",
-         left=Inches(8.65), top=Inches(2.1), width=Inches(4.2), height=Inches(0.45),
-         font_size=20, bold=True, colour=TEAL, align=PP_ALIGN.LEFT)
-
-add_rect(s3, Inches(8.65), Inches(2.62), Inches(3.8), Pt(1.5), TEAL)
-
-sig_lines = [
-    {"text": "Profit-Pulse.com.au",          "size": 12, "colour": OFF_WHITE, "bold": False},
-    {"text": "Nitesh@Profit-Pulse.com.au",   "size": 12, "colour": TEAL,      "bold": False},
-    {"text": "+61 411 876 267",              "size": 12, "colour": OFF_WHITE, "bold": False},
-    {"text": "",                              "size": 8,  "colour": WHITE,     "bold": False},
-    {"text": "16 years across 4 countries",  "size": 11, "colour": RGBColor(0x88, 0x88, 0x88), "bold": False},
-    {"text": "52 deals executed and managed","size": 11, "colour": RGBColor(0x88, 0x88, 0x88), "bold": False},
-    {"text": "CA (SAICA, South Africa)",     "size": 11, "colour": RGBColor(0x88, 0x88, 0x88), "bold": False},
+cred = [
+    "16 years across 4 countries",
+    "52 deals executed and managed",
+    "Largest single deal USD 1.3 billion, Cahora Bassa",
+    "AUD 10 billion GRBT project value in Queensland",
 ]
-add_multiline(
-    s3, sig_lines,
-    left=Inches(8.65), top=Inches(2.75), width=Inches(4.2), height=Inches(3.5),
-    default_size=12, default_colour=OFF_WHITE,
-    spacing_after=2,
-)
+multiline(s3, [{"text": "•  " + c, "size": 10.5, "colour": OFF_WHITE} for c in cred],
+          rx + Inches(0.25), Inches(2.3), rw - Inches(0.5), Inches(1.5), font=SANS, space_after=7)
 
-# ── Footer ───────────────────────────────────────────────────────────────────
-add_text(s3, "Profit-Pulse.com.au",
-         left=Inches(0.25), top=Inches(7.15), width=Inches(4), height=Inches(0.3),
-         font_size=10, bold=False, colour=RGBColor(0x44, 0x44, 0x44), align=PP_ALIGN.LEFT)
-add_text(s3, "09 Jun 2026",
-         left=Inches(10), top=Inches(7.15), width=Inches(3), height=Inches(0.3),
-         font_size=10, bold=False, colour=RGBColor(0x44, 0x44, 0x44), align=PP_ALIGN.RIGHT)
+rect(s3, rx + Inches(0.25), Inches(3.95), rw - Inches(0.5), Pt(1), TEAL)
 
-# ══════════════════════════════════════════════════════════════════════════════
-# SAVE
-# ══════════════════════════════════════════════════════════════════════════════
-out_path = "/home/user/Daily-Outreach/Out-reach efforts/Brief_AdUnion_09Jun2026.pptx"
+contact = [
+    {"text": "Profit-Pulse.com.au", "size": 11, "colour": OFF_WHITE},
+    {"text": "Nitesh@Profit-Pulse.com.au", "size": 11, "colour": TEAL},
+    {"text": "+61 411 876 267", "size": 11, "colour": OFF_WHITE},
+    {"text": "linkedin.com/in/nitesh-roopa-77594163", "size": 9.5, "colour": OFF_WHITE},
+]
+multiline(s3, contact, rx + Inches(0.25), Inches(4.15), rw - Inches(0.5), Inches(1.6),
+          font=SANS, space_after=6)
+
+out_path = "/home/user/Daily-Outreach/Out-reach efforts/Brief_Sniip_19Aug2026.pptx"
 prs.save(out_path)
 print(f"PPTX saved: {out_path}")
