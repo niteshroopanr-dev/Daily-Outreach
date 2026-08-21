@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProfitPulse Outreach Dossier | Taskforce Australia | 22 Aug 2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, Helvetica, sans-serif; background: #000000; color: #FFFFFF; font-size: 16px; line-height: 1.6; }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 24px 20px; }
+
+  .pp_header { border-bottom: 3px solid #01A296; padding-bottom: 28px; margin-bottom: 32px; }
+  .pp_brand { color: #01A296; font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px; }
+  .pp_company { color: #F8C806; font-size: 34px; font-weight: 700; margin-bottom: 8px; }
+  .pp_date { color: #E6E5DE; font-size: 14px; margin-bottom: 14px; }
+  .pp_framing { color: #E6E5DE; font-size: 16px; border-left: 4px solid #01A296; padding-left: 16px; margin-top: 14px; line-height: 1.7; }
+
+  .sec { background: #0d0d0d; border: 1px solid #01A296; border-radius: 8px; padding: 28px; margin-bottom: 24px; }
+  .sec_title { color: #F8C806; font-size: 13px; font-weight: 700; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #01A296; text-transform: uppercase; letter-spacing: 2px; }
+  .sec h3 { color: #01A296; font-size: 17px; font-weight: 700; margin-bottom: 14px; }
+
+  .pgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .pitem { background: #111111; border: 1px solid #333333; border-radius: 6px; padding: 14px; }
+  .plabel { color: #E3A712; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .pvalue { color: #FFFFFF; font-size: 15px; font-weight: 600; }
+  .psrc { color: #E6E5DE; font-size: 11px; margin-top: 4px; font-style: italic; }
+
+  .signal_list { margin-top: 10px; }
+  .signal_item { padding: 10px 0; border-bottom: 1px solid #222222; color: #E6E5DE; font-size: 14px; }
+  .signal_item:last-child { border-bottom: none; }
+  .signal_src { color: #01A296; font-size: 12px; }
+
+  .wedge { background: #071212; border-left: 4px solid #01A296; padding: 20px 24px; border-radius: 0 8px 8px 0; margin-bottom: 22px; color: #E6E5DE; font-size: 15.5px; line-height: 1.8; }
+
+  .inf_note { background: #1a1500; border: 1px solid #F6A102; border-radius: 4px; padding: 8px 14px; font-size: 12px; color: #F8C806; margin-bottom: 20px; }
+
+  .svc_block { background: #041a18; border: 2px solid #01A296; border-radius: 10px; padding: 24px; margin-bottom: 20px; }
+  .svc_code { color: #F6A102; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 6px; }
+  .svc_name { color: #01A296; font-size: 22px; font-weight: 700; margin-bottom: 10px; }
+  .svc_desc { color: #E6E5DE; font-size: 15px; line-height: 1.7; margin-bottom: 18px; }
+  .price_display { color: #F8C806; font-size: 20px; font-weight: 700; }
+  .cadence { color: #E6E5DE; font-size: 13px; }
+  .tier_reason { color: #E6E5DE; font-size: 13px; margin-top: 8px; font-style: italic; }
+
+  .sup_list { margin-top: 18px; }
+  .sup_item { background: #111111; border: 1px solid #333333; border-radius: 6px; padding: 12px 16px; margin-bottom: 8px; }
+  .sup_label { color: #E3A712; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .sup_name { color: #FFFFFF; font-size: 15px; }
+
+  .cta_section { background: #041a18; border: 1px solid #01A296; border-radius: 10px; padding: 24px; margin-top: 22px; }
+  .cta_heading { color: #FFFFFF; font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+  .cta_sub { color: #E6E5DE; font-size: 13px; margin-bottom: 16px; }
+  .btn_primary { display: inline-block; background: #01A296; color: #FFFFFF; font-weight: 700; text-decoration: none; padding: 16px 28px; border-radius: 30px; font-family: Arial, sans-serif; font-size: 16px; }
+  .btn_note { color: #E6E5DE; font-size: 13px; margin-top: 10px; }
+
+  .sec_cta { margin-top: 20px; padding-top: 20px; border-top: 1px solid #222222; }
+  .sec_cta_text { color: #E6E5DE; font-size: 14px; margin-bottom: 10px; }
+  .btn_secondary { display: inline-block; border: 2px solid #F6A102; color: #F6A102; font-weight: 700; text-decoration: none; padding: 12px 22px; border-radius: 26px; font-family: Arial, sans-serif; font-size: 15px; }
+
+  .contact_block { margin-top: 8px; }
+  .contact_verified { background: #041a18; border: 1px solid #01A296; border-radius: 6px; padding: 12px 16px; margin-bottom: 10px; }
+  .contact_tag_verified { color: #01A296; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+  .contact_guess { background: #1a1500; border: 1px solid #F6A102; border-radius: 6px; padding: 10px 16px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+  .contact_tag_guess { color: #F8C806; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+  .contact_addr { color: #FFFFFF; font-size: 14.5px; font-family: monospace; }
+  .contact_fallback { background: #111111; border: 1px solid #333333; border-radius: 6px; padding: 10px 16px; margin-top: 6px; }
+
+  .review_gate { background: #CC0000; color: #FFFFFF; font-weight: 700; font-size: 15px; padding: 18px 22px; border-radius: 6px; margin-bottom: 22px; text-align: center; border: 2px solid #FFFFFF; }
+
+  .email_frame { background: #111111; border: 1px solid #01A296; border-radius: 8px; overflow: hidden; }
+  .email_top { background: #041a18; padding: 14px 22px; border-bottom: 1px solid #01A296; }
+  .email_field { color: #E6E5DE; font-size: 13px; margin-bottom: 5px; }
+  .email_field b { color: #FFFFFF; }
+  .email_placeholder_tag { color: #F8C806; font-size: 11px; font-weight: 700; }
+  .email_body { padding: 24px 22px; color: #E6E5DE; font-size: 15px; line-height: 1.8; }
+  .email_body p { margin-bottom: 16px; }
+  .email_body a { color: #01A296; font-weight: 700; }
+  .email_sig { margin-top: 10px; color: #FFFFFF; }
+  .email_sig .role { color: #E6E5DE; }
+  .email_sig a { color: #01A296; }
+
+  .notes_list { color: #E6E5DE; font-size: 13.5px; line-height: 2; }
+  .notes_list b { color: #F8C806; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="pp_header">
+    <div class="pp_brand">ProfitPulse Nightly Outreach Engine</div>
+    <div class="pp_company">Taskforce Australia</div>
+    <div class="pp_date">22 Aug 2026</div>
+    <div class="pp_framing">
+      Selected tonight because Taskforce has posted three straight Smart50 citations of accelerating
+      revenue on an unchanged headcount, and has now put a public number on the next phase, 50 to 60
+      percent compound annual growth, funded without a further capital raise. That combination is a
+      clean, well evidenced cash management story.
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec_title">Verified Profile</div>
+    <div class="pgrid">
+      <div class="pitem">
+        <div class="plabel">Revenue, FY2025</div>
+        <div class="pvalue">$12.8 million</div>
+        <div class="psrc">Smart50 2025 award citation, rank 37 of 50</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Revenue growth, FY2025</div>
+        <div class="pvalue">31 percent</div>
+        <div class="psrc">Smart50 2025 award citation</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Employees</div>
+        <div class="pvalue">19</div>
+        <div class="psrc">Smart50 2025 award citation, consistent with LinkedIn headcount</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Founded</div>
+        <div class="pvalue">2014</div>
+        <div class="psrc">Smart50 2023, 2024 and 2025 award profiles</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Location</div>
+        <div class="pvalue">Burnley, Melbourne VIC</div>
+        <div class="psrc">Smart50 award profiles; Taskforce Australia website</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Industry</div>
+        <div class="pvalue">Property compliance and maintenance platform, servicing real estate agencies</div>
+        <div class="psrc">Taskforce Australia and RentSafe websites</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Founder and CEO</div>
+        <div class="pvalue">Jason Bright</div>
+        <div class="psrc">Proptech Australia 2026 finalist listing; Smart50 profiles</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Co founder</div>
+        <div class="pvalue">Campbell Sallabank</div>
+        <div class="psrc">Smart50 award profiles</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Revenue trend, three years</div>
+        <div class="pvalue">$7.43 million to $9.7 million to $12.8 million</div>
+        <div class="psrc">Smart50 2023, 2024 and 2025 award citations</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Website domain</div>
+        <div class="pvalue">taskforce.com.au</div>
+        <div class="psrc">Company website</div>
+      </div>
+    </div>
+
+    <div class="signal_list">
+      <div class="signal_item">Target of 50 to 60 percent compound annual growth over the next three years, funded through self funded organic growth rather than a further capital raise. <span class="signal_src">Source: Smart50 2024 profile</span></div>
+      <div class="signal_item">New preferred supplier agreement with BigginScott Group, a national real estate management group, effective 1 July 2025. <span class="signal_src">Source: Real+ partner listing; eliteagent.com</span></div>
+      <div class="signal_item">RentSafe platform has delivered more than 140,000 compliance and maintenance jobs across 300 real estate offices and 180 major real estate brands since its 2021 launch. <span class="signal_src">Source: Taskforce Australia RentSafe website</span></div>
+      <div class="signal_item">Won the Proptech Association Award in 2024 and 2025, consecutive years. Founder Jason Bright is a finalist for Leader of the Year at the 2026 Proptech Awards. <span class="signal_src">Source: Proptech Australia; Taskforce Australia website</span></div>
+      <div class="signal_item">Previously raised $1.5 million in capital to build out the trade services platform, per a SmartCompany StartupSmart headline. <span class="signal_src">Source: SmartCompany StartupSmart</span></div>
+      <div class="signal_item">Network of more than 5,500 trades nationally supporting the platform. <span class="signal_src">Source: Taskforce Australia website</span></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec_title">The Wedge and the Matched Service</div>
+    <div class="inf_note">
+      Inferred commercial goal, not a verified statement of intent: fund and steer the jump from
+      31 percent to a stated 50 to 60 percent compound annual growth target without external
+      capital, while a 19 person team absorbs a fast growing base of real estate office clients.
+      This is inferred from the stated self funded organic growth strategy and the new BigginScott
+      Group volume, not from any direct statement of internal financial process.
+    </div>
+    <div class="wedge">
+      Taskforce Australia has grown revenue from $7.43 million to $12.8 million across three
+      consecutive Smart50 citations, a 31 percent lift in the most recent year, while holding the
+      team at 19 people. The company has stated a target of 50 to 60 percent compound annual growth
+      over the next three years, funded through self funded organic growth rather than a further
+      capital raise, alongside a new preferred supplier agreement with BigginScott Group from 1 July
+      2025 that adds volume on top of the 300 real estate offices and 180 major brands already
+      serviced through the RentSafe platform. Self funding an acceleration from 31 percent to a 50
+      to 60 percent target, on a lean 19 person base, while volume expands across hundreds of real
+      estate office relationships, is a cash timing problem before it is anything else. A rolling 13
+      week view converts that growth ambition into a weekly cash rhythm the team can run without
+      adding headcount, so the expansion is funded from the business itself rather than a stretched
+      facility or a scramble for external capital.
+    </div>
+
+    <div class="svc_block">
+      <div class="svc_code">Matched service, code C1</div>
+      <div class="svc_name">13 Week Cash Flow Build</div>
+      <div class="svc_desc">
+        A rolling 13 week cash flow forecast built from your accounting data, with three scenarios
+        and a weekly cadence playbook your team can run after handover.
+      </div>
+      <div class="price_display">$2,650 <span class="cadence">one off, ProfitPulse verified figure. The questionnaire confirms the exact fit for Taskforce.</span></div>
+      <div class="tier_reason">
+        Internal sizing note (not shown to prospect): raw score 32 against an industry bias of 3
+        (real estate and property management adjacent, technology platform), giving an Essential
+        ceiling of 27 and a Command ceiling of 37. No margin or growth adjustment triggered. Tier
+        computed: Command.
+      </div>
+    </div>
+
+    <div class="sup_list">
+      <div class="sup_item">
+        <div class="sup_label">Supporting service</div>
+        <div class="sup_name">Fractional CFO Partnership (B1)</div>
+      </div>
+      <div class="sup_item">
+        <div class="sup_label">Supporting service</div>
+        <div class="sup_name">Capital Allocation Review (A5)</div>
+      </div>
+    </div>
+
+    <div class="cta_section">
+      <div class="cta_heading">Primary call to action, the questionnaire</div>
+      <div class="cta_sub">Answer a few quick questions and see the solutions matched to your size and industry.</div>
+      <a class="btn_primary" href="https://profit-pulse.com.au/services/find-your-fit/?utm_source=outreach&amp;utm_medium=html&amp;utm_campaign=nightly_outreach&amp;utm_content=taskforce_australia">Find your fit in two minutes</a>
+      <div class="btn_note">Visible address: profit-pulse.com.au/services/find-your-fit</div>
+
+      <div class="sec_cta">
+        <div class="sec_cta_text">Already know this is the priority? You can begin with 13 Week Cash Flow Build, $2,650 one off.</div>
+        <a class="btn_secondary" href="https://buy.stripe.com/3cI4gA1qw5280yQgYT3ks0w">Purchase the suggested product now to get started</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec_title">Likely Contact Email Addresses, Internal Use Only</div>
+    <div class="contact_block">
+      <div class="contact_verified">
+        <div class="contact_tag_verified">Verified, generic fallback</div>
+        <div class="contact_addr">hello@taskforce.com.au</div>
+        <div class="psrc">Source: Taskforce Australia website, contact page</div>
+      </div>
+
+      <div class="contact_guess"><span class="contact_addr">jason.bright@taskforce.com.au</span><span class="contact_tag_guess">Inferred, unverified</span></div>
+      <div class="contact_guess"><span class="contact_addr">jason@taskforce.com.au</span><span class="contact_tag_guess">Inferred, unverified</span></div>
+      <div class="contact_guess"><span class="contact_addr">jasonbright@taskforce.com.au</span><span class="contact_tag_guess">Inferred, unverified</span></div>
+      <div class="contact_guess"><span class="contact_addr">jbright@taskforce.com.au</span><span class="contact_tag_guess">Inferred, unverified</span></div>
+      <div class="contact_guess"><span class="contact_addr">jason_bright@taskforce.com.au</span><span class="contact_tag_guess">Inferred, unverified</span></div>
+
+      <div class="contact_fallback psrc">
+        No individual email for Jason Bright was found in public material. The five formats above
+        are standard Australian convention guesses against the verified domain taskforce.com.au and
+        the decision maker's verified name. None is confirmed. Nitesh must choose and confirm before
+        any send.
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec_title">The Email Draft</div>
+    <div class="review_gate">
+      REVIEW GATE: This email is a draft only. No communication has been sent. Only Nitesh Roopa
+      may authorise and send this message.
+    </div>
+    <div class="email_frame">
+      <div class="email_top">
+        <div class="email_field"><b>To:</b> jason.bright@taskforce.com.au <span class="email_placeholder_tag">(placeholder, best guess, confirm before sending)</span></div>
+        <div class="email_field"><b>From:</b> Nitesh@Profit-Pulse.com.au</div>
+        <div class="email_field"><b>Subject:</b> A note on Taskforce Australia's growth target</div>
+        <div class="email_field"><b>Attachment:</b> Brief_TaskforceAustralia_22Aug2026.pdf</div>
+      </div>
+      <div class="email_body">
+        <p>Hi Jason,</p>
+        <p>
+          Congratulations on Taskforce Australia's run through the Smart50 list three years
+          running, most recently at rank 37 for 2025 with revenue up 31 percent. Growth from
+          $7.43 million to $12.8 million across three cited years, on an unchanged team, is not
+          common.
+        </p>
+        <p>
+          I am Nitesh Roopa, a Chartered Accountant and Managing Partner of ProfitPulse, a
+          Brisbane based fractional CFO and advisory firm. Across 16 years and 4 countries I have
+          worked on 52 deals, most recently leading the finance and commercial case for a 10
+          billion dollar transport project in Queensland.
+        </p>
+        <p>
+          What caught my eye is the target you have set publicly, 50 to 60 percent compound
+          annual growth over the next three years, funded through self funded organic growth
+          rather than a further capital raise, alongside the new BigginScott Group volume from
+          July. Funding that pace from operating cash usually comes down to a tight weekly view
+          of cash, which is where a 13 Week Cash Flow Build earns its keep. I have put together a
+          short brief on this, attached.
+        </p>
+        <p>
+          If it is useful, the quickest way to see what fits your situation is a two minute
+          questionnaire at
+          <a href="https://profit-pulse.com.au/services/find-your-fit/?utm_source=outreach&amp;utm_medium=email&amp;utm_campaign=nightly_outreach&amp;utm_content=taskforce_australia">profit-pulse.com.au/services/find-your-fit</a>,
+          which matches solutions to your size and industry.
+        </p>
+        <p>
+          If you would rather talk first, I am always happy to do a complimentary discovery call,
+          you can grab a time directly here:
+          <a href="https://bookings.cloud.microsoft/book/ProfitPulse1@profit-pulse.com.au/?ismsaljsauthenabled=true">book a discovery call</a>.
+          Either way, congratulations again on the run you are having.
+        </p>
+        <div class="email_sig">
+          Nitesh Roopa<br>
+          <span class="role">CA, Managing Partner</span><br>
+          ProfitPulse<br>
+          <a href="#">Profit-Pulse.com.au</a><br>
+          <a href="#">Nitesh@Profit-Pulse.com.au</a><br>
+          +61 411 876 267
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec_title">System Notes</div>
+    <div class="notes_list">
+      <div><b>Selected target:</b> Taskforce Australia. Confirmed absent from Outreach_Register.csv prior to this run.</div>
+      <div><b>Verified sources:</b> Smart50 2023, 2024 and 2025 award profiles (SmartCompany); Taskforce Australia and RentSafe company websites; Real+ and eliteagent.com BigginScott Group partner announcement; Proptech Australia 2026 finalist listing; SmartCompany StartupSmart capital raise headline; LinkedIn company and employee listings.</div>
+      <div><b>Inferred goal:</b> funding and steering the jump to a 50 to 60 percent compound annual growth target without external capital. Marked as an inference, not a verified internal statement.</div>
+      <div><b>Matched service:</b> C1, 13 Week Cash Flow Build. Supporting: B1 Fractional CFO Partnership, A5 Capital Allocation Review.</div>
+      <div><b>Inferred tier:</b> Command. Reason: raw score 32 (revenue band 6, margin band 3 assumed neutral, team band 3, locations band 1, structure band 2 assumed neutral, revenue model band 2 assumed neutral, concentration band 1, funding band 0 inferred debt free from self funded growth framing, forward growth band 6, recent trajectory band 6, commercial event band 2) against industry bias 3, Essential ceiling 27, Command ceiling 37. No lift or drop adjustment triggered. Assumed neutral inputs recorded: gross margin, business structure, revenue model.</div>
+      <div><b>Questionnaire URL used:</b> https://profit-pulse.com.au/services/find-your-fit/?utm_source=outreach&amp;utm_medium=html&amp;utm_campaign=nightly_outreach&amp;utm_content=taskforce_australia (dossier); utm_medium=email on the email draft.</div>
+      <div><b>Direct Stripe checkout used:</b> https://buy.stripe.com/3cI4gA1qw5280yQgYT3ks0w, C1 at Command tier, $2,650 one off. No UTM tags applied.</div>
+      <div><b>Contact email domain:</b> taskforce.com.au, taken from the company website. No individual verified email found for Jason Bright. The generic hello@taskforce.com.au address is verified from the site's contact page. The five personal formats listed are inferred guesses only, clearly flagged, and require Nitesh's confirmation before any use.</div>
+      <div><b>Email includes direct checkout link:</b> No. EMAIL_INCLUDE_DIRECT_CHECKOUT is false, so the email leads with the questionnaire only.</div>
+      <div><b>Nothing has been sent.</b> This entire package, the dossier, the email draft, and the attached brief, is produced for Nitesh Roopa's review only.</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
