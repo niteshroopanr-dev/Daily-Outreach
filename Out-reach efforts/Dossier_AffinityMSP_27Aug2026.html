@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProfitPulse Outreach Dossier | Affinity MSP | 27 Aug 2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, Helvetica, sans-serif; background: #000000; color: #FFFFFF; font-size: 16px; line-height: 1.6; }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 24px 20px; }
+
+  /* Header */
+  .pp_header { border-bottom: 3px solid #01A296; padding-bottom: 28px; margin-bottom: 32px; }
+  .pp_brand { color: #01A296; font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px; }
+  .pp_company { color: #F8C806; font-size: 36px; font-weight: 700; margin-bottom: 8px; }
+  .pp_date { color: #E6E5DE; font-size: 14px; margin-bottom: 14px; }
+  .pp_framing { color: #E6E5DE; font-size: 16px; border-left: 4px solid #01A296; padding-left: 16px; margin-top: 14px; line-height: 1.7; }
+
+  /* Sections */
+  .sec { background: #111111; border: 1px solid #222222; border-radius: 8px; padding: 28px; margin-bottom: 24px; }
+  .sec_title { color: #F8C806; font-size: 13px; font-weight: 700; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #01A296; text-transform: uppercase; letter-spacing: 2px; }
+  .sec h3 { color: #01A296; font-size: 17px; font-weight: 700; margin-bottom: 14px; }
+
+  /* Profile grid */
+  .pgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .pitem { background: #1a1a1a; border-radius: 6px; padding: 14px; }
+  .plabel { color: #F6A102; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .pvalue { color: #FFFFFF; font-size: 15px; font-weight: 600; }
+  .psrc { color: #E6E5DE; font-size: 11px; margin-top: 4px; }
+
+  /* Rankings callout */
+  .rankings { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 18px; }
+  .rank_badge { background: #1a1a1a; border: 1px solid #01A296; border-radius: 6px; padding: 12px 16px; text-align: center; flex: 1; min-width: 150px; }
+  .rank_num { color: #F8C806; font-size: 26px; font-weight: 700; }
+  .rank_list { color: #E6E5DE; font-size: 12px; margin-top: 2px; }
+  .rank_year { color: #E6E5DE; font-size: 11px; }
+
+  /* Wedge */
+  .wedge { background: #071212; border-left: 4px solid #01A296; padding: 20px 24px; border-radius: 0 8px 8px 0; margin-bottom: 22px; color: #E6E5DE; font-size: 16px; line-height: 1.8; }
+
+  /* Inference label */
+  .inf_note { background: #1a1500; border: 1px solid #F6A102; border-radius: 4px; padding: 8px 14px; font-size: 12px; color: #F6A102; margin-bottom: 20px; }
+
+  /* Service block */
+  .svc_block { background: #041a18; border: 2px solid #01A296; border-radius: 10px; padding: 24px; margin-bottom: 20px; }
+  .svc_code { color: #F6A102; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 6px; }
+  .svc_name { color: #01A296; font-size: 22px; font-weight: 700; margin-bottom: 10px; }
+  .svc_desc { color: #E6E5DE; font-size: 15px; line-height: 1.7; margin-bottom: 18px; }
+  .svc_meta { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; margin-bottom: 10px; }
+  .price_display { color: #F8C806; font-size: 20px; font-weight: 700; }
+  .cadence { color: #E6E5DE; font-size: 13px; }
+  .price_note { color: #E6E5DE; font-size: 13px; margin-top: 4px; }
+
+  /* Supporting services */
+  .sup_list { margin-top: 18px; }
+  .sup_item { background: #1a1a1a; border-radius: 6px; padding: 12px 16px; margin-bottom: 8px; }
+  .sup_label { color: #E3A712; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .sup_name { color: #FFFFFF; font-size: 15px; }
+  .sup_note { color: #E6E5DE; font-size: 12px; margin-top: 3px; }
+
+  /* Primary CTA */
+  .cta_section { background: #041a18; border: 1px solid #01A296; border-radius: 10px; padding: 24px; margin-top: 22px; }
+  .cta_heading { color: #FFFFFF; font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+  .cta_sub { color: #E6E5DE; font-size: 13px; margin-bottom: 16px; }
+  .btn_primary { display: inline-block; background: #01A296; color: #FFFFFF; font-weight: 700; text-decoration: none; padding: 16px 28px; border-radius: 30px; font-family: Arial, sans-serif; font-size: 16px; }
+  .btn_note { color: #E6E5DE; font-size: 13px; margin-top: 10px; }
+
+  /* Secondary CTA */
+  .sec_cta { margin-top: 20px; padding-top: 20px; border-top: 1px solid #222222; }
+  .sec_cta_text { color: #E6E5DE; font-size: 14px; margin-bottom: 10px; }
+  .btn_secondary { display: inline-block; border: 2px solid #F6A102; color: #F6A102; font-weight: 700; text-decoration: none; padding: 12px 22px; border-radius: 26px; font-family: Arial, sans-serif; font-size: 15px; }
+
+  /* Contact email block, 5.3C */
+  .contact_block { background: #1a1a1a; border: 1px solid #333333; border-radius: 8px; padding: 20px; margin-bottom: 24px; }
+  .contact_intro { color: #E6E5DE; font-size: 13px; margin-bottom: 14px; }
+  .contact_row { display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; border-radius: 6px; margin-bottom: 6px; background: #111111; }
+  .contact_addr { color: #FFFFFF; font-size: 15px; font-weight: 600; }
+  .contact_flag { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 3px 10px; border-radius: 12px; }
+  .flag_likely { background: #041a18; color: #01A296; border: 1px solid #01A296; }
+  .flag_guess { background: #1a1500; color: #F6A102; border: 1px solid #F6A102; }
+  .contact_src { color: #E6E5DE; font-size: 11px; margin-top: 2px; }
+
+  /* Review gate */
+  .review_gate { background: #cc0000; color: #FFFFFF; font-weight: 700; font-size: 15px; padding: 18px 22px; border-radius: 6px; margin-bottom: 22px; text-align: center; border: 2px solid #ff6666; }
+
+  /* Email frame */
+  .email_frame { background: #1a1a1a; border: 1px solid #333333; border-radius: 8px; overflow: hidden; }
+  .email_top { background: #222222; padding: 14px 22px; border-bottom: 1px solid #333333; }
+  .email_field { color: #E6E5DE; font-size: 13px; margin-bottom: 5px; }
+  .email_field span { color: #E6E5DE; }
+  .email_field .placeholder_flag { color: #F6A102; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-left: 8px; }
+  .email_body_wrap { padding: 24px 22px; color: #E6E5DE; font-size: 15px; line-height: 1.85; }
+  .email_body_wrap p { margin-bottom: 18px; }
+  .email_body_wrap a { color: #01A296; word-break: break-all; }
+  .email_sig { border-top: 1px solid #333333; padding-top: 16px; margin-top: 8px; }
+  .email_sig p { margin-bottom: 4px; color: #E6E5DE; }
+
+  /* System notes */
+  .sys_notes { background: #0d0d0d; border: 1px solid #2a2a2a; border-radius: 6px; padding: 20px; }
+  .sys_item { margin-bottom: 10px; font-size: 13px; color: #E6E5DE; }
+  .sys_label { color: #F6A102; font-weight: 700; }
+
+  /* Responsive */
+  @media (max-width: 620px) {
+    .pgrid { grid-template-columns: 1fr; }
+    .rankings { flex-direction: column; }
+    .pp_company { font-size: 26px; }
+    .svc_meta { flex-direction: column; align-items: flex-start; }
+    .contact_row { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ============================================================
+       5.1  HEADER
+  ============================================================ -->
+  <div class="pp_header">
+    <div class="pp_brand">ProfitPulse &nbsp;&bull;&nbsp; Internal Research Dossier</div>
+    <div class="pp_company">Affinity MSP</div>
+    <div class="pp_date">Prepared for: 27 Aug 2026</div>
+    <div class="pp_framing">
+      A 36 person Melbourne managed IT services provider that has just been named the top ranked Australian provider, 69th globally, on the 2026 Channel Futures MSP 501 index, on top of a 42 percent three year revenue growth result reported in the Smart50 2025 awards.
+      A fast scaling, founder led, utilisation based business is the classic setup where billable efficiency quietly erodes while the growth story looks excellent from the outside.
+    </div>
+  </div>
+
+  <!-- ============================================================
+       5.2  VERIFIED PROFILE
+  ============================================================ -->
+  <div class="sec">
+    <div class="sec_title">Verified Profile</div>
+    <div class="pgrid">
+      <div class="pitem">
+        <div class="plabel">Company</div>
+        <div class="pvalue">Affinity MSP</div>
+        <div class="psrc">affinitymsp.com.au</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Location</div>
+        <div class="pvalue">Mount Waverley, VIC (Melbourne), about 17km from the CBD</div>
+        <div class="psrc">Company location page; business directory listings (Hotfrog, Central Index)</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Industry</div>
+        <div class="pvalue">Managed IT services (MSP)</div>
+        <div class="psrc">Company website; Smart50 and MSP 501 coverage</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Founded</div>
+        <div class="pvalue">2019</div>
+        <div class="psrc">SmartCompany Smart50 2025 award citation</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Revenue</div>
+        <div class="pvalue">$6.6 million</div>
+        <div class="psrc">SmartCompany Smart50 2025 award citation (company self reported)</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Revenue Growth</div>
+        <div class="pvalue">42% three year growth</div>
+        <div class="psrc">SmartCompany Smart50 2025 award citation</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Team Size</div>
+        <div class="pvalue">36 employees</div>
+        <div class="psrc">SmartCompany Smart50 2025 award citation</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Founder and CEO</div>
+        <div class="pvalue">Nick Ower</div>
+        <div class="psrc">LinkedIn public profile; ZoomInfo (Chief Executive Officer and Founder)</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Ownership and Capital</div>
+        <div class="pvalue">Bootstrapped, no external investors</div>
+        <div class="psrc">Reported in Smart50 2025 coverage of Affinity MSP</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">M&amp;A Posture</div>
+        <div class="pvalue">Has chosen not to pursue mergers, to protect independence</div>
+        <div class="psrc">Reported in Smart50 2025 coverage of Affinity MSP</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Global Standing</div>
+        <div class="pvalue">69th globally on the 2026 MSP 501 index</div>
+        <div class="psrc">Channel Futures MSP 501, 2026</div>
+      </div>
+      <div class="pitem">
+        <div class="plabel">Founder Statement</div>
+        <div class="pvalue">Describes spending over a decade building an MSP Australian businesses can rely on</div>
+        <div class="psrc">Nick Ower, quoted in MSP 501 2026 coverage</div>
+      </div>
+    </div>
+
+    <!-- Rankings -->
+    <div class="sec" style="margin-top: 20px; margin-bottom: 0; background: #0d0d0d;">
+      <div class="sec_title" style="font-size: 12px;">Public Rankings (All Verified)</div>
+      <div class="rankings">
+        <div class="rank_badge">
+          <div class="rank_num">29th</div>
+          <div class="rank_list">SmartCompany Smart50</div>
+          <div class="rank_year">2025 | national ranking</div>
+        </div>
+        <div class="rank_badge">
+          <div class="rank_num">1st AU</div>
+          <div class="rank_list">Channel Futures MSP 501</div>
+          <div class="rank_year">2026 | top ranked Australian provider</div>
+        </div>
+        <div class="rank_badge">
+          <div class="rank_num">69th</div>
+          <div class="rank_list">Channel Futures MSP 501, global</div>
+          <div class="rank_year">2026 | worldwide ranking</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       5.3  THE WEDGE AND MATCHED SERVICE
+  ============================================================ -->
+  <div class="sec">
+    <div class="sec_title">Commercial Wedge and Matched Service</div>
+
+    <div class="inf_note">
+      The inferred commercial goal below is derived from verified public evidence about Affinity MSP's growth trajectory, business model, and ownership structure. It is an inference, not a verified fact, and is labelled as such.
+    </div>
+
+    <h3>Inferred Commercial Goal</h3>
+    <div class="wedge">
+      Affinity MSP has compounded revenue 42 percent over three years to $6.6 million with a team of 36, and has just been named the top ranked Australian managed service provider on the 2026 Channel Futures MSP 501 index, 69th globally. The award panel explicitly weighs financial performance and operational depth, so this recognition is a strong external signal that the business is executing well.
+      <br><br>
+      The inferred goal for the next 12 months is protecting margin through the next phase of headcount growth. Managed service providers are a classically utilisation based business: revenue depends on the ratio of billable technician time to total paid capacity. As MSPs scale past the 30 to 40 person mark, it is common for that ratio to quietly erode, because onboarding, support tickets, and non billable overhead absorb capacity faster than pricing and hiring plans account for. The business has also grown without external investors and has reportedly chosen not to pursue mergers, which is admirable discipline but also means every capital and pricing decision runs through a founder led team with no dedicated finance function testing the numbers independently.
+      <br><br>
+      This is an inference from verified public information about the business. It may not reflect the actual situation inside Affinity MSP.
+    </div>
+
+    <h3>Matched Service</h3>
+    <div class="svc_block">
+      <div class="svc_code">Primary Service &bull; Code G4</div>
+      <div class="svc_name">Workforce Capacity and Utilisation Review</div>
+      <div class="svc_desc">
+        A four week review of how team time and capacity translate into revenue and margin. For utilisation based businesses like an MSP, it measures billable mix, revenue per full time employee, and capacity headroom, producing a clear read on where the next hire should sit before the next growth phase locks in the wrong ratio.
+      </div>
+      <div class="svc_meta">
+        <div class="price_display">$3,950</div>
+        <div class="cadence">one off</div>
+      </div>
+      <div class="price_note">This is a verified ProfitPulse price. The questionnaire confirms the exact fit for Affinity MSP's size and situation.</div>
+    </div>
+
+    <!-- CTA: Primary (Questionnaire) -->
+    <div class="cta_section">
+      <div class="cta_heading">Step 1: Triangulate through the questionnaire</div>
+      <div class="cta_sub">The prospect answers a few short questions. The page matches services to their size and industry. Every matched service carries a direct purchase option. This is the preferred front door.</div>
+      <a class="btn_primary"
+         href="https://profit-pulse.com.au/services/find-your-fit/?utm_source=outreach&utm_medium=html&utm_campaign=nightly_outreach&utm_content=affinity_msp">
+        Find your fit in two minutes
+      </a>
+      <div class="btn_note">
+        Answer a few quick questions and see the solutions matched to your size and industry, each with a direct purchase option.
+      </div>
+
+      <!-- CTA: Secondary (Direct Checkout) -->
+      <div class="sec_cta">
+        <div class="sec_cta_text">
+          Already know the Workforce Capacity and Utilisation Review is the priority? You can begin directly at the verified price: $3,950 one off.
+        </div>
+        <a class="btn_secondary"
+           href="https://buy.stripe.com/eVq9AU2uA66cbdu9wr3ks1F">
+          Start Workforce Capacity and Utilisation Review
+        </a>
+        <div class="btn_note" style="margin-top: 8px;">
+          Direct Stripe checkout for G4. No UTM tags appended.
+          The questionnaire confirms the exact tier before purchase if preferred.
+        </div>
+      </div>
+    </div>
+
+    <!-- Supporting Services -->
+    <div class="sup_list">
+      <div style="color: #E6E5DE; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; margin-top: 22px;">Supporting Services (named only, evidence supported)</div>
+      <div class="sup_item">
+        <div class="sup_label">Supporting Service 1 &bull; Code D3</div>
+        <div class="sup_name">KPI Dashboard Build and Run</div>
+        <div class="sup_note">A custom monthly dashboard tracking the 8 to 12 numbers that move the business, including the utilisation metrics the Workforce Capacity Review would surface. Natural next step to keep the numbers live for a founder led team with no dedicated finance function.</div>
+      </div>
+      <div class="sup_item">
+        <div class="sup_label">Supporting Service 2 &bull; Code A3</div>
+        <div class="sup_name">Financial Health Check (Quarterly)</div>
+        <div class="sup_note">A structured quarterly review against plan, with variance analysis and forward looking risks and opportunities. Gives Nick Ower a regular external check in without a full time finance hire.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       5.3C  LIKELY CONTACT EMAIL ADDRESSES
+  ============================================================ -->
+  <div class="sec">
+    <div class="sec_title">Likely Contact Email Addresses (Internal Use Only, Never Shown to Prospect)</div>
+    <div class="contact_block">
+      <div class="contact_intro">
+        No specific verified email address for Nick Ower was found in public sources. Email intelligence aggregators report that the dominant address format at affinitymsp.com.au is firstname&#64;domain (used by roughly 95% of listed company addresses), which makes the first guess below the most likely. All addresses are guesses to be confirmed by Nitesh before any send.
+      </div>
+      <div class="contact_row">
+        <div>
+          <div class="contact_addr">nick&#64;affinitymsp.com.au</div>
+          <div class="contact_src">Most likely. Format pattern confirmed by RocketReach email intelligence data for this domain.</div>
+        </div>
+        <div class="contact_flag flag_likely">Likely format</div>
+      </div>
+      <div class="contact_row">
+        <div>
+          <div class="contact_addr">nick.ower&#64;affinitymsp.com.au</div>
+          <div class="contact_src">Inferred, standard firstname.lastname format.</div>
+        </div>
+        <div class="contact_flag flag_guess">Inferred</div>
+      </div>
+      <div class="contact_row">
+        <div>
+          <div class="contact_addr">nickower&#64;affinitymsp.com.au</div>
+          <div class="contact_src">Inferred, standard firstnamelastname format.</div>
+        </div>
+        <div class="contact_flag flag_guess">Inferred</div>
+      </div>
+      <div class="contact_row">
+        <div>
+          <div class="contact_addr">nower&#64;affinitymsp.com.au</div>
+          <div class="contact_src">Inferred, standard first initial plus lastname format.</div>
+        </div>
+        <div class="contact_flag flag_guess">Inferred</div>
+      </div>
+      <div class="contact_row">
+        <div>
+          <div class="contact_addr">info&#64;affinitymsp.com.au</div>
+          <div class="contact_src">Generic fallback address, listed on business directory aggregators as the company contact address.</div>
+        </div>
+        <div class="contact_flag flag_guess">Generic fallback</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       5.4  EMAIL DRAFT
+  ============================================================ -->
+  <div class="sec">
+    <div class="sec_title">Email Draft</div>
+
+    <div class="review_gate">
+      REVIEW GATE: This email is a draft only. No communication has been sent.
+      Only Nitesh Roopa may authorise and send this message.
+    </div>
+
+    <div class="email_frame">
+      <div class="email_top">
+        <div class="email_field">To: <span>nick&#64;affinitymsp.com.au</span><span class="placeholder_flag">Placeholder, confirm before sending</span></div>
+        <div class="email_field">From: <span>Nitesh&#64;Profit-Pulse.com.au</span></div>
+        <div class="email_field">Subject: <span>Congratulations on Affinity MSPs number one ranking</span></div>
+        <div class="email_field">Attachment: <span>Brief_AffinityMSP_27Aug2026.pdf</span></div>
+      </div>
+      <div class="email_body_wrap">
+        <p>
+          Hi Nick,
+        </p>
+        <p>
+          I saw that Affinity MSP has just been named the top ranked Australian provider, and 69th globally, on the 2026 Channel Futures MSP 501 index. Paired with the 42 percent three year growth result in this year's Smart50 awards, it is a genuinely strong run, especially built without outside investors.
+        </p>
+        <p>
+          I am Nitesh Roopa, CA, Managing Partner at ProfitPulse, a Brisbane based fractional CFO and advisory firm. I spent sixteen years across four countries working on capital transactions and financial strategy, including principal and equity finance roles with deal sizes from USD 15 million to USD 1.3 billion, before moving into fractional CFO work for growth stage Australian businesses.
+        </p>
+        <p>
+          The observation that prompted this note: managed service providers are a utilisation based business, and it is common for billable mix to quietly erode during exactly this kind of rapid, well recognised growth phase, well before it shows up in the top line. I work on this specific question with clients through a Workforce Capacity and Utilisation Review, a four week project that measures billable mix, revenue per technician, and capacity headroom. I have attached a short brief with more detail.
+        </p>
+        <p>
+          If it is useful, the link below takes two minutes and shows the ProfitPulse services matched to your size and industry, each with a direct purchase option:<br>
+          <a href="https://profit-pulse.com.au/services/find-your-fit/?utm_source=outreach&utm_medium=email&utm_campaign=nightly_outreach&utm_content=affinity_msp">profit-pulse.com.au/services/find-your-fit</a>
+        </p>
+        <p>
+          If you would rather talk it through first, you are welcome to book a complimentary discovery call here:<br>
+          <a href="https://bookings.cloud.microsoft/book/ProfitPulse1@profit-pulse.com.au/?ismsaljsauthenabled=true">Book a complimentary discovery call</a>
+        </p>
+        <p>Warm regards,</p>
+        <div class="email_sig">
+          <p><strong>Nitesh Roopa</strong></p>
+          <p>CA, Managing Partner</p>
+          <p>ProfitPulse</p>
+          <p><a href="https://profit-pulse.com.au">Profit-Pulse.com.au</a></p>
+          <p><a href="mailto:Nitesh@Profit-Pulse.com.au">Nitesh@Profit-Pulse.com.au</a></p>
+          <p>+61 411 876 267</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       5.5  SYSTEM NOTES
+  ============================================================ -->
+  <div class="sec">
+    <div class="sec_title">System Notes</div>
+    <div class="sys_notes">
+      <div class="sys_item"><span class="sys_label">Run date:</span> 26 Aug 2026 (23:00 Brisbane time). Output date for all files: 27 Aug 2026.</div>
+      <div class="sys_item"><span class="sys_label">Target selected:</span> Affinity MSP, Mount Waverley VIC. Register checked against the single existing entry (AdUnion). No prior entry for Affinity MSP exists. Selection is valid.</div>
+      <div class="sys_item">
+        <span class="sys_label">Verified sources used:</span>
+        <br>1. SmartCompany Smart50 2025 award citation: Affinity MSP ranked 29th, revenue $6.6 million, growth 42%, 36 employees, founded 2019, location Mount Waverley VIC, founder Nick Ower
+        <br>2. Channel Futures MSP 501 2026 (reported via ITBrief, ChannelLife, SMBtech, Newsfile Corp): Affinity MSP ranked 1st in Australia, 69th globally
+        <br>3. Affinity MSP company blog (affinitymsp.com.au/blog): MSP 501 2026 result and Nick Ower quotes, referenced via search aggregation since direct fetch of the domain was blocked in this environment
+        <br>4. LinkedIn public profile (au.linkedin.com/in/nickower): Nick Ower, Founder and CEO, AffinityMSP
+        <br>5. ZoomInfo public listing: Nicholas Ower, Chief Executive Officer and Founder at AffinityMSP
+        <br>6. Business directory listings (Hotfrog, Central Index, Firmania, Managed IT Australia): registered office at Suite 101, 21 to 35 Ricketts Road, Mount Waverley VIC 3149
+        <br>7. RocketReach email format aggregation for affinitymsp.com.au: dominant address format firstname&#64;domain
+      </div>
+      <div class="sys_item">
+        <span class="sys_label">Inferred commercial goal:</span> Protecting billable utilisation and margin through the next phase of headcount growth, following two external growth and performance recognitions in twelve months. This is an inference from public evidence, not a verified fact from Affinity MSP.
+      </div>
+      <div class="sys_item"><span class="sys_label">Primary matched service:</span> G4 Workforce Capacity and Utilisation Review</div>
+      <div class="sys_item"><span class="sys_label">Supporting services named:</span> D3 KPI Dashboard Build and Run; A3 Financial Health Check (Quarterly)</div>
+      <div class="sys_item">
+        <span class="sys_label">Tier engine output (internal only, never shown to prospect):</span>
+        Industry: Management and IT consulting, bias 1.
+        Raw score inputs: Revenue $5M to $10M (5), Gross margin 40 to 55% neutral default (3), Team 16 to 40 (3), Single location default (1), Single entity default (1), Mostly recurring or contracted revenue model, informed by standard MSP contract structure (1), Some key account reliance default (2), Modest debt default (2), Forward growth over 30%, evidenced by 42% growth and continued 2026 momentum (6), Scaling rapidly (6), No announced commercial event (0). Raw score: 30.
+        Essential ceiling at bias 1 = 31. Command ceiling at bias 1 = 41.
+        Base tier: Essential (30 is at or below 31).
+        Neither adjustment applies: margin band (3) is not at or below 2, and is not equal to 5, so no lift and no drop. Final tier: Essential.
+        Price used: $3,950 one off (G4, Essential). The questionnaire confirms the exact tier from Nick Ower's own answers.
+      </div>
+      <div class="sys_item">
+        <span class="sys_label">Questionnaire URL (email):</span>
+        https://profit-pulse.com.au/services/find-your-fit/?utm_source=outreach&amp;utm_medium=email&amp;utm_campaign=nightly_outreach&amp;utm_content=affinity_msp
+      </div>
+      <div class="sys_item">
+        <span class="sys_label">Questionnaire URL (HTML dossier):</span>
+        https://profit-pulse.com.au/services/find-your-fit/?utm_source=outreach&amp;utm_medium=html&amp;utm_campaign=nightly_outreach&amp;utm_content=affinity_msp
+      </div>
+      <div class="sys_item">
+        <span class="sys_label">Questionnaire URL (PPTX brief):</span>
+        https://profit-pulse.com.au/services/find-your-fit/?utm_source=outreach&amp;utm_medium=pptx&amp;utm_campaign=nightly_outreach&amp;utm_content=affinity_msp
+      </div>
+      <div class="sys_item">
+        <span class="sys_label">Direct Stripe checkout link used:</span>
+        G4 Workforce Capacity and Utilisation Review, Essential tier, $3,950 one off.
+        Link: https://buy.stripe.com/eVq9AU2uA66cbdu9wr3ks1F
+        No UTM tags appended to Stripe link.
+      </div>
+      <div class="sys_item">
+        <span class="sys_label">Contact email domain used:</span> affinitymsp.com.au. No verified individual address for Nick Ower was found. Most likely address, nick&#64;affinitymsp.com.au, is based on the dominant email format reported for this domain, not a confirmed live address. All other addresses listed in Section 5.3C are inferred guesses, and info&#64;affinitymsp.com.au is a generic fallback found on business directory aggregators.
+      </div>
+      <div class="sys_item">
+        <span class="sys_label">EMAIL_INCLUDE_DIRECT_CHECKOUT:</span> false. The email leads with the questionnaire. No Stripe checkout link appears in the email body.
+      </div>
+      <div class="sys_item">
+        <span class="sys_label">BITLY_SHORTEN:</span> false. No short links created.
+      </div>
+      <div class="sys_item"><span class="sys_label">Nothing has been sent.</span> Every output in this dossier is a draft for Nitesh Roopa's review only. No email, message, or communication of any kind has been dispatched.</div>
+      <div class="sys_item">
+        <span class="sys_label">Files saved:</span>
+        Out-reach efforts/Dossier_AffinityMSP_27Aug2026.html
+        Out-reach efforts/Brief_AffinityMSP_27Aug2026.pptx
+        Out-reach efforts/Brief_AffinityMSP_27Aug2026.pdf
+        Out-reach efforts/Outreach_Register.csv (updated)
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div style="text-align: center; color: #E6E5DE; font-size: 12px; padding: 20px 0;">
+    ProfitPulse &nbsp;&bull;&nbsp; Confidential Internal Dossier &nbsp;&bull;&nbsp; Profit-Pulse.com.au &nbsp;&bull;&nbsp; 27 Aug 2026
+  </div>
+
+</div>
+</body>
+</html>
