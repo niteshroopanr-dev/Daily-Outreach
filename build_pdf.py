@@ -1,95 +1,79 @@
 """
 ProfitPulse Brief PDF Builder
-Target: AdUnion | Date: 09 Jun 2026
-Direct PDF generation, 3 slides, brand colours only, zero dashes.
-Page size: 960pt x 540pt (widescreen, matches PPTX 13.333in x 7.5in at 72dpi)
+Target: Attekus | Date: 29 Aug 2026
+Direct PDF generation, 3 slides, matches Brief_Attekus_29Aug2026.pptx layout exactly.
+Brand colours only. Zero dashes. Page size 960pt x 540pt (13.333in x 7.5in at 72dpi).
 """
 
-from reportlab.lib.pagesizes import landscape
 from reportlab.pdfgen import canvas
-from reportlab.lib.colors import Color, HexColor, white, black
-from reportlab.lib.units import inch
-pt = 1  # 1 point = 1 unit in ReportLab
-from reportlab.pdfbase import pdfmetrics
-from reportlab.pdfbase.ttfonts import TTFont
-import os
+from reportlab.lib.colors import HexColor, Color
 
-# ── Page dimensions ─────────────────────────────────────────────────────────
-W = 960  # pt  (13.333 in * 72)
-H = 540  # pt  (7.5   in * 72)
+IN = 72  # points per inch
 
-# ── Brand colours ────────────────────────────────────────────────────────────
-C_BLACK     = HexColor("#000000")
-C_TEAL      = HexColor("#01A296")
-C_AMBER_B   = HexColor("#F8C806")
-C_AMBER_D   = HexColor("#F6A102")
-C_GOLD      = HexColor("#E3A712")
-C_WHITE     = HexColor("#FFFFFF")
-C_OFF_WHITE = HexColor("#E6E5DE")
-C_DARK_PNL  = HexColor("#111111")
-C_TEAL_DRK  = HexColor("#041A18")
-C_MID_GREY  = HexColor("#888888")
-C_DRK_GREY  = HexColor("#444444")
-C_PANEL2    = HexColor("#1A1A1A")
-C_AMBER_BG  = HexColor("#1A1500")
+W = 13.333 * IN
+H = 7.5 * IN
 
-# ── Helpers ──────────────────────────────────────────────────────────────────
+C_BLACK   = HexColor("#000000")
+C_TEAL    = HexColor("#01A296")
+C_AMBER_B = HexColor("#F8C806")
+C_AMBER_D = HexColor("#F6A102")
+C_GOLD    = HexColor("#E3A712")
+C_WHITE   = HexColor("#FFFFFF")
+C_OFFWHITE= HexColor("#E6E5DE")
+
+SERIF = "Times-Bold"
+SERIF_R = "Times-Roman"
+SANS = "Helvetica"
+SANS_B = "Helvetica-Bold"
+
+QUESTIONNAIRE_CLEAN = "profit-pulse.com.au/services/find-your-fit"
+QUESTIONNAIRE_URL = "https://profit-pulse.com.au/services/find-your-fit/"
+STRIPE_URL = "https://buy.stripe.com/cNi9AUd9e9iodlC8sn3ks0k"
+BOOKING_URL = "https://bookings.cloud.microsoft/book/ProfitPulse1@profit-pulse.com.au/?ismsaljsauthenabled=true"
+DATE_STAMP = "29 Aug 2026"
+
+
 def rl_y(screen_y):
-    """Convert top-origin y to ReportLab bottom-origin y."""
     return H - screen_y
 
 
 def fill_rect(c, x, y_top, w, h, colour):
-    """Fill a rectangle. y_top is top-edge in screen coords."""
     c.setFillColor(colour)
     c.setStrokeColor(colour)
     c.rect(x, rl_y(y_top + h), w, h, fill=1, stroke=0)
 
 
-def stroke_rect(c, x, y_top, w, h, stroke_colour, line_width=1):
-    """Draw a stroked rectangle outline. y_top is top-edge in screen coords."""
-    c.setStrokeColor(stroke_colour)
-    c.setLineWidth(line_width)
-    c.setFillColor(Color(0, 0, 0, alpha=0))
-    c.rect(x, rl_y(y_top + h), w, h, fill=0, stroke=1)
-
-
-def fill_stroke_rect(c, x, y_top, w, h, fill_colour, stroke_colour, line_width=1):
+def bordered_rect(c, x, y_top, w, h, fill_colour, line_colour, line_width=1):
     c.setFillColor(fill_colour)
-    c.setStrokeColor(stroke_colour)
+    c.setStrokeColor(line_colour)
     c.setLineWidth(line_width)
     c.rect(x, rl_y(y_top + h), w, h, fill=1, stroke=1)
 
 
-def txt(c, text, x, y_top, size, colour, font="Helvetica-Bold",
-        align="left", max_width=None):
-    """Draw a single line of text. y_top is baseline's top position in screen coords."""
+def txt(c, text, x, y_top, size, colour, font=SANS_B, align="left", max_width=None, link=None):
     c.setFillColor(colour)
     c.setFont(font, size)
-    baseline_y = rl_y(y_top + size)  # approximate baseline
+    baseline_y = rl_y(y_top + size)
+    draw_x = x
     if align == "right" and max_width:
         tw = c.stringWidth(text, font, size)
-        x = x + max_width - tw
+        draw_x = x + max_width - tw
     elif align == "center" and max_width:
         tw = c.stringWidth(text, font, size)
-        x = x + (max_width - tw) / 2
-    c.drawString(x, baseline_y, text)
+        draw_x = x + (max_width - tw) / 2
+    c.drawString(draw_x, baseline_y, text)
+    if link:
+        tw = c.stringWidth(text, font, size)
+        c.linkURL(link, (draw_x, baseline_y - 2, draw_x + tw, baseline_y + size), relative=0, thickness=0)
 
 
-def txt_wrapped(c, text, x, y_top, max_w, size, colour, font="Helvetica",
-                leading=None, align="left"):
-    """
-    Draw text wrapped to max_w pt. Returns the y position after the last line.
-    y_top is in screen coords.
-    """
+def txt_wrapped(c, text, x, y_top, max_w, size, colour, font=SANS, leading=None, align="left"):
     if leading is None:
-        leading = size * 1.45
+        leading = size * 1.3
     c.setFillColor(colour)
     c.setFont(font, size)
-
     words = text.split()
-    lines = []
-    current = ""
+    lines, current = [], ""
     for word in words:
         test = (current + " " + word).strip()
         if c.stringWidth(test, font, size) <= max_w:
@@ -100,12 +84,11 @@ def txt_wrapped(c, text, x, y_top, max_w, size, colour, font="Helvetica",
             current = word
     if current:
         lines.append(current)
-
     y = y_top
     for line in lines:
         c.drawString(x, rl_y(y + size), line)
         y += leading
-    return y  # next available y (screen coords)
+    return y
 
 
 def hline(c, x, y_top, w, colour, thickness=1.5):
@@ -115,275 +98,212 @@ def hline(c, x, y_top, w, colour, thickness=1.5):
     c.line(x, ry, x + w, ry)
 
 
-def vline(c, x, y_top, h, colour, thickness=1.5):
-    c.setStrokeColor(colour)
-    c.setLineWidth(thickness)
-    c.line(x, rl_y(y_top), x, rl_y(y_top + h))
+def footer(c):
+    txt(c, "Prepared by Nitesh Roopa CA, Managing Partner and Founder, ProfitPulse, Profit-Pulse.com.au",
+        0.4 * IN, 7.14 * IN, 9, C_OFFWHITE, font=SANS)
+    txt(c, DATE_STAMP, 10.6 * IN, 7.14 * IN, 9, C_OFFWHITE, font=SANS, align="right", max_width=2.3 * IN)
 
 
-# ── Output path ──────────────────────────────────────────────────────────────
-out_path = "/home/user/Daily-Outreach/Out-reach efforts/Brief_AdUnion_09Jun2026.pdf"
+def base_page(c):
+    fill_rect(c, 0, 0, W, H, C_BLACK)
+    fill_rect(c, 0, 0, 0.09 * IN, H, C_AMBER_D)
+
+
+out_path = "/home/user/Daily-Outreach/Out-reach efforts/Brief_Attekus_29Aug2026.pdf"
 c = canvas.Canvas(out_path, pagesize=(W, H))
-c.setTitle("AdUnion | ProfitPulse Brief | 09 Jun 2026")
+c.setTitle("Attekus, ProfitPulse Brief, 29 Aug 2026")
 c.setAuthor("ProfitPulse")
-c.setSubject("Customer Concentration and Profitability Map")
+c.setSubject("Capital Allocation Review")
 
+# ============================================================================
+# SLIDE 1: COMMERCIAL INTELLIGENCE BRIEF
+# ============================================================================
+base_page(c)
 
-# ════════════════════════════════════════════════════════════════════════════
-# SLIDE 1: THE OPENING
-# ════════════════════════════════════════════════════════════════════════════
-fill_rect(c, 0, 0, W, H, C_BLACK)           # full black background
-fill_rect(c, 0, 0, 5, H, C_TEAL)            # left accent bar 5pt wide
+txt(c, "COMMERCIAL INTELLIGENCE BRIEF", 0.4 * IN, 0.32 * IN, 12, C_GOLD, font=SANS_B)
+txt(c, "PROFITPULSE", 9.5 * IN, 0.32 * IN, 12, C_TEAL, font=SANS_B, align="right", max_width=3.4 * IN)
 
-# ProfitPulse brand
-txt(c, "PROFITPULSE", 20, 36, 10, C_TEAL, font="Helvetica-Bold")
-hline(c, 20, 52, 180, C_TEAL, 1.5)
+txt(c, "Attekus", 0.4 * IN, 0.72 * IN, 54, C_AMBER_B, font=SERIF)
 
-# Company name: AdUnion
-txt(c, "AdUnion", 20, 80, 62, C_AMBER_B, font="Helvetica-Bold")
+txt(c, "Cloud based booking and event software for councils, Brisbane based",
+    0.4 * IN, 1.72 * IN, 16, C_WHITE, font=SANS)
 
-# Opportunity lines
-txt(c, "Three years of compounding growth.", 20, 162, 24, C_WHITE, font="Helvetica")
-txt(c, "The next stage belongs to margin clarity.", 20, 195, 24, C_OFF_WHITE, font="Helvetica")
+hline(c, 0.4 * IN, 2.12 * IN, 12.5 * IN, C_TEAL, 1.5)
 
-# Teal accent line below
-hline(c, 20, 228, 380, C_TEAL, 1.5)
+stats = [
+    ("$9.2M", ["FY2025 revenue", "reported"], "getlatka.com, Sept 2025"),
+    ("$5M",   ["First external", "capital raised"], "QIC Ventures, Oct 2024"),
+    ("20%",   ["Of ANZ councils", "on Bookable"], "Five V Capital profile"),
+    ("42",    ["People across", "the business"], "getlatka.com profile"),
+    ("2017",  ["Year founded,", "Brisbane"], "Startup Daily report"),
+    ("WINNER",["ANZ High Growth", "Award 2025"], "Lord Mayor Business Awards"),
+]
+tile_w = 1.98 * IN
+tile_h = 1.85 * IN
+gap = 0.11 * IN
+x0 = 0.4 * IN
+y0 = 2.34 * IN
+for i, (num, label_lines, source) in enumerate(stats):
+    x = x0 + i * (tile_w + gap)
+    bordered_rect(c, x, y0, tile_w, tile_h, C_BLACK, C_OFFWHITE, 0.75)
+    fill_rect(c, x, y0, tile_w, 0.07 * IN, C_TEAL)
+    txt(c, num, x + 0.12 * IN, y0 + 0.24 * IN, 28, C_AMBER_B, font=SERIF)
+    ly = y0 + 0.86 * IN
+    for line in label_lines:
+        txt(c, line, x + 0.12 * IN, ly, 11, C_OFFWHITE, font=SANS)
+        ly += 0.19 * IN
+    txt(c, source, x + 0.12 * IN, y0 + 1.52 * IN, 8, C_GOLD, font=SANS)
 
-# Verified metrics
-txt(c, "$9.3M revenue  •  81% three year growth  •  10 people",
-    20, 244, 14, C_OFF_WHITE, font="Helvetica")
-txt(c, "Smart50 2025 #8   •   AFR Fast 100 2025 #26   •   Deloitte Tech Fast 50 2025 #31",
-    20, 265, 12, C_TEAL, font="Helvetica")
+txt(c, "KEY COMMERCIAL SIGNALS", 0.4 * IN, 4.42 * IN, 13, C_TEAL, font=SANS_B)
 
-# Right side large year watermark
-txt(c, "MELBOURNE", 680, 110, 10, C_TEAL, font="Helvetica-Bold", align="right", max_width=260)
-txt(c, "2016", 680, 130, 46, HexColor("#222222"), font="Helvetica-Bold",
-    align="right", max_width=260)
-txt(c, "Founded", 680, 185, 10, HexColor("#444444"), font="Helvetica",
-    align="right", max_width=260)
+signals = [
+    "Raised AUD 5 million first ever external round, led by Five V Capital, October 2024.",
+    "QIC Ventures joined as co investor in the same institutional funding round.",
+    "Named 2025 ANZ High Growth Business at Brisbane Lord Mayor Business Awards.",
+    "Bookable platform now used by close to 20 percent of councils across Australia and NZ.",
+    "New capital earmarked for UK council entry plus ANZ education and government sectors.",
+    "CEO Peter Suchting joined in 2023, leading beyond founder only leadership.",
+]
+sy = 4.80 * IN
+for s in signals:
+    txt(c, "•  " + s, 0.4 * IN, sy, 13, C_OFFWHITE, font=SANS)
+    sy += 0.315 * IN
 
-# Industry descriptor
-txt(c, "Streaming Media Advertising Agency", 20, 295, 12,
-    HexColor("#555555"), font="Helvetica-Oblique")
+footer(c)
 
-# Date footer
-txt(c, "09 Jun 2026", 710, 520, 10, C_DRK_GREY, font="Helvetica",
-    align="right", max_width=230)
-txt(c, "Profit-Pulse.com.au", 20, 520, 10, C_DRK_GREY, font="Helvetica")
-
-
-# ════════════════════════════════════════════════════════════════════════════
-# SLIDE 2: THE INSIGHT
-# ════════════════════════════════════════════════════════════════════════════
+# ============================================================================
+# SLIDE 2: THE OPPORTUNITY
+# ============================================================================
 c.showPage()
-fill_rect(c, 0, 0, W, H, C_BLACK)
-fill_rect(c, 0, 0, 5, H, C_TEAL)           # teal left bar
-fill_rect(c, 5, 0, W - 5, 52, C_DARK_PNL)  # header bar
+base_page(c)
 
-txt(c, "THE INSIGHT", 20, 14, 13, C_AMBER_B, font="Helvetica-Bold")
-txt(c, "AdUnion  |  09 Jun 2026", 550, 14, 12, C_TEAL, font="Helvetica-Bold",
-    align="right", max_width=390)
+txt(c, "THE OPPORTUNITY", 0.4 * IN, 0.32 * IN, 24, C_AMBER_B, font=SERIF)
+txt(c, "Attekus, three commercial observations from ProfitPulse",
+    0.4 * IN, 0.84 * IN, 14, C_WHITE, font=SANS)
+hline(c, 0.4 * IN, 1.22 * IN, 12.5 * IN, C_TEAL, 1.5)
 
-# ── LEFT COLUMN: Verified data ───────────────────────────────────────────────
-left_x = 20
-col_w  = 280
-
-txt(c, "Verified facts", left_x, 66, 10, C_TEAL, font="Helvetica-Bold")
-hline(c, left_x, 80, col_w, C_TEAL, 1)
-
-data = [
-    ("Revenue (FY2024)",       "$9.3 million"),
-    ("Three year growth",      "81% average"),
-    ("Revenue since 2023",     "Tripled"),
-    ("Team size",              "10 people"),
-    ("Smart50 2025",           "Rank 8 of 50"),
-    ("AFR Fast 100 2025",      "Rank 26"),
-    ("Deloitte Tech Fast 50",  "Rank 31"),
-    ("Founded",                "2016"),
-    ("Location",               "Cremorne, Melbourne VIC"),
-    ("Managing Director",      "Robert Ong"),
-    ("MD role note",           "Co-founder, leads AdUnion"),
+columns = [
+    {
+        "idx": "01", "header": "New Capital, New Scrutiny", "fill": C_TEAL, "text_col": C_BLACK,
+        "tag": "ALIGNED TO THE RECOMMENDED SERVICE",
+        "body": ("Five V Capital and QIC Ventures backed Attekus with its first ever "
+                 "external raise in October 2024, funding entry into the United Kingdom "
+                 "council market plus ANZ education and government agencies. A Capital "
+                 "Allocation Review ranks each expansion path by expected return before "
+                 "further capital is committed."),
+    },
+    {
+        "idx": "02", "header": "A Board That Expects More", "fill": C_BLACK, "text_col": C_OFFWHITE,
+        "tag": None,
+        "body": ("Peter Suchting joined as Chief Executive Officer in 2023, and two "
+                 "institutional shareholders now sit alongside the founders. Reporting "
+                 "built for founder only oversight rarely satisfies venture capital "
+                 "standards. An Annual Plan and Board Pack lifts that reporting rhythm "
+                 "to the standard Five V Capital and QIC Ventures now expect."),
+    },
+    {
+        "idx": "03", "header": "Three Markets, One Plan", "fill": C_GOLD, "text_col": C_BLACK,
+        "tag": None,
+        "body": ("Attekus already serves close to 20 percent of councils across "
+                 "Australia and New Zealand. The new capital targets three further "
+                 "markets at once: the United Kingdom, education, and government "
+                 "agencies. A Strategic Growth Diagnostic sequences that expansion "
+                 "into a costed 12 month plan."),
+    },
 ]
 
-y = 94
-row_h = 30
-for label, val in data:
-    fill_rect(c, left_x, y, col_w, row_h - 2, HexColor("#161616"))
-    txt(c, label,   left_x + 6, y + 6,  9, C_MID_GREY, font="Helvetica")
-    txt(c, val,     left_x + 6, y + 18, 10, C_OFF_WHITE, font="Helvetica-Bold")
-    y += row_h
+col_w = 4.03 * IN
+col_gap = 0.19 * IN
+col_y = 1.5 * IN
+col_h = 4.55 * IN
+for i, col in enumerate(columns):
+    x = 0.4 * IN + i * (col_w + col_gap)
+    if col["fill"] == C_BLACK:
+        bordered_rect(c, x, col_y, col_w, col_h, C_BLACK, C_OFFWHITE, 0.75)
+    else:
+        fill_rect(c, x, col_y, col_w, col_h, col["fill"])
+    txt(c, col["idx"], x + 0.22 * IN, col_y + 0.22 * IN, 32, col["text_col"], font=SERIF)
+    txt_wrapped(c, col["header"], x + 0.22 * IN, col_y + 0.9 * IN, col_w - 0.44 * IN, 17,
+                col["text_col"], font=SERIF, leading=21)
+    body_top = col_y + 1.55 * IN
+    if col["tag"]:
+        txt(c, col["tag"], x + 0.22 * IN, col_y + 1.38 * IN, 9, col["text_col"], font=SANS_B)
+        body_top = col_y + 1.65 * IN
+    txt_wrapped(c, col["body"], x + 0.22 * IN, body_top, col_w - 0.44 * IN, 12.5,
+                col["text_col"], font=SANS, leading=16.5)
 
-txt(c, "Source: SmartCompany Smart50 2025 and public industry publications",
-    left_x, y + 8, 8, HexColor("#555555"), font="Helvetica-Oblique")
+txt_wrapped(c, ("Seven years of disciplined, capital light growth is a rare foundation. ProfitPulse "
+                "would welcome the chance to help Attekus put its first outside capital to its best "
+                "possible use."),
+            0.4 * IN, 6.3 * IN, 12.5 * IN, 13, C_OFFWHITE, font=SANS, leading=17)
 
-# ── Vertical divider ─────────────────────────────────────────────────────────
-vline(c, 310, 60, 455, C_TEAL, 1)
+footer(c)
 
-# ── RIGHT COLUMN: Wedge ──────────────────────────────────────────────────────
-rx = 322
-rw = 620
-
-txt(c, "The commercial observation", rx, 66, 10, C_TEAL, font="Helvetica-Bold")
-hline(c, rx, 80, rw, C_TEAL, 1)
-
-wedge_paras = [
-    ("AdUnion has compounded at 81 percent over three years and now "
-     "manages streaming campaigns for Samsung, Tubi, Tangerine Telecom, "
-     "and a growing roster across retail, travel, and financial services. "
-     "With ten people generating $9.3 million in revenue, productivity is "
-     "exceptional and the growth record is verifiable across three "
-     "independent Australian lists.",
-     C_OFF_WHITE),
-
-    ("The question that follows rapid, diversified client growth is: which "
-     "accounts drive the real margin after the full cost of service, team "
-     "time, and platform investment are allocated? In most agencies at this "
-     "stage, the answer is uneven. The clients that look largest by revenue "
-     "are rarely the ones that yield the most after full cost allocation.",
-     C_OFF_WHITE),
-
-    ("The Customer Concentration and Profitability Map answers that question "
-     "in three weeks: every client ranked by revenue, gross margin "
-     "contribution, and effort to serve. The output is a clear action list: "
-     "grow these, reprice these, reset these. At this scale and growth "
-     "velocity, that map is the most leveraged financial insight available.",
-     C_OFF_WHITE),
-]
-
-wy = 93
-for para_text, para_colour in wedge_paras:
-    wy = txt_wrapped(c, para_text, rx, wy, rw, 12, para_colour,
-                     font="Helvetica", leading=18)
-    wy += 14  # paragraph gap
-
-# ── Bottom service bar ───────────────────────────────────────────────────────
-fill_rect(c, 5, 478, W - 5, 52, C_TEAL_DRK)
-fill_rect(c, 5, 478, 28, 52, C_TEAL)
-
-txt(c, "Matched Service: Customer Concentration and Profitability Map  (G2)",
-    45, 487, 13, C_AMBER_B, font="Helvetica-Bold")
-txt(c, "Command tier  •  $3,950 one off  •  ProfitPulse verified price  "
-        "•  Questionnaire confirms exact fit",
-    45, 508, 11, C_OFF_WHITE, font="Helvetica")
-
-txt(c, "Profit-Pulse.com.au", 20, 520, 9, C_DRK_GREY, font="Helvetica")
-txt(c, "09 Jun 2026", 710, 520, 9, C_DRK_GREY, font="Helvetica",
-    align="right", max_width=230)
-
-
-# ════════════════════════════════════════════════════════════════════════════
-# SLIDE 3: THE CALL TO ACTION
-# ════════════════════════════════════════════════════════════════════════════
+# ============================================================================
+# SLIDE 3: THE RECOMMENDATION
+# ============================================================================
 c.showPage()
-fill_rect(c, 0, 0, W, H, C_BLACK)
-fill_rect(c, 0, 0, 5, H, C_TEAL)
-fill_rect(c, 5, 0, W - 5, 52, C_DARK_PNL)
+base_page(c)
 
-txt(c, "FIND THE RIGHT FIX FOR YOUR BUSINESS",
-    20, 14, 13, C_AMBER_B, font="Helvetica-Bold")
-txt(c, "AdUnion", 710, 14, 13, C_TEAL, font="Helvetica-Bold",
-    align="right", max_width=230)
+txt(c, "THE RECOMMENDATION", 0.4 * IN, 0.32 * IN, 24, C_AMBER_B, font=SERIF)
+hline(c, 0.4 * IN, 0.82 * IN, 12.5 * IN, C_TEAL, 1.5)
 
-# ── LEFT side: CTAs ──────────────────────────────────────────────────────────
-cx = 20
-cw = 580
+lx = 0.4 * IN
+lw = 7.4 * IN
 
-# PRIMARY CTA box
-fill_stroke_rect(c, cx, 62, cw, 148, C_TEAL_DRK, C_TEAL, 1)
+txt(c, "Capital Allocation Review", lx, 1.05 * IN, 27, C_AMBER_B, font=SERIF)
+txt(c, "AUD 6,000 one off", lx, 1.66 * IN, 16, C_WHITE, font=SANS_B)
+txt_wrapped(c, ("An independent ranking of the United Kingdom, education and government "
+                "expansion paths by expected return, with a redeployment plan the board can act on."),
+            lx, 2.10 * IN, lw, 13, C_OFFWHITE, font=SANS, leading=17)
 
-txt(c, "Step 1: Answer a few quick questions",
-    cx + 12, 72, 14, C_AMBER_B, font="Helvetica-Bold")
-txt_wrapped(c,
-    "See the solutions matched to your size and industry, each with a "
-    "direct purchase option.",
-    cx + 12, 96, cw - 24, 12, C_OFF_WHITE, font="Helvetica", leading=17)
-txt_wrapped(c,
-    "profit-pulse.com.au/full-suite-of-products?"
-    "utm_source=outreach&utm_medium=pptx"
-    "&utm_campaign=nightly_outreach&utm_content=adunion",
-    cx + 12, 132, cw - 24, 10, C_TEAL, font="Helvetica", leading=14)
-txt(c, "QUESTIONNAIRE  (primary front door)",
-    cx + 12, 192, 10, C_TEAL, font="Helvetica-Bold")
+bordered_rect(c, lx, 2.95 * IN, lw, 1.55 * IN, C_BLACK, C_TEAL, 1)
+txt(c, "STEP ONE", lx + 0.22 * IN, 3.12 * IN, 11, C_TEAL, font=SANS_B)
+txt(c, "See the solutions matched to your size and industry",
+    lx + 0.22 * IN, 3.44 * IN, 13, C_WHITE, font=SANS)
+txt(c, QUESTIONNAIRE_CLEAN, lx + 0.22 * IN, 3.84 * IN, 14, C_TEAL, font=SANS_B, link=QUESTIONNAIRE_URL)
 
-# Separator
-hline(c, cx, 218, cw, C_TEAL, 1)
-txt(c, "Or start directly with the matched service",
-    cx + 12, 226, 10, C_MID_GREY, font="Helvetica-Oblique")
+bordered_rect(c, lx, 4.65 * IN, lw, 0.95 * IN, C_BLACK, C_AMBER_D, 1)
+txt(c, "Purchase the suggested product now to get started",
+    lx + 0.22 * IN, 4.9 * IN, 14, C_AMBER_D, font=SANS_B, link=STRIPE_URL)
 
-# SECONDARY CTA box
-fill_stroke_rect(c, cx, 244, cw, 108, C_AMBER_BG, C_AMBER_D, 1)
+txt(c, "Prefer a conversation first", lx, 5.8 * IN, 12, C_OFFWHITE, font=SANS)
+txt(c, "Book a complimentary discovery call", lx, 6.14 * IN, 13, C_TEAL, font=SANS_B, link=BOOKING_URL)
 
-txt(c, "Customer Concentration and Profitability Map",
-    cx + 12, 254, 13, C_AMBER_D, font="Helvetica-Bold")
-txt(c, "Command tier  •  $3,950 one off  •  ProfitPulse verified price",
-    cx + 12, 276, 11, C_OFF_WHITE, font="Helvetica")
-txt(c, "Questionnaire confirms exact tier before purchase if preferred.",
-    cx + 12, 293, 10, C_MID_GREY, font="Helvetica-Oblique")
-txt(c, "buy.stripe.com/14AbJ21qw2U0ftK0ZV3ks1A",
-    cx + 12, 318, 10, C_AMBER_D, font="Helvetica")
+rx = 8.15 * IN
+rw = 4.75 * IN
+bordered_rect(c, rx, 1.05 * IN, rw, 5.55 * IN, C_BLACK, C_OFFWHITE, 0.75)
+fill_rect(c, rx, 1.05 * IN, rw, 0.06 * IN, C_GOLD)
 
-# Booking link
-hline(c, cx, 360, cw, HexColor("#333333"), 1)
-txt(c, "Prefer a conversation first?",
-    cx + 12, 370, 11, C_OFF_WHITE, font="Helvetica")
-txt_wrapped(c,
-    "Book a complimentary discovery call: "
-    "bookings.cloud.microsoft/book/ProfitPulse1@profit-pulse.com.au/",
-    cx + 12, 390, cw - 24, 10, C_TEAL, font="Helvetica", leading=14)
-
-# Supporting services note
-hline(c, cx, 430, cw, HexColor("#222222"), 1)
-txt(c, "Supporting services identified: A4 Strategic Growth Diagnostic  |  D4 Budgeting and Forecasting Setup",
-    cx + 12, 440, 9, HexColor("#555555"), font="Helvetica")
-
-# ── RIGHT side: Signature block ──────────────────────────────────────────────
-sx = 625
-sw = 315
-
-fill_stroke_rect(c, sx, 62, sw, 380, HexColor("#0A0A0A"), HexColor("#222222"), 1)
-
-# Name and credentials
-txt(c, "NITESH ROOPA", sx + 16, 78, 18, C_AMBER_B, font="Helvetica-Bold")
-txt(c, "CA, Managing Partner", sx + 16, 106, 12, C_WHITE, font="Helvetica")
-txt(c, "ProfitPulse", sx + 16, 126, 18, C_TEAL, font="Helvetica-Bold")
-hline(c, sx + 16, 154, sw - 32, C_TEAL, 1.5)
-
-sig_items = [
-    ("Profit-Pulse.com.au",            C_OFF_WHITE, "Helvetica"),
-    ("Nitesh@Profit-Pulse.com.au",     C_TEAL,      "Helvetica"),
-    ("+61 411 876 267",                C_OFF_WHITE, "Helvetica"),
-]
-sy = 164
-for item_text, item_col, item_font in sig_items:
-    txt(c, item_text, sx + 16, sy, 11, item_col, font=item_font)
-    sy += 18
-
-hline(c, sx + 16, sy + 4, sw - 32, HexColor("#333333"), 1)
-sy += 16
+txt_wrapped(c, "Nitesh Roopa, CA, Managing Partner, ProfitPulse",
+            rx + 0.25 * IN, 1.3 * IN, rw - 0.5 * IN, 16, C_AMBER_B, font=SERIF, leading=19)
 
 cred_lines = [
-    "16 years across 4 countries",
-    "52 deals executed and managed",
-    "CA qualification: SAICA South Africa",
-    "QIC 2023 to 2025: Finance and Commercial",
-    "Lead, AUD 10B Gympie Road Bypass Tunnel",
-    "Nedbank CIB 2015 to 2022: Energy Finance",
-    "and Principal and Equity Finance",
+    "16 years of experience across 4 countries",
+    "Over 52 deals executed and managed",
+    "Queensland GRBT project value over AUD 10 billion",
+    "CA qualification, SAICA South Africa",
 ]
-for line in cred_lines:
-    txt(c, line, sx + 16, sy, 10, C_MID_GREY, font="Helvetica")
-    sy += 15
+cy = 2.35 * IN
+for cred in cred_lines:
+    cy = txt_wrapped(c, "•  " + cred, rx + 0.25 * IN, cy, rw - 0.5 * IN, 12.5, C_OFFWHITE, font=SANS, leading=16)
+    cy += 0.06 * IN
 
-hline(c, sx + 16, sy + 6, sw - 32, HexColor("#333333"), 1)
-sy += 18
-txt(c, "linkedin.com/in/nitesh-roopa-77594163",
-    sx + 16, sy, 9, HexColor("#555555"), font="Helvetica")
+hline(c, rx + 0.25 * IN, 4.15 * IN, rw - 0.5 * IN, C_TEAL, 1.5)
 
-# Footer
-txt(c, "Profit-Pulse.com.au", 20, 520, 9, C_DRK_GREY, font="Helvetica")
-txt(c, "09 Jun 2026", 710, 520, 9, C_DRK_GREY, font="Helvetica",
-    align="right", max_width=230)
+contact_lines = [
+    ("Profit-Pulse.com.au", C_OFFWHITE, 13, SANS),
+    ("Nitesh@Profit-Pulse.com.au", C_TEAL, 13, SANS_B),
+    ("+61 411 876 267", C_OFFWHITE, 13, SANS),
+    ("linkedin.com/in/nitesh-roopa-77594163", C_OFFWHITE, 11, SANS),
+    ("Brisbane, Australia", C_OFFWHITE, 11, SANS),
+]
+cy = 4.35 * IN
+for text_, colour, size, font in contact_lines:
+    txt(c, text_, rx + 0.25 * IN, cy, size, colour, font=font)
+    cy += 0.27 * IN
 
-# ── Save ──────────────────────────────────────────────────────────────────────
+footer(c)
+
 c.save()
 print(f"PDF saved: {out_path}")

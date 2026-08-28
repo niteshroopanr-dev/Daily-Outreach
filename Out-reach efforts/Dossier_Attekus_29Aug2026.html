@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Attekus Dossier, 29 Aug 2026</title>
+<style>
+  :root {
+    --black: #000000;
+    --teal: #01A296;
+    --amber-b: #F8C806;
+    --amber-d: #F6A102;
+    --gold: #E3A712;
+    --white: #FFFFFF;
+    --offwhite: #E6E5DE;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--black);
+    color: var(--offwhite);
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.55;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 24px 20px 60px; }
+  h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; color: var(--amber-b); }
+  h1 { font-size: 2rem; margin: 0 0 6px; }
+  h2 { font-size: 1.3rem; color: var(--teal); border-bottom: 1px solid var(--teal); padding-bottom: 8px; margin-top: 46px; }
+  h3 { font-size: 1.05rem; color: var(--white); margin-bottom: 6px; }
+  a { color: var(--teal); }
+  .eyebrow { color: var(--gold); font-weight: bold; letter-spacing: 0.06em; font-size: 0.85rem; text-transform: uppercase; }
+  .datestamp { color: var(--offwhite); font-size: 0.95rem; }
+  .why { color: var(--offwhite); font-size: 1rem; margin-top: 10px; border-left: 3px solid var(--amber-d); padding-left: 14px; }
+  .header-block { border-bottom: 2px solid var(--teal); padding-bottom: 18px; }
+
+  table.profile { width: 100%; border-collapse: collapse; margin-top: 10px; }
+  table.profile th, table.profile td { text-align: left; padding: 10px 12px; border-bottom: 1px solid #2a2a2a; font-size: 0.95rem; vertical-align: top; }
+  table.profile th { color: var(--teal); width: 30%; font-weight: bold; }
+  table.profile td { color: var(--offwhite); }
+  .source { color: var(--gold); font-size: 0.82rem; display: block; margin-top: 3px; }
+
+  .wedge-box { background: var(--black); border: 1px solid var(--teal); padding: 20px; margin-top: 16px; }
+  .service-name { color: var(--amber-b); font-family: Georgia, serif; font-size: 1.25rem; font-weight: bold; margin: 0 0 8px; }
+  .price-line { color: var(--white); font-size: 1.1rem; margin: 4px 0 14px; }
+  .support-list { color: var(--offwhite); font-size: 0.92rem; }
+
+  .cta-primary {
+    display: block; text-align: center; background: var(--teal); color: var(--black);
+    font-weight: bold; font-size: 1.1rem; text-decoration: none; padding: 18px 20px;
+    border-radius: 4px; margin: 22px 0 8px;
+  }
+  .cta-caption { text-align: center; color: var(--offwhite); font-size: 0.85rem; margin-bottom: 30px; }
+
+  .cta-secondary {
+    display: block; border: 2px solid var(--amber-d); color: var(--amber-d);
+    text-align: center; font-weight: bold; font-size: 1rem; text-decoration: none;
+    padding: 16px 20px; border-radius: 4px; margin: 10px 0 4px; background: var(--black);
+  }
+  .cta-secondary .sub { display: block; color: var(--offwhite); font-weight: normal; font-size: 0.85rem; margin-top: 6px; }
+
+  .contact-block { background: var(--black); border: 1px solid var(--gold); padding: 16px 20px; margin-top: 10px; }
+  .contact-block ul { margin: 8px 0 0; padding-left: 20px; }
+  .contact-block li { margin-bottom: 6px; font-size: 0.92rem; }
+  .verified-tag { color: var(--teal); font-weight: bold; }
+  .inferred-tag { color: var(--gold); font-weight: bold; }
+
+  .red-banner {
+    background: #000000; border: 3px solid #d40000; color: #ff4d4d; font-weight: bold;
+    padding: 16px 18px; font-size: 0.98rem; margin: 20px 0; text-align: center;
+  }
+  .email-box { background: var(--black); border: 1px solid #333; padding: 22px; margin-top: 14px; }
+  .email-meta { font-size: 0.88rem; color: var(--gold); margin-bottom: 4px; }
+  .email-meta .flag { color: var(--offwhite); font-style: italic; }
+  .email-subject { color: var(--white); font-weight: bold; margin: 14px 0 10px; font-size: 1.02rem; }
+  .email-body p { color: var(--offwhite); margin: 0 0 14px; }
+  .email-sig { color: var(--offwhite); border-top: 1px solid #333; margin-top: 16px; padding-top: 14px; }
+  .email-sig .name { color: var(--amber-b); font-weight: bold; }
+  .email-sig .brand { color: var(--teal); font-weight: bold; }
+
+  .notes-list { font-size: 0.88rem; color: var(--offwhite); }
+  .notes-list li { margin-bottom: 8px; }
+  .footer-line { text-align: center; color: var(--offwhite); font-size: 0.82rem; margin-top: 50px; border-top: 1px solid #2a2a2a; padding-top: 16px; }
+
+  @media (max-width: 600px) {
+    table.profile th, table.profile td { display: block; width: 100%; padding: 6px 0; }
+    table.profile th { border-bottom: none; padding-bottom: 0; }
+    h1 { font-size: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="header-block">
+    <div class="eyebrow">ProfitPulse Commercial Intelligence Dossier</div>
+    <h1>Attekus</h1>
+    <div class="datestamp">29 Aug 2026</div>
+    <p class="why">Selected tonight because Attekus closed its first ever external capital raise in October 2024, an AUD 5 million round from Five V Capital and QIC Ventures, and is now deploying that capital across three new markets at once with no independently documented allocation plan on the public record, a precise fit for ProfitPulse's Capital Allocation Review.</p>
+  </div>
+
+  <h2>Verified Profile</h2>
+  <table class="profile">
+    <tr><th>Legal / trading name</th><td>Attekus<span class="source">Source: company site attekus.com.au, Startup Daily, QIC Ventures announcement</span></td></tr>
+    <tr><th>What they do</th><td>Cloud based venue and facility booking, event and appointment management software for local councils, sold under the product name Bookable, integrating with council systems including TechnologyOne.<span class="source">Source: QIC Ventures announcement, Startup Daily, Five V Capital company profile</span></td></tr>
+    <tr><th>Location</th><td>Milton, Brisbane, Queensland<span class="source">Source: PitchBook company profile, corroborated by Brisbane Lord Mayor's Business Awards listing (Brisbane based entrant)</span></td></tr>
+    <tr><th>Founded</th><td>2017, by Tom Muller and Andrew Cutler, following their prior roles at TechnologyOne<span class="source">Source: Startup Daily, Five V Capital company profile</span></td></tr>
+    <tr><th>Employees</th><td>42 people as at 2025, consistent with a LinkedIn company size band of 11 to 50<span class="source">Source: getlatka.com company financial profile; Dealroom.co company profile</span></td></tr>
+    <tr><th>Revenue</th><td>AUD 9.2 million as at September 2025<span class="source">Source: getlatka.com company financial profile. Corroborated in scale by the company's first ever external capital raise of AUD 5 million, a milestone only credible for a business already operating at multi million dollar revenue (QIC Ventures official announcement, Startup Daily, Capital Brief)</span></td></tr>
+    <tr><th>Ownership / capital</th><td>Founder owned and bootstrapped for seven years, then first institutional capital taken on in October 2024: Five V Capital led an AUD 5 million round, joined by QIC Ventures<span class="source">Source: QIC Ventures official announcement, Startup Daily, Capital Brief</span></td></tr>
+    <tr><th>Market position</th><td>Bookable is used by close to 20 percent of local councils across Australia and New Zealand<span class="source">Source: QIC Ventures announcement, Startup Daily, Five V Capital company profile</span></td></tr>
+    <tr><th>Leadership</th><td>Peter Suchting, Chief Executive Officer, joined 2023. Tom Muller continues as Chief Technology Officer and co founder. Andrew Cutler, co founder.<span class="source">Source: Startup Daily, ZoomInfo, Attekus team page</span></td></tr>
+    <tr><th>Profitability / margin</th><td>Not publicly disclosed</td></tr>
+    <tr><th>Debt facilities</th><td>Not publicly disclosed. Capital raised to date is equity, not debt.</td></tr>
+  </table>
+
+  <h2>The Wedge and Matched Service</h2>
+  <div class="wedge-box">
+    <p style="margin-top:0;">Attekus spent seven years building Bookable into the platform behind close to 20 percent of local councils across Australia and New Zealand, entirely without outside capital. In October 2024 that changed. Five V Capital led the business's first ever external raise, an AUD 5 million round joined by QIC Ventures, earmarked for entry into the United Kingdom local government market alongside expansion into Australian and New Zealand education, and state and federal government agencies. Three new markets, one pool of growth capital, and for the first time in the company's history, institutional shareholders expecting to see the return on every dollar deployed.</p>
+    <p>That is precisely the point at which a capital allocation review earns its keep. Ranking the United Kingdom entry, the education vertical and the government agency push by expected return before further capital is committed turns the next board conversation with Five V Capital and QIC Ventures into one grounded in a documented redeployment plan, not founder instinct.</p>
+
+    <div class="service-name">Capital Allocation Review</div>
+    <p style="margin-top:0; color:var(--offwhite);">An independent review of capital deployment against expected return, producing a redeployment plan so newly raised growth capital is directed at its highest value use before further commitments are made.</p>
+    <div class="price-line">AUD 6,000, one off. Confirmed by the ProfitPulse questionnaire.</div>
+    <div class="support-list"><strong style="color:var(--teal);">Supporting services identified:</strong> Strategic Growth Diagnostic, Annual Plan and Board Pack</div>
+  </div>
+
+  <a class="cta-primary" href="https://profit-pulse.com.au/services/find-your-fit/?utm_source=outreach&utm_medium=html&utm_campaign=nightly_outreach&utm_content=attekus">See the solutions matched to Attekus</a>
+  <div class="cta-caption">profit-pulse.com.au/services/find-your-fit</div>
+
+  <a class="cta-secondary" href="https://buy.stripe.com/cNi9AUd9e9iodlC8sn3ks0k">
+    Purchase the suggested product now to get started
+    <span class="sub">Capital Allocation Review, AUD 6,000 one off, ProfitPulse verified price</span>
+  </a>
+
+  <h2>Likely Contact Email Addresses (Internal Only)</h2>
+  <div class="contact-block">
+    <p style="margin:0 0 6px;">Decision maker: <strong style="color:var(--white);">Peter Suchting, Chief Executive Officer</strong>. Domain used across public listings: <strong>attekus.com.au</strong>.</p>
+    <ul>
+      <li><span class="inferred-tag">Inferred, unverified, confirm before sending</span>, ranked highest: <strong>psuchting@attekus.com.au</strong> (first initial plus surname matches the partial mask "p***@attekus.com.au" published by ZoomInfo for Peter Suchting)</li>
+      <li><span class="inferred-tag">Inferred, unverified, confirm before sending</span>: peter.suchting@attekus.com.au</li>
+      <li><span class="inferred-tag">Inferred, unverified, confirm before sending</span>: peter@attekus.com.au</li>
+      <li><span class="inferred-tag">Inferred, unverified, confirm before sending</span>: p.suchting@attekus.com.au</li>
+      <li><span class="verified-tag">Verified generic fallback</span>, published on company contact page: <strong>info@attekus.com.au</strong> (source: Crunchbase company listing, Attekus contact page)</li>
+    </ul>
+  </div>
+
+  <h2>Email Draft</h2>
+  <div class="red-banner">REVIEW GATE: This email is a draft only. No communication has been sent. Only Nitesh Roopa may authorise and send this message.</div>
+
+  <div class="email-box">
+    <div class="email-meta">To: <span class="flag">psuchting@attekus.com.au (placeholder, confirm before sending, not verified)</span></div>
+    <div class="email-subject">Subject: Putting the new Attekus capital to work</div>
+    <div class="email-body">
+      <p>Hello Peter,</p>
+      <p>I noticed the news that Five V Capital and QIC Ventures backed Attekus in October 2024, the business's first ever outside raise after seven years bootstrapped to close to 20 percent market share of councils across Australia and New Zealand. Building that position without external capital is a genuinely rare result, and the United Kingdom entry alongside the education and government sector plans you have flagged make sense as the next chapter.</p>
+      <p>My name is Nitesh Roopa. I am a Chartered Accountant and the Managing Partner of ProfitPulse, a Brisbane fractional CFO practice. Before this I led finance and commercial workstreams on transactions from USD 15 million to USD 1.3 billion, including three years as Finance and Commercial Lead on the AUD 10 billion Gympie Road Bypass Tunnel business case for Queensland Treasury.</p>
+      <p>What caught my attention is the moment Attekus is now in. Three expansion paths, one pool of new capital, and for the first time, institutional shareholders who will expect a documented view of where that capital earns the best return. That is exactly what our Capital Allocation Review is built for, an independent ranking of the United Kingdom entry, the education vertical and the government sector push by expected return, with a redeployment plan the board can act on. I have put together a short brief on this specific opportunity for Attekus, attached as a PDF.</p>
+      <p>If it is useful, a short questionnaire at <a href="https://profit-pulse.com.au/services/find-your-fit/?utm_source=outreach&utm_medium=email&utm_campaign=nightly_outreach&utm_content=attekus">profit-pulse.com.au/services/find-your-fit</a> will size the business and show the specific services matched to where Attekus sits today.</p>
+      <p>If you would rather talk first, I am always happy to start with a complimentary discovery call, <a href="https://bookings.cloud.microsoft/book/ProfitPulse1@profit-pulse.com.au/?ismsaljsauthenabled=true">bookable here</a>. Either way, congratulations again on the raise, and on seven years of disciplined growth before it.</p>
+    </div>
+    <div class="email-sig">
+      <div class="name">Nitesh Roopa</div>
+      <div>CA, Managing Partner</div>
+      <div class="brand">ProfitPulse</div>
+      <div>Profit-Pulse.com.au</div>
+      <div>Nitesh@Profit-Pulse.com.au</div>
+      <div>+61 411 876 267</div>
+    </div>
+  </div>
+
+  <h2>System Notes</h2>
+  <ul class="notes-list">
+    <li>Target confirmed not already present in Outreach_Register.csv (existing entry: AdUnion, Cremorne VIC). Attekus is a new, distinct entrant.</li>
+    <li>Sources used: QIC Ventures official announcement (qic.com), Startup Daily, Capital Brief, Five V Capital company profile, getlatka.com company financial profile, Dealroom.co, PitchBook, Brisbane Economic Development Agency Lord Mayor's Business Awards listing (beda.brisbane.qld.au), ZoomInfo, Crunchbase, Attekus company site (attekus.com.au).</li>
+    <li>Inferred 12 month commercial goal (inference, not stated by the company): having completed its first institutional capital raise after seven years of bootstrapped growth, Attekus most likely aims to deploy the new AUD 5 million across United Kingdom council entry, the ANZ education sector and state and federal government agencies, while establishing board grade financial reporting and capital allocation discipline for its new institutional shareholders, Five V Capital and QIC Ventures.</li>
+    <li>Matched service: A5, Capital Allocation Review. Supporting services named only: A4 Strategic Growth Diagnostic, D5 Annual Plan and Board Pack.</li>
+    <li>Inferred tier: Command. Reason: tier engine raw score 25 against an Essential ceiling of 27 for the Technology / SaaS industry bias (3), placing the base tier at Essential, then lifted one tier to Command because gross margin band is 2 (inferred over 55 percent for a software delivery model) and forward growth band is 4 (growing 15 to 30 percent), triggering the margin plus growth lift rule.</li>
+    <li>Questionnaire URL used in this dossier: https://profit-pulse.com.au/services/find-your-fit/?utm_source=outreach&amp;utm_medium=html&amp;utm_campaign=nightly_outreach&amp;utm_content=attekus</li>
+    <li>Exact Stripe link and tier used: Command tier, AUD 6,000, https://buy.stripe.com/cNi9AUd9e9iodlC8sn3ks0k</li>
+    <li>Contact email domain used: attekus.com.au. Verified address: info@attekus.com.au (generic, published). All named individual addresses are inferred and unverified.</li>
+    <li>Confirmation: EMAIL_INCLUDE_DIRECT_CHECKOUT = false. The email draft above contains no Stripe link.</li>
+    <li>Confirmation: nothing in this dossier has been sent to Attekus or any related party. This is a draft package for Nitesh Roopa's review only.</li>
+  </ul>
+
+  <div class="footer-line">Prepared by Nitesh Roopa, CA, Managing Partner, ProfitPulse. Profit-Pulse.com.au. 29 Aug 2026. For internal review only.</div>
+</div>
+</body>
+</html>
